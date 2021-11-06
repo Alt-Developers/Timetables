@@ -1,0 +1,15 @@
+{
+  "name": "1.0v",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "a": "node-sass src/sass/main.scss src/style/style.css -watch"
+  },
+  "author": "SS Developers",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^6.0.1"
+  }
+}
