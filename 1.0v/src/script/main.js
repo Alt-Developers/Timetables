@@ -1,3 +1,4 @@
+// Time
 const time = new Date();
 document.querySelector(
   ".header__text"
