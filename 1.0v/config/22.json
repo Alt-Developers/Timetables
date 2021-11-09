@@ -1,0 +1,105 @@
+{
+  "classNumber": "M 2/2",
+  "english": {
+    "monday": {
+      "morning": [
+        ["i-period", ""],
+        ["i-period", ""],
+        ["i-period", ""],
+        ["i-period", ""]
+      ],
+      "afternoon": [
+        ["i-period", ""],
+        ["i-period", ""],
+        ["i-period", ""]
+      ]
+    },
+    "tuesday": [
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""]
+    ],
+    "wednesday": [
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""]
+    ],
+    "thursday": [
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""]
+    ],
+    "friday": [
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""]
+    ]
+  },
+  "thai": {
+    "monday": {
+      "morning": [
+        ["i-period", ""],
+        ["i-period", ""],
+        ["i-period", ""],
+        ["i-period", ""]
+      ],
+      "afternoon": [
+        ["i-period", ""],
+        ["i-period", ""],
+        ["i-period", ""]
+      ]
+    },
+    "tuesday": [
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""]
+    ],
+    "wednesday": [
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""]
+    ],
+    "thursday": [
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""]
+    ],
+    "friday": [
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""],
+      ["i-period", ""]
+    ]
+  }
+}

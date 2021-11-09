@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap");
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    } //900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800
+  }
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Athiti", sans-serif;
+}
+
+body {
+  background-color: var(--c-bg);
+  color: var(--c-text);
+}
+
+h1 {
+  font-size: 6rem;
+  font-weight: 800;
+  line-height: 5.5rem;
+}
+
+h3 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+header {
+  position: absolute;
+  top: 7vh;
+  left: 10vw;
+}
+
+@mixin timetablesStyle {
+  background-color: var(--c-pri);
+  border-radius: 1.1rem;
+  transition: all 0.25s;
+  font-size: 4rem;
+  font-weight: 600;
+  padding: 2vw;
+  color: var(--c-text);
+  text-decoration: none;
+
+  &:hover {
+    // transform: scale(1.05);
+    transform: translateX(-0.6rem) translateY(-0.6rem);
+    // color: var(--timetableColor);
+    // background-color: var(--timetableHover);
+    box-shadow: var(--c-sec) 6px 6px;
+  }
+
+  &:active {
+    transform: translateX(0rem) translateY(0rem);
+    box-shadow: none;
+  }
+}
+
+.timetable {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "one two three";
+  grid-gap: 3rem;
+  height: 30vh;
+  width: 70vw;
+
+  @include respond(phone) {
+    display: none;
+  }
+  @include respond(tab-port) {
+    display: none;
+  }
+
+  &__1 {
+    grid-area: one;
+    @include timetablesStyle;
+  }
+  &__2 {
+    grid-area: two;
+    @include timetablesStyle;
+  }
+  &__3 {
+    grid-area: three;
+    @include timetablesStyle;
+  }
+}
+
+.header__text {
+  @include respond(phone) {
+    display: none;
+  }
+  @include respond(tab-port) {
+    display: none;
+  }
+}
+
+.phone__text {
+  display: none;
+
+  @include respond(phone) {
+    display: block;
+  }
+  // @include respond(tab-port) {
+  //   display: none;
+  // }
+}
+
+.tablet__text {
+  display: none;
+
+  @include respond(tab-port) {
+    display: block;
+  }
+  @include respond(phone) {
+    display: none;
+  }
+}

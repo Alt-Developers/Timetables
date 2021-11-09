@@ -1,0 +1,35 @@
+.btn {
+  font-family: "athiti";
+  border-radius: 1.1rem;
+  height: 6vh;
+  font-size: 1.7rem;
+  font-weight: 500;
+  background-color: var(--c-pri);
+  border: none;
+  transition: 0.25s;
+  color: var(--c-text);
+  margin-right: 1.1rem;
+
+  &__square {
+    width: 6vh;
+    margin: 0.4rem;
+  }
+
+  &__big {
+    width: 30vw;
+  }
+
+  &a {
+    text-decoration: none;
+    color: var(--c-text);
+  }
+
+  &:hover {
+    transform: translateY(-0.6rem) translateX(-0.6rem);
+    box-shadow: var(--c-sec) 0.6rem 0.6rem;
+  }
+  &:active {
+    transform: translateX(0rem) translateY(0rem);
+    box-shadow: none;
+  }
+}

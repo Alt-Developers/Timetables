@@ -1,15 +1,21 @@
 {
   "name": "1.0v",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "a": "node-sass src/sass/main.scss src/style/style.css -watch"
+    "a": "node-sass src/sass/main.scss src/style/style.css -watch",
+    "start": "nodemon app.js"
   },
   "author": "SS Developers",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
     "node-sass": "^6.0.1"
-  }
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  },
+  "description": ""
 }
