@@ -1,8 +1,13 @@
 # What are Timetables? 📅
 Timetable is a normal timetable with a superset of features like,<br/>
 search , automatic system theme detection and for unsupported classes<br/>
-use the JSON file included in the class isnt here section from the website<br/>
-and send to the SS Developers discord , Enjoy!
+use the JSON file included in the class isnt here section from the website <br/>
+and send to the SS Developers discord , Enjoy! <br/>
+
+## Supported Classes
+**With Thai and English**-| 2/6 <br/>
+English  only ------------| 
+2/2 , EP2/6
 
 ## Versions
 v1.1 | **Implemented JSON file for easy customization** <br/>
