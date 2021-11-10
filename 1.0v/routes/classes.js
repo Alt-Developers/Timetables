@@ -16,7 +16,7 @@ router.get("/m:classNumber", (req, res, next) => {
     classNo,
     (config) => {
       console.log(config);
-      res.render("timeTables/template", {
+      res.render("template", {
         classNumber: config.classNumber,
         english: config.english,
         thai: config.thai,

@@ -13,7 +13,8 @@ app.use(homeRoute);
 app.use(classesRoute);
 
 app.use("/", (req, res, next) => {
-  res.send("Page not found!");
+  res.render("errors/pagenotfound");
 });
 
 app.listen(3000);
+// app.listen(process.env.PORT || port);

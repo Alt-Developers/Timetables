@@ -15,21 +15,25 @@
     margin: 0.4rem;
   }
 
-  &__big {
-    width: 30vw;
+  &__medium {
+    width: 15vw;
   }
 
-  &a {
+  &__big {
+    width: 25vw;
+  }
+
+  a {
     text-decoration: none;
     color: var(--c-text);
   }
 
   &:hover {
-    transform: translateY(-0.6rem) translateX(-0.6rem);
-    box-shadow: var(--c-sec) 0.6rem 0.6rem;
+    transform: translateY(-0.3rem) translateX(-0.3rem);
+    box-shadow: var(--c-sec) 0.3rem 0.3rem;
   }
   &:active {
-    transform: translateX(0rem) translateY(0rem);
+    transform: translateX(0) translateY(0);
     box-shadow: none;
   }
 }

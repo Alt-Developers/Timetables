@@ -1,105 +1,103 @@
 {
-  "classNumber": "M 2/2",
+  "classNumber": "",
   "english": {
     "monday": {
       "morning": [
-        ["i-period", ""],
-        ["i-period", ""],
-        ["i-period", ""],
-        ["i-period", ""]
+        ["i-period", "Math E"],
+        ["i-period", "Bell"],
+        ["i-period", "Guidance"],
+        ["i-period", "Science"]
       ],
       "afternoon": [
-        ["i-period", ""],
-        ["i-period", ""],
-        ["i-period", ""]
+        ["i-period", "Thai"],
+        ["i-period", "Mathematics"],
+        ["i-period", "Social"]
       ]
     },
     "tuesday": [
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""]
+      ["i-period", "Science E"],
+      ["i-period", "Mathematics"],
+      ["i-period", "Social E"],
+      ["i-period", "Thai"],
+      ["i-period", "Bell"],
+      ["i-period", "PE"],
+      ["i-period", "History"]
     ],
     "wednesday": [
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""]
+      ["i-double-period", "Technology"],
+      ["i-period", "Bell"],
+      ["i-period", "Science"],
+      ["i-period", "Science"],
+      ["i-period", "Mathematics"],
+      ["i-period", "English"]
     ],
     "thursday": [
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""]
+      ["i-period", "Thai"],
+      ["i-period", "Bell"],
+      ["i-period", "Art"],
+      ["i-period", "English"],
+      ["i-period", "Scouts/STEM"],
+      ["i-period", "Social"],
+      ["i-period", "Club"]
     ],
     "friday": [
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""]
+      ["i-period", "English"],
+      ["i-period", "Chinese Literature"],
+      ["i-period", "Mathematics"],
+      ["i-period", "Health"],
+      ["i-period", "Bell"],
+      ["i-period", "Science E"],
+      ["i-period", "Morality"]
     ]
   },
   "thai": {
     "monday": {
       "morning": [
-        ["i-period", ""],
-        ["i-period", ""],
-        ["i-period", ""],
-        ["i-period", ""]
+        ["i-period", "คณิตสากล"],
+        ["i-period", "เบลล์"],
+        ["i-period", "เเนะเเนว"],
+        ["i-period", "วิทยาศาสตร์"]
       ],
       "afternoon": [
-        ["i-period", ""],
-        ["i-period", ""],
-        ["i-period", ""]
+        ["i-period", "ไทย"],
+        ["i-period", "คณิตศาสตร์"],
+        ["i-period", "สังคม"]
       ]
     },
     "tuesday": [
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""]
+      ["i-period", "วิทย์สากล"],
+      ["i-period", "คณิตศาสตร์"],
+      ["i-period", "สังคมสากล"],
+      ["i-period", "ไทย"],
+      ["i-period", "เบลล์"],
+      ["i-period", "พลศึกษา"],
+      ["i-period", "ประวัติศาสตร์"]
     ],
     "wednesday": [
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""]
+      ["i-double-period", "เทคโนโลยี"],
+      ["i-period", "เบลล์"],
+      ["i-period", "วิทยาศาสตร์"],
+      ["i-period", "วิทยาศาสตร์"],
+      ["i-period", "คณิตศาสตร์"],
+      ["i-period", "อังกฤษ"]
     ],
     "thursday": [
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""]
+      ["i-period", "ไทย"],
+      ["i-period", "เบลล์"],
+      ["i-period", "ศิลปะ"],
+      ["i-period", "อังกฤษ"],
+      ["i-period", "ลูกเสือ/STEM"],
+      ["i-period", "สังคม"],
+      ["i-period", "ชมรม"]
     ],
     "friday": [
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""],
-      ["i-period", ""]
+      ["i-period", "อังกฤษ"],
+      ["i-period", "การเขียนอักษรจีน"],
+      ["i-period", "คณิตศาสตร์"],
+      ["i-period", "สุขศึกษา"],
+      ["i-period", "เบลล์"],
+      ["i-period", "วิทย์สากล"],
+      ["i-period", "คุณธรรม จริยธรรม"]
     ]
   }
 }
