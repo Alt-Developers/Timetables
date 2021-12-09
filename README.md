@@ -2,8 +2,7 @@
 
 Timetable is a normal timetable with a superset of features like,<br/>
 search , automatic system theme detection and for unsupported classes<br/>
-use the JSON file included in the class isnt here section from the website <br/>
-and send to the SS Developers discord , Enjoy! <br/>
+use the JSON file included in the "class isn't here" section from the website and send to the SS Developers discord , Enjoy! <br/>
 
 ## Supported Classes
 
