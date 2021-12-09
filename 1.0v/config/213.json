@@ -1,10 +1,11 @@
 {
   "classNumber": "EP-M 2/3",
+  "program": "EN",
   "english": {
     "monday": {
       "morning": [
         ["i-period", "Foundation Mathematics"],
-        ["i-double-period", "tecnology & Computer Science"],
+        ["i-double-period", "Technology & Computer Science"],
         ["i-period", "Foundation Science"]
       ],
       "afternoon": [
@@ -18,12 +19,12 @@
       ["i-period", "Foundation Science"],
       ["i-period", "Universal Science"],
       ["i-period", "Health"],
-      ["i-period", "Suplemental English"],
+      ["i-period", "Supplemental English"],
       ["i-period", "History"],
       ["i-period", "Foundation English"]
     ],
     "wednesday": [
-      ["i-period", "Suplemental English"],
+      ["i-period", "Supplemental English"],
       ["i-period", "Chinese"],
       ["i-period", "Universal Science"],
       ["i-period", "Foundation Math"],
@@ -47,14 +48,14 @@
       ["i-period", "Thai"],
       ["i-period", "Foundation English"],
       ["i-period", "Occupation Works"],
-      ["i-period", "Suplemental English"]
+      ["i-period", "Supplemental English"]
     ]
   },
   "thai": {
     "monday": {
       "morning": [
         ["i-period", "Foundation Mathematics"],
-        ["i-double-period", "tecnology & Computer Science"],
+        ["i-double-period", "Technology & Computer Science"],
         ["i-period", "Foundation Science"]
       ],
       "afternoon": [
@@ -68,12 +69,12 @@
       ["i-period", "Foundation Science"],
       ["i-period", "Universal Science"],
       ["i-period", "Health"],
-      ["i-period", "Suplemental English"],
+      ["i-period", "Supplemental English"],
       ["i-period", "History"],
       ["i-period", "Foundation English"]
     ],
     "wednesday": [
-      ["i-period", "Suplemental English"],
+      ["i-period", "Supplemental English"],
       ["i-period", "Chinese"],
       ["i-period", "Universal Science"],
       ["i-period", "Foundation Math"],
@@ -97,7 +98,7 @@
       ["i-period", "Thai"],
       ["i-period", "Foundation English"],
       ["i-period", "Occupation Works"],
-      ["i-period", "Suplemental English"]
+      ["i-period", "Supplemental English"]
     ]
   }
 }

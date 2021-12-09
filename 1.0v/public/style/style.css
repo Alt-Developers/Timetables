@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap");
+@import url("https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css");
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-bg: #202020;
+    --c-text: #f0eaea;
+    --c-pri: #424242;
+    --c-sec: rgb(255, 113, 61);
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root.light {
+    --c-bg: #ff4949;
+    --c-text: #000000;
+    --c-pri: #dddddd;
+    --c-sec: #ff4949;
+  }
+}
+html {
+  font-size: 62.5%;
+  font-family: "Athiti", sans-serif;
+}
+
+body {
+  background-color: var(--c-bg);
+  color: var(--c-text);
+}
+
+h1 {
+  font-size: 6rem;
+  font-weight: 800;
+  line-height: 5.5rem;
+}
+
+h3 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+header {
+  position: absolute;
+  top: 7vh;
+  left: 10vw;
+}
+
+.timetable {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "one two three";
+  grid-gap: 3rem;
+  height: 30vh;
+  width: 70vw;
+}
+@media only screen and (max-width: 37.5em) {
+  .timetable {
+    display: none;
+  }
+}
+@media only screen and (max-width: 56.25em) {
+  .timetable {
+    display: none;
+  }
+}
+.timetable__1 {
+  grid-area: one;
+  background-color: var(--c-pri);
+  border-radius: 1.1rem;
+  transition: all 0.25s;
+  font-size: 4rem;
+  font-weight: 600;
+  padding: 2vw;
+  color: var(--c-text);
+  text-decoration: none;
+}
+.timetable__1:hover {
+  transform: translateX(-0.6rem) translateY(-0.6rem);
+  box-shadow: var(--c-sec) 6px 6px;
+}
+.timetable__1:active {
+  transform: translateX(0rem) translateY(0rem);
+  box-shadow: none;
+}
+.timetable__2 {
+  grid-area: two;
+  background-color: var(--c-pri);
+  border-radius: 1.1rem;
+  transition: all 0.25s;
+  font-size: 4rem;
+  font-weight: 600;
+  padding: 2vw;
+  color: var(--c-text);
+  text-decoration: none;
+}
+.timetable__2:hover {
+  transform: translateX(-0.6rem) translateY(-0.6rem);
+  box-shadow: var(--c-sec) 6px 6px;
+}
+.timetable__2:active {
+  transform: translateX(0rem) translateY(0rem);
+  box-shadow: none;
+}
+.timetable__3 {
+  grid-area: three;
+  background-color: var(--c-pri);
+  border-radius: 1.1rem;
+  transition: all 0.25s;
+  font-size: 4rem;
+  font-weight: 600;
+  padding: 2vw;
+  color: var(--c-text);
+  text-decoration: none;
+}
+.timetable__3:hover {
+  transform: translateX(-0.6rem) translateY(-0.6rem);
+  box-shadow: var(--c-sec) 6px 6px;
+}
+.timetable__3:active {
+  transform: translateX(0rem) translateY(0rem);
+  box-shadow: none;
+}
+
+@media only screen and (max-width: 37.5em) {
+  .header__text {
+    display: none;
+  }
+}
+@media only screen and (max-width: 56.25em) {
+  .header__text {
+    display: none;
+  }
+}
+
+.phone__text {
+  display: none;
+}
+@media only screen and (max-width: 37.5em) {
+  .phone__text {
+    display: block;
+  }
+}
+
+.tablet__text {
+  display: none;
+}
+@media only screen and (max-width: 56.25em) {
+  .tablet__text {
+    display: block;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .tablet__text {
+    display: none;
+  }
+}
+
+.btn {
+  font-family: "athiti";
+  border-radius: 1.1rem;
+  height: 6vh;
+  font-size: 1.7rem;
+  font-weight: 500;
+  background-color: var(--c-pri);
+  border: none;
+  transition: 0.25s;
+  color: var(--c-text);
+  margin-right: 1.1rem;
+}
+.btn__square {
+  width: 6vh;
+  margin: 0.4rem;
+}
+.btn__medium {
+  width: 15vw;
+}
+.btn__big {
+  width: 25vw;
+}
+.btn a {
+  text-decoration: none;
+  color: var(--c-text);
+}
+.btn:hover {
+  transform: translateY(-0.3rem) translateX(-0.3rem);
+  box-shadow: var(--c-sec) 0.3rem 0.3rem;
+}
+.btn:active {
+  transform: translateX(0) translateY(0);
+  box-shadow: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--c-text);
+}
+
+/*# sourceMappingURL=style.css.map */

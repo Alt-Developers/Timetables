@@ -11,15 +11,17 @@ const controller = require(path.join(
 const router = express.Router();
 
 router.get("/m:classNumber", (req, res, next) => {
+  console.log("Req had arrived");
   const classNo = req.params.classNumber;
   controller.getConfig(
     classNo,
     (config) => {
-      console.log(config);
+      console.log(config.program);
       res.render("template", {
         classNumber: config.classNumber,
         english: config.english,
         thai: config.thai,
+        program: config.program,
       });
     },
     () => {

@@ -1,0 +1,106 @@
+{
+  "classNumber": "EP 2/2",
+  "program": "EN",
+
+  "english": {
+    "monday": {
+      "morning": [
+        ["i-period", "Foundation English"],
+        ["i-period", "Arts"],
+        ["i-period", "Chinese"],
+        ["i-period", "Universal Science"]
+      ],
+      "afternoon": [
+        ["i-period", "Occupation Works"],
+        ["i-period", "Supplemental English"],
+        ["i-period", "Universal Math"]
+      ]
+    },
+    "tuesday": [
+      ["i-period", "Foundation Math"],
+      ["i-period", "Foundation English"],
+      ["i-period", "Social"],
+      ["i-period", "Universal Math"],
+      ["i-period", "Foundation Science"],
+      ["i-period", "Physical Education <br>(PE)"],
+      ["i-period", "Supplemental English"]
+    ],
+    "wednesday": [
+      ["i-period", "Universal Science"],
+      ["i-period", "Foundation Math"],
+      ["i-period", "Foundation English"],
+      ["i-period", "Foundation Science"],
+      ["i-double-period", "Computer Education"],
+      ["i-period", "Thai"]
+    ],
+    "thursday": [
+      ["i-period", "Health"],
+      ["i-period", "Guidance"],
+      ["i-period", "Foundation Science"],
+      ["i-period", "Thai"],
+      ["i-period", "Scout"],
+      ["i-period", "Chinese"],
+      ["i-period", "Club"]
+    ],
+    "friday": [
+      ["i-period", "Foundation Math"],
+      ["i-period", "Social"],
+      ["i-period", "History"],
+      ["i-period", "Universal Science"],
+      ["i-period", "Thai"],
+      ["i-period", "Supplemental English"],
+      ["i-period", "STEAM"]
+    ]
+  },
+  "thai": {
+    "monday": {
+      "morning": [
+        ["ti-period", ""],
+        ["ti-period", ""],
+        ["ti-period", ""],
+        ["ti-period", ""]
+      ],
+      "afternoon": [
+        ["ti-period", ""],
+        ["ti-period", ""],
+        ["ti-period", ""]
+      ]
+    },
+    "tuesday": [
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""]
+    ],
+    "wednesday": [
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""]
+    ],
+    "thursday": [
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""]
+    ],
+    "friday": [
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""],
+      ["ti-period", ""]
+    ]
+  }
+}

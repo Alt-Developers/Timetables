@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="./style/timeTable.css" />
-    <link rel="icon" href="./img/ico.png">
+    <link rel="icon" href="./img/ico.png" />
     <title>Timetables | <%= classNumber %></title>
   </head>
 
@@ -24,33 +24,37 @@
           <div class="i-time">14:20 - 15:00</div>
 
           <div class="i monday" style="background-color: #fabd2f">Monday</div>
-          <% for (period of english.monday.morning) {%> 
+          <% for (period of english.monday.morning) {%>
           <div class="<%= period[0] %> monday"><%- period[1] %></div>
-          <% } %> 
+          <% } %>
           <div class="i-lunch">Lunch Break</div>
-          <% for (period of english.monday.afternoon) { %> 
+          <% for (period of english.monday.afternoon) { %>
           <div class="<%= period[0] %> monday"><%- period[1] %></div>
-          <% } %> 
+          <% } %>
 
           <div class="i tuesday" style="background-color: #d3869b">Tuesday</div>
-          <% for (period of english.tuesday) {%> 
+          <% for (period of english.tuesday) {%>
           <div class="<%= period[0] %> tuesday"><%- period[1] %></div>
-          <% } %> 
+          <% } %>
 
-          <div class="i wednesday" style="background-color: #b8bb26">Wednesday</div>
-          <% for (period of english.wednesday) {%> 
-            <div class="<%= period[0] %> wednesday"><%- period[1] %></div>
-            <% } %> 
+          <div class="i wednesday" style="background-color: #b8bb26">
+            Wednesday
+          </div>
+          <% for (period of english.wednesday) {%>
+          <div class="<%= period[0] %> wednesday"><%- period[1] %></div>
+          <% } %>
 
-          <div class="i thursday" style="background-color: #fe8019">Thursday</div>
-          <% for (period of english.thursday) {%> 
-            <div class="<%= period[0] %> thursday"><%- period[1] %></div>
-            <% } %> 
+          <div class="i thursday" style="background-color: #fe8019">
+            Thursday
+          </div>
+          <% for (period of english.thursday) {%>
+          <div class="<%= period[0] %> thursday"><%- period[1] %></div>
+          <% } %>
 
           <div class="i friday" style="background-color: #458588">Friday</div>
-          <% for (period of english.friday) {%> 
-            <div class="<%= period[0] %> friday"><%- period[1] %></div>
-            <% } %> 
+          <% for (period of english.friday) {%>
+          <div class="<%= period[0] %> friday"><%- period[1] %></div>
+          <% } %>
         </div>
       </div>
       <div class="timetable-wrapper__thai hidden">
@@ -66,58 +70,68 @@
           <div class="ti-time">14:20 - 15:00</div>
 
           <div class="ti monday" style="background-color: #fabd2f">Monday</div>
-          <% for (period of thai.monday.morning) {%> 
+          <% for (period of thai.monday.morning) {%>
           <div class="<%= period[0] %> monday"><%- period[1] %></div>
-          <% } %> 
+          <% } %>
           <div class="i-lunch">Lunch Break</div>
-          <% for (period of thai.monday.afternoon) { %> 
+          <% for (period of thai.monday.afternoon) { %>
           <div class="<%= period[0] %> monday"><%- period[1] %></div>
-          <% } %> 
+          <% } %>
 
-          <div class="ti tuesday" style="background-color: #d3869b">Tuesday</div>
-          <% for (period of thai.tuesday) {%> 
+          <div class="ti tuesday" style="background-color: #d3869b">
+            Tuesday
+          </div>
+          <% for (period of thai.tuesday) {%>
           <div class="<%= period[0] %> tuesday"><%- period[1] %></div>
-          <% } %> 
+          <% } %>
 
-          <div class="ti wednesday" style="background-color: #b8bb26">Wednesday</div>
-          <% for (period of thai.wednesday) {%> 
-            <div class="<%= period[0] %> wednesday"><%- period[1] %></div>
-            <% } %> 
+          <div class="ti wednesday" style="background-color: #b8bb26">
+            Wednesday
+          </div>
+          <% for (period of thai.wednesday) {%>
+          <div class="<%= period[0] %> wednesday"><%- period[1] %></div>
+          <% } %>
 
-          <div class="ti thursday" style="background-color: #fe8019">Thursday</div>
-          <% for (period of thai.thursday) {%> 
-            <div class="<%= period[0] %> thursday"><%- period[1] %></div>
-            <% } %> 
+          <div class="ti thursday" style="background-color: #fe8019">
+            Thursday
+          </div>
+          <% for (period of thai.thursday) {%>
+          <div class="<%= period[0] %> thursday"><%- period[1] %></div>
+          <% } %>
 
           <div class="ti friday" style="background-color: #458588">Friday</div>
-          <% for (period of thai.friday) {%> 
-            <div class="<%= period[0] %> friday"><%- period[1] %></div>
-            <% } %> 
+          <% for (period of thai.friday) {%>
+          <div class="<%= period[0] %> friday"><%- period[1] %></div>
+          <% } %>
         </div>
       </div>
       <div class="widgets-container">
         <a href="https://ssdevelopers.xyz">
-        <div class="big-widget credits">Made by SS Developers</div>
+          <div class="big-widget credits">Made by SS Developers</div>
         </a>
         <!-- <div class="widget credits" alt="Original Design by Galax">Original design by Galax</div> -->
         <div class="big-widget tdate hidden" id="date">Day, 00 Month 0000</div>
         <a href="https://time.is/">
-        <div class="big-widget widget-time__wrapper"> 
-          <div class="widget__time" id="date">Day, 00 Month 0000</div>
-          <div class="widget__time" id="clock">00:00:00</div>
-        </div>
-      </a>
+          <div class="big-widget widget-time__wrapper">
+            <div class="widget__time" id="date">Day, 00 Month 0000</div>
+            <div class="widget__time widget__time--line"></div>
+            <div class="widget__time" id="clock">00:00:00</div>
+          </div>
+        </a>
         <div class="widget" id="color-scheme-toggle">
-          <box-icon name='sun' color="var(--c-sec)"></box-icon>
+          <box-icon name="sun" color="var(--c-sec)"></box-icon>
         </div>
 
+        <% if (program === "TH") { %>
         <div class="changeLocale searchIco widget" id="language">
-          <span class="changeTo"> TH</span></div>
+          <span class="changeTo"> TH</span>
+        </div>
+        <% } %>
         <div class="search material-icons-outlined">
           <div class="searchIco material-icons-outlined" id="searcher">
             search
           </div>
-          <input id="searchIn" type="text" placeholder="Search here"/>
+          <input id="searchIn" type="text" placeholder="Search here" />
         </div>
       </div>
       <div class="footerCredits">
@@ -128,7 +142,6 @@
     </main>
     <script src="./script/timeTable.js"></script>
 
-
- <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
+    <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
   </body>
 </html>

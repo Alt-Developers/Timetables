@@ -1,5 +1,6 @@
 {
   "classNumber": "M 2/6",
+  "program": "TH",
   "english": {
     "monday": {
       "morning": [
@@ -28,12 +29,12 @@
       ["i-period", "Guidance"],
       ["i-period", "English"],
       ["i-period", "Mathematics"],
-      ["i-period", "Ocupational Works"],
+      ["i-period", "Occupational Works"],
       ["i-period", "Social<br>Studies E."]
     ],
     "thursday": [
       ["i-period", "Science E."],
-      ["i-period", "Ocupational Works"],
+      ["i-period", "Occupational Works"],
       ["i-period", "Chinese"],
       ["i-period", "Thai"],
       ["i-period", "Scouts <br>/ STEM"],

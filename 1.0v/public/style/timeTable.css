@@ -17,7 +17,7 @@
 }
 
 input {
-  font-family: "Athiti", sans-serif;
+  font-family: "ubuntu", sans-serif;
 }
 
 div.timetable-wrapper__thai {
@@ -33,7 +33,7 @@ div.timetable-wrapper__eng {
   margin: 5vh;
   transition: 0.5s;
   /* font-family: "Cascadia Code"; */
-  font-family: "Athiti", sans-serif;
+  font-family: "ubuntu", sans-serif;
   font-weight: 600;
 }
 
@@ -103,7 +103,7 @@ div.ti-period:active {
 div.i-double-period,
 div.ti-double-period {
   grid-column: span 2;
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 
 div.i-double-period:hover,
@@ -113,7 +113,7 @@ div.ti-double-period:hover {
 }
 div.i-double-period:active,
 div.ti-double-period:active {
-  transform: scale(0.5);
+  transform: scale(0.8);
   box-shadow: 0 0px 13px rgba(26, 26, 26, 0.65);
 }
 
@@ -195,17 +195,28 @@ div.big-widget {
   width: 15vw;
 }
 
-.widget__time {
+/* .widget__time {
   display: flex;
   justify-content: right;
 
   color: var(--c-sec);
-}
+} */
 
-.widget__time#clock {
+/* .widget__time#clock {
   text-align: end;
   border-left: 1px solid rgb(74, 74, 74);
-  width: 35%;
+  width: 35%; }*/
+
+.widget-time__wrapper {
+  display: grid;
+  place-items: center;
+  color: var(--c-sec);
+}
+
+.widget__time--line {
+  width: 1px;
+  height: 80%;
+  background-color: #404040;
 }
 
 div.big-widget:hover {
