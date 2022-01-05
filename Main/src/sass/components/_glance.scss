@@ -1,0 +1,49 @@
+.bar {
+    width: 100%;
+    background-color: #E6E6E6;
+    height: 45vh;
+    border-radius: 1.1rem;
+    display: flex;
+    padding: 2rem;
+    gap: 2rem;
+    overflow: scroll;
+    margin-bottom: 4rem;
+
+    filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25));
+    
+    @include respond(phone) {
+        border-radius: 1.1rem 0 0 1.1rem;
+    }
+
+    &__header {
+        margin-bottom: 1.5rem;
+        font-size: 3rem;
+    }
+
+    &__item {
+        height: 100%;
+        border-radius: 1.1rem;
+        padding: 2rem;
+        position: relative;
+        transition: all .5s cubic-bezier(0.85, 0, 0.15, 1);
+        width: 100vw;
+
+        &:hover {
+            box-shadow: 0px 0px 20px #69ACEA;
+        }
+        
+        @include respond(phone) {
+            width: 100rem;
+        }
+
+        &--btn {
+            position: absolute;
+            bottom: 2rem;
+        }
+
+        h3 {
+            font-size: 3rem;
+            color: #fff;
+        }
+    }
+}

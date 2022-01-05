@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url("https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu",sans-serif; }
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth; }
+
+h1 {
+  font-size: 4rem; }
+
+body {
+  background-color: #EEEEEE; }
+
+.u-remove-a-eff {
+  text-decoration: none;
+  color: white; }
+
+.bar {
+  width: 100%;
+  background-color: #E6E6E6;
+  height: 45vh;
+  border-radius: 1.1rem;
+  display: flex;
+  padding: 2rem;
+  gap: 2rem;
+  overflow: scroll;
+  margin-bottom: 4rem;
+  filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25)); }
+  @media only screen and (max-width: 37.5em) {
+    .bar {
+      border-radius: 1.1rem 0 0 1.1rem; } }
+  .bar__header {
+    margin-bottom: 1.5rem;
+    font-size: 3rem; }
+  .bar__item {
+    height: 100%;
+    border-radius: 1.1rem;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+    width: 100vw; }
+    .bar__item:hover {
+      box-shadow: 0px 0px 20px #69ACEA; }
+    @media only screen and (max-width: 37.5em) {
+      .bar__item {
+        width: 100rem; } }
+    .bar__item--btn {
+      position: absolute;
+      bottom: 2rem; }
+    .bar__item h3 {
+      font-size: 3rem;
+      color: #fff; }
+
+.btn {
+  position: absolute;
+  background: #E3E3E3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 11px;
+  padding: 1.2rem 2rem 2rem 2rem;
+  transition: all .2s;
+  width: fit-content;
+  height: 4rem;
+  border: none; }
+  .btn h3 {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 25px; }
+  .btn:hover {
+    color: #000;
+    background-color: white;
+    transform: scale(1.05);
+    box-shadow: white 0px 0px 10px; }
+
+.timetable {
+  height: 30vh; }
+  .timetable__item {
+    height: 100%;
+    border-radius: 1.1rem;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.85, 0, 0.15, 1);
+    width: 30rem; }
+    .timetable__item:hover {
+      width: 35rem; }
+    .timetable__item--btn {
+      position: absolute;
+      bottom: 2rem; }
+    .timetable__item h3 {
+      font-size: 3rem;
+      color: #fff; }
+
+.header {
+  background-color: #F95E5E;
+  padding: 8vh;
+  display: flex; }
+  .header h1 {
+    color: #fff;
+    font-size: 6rem; }
+    @media only screen and (max-width: 37.5em) {
+      .header h1 {
+        font-size: 4rem; } }
+  @media only screen and (max-width: 37.5em) {
+    .header {
+      padding: 3vh;
+      height: 30vh; } }
+
+main {
+  padding: 3rem; }
+  @media only screen and (max-width: 37.5em) {
+    main {
+      padding: 2rem 0 2rem 2rem; } }

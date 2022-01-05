@@ -1,0 +1,7 @@
+main {
+    padding: 3rem;
+
+    @include respond(phone) {
+        padding: 2rem 0 2rem 2rem;
+    }
+}

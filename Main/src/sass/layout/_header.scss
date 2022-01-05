@@ -1,0 +1,19 @@
+.header {
+    background-color: #F95E5E;
+    padding: 8vh;
+    display: flex;
+
+    h1 {
+        color: #fff;
+        font-size: 6rem;
+
+        @include respond(phone) {
+            font-size: 4rem;
+        }
+    }
+
+    @include respond(phone) {
+        padding: 3vh;
+        height: 30vh;
+    }
+}
