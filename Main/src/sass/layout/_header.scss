@@ -1,7 +1,17 @@
 .header {
-    background-color: #F95E5E;
+    // background-color: #F95E5E;
+    background-image: url("https://a-static.besthdwallpaper.com/2021-yae-miko-electro-character-genshin-impact-anime-video-game-wallpaper-3840x2160-74983_54.jpg");
+    background-size: cover;
     padding: 8vh;
     display: flex;
+    width: 100%;
+
+    @include respond(phone) {
+        flex-direction: column;
+        gap: 4rem;
+        padding: 3vh;
+        height: 25vh;
+    }
 
     h1 {
         color: #fff;
@@ -12,8 +22,32 @@
         }
     }
 
-    @include respond(phone) {
-        padding: 3vh;
-        height: 30vh;
+    &__account {
+        margin-left: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+        
+        img {
+            border-radius: 100%;
+            @include respond(phone) {
+                height: 130px;
+                width: 130px;
+            }
+        }
+
+        h3 {
+            color: white;
+            font-size: 3rem;
+            text-align: right;
+
+            @include respond(phone) {
+                font-size: 2rem;
+                display: hidden;
+                opacity: 0;
+                color: transparent;
+            }
+        }
     }
 }

@@ -6,9 +6,9 @@ const TimetableList = props => {
     <>
       <h3 className="bar__header">My Timetables</h3>
       <section className="bar timetable">
-        <TimetableItem color={"#FF8A00"} text={"My Class"} />
-        <TimetableItem color={"#F95E5E"} text={"2/3"} />
-        <TimetableItem color={"#9e34eb"} text={"EP 2/3"} />
+        <TimetableItem color={"#FF8A00"} text={"My Class"} subText={"2/6"} />
+        <TimetableItem color={"#00a2ff"} text={"2/3"} />
+        <TimetableItem color={"#F95E5E"} text={"EP 2/3"} />
         <div
           className="timetable__item"
           style={{

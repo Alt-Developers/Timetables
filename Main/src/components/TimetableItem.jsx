@@ -21,6 +21,7 @@ const TimetableList = props => {
         setIsHovering(false);
       }}>
       <h3>{props.text}</h3>
+      <h4>{props.subText}</h4>
     </div>
   );
 };

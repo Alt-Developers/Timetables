@@ -1,0 +1,45 @@
+.notFound {
+    background-color: var(--background-color);
+    height: 100vh;
+    display: grid;
+    place-items: center;
+
+    @include respond(phone) {
+        display: block;
+
+    }
+
+    &__modal {
+        background-color: var(--gray-light-1);
+        height: 50vh;
+        width: 50vw;
+        padding-bottom: 2rem;
+        border-radius: 1.1rem;
+
+        filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25));
+
+        @include respond(phone) {
+            position: fixed;
+           width: 90%;
+           height: 50%;
+           margin: 2rem;
+           bottom: 0;
+            
+        }
+    }
+
+    &__text {
+        background-color: #F95E5E;
+        padding: 2rem;
+        border-radius: 1.1rem 1.1rem 0 0;
+        color: var(--font-color);
+    }
+
+    button {
+        position: absolute;
+        width: 20rem;
+        height: 5rem;
+        right: 2rem;
+        bottom: 2rem;
+    }
+}

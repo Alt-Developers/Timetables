@@ -1,18 +1,18 @@
 import "./sass/main.css";
-import Header from "./components/Header";
-import Glance from "./components/Glance";
-import TimetableList from "./components/TimetableList";
+
+import { Route, Routes } from "react-router";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <>
-      <section className="page__home">
-        <Header />
-        <main>
-          <Glance />
-          <TimetableList />
-        </main>
-      </section>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <Footer />
     </>
   );
 }
