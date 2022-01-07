@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Header = props => {
+  const userInfo = useSelector(state => state.account.userInfo);
+
   const [clock, setClock] = useState(
     new Date().toLocaleString("en-US", {
       hour: "numeric",
@@ -10,21 +13,17 @@ const Header = props => {
     })
   );
 
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     const date = new Date();
-  //     const formatedData = date.toLocaleString("en-US", {
-  //       hour: "numeric",
-  //       minute: "numeric",
-  //       hour12: true,
-  //     });
-  //     console.log(date);
-  //     if (date.getSeconds() === 0) {
-  //       setClock(formatedData);
-  //       console.log("REFRESHED TIME!");
-  //     }
-  //   }, [1000]);
-  // });
+  useEffect(() => {
+    setInterval(() => {
+      const date = new Date();
+      const formatedDate = date.toLocaleString("en-US", {
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      });
+      date.getSeconds() === 0 && setClock(formatedDate);
+    }, [20000]);
+  }, []);
 
   return (
     <div className="header">
@@ -34,7 +33,7 @@ const Header = props => {
       </h1>
       <div className="header__account">
         <h3>
-          Jirat Chutrakul's <br />
+          {`${userInfo.firstName} ${userInfo.lastName}`}'s <br />
           SS Account
         </h3>
         <img

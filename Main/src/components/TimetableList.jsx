@@ -1,7 +1,15 @@
+import { useEffect } from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import TimetableItem from "./TimetableItem";
 
 const TimetableList = props => {
+  const userInfo = useSelector(state => state.account.userInfo);
+
+  useEffect(() => {
+    console.log(userInfo);
+  }, [userInfo]);
+
   return (
     <>
       <h3 className="bar__header">My Timetables</h3>

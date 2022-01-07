@@ -5,7 +5,8 @@ const accountSlice = createSlice({
   name: "account",
   initialState: initialAccountState,
   reducers: {
-    login(state) {
+    login(state, action) {
+      state.userInfo = action.payload;
       state.isAuthenticated = true;
     },
   },
