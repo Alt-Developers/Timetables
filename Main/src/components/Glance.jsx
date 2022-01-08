@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const Glance = props => {
   const scienceIcon = require("../assets/subjects/science.png");
@@ -19,10 +20,17 @@ const Glance = props => {
   return (
     <>
       <h3 className="bar__header">At a glance</h3>
-      <section className="bar">
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        className="bar">
         {hour > 7 && hour < 15 ? (
           <>
-            <div
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
               className="bar__item bsmall"
               style={{ backgroundColor: "#69ACEA" }}>
               <h3>
@@ -37,8 +45,11 @@ const Glance = props => {
                 alt="Science Icon"
                 height="150"
               />
-            </div>
-            <div
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.3 }}
               className="bar__item blarge"
               style={{ backgroundColor: "#70F094" }}>
               <h3>
@@ -53,31 +64,29 @@ const Glance = props => {
                 alt="Science Icon"
                 height="150"
               />
-            </div>
+            </motion.div>
           </>
         ) : (
           <>
-            <div
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
               className="bar__item bsmall"
               style={{ backgroundColor: "#fa9e1e" }}>
               <h3>You finished the day</h3>
               <p>Well done!</p>
-              <button
-                className="btn bar__item--btn"
-                style={{ backgroundColor: "red" }}
-                onClick={() => {
-                  setHour(10);
-                }}>
-                DEBUG: SET TIME TO 10AM
-              </button>
               <img
                 src={deskIcon}
                 className="bar__icon"
                 alt="Science Icon"
                 height="150"
               />
-            </div>
-            <div
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.3 }}
               className="bar__item blarge"
               style={{ backgroundColor: "#755cf7" }}>
               <h3>
@@ -92,10 +101,10 @@ const Glance = props => {
                 alt="Science Icon"
                 height="150"
               />
-            </div>
+            </motion.div>
           </>
         )}
-      </section>
+      </motion.section>
     </>
   );
 };

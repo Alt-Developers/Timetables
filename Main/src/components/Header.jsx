@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
 
 const Header = props => {
   const userInfo = useSelector(state => state.account.userInfo);
@@ -22,11 +23,11 @@ const Header = props => {
         hour12: true,
       });
       date.getSeconds() === 0 && setClock(formatedDate);
-    }, [20000]);
+    }, [1000]);
   }, []);
 
   return (
-    <div className="header">
+    <div className="header" style={{ backgroundColor: userInfo.color }}>
       <h1>
         It's currently <br />
         {clock}
@@ -36,9 +37,12 @@ const Header = props => {
           {`${userInfo.firstName} ${userInfo.lastName}`}'s <br />
           SS Account
         </h3>
-        <img
-          src="https://upload-os-bbs.hoyolab.com/upload/2021/04/17/60558723/6b4dc6912fd3129c094ecdea992abda1_401398458418138069.jpg?x-oss-process=image/resize,s_500/quality,q_80/auto-orient,0/interlace,1/format,jpg"
-          alt=""
+        <motion.img
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.4 }}
+          src={`https://apis.ssdevelopers.xyz/${userInfo.profilePicture}`}
+          alt="user profile picture"
           height="150"
           width="150"
         />

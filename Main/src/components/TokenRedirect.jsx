@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
-import { SpinnerRoundFilled } from "spinners-react";
 import { useDispatch } from "react-redux";
 import { accountActions } from "../context/accountSlice";
+import Loading from "./Loading";
 
 const TokenRedirect = props => {
   const { token: params } = useParams();
@@ -14,21 +14,27 @@ const TokenRedirect = props => {
 
     fetch("https://apis.ssdevelopers.xyz/timetables/getUser", {
       headers: {
-        Authorization: "Bearer " + params.replace(":", ""),
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
       .then(data => {
-        console.log(data);
         if (data.status === 200) return data.json();
-        if (data.status === 500) console.log("Errored");
+        if (data.status === 500) {
+          console.log("Errored");
+          return;
+        }
       })
       .then(data => {
-        dispatch(accountActions.login(data));
-        navigate("/");
+        if (!data.primaryClass) {
+          navigate("/migrate");
+        } else {
+          dispatch(accountActions.login(data));
+          navigate("/");
+        }
       });
   }, [dispatch, navigate, params]);
 
-  return <SpinnerRoundFilled />;
+  return <Loading />;
 };
 
 export default TokenRedirect;

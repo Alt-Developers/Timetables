@@ -9,6 +9,12 @@ const accountSlice = createSlice({
       state.userInfo = action.payload;
       state.isAuthenticated = true;
     },
+    logout(state) {
+      state.userInfo = {};
+      state.isAuthenticated = false;
+      localStorage.removeItem("token");
+      window.location.href = "http://localhost:3000/login/timetables";
+    },
   },
 });
 

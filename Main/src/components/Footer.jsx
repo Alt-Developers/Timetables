@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => (
   <footer className="dark-footer">
-    <h3>MPL2.0 Lisence &copy;2021 Prawich & Jirat</h3>
+    <h3>All Rights Reserved &copy;2021 Prawich & Jirat</h3>
     <ul>
       <a href="https://ssdevelopers.xyz">
         <li>Portals</li>

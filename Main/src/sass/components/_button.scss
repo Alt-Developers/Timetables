@@ -24,4 +24,12 @@
         transform: scale(1.05);
         box-shadow: white 0px 0px 10px;
     }
+
+    &:active {
+        color: #000;
+        background-color: white;
+        transform: scale(1.05);
+        box-shadow: white 0px 0px 10px;
+        transform: scale(.9);
+    }
 }

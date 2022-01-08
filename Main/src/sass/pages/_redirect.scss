@@ -1,0 +1,22 @@
+.redirect {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    width: 100%;
+
+    div {
+        display: flex;
+        align-items: center;
+
+        @include respond(phone) {
+            flex-direction: column;
+        }
+    }
+
+    h3 {
+        color: var(--font-color);
+        font-size: 3rem;
+        font-weight: 500;
+        margin-left: 2rem;
+    }
+}

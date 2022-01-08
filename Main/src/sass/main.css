@@ -47,9 +47,7 @@ body {
   margin-bottom: 4rem;
   border: none;
   -ms-overflow-style: none;
-  /* IE and Edge */
   scrollbar-width: none;
-  /* Firefox */
   filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25)); }
   @media only screen and (max-width: 37.5em) {
     .bar {
@@ -60,6 +58,9 @@ body {
     font-size: 3rem;
     margin-left: 2rem;
     color: var(--font-color); }
+    @media only screen and (max-width: 37.5em) {
+      .bar__header {
+        margin-left: 1rem; } }
   .bar__item {
     height: 100%;
     border-radius: 1.1rem;
@@ -119,19 +120,48 @@ body {
     background-color: white;
     transform: scale(1.05);
     box-shadow: white 0px 0px 10px; }
+  .btn:active {
+    color: #000;
+    background-color: white;
+    transform: scale(1.05);
+    box-shadow: white 0px 0px 10px;
+    transform: scale(0.9); }
+
+.box {
+  overflow-x: scroll;
+  background: none;
+  height: fit-content;
+  border-radius: 1.1rem;
+  scrollbar-color: #404040 rgba(0, 0, 0, 0);
+  scrollbar-width: medium;
+  /* width */
+  filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.25)); }
+  .box ::-webkit-scrollbar-corner {
+    border-radius: 1.1rem; }
+  .box ::-webkit-scrollbar-track {
+    background: none; }
+  .box ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 1.1rem; }
+  .box ::-webkit-scrollbar-thumb:hover {
+    background: #555; }
 
 .timetable {
-  height: 30vh; }
+  height: 20rem;
+  width: fit-content;
+  overflow-x: scroll;
+  margin-bottom: 0; }
   @media only screen and (max-width: 37.5em) {
     .timetable {
-      height: fit-content; } }
+      height: fit-content;
+      width: inherit; } }
   .timetable__item {
     height: 100%;
     border-radius: 1.1rem;
     padding: 2rem;
     position: relative;
     transition: all 0.4s cubic-bezier(0.85, 0, 0.15, 1);
-    width: 300px; }
+    width: 30rem; }
     @media only screen and (max-width: 37.5em) {
       .timetable__item {
         width: 100%; } }
@@ -148,7 +178,6 @@ body {
       color: #fff; }
 
 .header {
-  background-image: url("https://a-static.besthdwallpaper.com/2021-yae-miko-electro-character-genshin-impact-anime-video-game-wallpaper-3840x2160-74983_54.jpg");
   background-size: cover;
   padding: 8vh;
   display: flex;
@@ -175,8 +204,8 @@ body {
       border-radius: 100%; }
       @media only screen and (max-width: 37.5em) {
         .header__account img {
-          height: 130px;
-          width: 130px; } }
+          height: 110px;
+          width: 110px; } }
     .header__account h3 {
       color: white;
       font-size: 3rem;
@@ -251,3 +280,20 @@ main {
     height: 5rem;
     right: 2rem;
     bottom: 2rem; }
+
+.redirect {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100%; }
+  .redirect div {
+    display: flex;
+    align-items: center; }
+    @media only screen and (max-width: 37.5em) {
+      .redirect div {
+        flex-direction: column; } }
+  .redirect h3 {
+    color: var(--font-color);
+    font-size: 3rem;
+    font-weight: 500;
+    margin-left: 2rem; }
