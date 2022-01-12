@@ -87,3 +87,17 @@
         }
     }
 }
+
+.covid {
+    height: fit-content;
+
+    div {
+        height: 16rem;
+    }
+
+    &__global {
+        @include respond(phone) {
+            display: none;
+        }
+    }
+}

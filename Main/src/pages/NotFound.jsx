@@ -1,11 +1,16 @@
+import { Link } from "react-router-dom";
+
 const NotFound = props => {
   return (
-    <section className="notFound">
-      <div className="notFound__modal">
-        <div className="notFound__text">
-          <h1>Are you sure this is the right URL?</h1>
+    <section className="login">
+      <div className="login__rectangle" />
+
+      <div className="login__modal">
+        <div className="login__text">
+          <h3>Hmmmm...</h3>
+          <p>Doesn't seem like this page exists.</p>
         </div>
-        <button className="btn">Back Home</button>
+        <Link to="/">Back home</Link>
       </div>
     </section>
   );

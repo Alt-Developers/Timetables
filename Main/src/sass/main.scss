@@ -13,6 +13,7 @@
 @import "components/glance";
 @import "components/button";
 @import "components/timetableList";
+@import "components/select-search";
 
 @import "layout/header";
 @import "layout/footer";
@@ -21,5 +22,5 @@
 @import "pages/notFound";
 @import "pages/authenticate";
 @import "pages/redirect";
-// @import "pages/system";
+@import "pages/addTimetables";
 // @import "pages/github";

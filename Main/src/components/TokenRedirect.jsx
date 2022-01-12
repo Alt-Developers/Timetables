@@ -25,12 +25,9 @@ const TokenRedirect = props => {
         }
       })
       .then(data => {
-        if (!data.primaryClass) {
-          navigate("/migrate");
-        } else {
-          dispatch(accountActions.login(data));
-          navigate("/");
-        }
+        console.log(data);
+        dispatch(accountActions.login(data));
+        navigate("/");
       });
   }, [dispatch, navigate, params]);
 

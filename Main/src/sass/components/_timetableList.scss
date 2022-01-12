@@ -15,7 +15,7 @@
     // }
 
   ::-webkit-scrollbar-track {
-    background: none;
+    background: rgba(0, 0, 0, 0);
   }
   
   ::-webkit-scrollbar-thumb {
@@ -34,11 +34,11 @@
 
 .timetable {
     height: 20rem;
-    width: fit-content;
-    overflow-x: scroll;
+    width: fit-content; 
+    overflow-x: hidden;
     margin-bottom: 0;
 
-
+ 
     @include respond(phone) {
         height: fit-content;
         width: inherit;
@@ -50,6 +50,7 @@
         padding: 2rem;
         position: relative;
         transition: all .4s cubic-bezier(0.85, 0, 0.15, 1);
+        text-decoration: none;
 
         width: 30rem;
 

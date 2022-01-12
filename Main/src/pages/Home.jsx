@@ -4,6 +4,7 @@ import TimetableList from "../components/TimetableList";
 import { useSelector } from "react-redux";
 import { AnimatePresence, motion } from "framer-motion";
 import Loading from "../components/Loading";
+import Covid from "../components/Covid";
 
 const Home = props => {
   const isAuthenticated = useSelector(state => state.account.isAuthenticated);
@@ -15,6 +16,7 @@ const Home = props => {
           <Header />
           <main>
             <Glance />
+            <Covid />
             <TimetableList />
           </main>
         </motion.div>

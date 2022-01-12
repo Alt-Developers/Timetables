@@ -1,0 +1,101 @@
+.removeTimetables {
+    padding: 3rem;
+    height: 100%;
+
+    @include respond(phone) {
+        padding: 2rem;
+    }
+}
+
+.addTimetables {
+    width: 40%;
+    height: 30rem;
+    border-radius: 1.1rem;
+    background-color: var(--gray-light-1);
+    margin-bottom: 2rem;
+    padding: 2rem;
+    position: relative;
+
+    @include respond(phone) {
+        height: 20rem;
+    }
+
+    h3 {
+        color: var(--font-color);
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    @include respond(phone) {
+        width: 100%;
+    }
+
+    // select {
+    //     padding: 2rem;
+    //     border: none;
+    //     background-color: var(--gray-dark-1);
+    //     z-index: 2;
+    //     border-radius: 1.1rem;
+    //     width: 60%;
+    //     color: var(--font-color);
+    //     margin-bottom: 2rem;
+    // }
+
+    &__submit {
+        position: absolute;
+        bottom: 2rem;
+        left: 2rem;
+        border: none;
+        background-color: #FF5252;
+        padding: 1rem;
+        width: 40%;
+        border-radius: 1.1rem;
+        height: 5rem;
+        color: white;
+        transition: all .3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        text-decoration: none;
+    
+        &:active {
+            transform: scale(.85);
+        }
+    }
+}
+
+// .select-search {
+//     padding: 1rem;
+//     border: none;
+//     background-color: var(--gray-dark-1);
+//     z-index: 2;
+//     border-radius: 1.1rem;
+//     width: fit-content;
+//     color: var(--font-color);
+//     margin-bottom: 2rem;
+
+//     &__input {
+        // border: none;
+        // padding: 1rem;
+        // border-radius: .9rem;
+//     }
+
+//     &__select {
+//         color: var(--font-color);
+        
+//         li {
+//             color: var(--font-color);
+//             background-color: orangered;
+//         }
+//     }
+// }
+
+.row {
+    display: flex;
+    gap: 2rem;
+
+    @include respond(phone) {
+        flex-direction: column;
+    }
+}
