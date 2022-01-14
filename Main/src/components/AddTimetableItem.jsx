@@ -7,6 +7,10 @@ import ColoredButton from "./ColoredButton";
 
 const AddTimetableItem = props => {
   const [selectedOption, setSelectedOption] = useState(props.defaultOption);
+  const submitHandler = event => {
+    event.preventDefault();
+    console.log(selectedOption);
+  };
 
   return (
     <form className="addTimetables">
@@ -48,7 +52,11 @@ const AddTimetableItem = props => {
           )}
           search
         />
-        <ColoredButton type={"submit"} text={props.button} />
+        <ColoredButton
+          onSubmit={submitHandler}
+          type={"submit"}
+          text={props.button}
+        />
       </motion.div>
     </form>
   );

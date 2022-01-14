@@ -35,7 +35,7 @@ const Header = props => {
           {clock}
         </h1>
       ) : (
-        <h1>{props.text}</h1>
+        props.text
       )}
       <div className="header__account">
         <h3>
@@ -45,7 +45,7 @@ const Header = props => {
         <div className="header__userProfile">
           <Link to="/preferences">
             <span>
-              <i className="bx bxs-cog"></i>
+              <i class="bx bx-slider"></i>
             </span>
             <motion.img
               initial={{ scale: 0 }}

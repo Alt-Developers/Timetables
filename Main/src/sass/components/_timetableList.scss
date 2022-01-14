@@ -38,6 +38,7 @@
     overflow-x: hidden;
     margin-bottom: 0;
 
+
  
     @include respond(phone) {
         height: fit-content;
@@ -60,6 +61,9 @@
 
         &:hover {
             width: 35rem;
+        }
+        &:active {
+            transform: scale(.9);
         }
 
         &--btn {

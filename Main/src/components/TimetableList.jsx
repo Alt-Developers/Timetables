@@ -36,6 +36,8 @@ const TimetableList = props => {
               color={userInfo.primaryClass.color}
               text={"My Class"}
               subText={userInfo.primaryClass.className}
+              classNo={userInfo.primaryClass.classNo}
+              program={userInfo.primaryClass.program}
             />
             {userInfo.starredClasses.map(element => (
               <TimetableItem
@@ -43,10 +45,12 @@ const TimetableList = props => {
                 key={Math.random}
                 color={element.color}
                 text={element.className}
+                classNo={element.classNo}
+                program={userInfo.primaryClass.program}
               />
             ))}
             <Link
-              to="/preferences#removeTimetables"
+              to="/preferences"
               className="timetable__item"
               style={{
                 backgroundColor: "#FFFFFF",
@@ -68,7 +72,7 @@ const TimetableList = props => {
             DEBUG: LOGOUT
           </button>
           <Link
-            to="/preferences#removeTimetables"
+            to="/preferences"
             className="timetable__item"
             style={{
               backgroundColor: "#FFFFFF",

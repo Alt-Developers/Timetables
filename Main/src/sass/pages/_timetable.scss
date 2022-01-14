@@ -1,0 +1,222 @@
+.timetableNav {
+    width: 100%;
+    height: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 2.5rem 0 2.5rem;
+
+    a {
+        color: var(--font-color);
+        font-size: 3rem;
+        margin-right: auto;
+    }
+
+    img {
+        justify-self: flex-start;
+        border-radius: 50%;
+        display: inline-block;
+        object-fit: cover;
+    }
+
+    h3 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #fff;
+    }
+}
+
+.timetableBar {
+    height: 12rem;
+    padding: 3rem;
+    margin: 0 1rem 0 1rem;
+    display: flex;
+    gap: 3rem;
+
+    &__text {
+        color: var(--font-color);
+        text-align: left;
+        font-size: 1.5rem;
+    }
+
+    &__time {
+        @include respond(phone) {
+            display: none;
+        }
+    }
+
+    &__input {
+        height: 100%;
+        margin-left: auto;
+
+        input {
+            border-radius: 1.1rem;
+            border: none;
+            padding: 2rem;
+            font-weight: 600;
+            width: 30vw;
+            height: 100%;
+            color: #fff;
+
+            @include respond(phone) {
+                width: 50vw;
+            }
+
+        }   
+    }
+
+    
+}
+
+.timetableCon {
+    height: fit-content;
+    margin: 0 3rem 3rem 3rem;
+    border-radius: 1.1rem;
+    transition: .2s all;
+    display: flex;
+    flex-direction: column;
+
+    @include respond(phone) {
+        margin: 0 0 2rem 2rem;
+    }
+
+    button {
+        color: var(--font-color);
+        font-size: 1.6rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        align-self: flex-end;
+        margin-right: 2rem;
+        width: fit-content;
+        background: transparent;
+        border: none;
+    }
+}
+
+.timetableTable {
+    background-color: var(--gray-light-1);
+    height: 80vh;
+    border-radius: 1.1rem;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 4fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+    padding: 2rem;
+    overflow: scroll;
+    transition: all .2s;
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    // @include respond(big-desktop) {
+    //     width: 180rem;
+    //     height: 70rem;
+
+    // }
+
+    @include respond(phone) {
+        grid-template-columns: 10rem 30rem 10rem 40rem;
+        border-radius: 1.1rem 0 0 1.1rem;
+    }
+
+
+    div {
+        background-color: var(--gray-light-3);
+        border-radius: 1.1rem;
+        transition: all .2s;
+    }
+}
+
+.t- {
+    &r1c3 {
+        grid-column: 3 / 4;
+        grid-row: 1 / span 5;
+    }
+
+    &r1c1 {
+        background-color: #F0D750 !important;
+    }
+
+    &r2c1 {
+        background-color: #FF7F7F !important;
+    }
+
+    &r3c1 {
+        background-color: #6EDF64 !important;
+    }
+
+    &r4c1 {
+        background-color: #FF8A00 !important;
+    }
+
+    &r5c1 {
+        background-color: #00988F !important;
+    }
+
+    &r1c3 {
+        display: grid;
+        place-items: center;
+
+        h3 {
+            color: var(--font-color);
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.weekdays {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.6rem;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+}
+
+.periods {
+    &__morning {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        h3 {
+            display: grid;
+            place-items: center;
+            color: var(--font-color);
+            font-size: 1.6rem;
+            border-radius: 1.1rem;
+        }
+    }
+    &__afternoon {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+        h3 {
+            display: grid;
+            place-items: center;
+            color: var(--font-color);
+            font-size: 1.6rem;
+        }
+    }
+}
+
+.timetablePeriodTime {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    h3 {
+        display: grid;
+        place-items: center;
+        color: var(--font-color);
+        font-size: 1.3rem;
+        font-weight: 500;
+    }
+}
+
+.learning {
+   background-color: #fff;
+   color: #000 !important;
+}

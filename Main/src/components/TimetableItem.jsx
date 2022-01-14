@@ -1,7 +1,8 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { refetchActions } from "../context/refetchSlice";
+import { Link } from "react-router-dom";
 
 const TimetableList = props => {
   const [isHovering, setIsHovering] = useState(false);
@@ -23,8 +24,39 @@ const TimetableList = props => {
     return <></>;
   }
 
-  return (
-    <AnimatePresence>
+  if (props.classNo) {
+    return (
+      <Link to={`/timetable?class=${props.classNo}&program=${props.program}`}>
+        <motion.div
+          className={`timetable__item ${props.remove && "shake"}`}
+          style={
+            !isHovering
+              ? { backgroundColor: props.color }
+              : {
+                  backgroundColor: color,
+                  boxShadow: `0px 0px 20px ${color}`,
+                }
+          }
+          exit={{ width: 0 }}
+          transition={{ duration: 1 }}
+          onMouseEnter={() => {
+            setIsHovering(true);
+          }}
+          onMouseLeave={() => {
+            setIsHovering(false);
+          }}
+          onClick={() => {
+            if (props.remove) {
+              setIsRemoved(true);
+            }
+          }}>
+          <h3>{props.text}</h3>
+          <h4>{props.subText}</h4>
+        </motion.div>
+      </Link>
+    );
+  } else {
+    return (
       <motion.div
         className={`timetable__item ${props.remove && "shake"}`}
         style={
@@ -51,8 +83,8 @@ const TimetableList = props => {
         <h3>{props.text}</h3>
         <h4>{props.subText}</h4>
       </motion.div>
-    </AnimatePresence>
-  );
+    );
+  }
 };
 
 export default TimetableList;

@@ -15,6 +15,7 @@ const ColoredButton = props => {
       }}
       className="addTimetables__submit"
       type={props.type}
+      onSubmit={props.onSubmit}
       style={
         !isHovering
           ? { backgroundColor: userInfo.color }

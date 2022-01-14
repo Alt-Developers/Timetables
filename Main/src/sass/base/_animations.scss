@@ -18,3 +18,18 @@
           animation-iteration-count: infinite; 
       }
   }
+
+  @keyframes bgColor {
+    0% {
+      background-color: #70F094;
+    }
+    33% {
+        background-color: #e9a0fc;
+      }
+    66% {
+      background-color: #69ACEA;
+    }
+    100% {
+      background-color: #70F094;
+    }
+  }

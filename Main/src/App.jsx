@@ -12,6 +12,7 @@ import { accountActions } from "./context/accountSlice";
 import TokenRedirect from "./components/TokenRedirect";
 import Migrate from "./pages/Migrate";
 import AddTimetables from "./pages/AddTimetables";
+import Timetable from "./pages/Timetable";
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ function App() {
         <Route path="/migrate" element={<Migrate />} />
         <Route path="/preferences" element={<AddTimetables />} />
         <Route path="/token/:token" element={<TokenRedirect />} />
+        <Route path="/timetable" element={<Timetable />} />
       </Routes>
       <Footer />
     </motion.div>
