@@ -20,7 +20,7 @@ const TokenRedirect = props => {
       .then(data => {
         if (data.status === 200) return data.json();
         if (data.status === 500) {
-          console.log("Errored");
+          console.log("Errored", data.json());
           return;
         }
       })

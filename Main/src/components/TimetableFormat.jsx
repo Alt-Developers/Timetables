@@ -32,6 +32,7 @@ export const format = {
   CHEN: {
     // Chinese English Program
     SCI: { name: "Science", icon: "SCI" },
+    EEN: { name: "English", icon: "Language" },
     MAE: { name: "Math E.", icon: "MAT" },
     GUI: { name: "Guidance", icon: "GUI" },
     THA: { name: "Thai", icon: "Language" },

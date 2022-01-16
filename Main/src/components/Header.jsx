@@ -43,9 +43,12 @@ const Header = props => {
           SS Account
         </h3>
         <div className="header__userProfile">
-          <Link to="/preferences">
+          <Link to={`${props.clickProfile === "home" ? "/" : "/preferences"}`}>
             <span>
-              <i class="bx bx-slider"></i>
+              <i
+                className={`bx ${
+                  props.clickProfile === "home" ? "bx-home-alt" : "bx-slider"
+                }`}></i>
             </span>
             <motion.img
               initial={{ scale: 0 }}

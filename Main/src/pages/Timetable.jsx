@@ -1,6 +1,10 @@
-import { useSelector } from "react-redux";
-import { Link, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { format } from "../components/TimetableFormat";
+import { motion } from "framer-motion";
+import "react-loading-skeleton/dist/skeleton.css";
+import TimetableDay from "../components/TimetableDay";
 
 const Timetable = props => {
   // const { timetableID: params } = useParams();
@@ -10,7 +14,12 @@ const Timetable = props => {
   const [hoverThu, setHoverThu] = useState(false);
   const [hoverFri, setHoverFri] = useState(false);
   const [periodTime, setPeriodTime] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchedPeriod, setsearchedPeriod] = useState([]);
+  const [timetableContent, setTimetableContent] = useState();
+  const dispatch = useDispatch();
 
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const userInfo = useSelector(state => state.account.userInfo);
 
@@ -22,16 +31,27 @@ const Timetable = props => {
     })
   );
 
+  const program = searchParams.get("program");
+
   useEffect(() => {
-    // fetch(
-    //   `https://apis.ssdevelopers.xyz/timetables/getTimetables?classNo=${searchParams.get(
-    //     "class"
-    //   )}&program=${searchParams.get("program")}`
-    // )
-    //   .then(data => data.json())
-    //   .then(data => {
-    //     console.log(data);
-    //   });
+    fetch(
+      `https://apis.ssdevelopers.xyz/timetables/getTimetable?classNo=${searchParams.get(
+        "class"
+      )}&program=${program}`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    )
+      .then(data => data.json())
+      .then(data => {
+        if (data.error) {
+          navigate("/");
+        }
+
+        setTimetableContent(data.content);
+      });
 
     window.scrollTo(0, 0);
     setInterval(() => {
@@ -45,20 +65,78 @@ const Timetable = props => {
     }, [1000]);
   }, []);
 
-  const monBlurred =
-    (hoverTue || hoverWed || hoverThu || hoverFri) && "blurred";
-  const tueBlurred =
-    (hoverMon || hoverWed || hoverThu || hoverFri) && "blurred";
-  const wedBlurred =
-    (hoverMon || hoverTue || hoverThu || hoverFri) && "blurred";
-  const thuBlurred =
-    (hoverTue || hoverWed || hoverMon || hoverFri) && "blurred";
+  const [timesRendered, setTimesRendered] = useState(1);
+  useEffect(() => {
+    setTimesRendered(timesRendered + 1);
+    if (timesRendered === 2) {
+      setIsLoading(false);
+    }
+  }, [timetableContent]);
+
+  const monHoverHandler = liftedData => {
+    setHoverMon(liftedData);
+  };
+  const tueHoverHandler = liftedData => {
+    setHoverTue(liftedData);
+  };
+  const wedHoverHandler = liftedData => {
+    setHoverWed(liftedData);
+  };
+  const thuHoverHandler = liftedData => {
+    setHoverThu(liftedData);
+  };
+  const friHoverHandler = liftedData => {
+    setHoverFri(liftedData);
+  };
+
   const friBlurred =
-    (hoverTue || hoverWed || hoverThu || hoverMon) && "blurred";
+    hoverTue || hoverWed || hoverThu || hoverMon ? "blurred" : "";
 
   const searchHandler = event => {
-    console.log(event.target.value);
+    const keypress = event.target.value.toLowerCase();
+    let periodFull = [];
+    timetableContent.monday.map(period => {
+      periodFull.push(format[program][period].name.toLowerCase());
+    });
+    timetableContent.tuesday.map(period => {
+      periodFull.push(format[program][period].name.toLowerCase());
+    });
+    timetableContent.wednesday.map(period => {
+      periodFull.push(format[program][period].name.toLowerCase());
+    });
+    timetableContent.thursday.map(period => {
+      periodFull.push(format[program][period].name.toLowerCase());
+    });
+    timetableContent.friday.map(period => {
+      periodFull.push(format[program][period].name.toLowerCase());
+    });
+    console.log(periodFull);
+
+    periodFull = periodFull.filter(period => period.includes(keypress));
+    setsearchedPeriod(periodFull);
   };
+
+  if (isLoading) {
+    return (
+      <>
+        <section
+          className="timetableNav"
+          style={{ backgroundColor: userInfo.color }}>
+          <Link to="/">
+            <h3>&#8249; Home</h3>
+          </Link>
+
+          <img
+            src={`https://apis.ssdevelopers.xyz/${userInfo.profilePicture}`}
+            alt="user profile picture"
+            height="60"
+            width="60"
+          />
+        </section>
+        <motion.div className="timetableTable"></motion.div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -79,19 +157,12 @@ const Timetable = props => {
       <section className="timetableBar">
         <div className="timetableBar__text">
           <p>Timetable:</p>
-          <h1>
-            {searchParams.get("class")}{" "}
-            <span className="hiddenOnPhone">Timetable</span>
-          </h1>
+          <h1>{searchParams.get("class")} </h1>
         </div>
         <div className="timetableBar__text timetableBar__time">
           <p>Time:</p>
           <h1>{clock}</h1>
         </div>
-        {/* <div className="timetableBar__text">
-          <p>Next Period:</p>
-          <h1>Ocupational Works</h1>
-        </div> */}
         <div className="timetableBar__input">
           <input
             onChange={searchHandler}
@@ -112,7 +183,11 @@ const Timetable = props => {
             Period time &#x25B2;
           </button>
         )}
-        <div
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
           className="timetableTable"
           style={
             periodTime
@@ -140,88 +215,66 @@ const Timetable = props => {
             </>
           )}
 
-          <div
-            className={`t-r1c1 weekdays ${monBlurred}`}
-            onMouseEnter={() => {
-              setHoverMon(true);
-            }}
-            onMouseLeave={() => {
-              setHoverMon(false);
-            }}>
-            Monday
-          </div>
+          <TimetableDay
+            data={timetableContent.monday}
+            program={program}
+            blurred={
+              hoverTue || hoverWed || hoverThu || hoverFri ? "blurred" : ""
+            }
+            searched={searchedPeriod}
+            periodTime={periodTime}
+            liftHover={monHoverHandler}
+            weekday={["t-r1c1", "Monday"]}
+          />
 
-          <div className={`t-r1c2 periods__morning ${monBlurred}`}>
-            <h3 className={``}>Science E.</h3>
-            <h3 className={`learning`}>History</h3>
-            <h3>Computers</h3>
-          </div>
-          <div
-            className="t-r1c3"
-            style={
-              periodTime ? { gridColumn: "3 /  4", gridRow: "2 / span 5" } : {}
-            }>
-            <h3>Lunch Break</h3>
-          </div>
-          <div className={`t-r1c4 periods__afternoon ${monBlurred}`}>
-            <h3>Science E.</h3>
-            <h3>History</h3>
-            <h3>Computers</h3>
-            <h3>Computers</h3>
-          </div>
+          <TimetableDay
+            data={timetableContent.tuesday}
+            program={program}
+            blurred={
+              hoverMon || hoverWed || hoverThu || hoverFri ? "blurred" : ""
+            }
+            searched={searchedPeriod}
+            periodTime={periodTime}
+            liftHover={tueHoverHandler}
+            weekday={["t-r2c1", "Tuesday"]}
+          />
 
-          <div
-            className={`t-r2c1 weekdays ${tueBlurred}`}
-            onMouseEnter={() => {
-              setHoverTue(true);
-            }}
-            onMouseLeave={() => {
-              setHoverTue(false);
-            }}>
-            Tuesday
-          </div>
-          <div className={`t-r2c2 periods__morning ${tueBlurred}`}>7</div>
-          <div className={`t-r2c4 periods__afternoon ${tueBlurred}`}>9</div>
+          <TimetableDay
+            data={timetableContent.wednesday}
+            program={program}
+            blurred={
+              hoverMon || hoverTue || hoverThu || hoverFri ? "blurred" : ""
+            }
+            searched={searchedPeriod}
+            periodTime={periodTime}
+            liftHover={wedHoverHandler}
+            weekday={["t-r3c1", "Wednesday"]}
+          />
 
-          <div
-            className={`t-r3c1 weekdays ${wedBlurred}`}
-            onMouseEnter={() => {
-              setHoverWed(true);
-            }}
-            onMouseLeave={() => {
-              setHoverWed(false);
-            }}>
-            Wednesday
-          </div>
-          <div className={`t-r3c2 periods__morning ${wedBlurred}`}>12</div>
-          <div className={`t-r3c4 periods__afternoon ${wedBlurred}`}>14</div>
+          <TimetableDay
+            data={timetableContent.thursday}
+            program={program}
+            blurred={
+              hoverTue || hoverWed || hoverMon || hoverFri ? "blurred" : ""
+            }
+            searched={searchedPeriod}
+            periodTime={periodTime}
+            liftHover={thuHoverHandler}
+            weekday={["t-r4c1", "Thursday"]}
+          />
 
-          <div
-            className={`t-r4c1 weekdays ${thuBlurred}`}
-            onMouseEnter={() => {
-              setHoverThu(true);
-            }}
-            onMouseLeave={() => {
-              setHoverThu(false);
-            }}>
-            Thursday
-          </div>
-          <div className={`t-r4c2 periods__morning ${thuBlurred}`}>17</div>
-          <div className={`t-r4c4 periods__afternoon ${thuBlurred}`}>19</div>
-
-          <div
-            className={`t-r5c1 weekdays ${friBlurred}`}
-            onMouseEnter={() => {
-              setHoverFri(true);
-            }}
-            onMouseLeave={() => {
-              setHoverFri(false);
-            }}>
-            Friday
-          </div>
-          <div className={`t-r5c2 periods__morning ${friBlurred}`}>22</div>
-          <div className={`t-r5c4 periods__afternoon ${friBlurred}`}>24</div>
-        </div>
+          <TimetableDay
+            data={timetableContent.friday}
+            program={program}
+            blurred={
+              hoverTue || hoverWed || hoverMon || hoverThu ? "blurred" : ""
+            }
+            searched={searchedPeriod}
+            periodTime={periodTime}
+            liftHover={friHoverHandler}
+            weekday={["t-r5c1", "Friday"]}
+          />
+        </motion.div>
       </section>
     </>
   );

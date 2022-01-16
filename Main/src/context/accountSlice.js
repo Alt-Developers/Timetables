@@ -5,6 +5,7 @@ const initialAccountState = {
   userInfo: {},
   covid: { isFetched: false },
   covidWorldwide: { isFetched: false },
+  timetableContent: {},
 };
 const accountSlice = createSlice({
   name: "account",
@@ -55,6 +56,9 @@ const accountSlice = createSlice({
         newCases: action.payload.todayCases,
         lastUpdated,
       };
+    },
+    initializeTimetable(state, action) {
+      state.timetableContent = action.payload;
     },
   },
 });

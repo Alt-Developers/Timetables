@@ -7,13 +7,27 @@ import ColoredButton from "./ColoredButton";
 
 const AddTimetableItem = props => {
   const [selectedOption, setSelectedOption] = useState(props.defaultOption);
+
   const submitHandler = event => {
     event.preventDefault();
-    console.log(selectedOption);
+    console.log(props.isPrimary);
+
+    fetch("https://apis.ssdevelopers.xyz/timetables/registerUserClass", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      method: "POST",
+      body: JSON.stringify({
+        classNo: selectedOption.split("+")[0],
+        program: selectedOption.split("+")[1],
+        isPrimary: props.isPrimary,
+      }),
+    }).then(data => console.log(data.json()));
   };
 
   return (
-    <form className="addTimetables">
+    <form className="addTimetables" onSubmit={submitHandler}>
       <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
         <h3>{props.header}</h3>
         <SelectSearch
@@ -32,9 +46,8 @@ const AddTimetableItem = props => {
                 .then(data => {
                   resolve(
                     data.data.map(({ classNo, program }) => ({
-                      value: classNo,
+                      value: `${classNo}+${program}`,
                       name: classNo,
-                      program: program,
                     }))
                   );
                 })
@@ -47,7 +60,7 @@ const AddTimetableItem = props => {
           onChange={setSelectedOption}
           emptyMessage={() => (
             <div style={{ textAlign: "center", fontSize: "0.8em" }}>
-              Not found renderer
+              Timetable not found
             </div>
           )}
           search

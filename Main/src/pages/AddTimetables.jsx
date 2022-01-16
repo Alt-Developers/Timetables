@@ -22,6 +22,7 @@ const AddTimetables = props => {
             Preferences
           </h1>
         }
+        clickProfile={"home"}
       />
       <section className="removeTimetables">
         <h1 className="bar__header">Add Timetables</h1>
@@ -31,6 +32,7 @@ const AddTimetables = props => {
             header={"Add new Classes"}
             button={"Add"}
             placeholder={"Search for timetables"}
+            isPrimary={false}
           />
           {userInfo.primaryClass ? (
             <AddTimetableItem
@@ -38,6 +40,7 @@ const AddTimetables = props => {
               button={"Change"}
               placeholder={"Search for timetables"}
               defaultOption={userInfo.primaryClass.classNo}
+              isPrimary={true}
             />
           ) : (
             <AddTimetableItem

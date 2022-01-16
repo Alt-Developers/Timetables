@@ -53,7 +53,7 @@ const updateStats = function () {
   }).format(date);
   document
     .querySelectorAll("#date")
-    .forEach((cur) => (cur.innerHTML = formatDay));
+    .forEach(cur => (cur.innerHTML = formatDay));
 
   function clock() {
     var date = new Date();
@@ -103,8 +103,8 @@ const txtSearch = document.getElementById("searchIn");
 const iPeriod = document.querySelectorAll(".i-period");
 const iDPeriod = document.querySelectorAll(".i-double-period");
 
-iPeriod.forEach((cur) => cur.classList.add("classes"));
-iDPeriod.forEach((cur) => cur.classList.add("classes"));
+iPeriod.forEach(cur => cur.classList.add("classes"));
+iDPeriod.forEach(cur => cur.classList.add("classes"));
 
 const classes = document.querySelectorAll(".classes");
 const className = [];
@@ -118,7 +118,7 @@ classes.forEach(function (cur) {
     cur.textContent
       .toLowerCase()
       .split("")
-      .filter((cur) => {
+      .filter(cur => {
         if (cur != " ") {
           return cur;
         }
@@ -132,7 +132,7 @@ txtSearch.addEventListener("keyup", function (e) {
   const searchValue = txtSearch.value.toLowerCase().split(" ").join("");
   console.log(searchValue);
 
-  console.log(classes);
+  console.log("classes : ", classes);
   if (e.key == "Enter") {
     console.log("Enter");
     txtSearch.value = "";
@@ -140,6 +140,7 @@ txtSearch.addEventListener("keyup", function (e) {
   }
   className.forEach(function (cur, i) {
     if (!cur.includes(searchValue)) {
+      console.log(classes[i]);
       classes[i].style.opacity = "0";
     } else {
       classes[i].style.opacity = "100";
@@ -152,8 +153,8 @@ const thaitxtSearch = document.getElementById("searchIn");
 const thaiiPeriod = document.querySelectorAll(".ti-period");
 const thaiiDPeriod = document.querySelectorAll(".ti-double-period");
 
-thaiiPeriod.forEach((cur) => cur.classList.add("tclasses"));
-thaiiDPeriod.forEach((cur) => cur.classList.add("tclasses"));
+thaiiPeriod.forEach(cur => cur.classList.add("tclasses"));
+thaiiDPeriod.forEach(cur => cur.classList.add("tclasses"));
 
 const thaiclasses = document.querySelectorAll(".tclasses");
 const thaiclassName = [];
@@ -167,7 +168,7 @@ thaiclasses.forEach(function (cur) {
     cur.textContent
       .toLowerCase()
       .split("")
-      .filter((cur) => {
+      .filter(cur => {
         if (cur != " ") {
           return cur;
         }
@@ -202,7 +203,7 @@ thaitxtSearch.addEventListener("keyup", function (e) {
 const days = document.querySelectorAll(".i");
 const overlay = document.querySelector(".overlay");
 const day = [];
-days.forEach((cur) => day.push(cur.textContent.toLowerCase()));
+days.forEach(cur => day.push(cur.textContent.toLowerCase()));
 
 days.forEach((cur, i) => {
   console.log(day[i]);
@@ -230,7 +231,7 @@ console.log(day);
 const thaidays = document.querySelectorAll(".ti");
 
 const thaiday = [];
-thaidays.forEach((cur) => thaiday.push(cur.textContent.toLowerCase()));
+thaidays.forEach(cur => thaiday.push(cur.textContent.toLowerCase()));
 
 thaidays.forEach((cur, i) => {
   console.log(day[i]);

@@ -5,7 +5,7 @@ const Loading = props => {
   const [notLoading, setNotLoading] = useState(false);
 
   setTimeout(() => {
-    setNotLoading(true);
+    if (notLoading) setNotLoading(true);
   }, 5000);
 
   return (

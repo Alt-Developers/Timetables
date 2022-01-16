@@ -181,6 +181,9 @@
     &__morning {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+
+
 
         h3 {
             display: grid;
@@ -188,17 +191,23 @@
             color: var(--font-color);
             font-size: 1.6rem;
             border-radius: 1.1rem;
+            gap: 1rem;
+            text-align: center;
         }
     }
     &__afternoon {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
+        transition: all .2s;
+        gap: 1rem;
 
         h3 {
             display: grid;
             place-items: center;
             color: var(--font-color);
             font-size: 1.6rem;
+            transition: all .2s;
+            text-align: center;
         }
     }
 }
@@ -218,5 +227,6 @@
 
 .learning {
    background-color: #fff;
+   border-radius: 1.1rem;
    color: #000 !important;
 }
