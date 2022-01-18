@@ -1,3 +1,98 @@
+.config {
+    padding: 3rem 3rem 0 3rem;
+
+    @include respond(phone) {
+        padding: 2rem;
+    }
+
+    &__bar {
+        width: 100%;
+        background-color: var(--gray-light-1);
+        height: fit-content;
+        border-radius: 1.1rem;
+        padding: 2rem;
+        border: none;
+        filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25));
+        position: relative;
+        display: flex;
+
+        @include respond(phone) {
+            flex-direction: column;
+        }
+
+
+        h3 {
+            color: var(--font-color);
+            font-size: 2rem;
+            margin-right: 2rem;
+        }
+    }
+
+    &__item {
+        // border: 2px solid var(--gray-dark-1);
+        background-color:var(--gray-light-2);
+        padding: 2rem;
+        border-radius: 1.1rem;
+        display: flex;
+        width: fit-content;
+        height: fit-content;
+
+        @include respond(phone) {
+            width: 100%;
+        }
+    }
+
+    // &__container {
+    //     display: flex;
+    //     flex-wrap: wrap;
+    //     gap: 1rem;
+    //     width: 50%;
+    //     // border-right: 2px solid var(--gray-dark-1);
+
+    //     @include respond(phone) {
+    //         width: 100%;
+    //         border-right: none;
+    //     }
+    // }
+
+    &__logout {
+        background-color: var(--gray-light-2);
+        border: none;
+        border-radius: 1.1rem;
+        width: 15rem;
+        color: var(--font-color);
+        transition: all .2s;
+        font-size: 4rem;
+        display: grid;
+        align-items: center;
+        height: 10rem;
+
+        filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.10));
+
+
+        @include respond(phone) {
+            width: 100%;
+            font-size: 3rem;
+            height: 7rem;
+            margin-top: 2rem;
+        }
+
+        // &:hover {
+        //     box-shadow: 0px 0px 20px #FF5252;
+        // }
+    
+        &:active {
+            transform: scale(.85);
+        }
+    }
+
+    &__switch {
+        @include respond(phone) {
+            margin-left: auto;
+        }
+    }
+}
+
 .removeTimetables {
     padding: 3rem;
     height: 100%;
@@ -64,32 +159,6 @@
         }
     }
 }
-
-// .select-search {
-//     padding: 1rem;
-//     border: none;
-//     background-color: var(--gray-dark-1);
-//     z-index: 2;
-//     border-radius: 1.1rem;
-//     width: fit-content;
-//     color: var(--font-color);
-//     margin-bottom: 2rem;
-
-//     &__input {
-        // border: none;
-        // padding: 1rem;
-        // border-radius: .9rem;
-//     }
-
-//     &__select {
-//         color: var(--font-color);
-        
-//         li {
-//             color: var(--font-color);
-//             background-color: orangered;
-//         }
-//     }
-// }
 
 .row {
     display: flex;

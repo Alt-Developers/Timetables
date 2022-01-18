@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 const Migrate = props => {
   return (
     <section className="login">
@@ -10,7 +8,9 @@ const Migrate = props => {
           <h3>Account not registered</h3>
           <p>To use Timetables please register SS Account to timetables. </p>
         </div>
-        <a href="http://localhost:3000/signup/timetables">Register</a>
+        <a href="https://authentication.ssdevelopers.xyz/signup/timetables">
+          Register
+        </a>
       </div>
     </section>
   );

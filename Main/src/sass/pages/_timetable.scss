@@ -33,6 +33,10 @@
     display: flex;
     gap: 3rem;
 
+    @include respond(phone) {
+        padding: 2rem 2rem 2rem 2rem;
+    }
+
     &__text {
         color: var(--font-color);
         text-align: left;
@@ -60,6 +64,7 @@
 
             @include respond(phone) {
                 width: 50vw;
+                height: 80%;
             }
 
         }   
@@ -98,7 +103,7 @@
     height: 80vh;
     border-radius: 1.1rem;
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr 4fr;
+    grid-template-columns: 1fr 4fr 1fr 3fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     gap: 1rem;
     padding: 2rem;
@@ -119,7 +124,7 @@
     // }
 
     @include respond(phone) {
-        grid-template-columns: 10rem 30rem 10rem 40rem;
+        grid-template-columns: 10rem 40rem 10rem 30rem;
         border-radius: 1.1rem 0 0 1.1rem;
     }
 
@@ -180,7 +185,7 @@
 .periods {
     &__morning {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 1rem;
 
 
@@ -197,7 +202,7 @@
     }
     &__afternoon {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         transition: all .2s;
         gap: 1rem;
 

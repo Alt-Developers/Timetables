@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import SelectSearch from "react-select-search";
 import { fuzzySearch } from "react-select-search";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import ColoredButton from "./ColoredButton";
 
 const AddTimetableItem = props => {
@@ -10,7 +9,6 @@ const AddTimetableItem = props => {
 
   const submitHandler = event => {
     event.preventDefault();
-    console.log(props.isPrimary);
 
     fetch("https://apis.ssdevelopers.xyz/timetables/registerUserClass", {
       headers: {
@@ -23,7 +21,7 @@ const AddTimetableItem = props => {
         program: selectedOption.split("+")[1],
         isPrimary: props.isPrimary,
       }),
-    }).then(data => console.log(data.json()));
+    }).then(data => window.location.reload());
   };
 
   return (
@@ -45,9 +43,9 @@ const AddTimetableItem = props => {
                 .then(response => response.json())
                 .then(data => {
                   resolve(
-                    data.data.map(({ classNo, program }) => ({
+                    data.data.map(({ classNo, program, className }) => ({
                       value: `${classNo}+${program}`,
-                      name: classNo,
+                      name: className,
                     }))
                   );
                 })

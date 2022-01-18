@@ -1,10 +1,11 @@
-import { format } from "./TimetableFormat";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const TimetableDay = props => {
   const [hovering, setHovering] = useState(false);
+  const format = useSelector(state => state.account.format);
 
   useEffect(() => {
     props.liftHover(hovering);
@@ -23,7 +24,7 @@ const TimetableDay = props => {
         {props.weekday[1]}
       </div>
       <div className={`periods__morning ${props.blurred}`}>
-        {props.data.slice(0, 3).map(period => (
+        {props.data.slice(0, 4).map(period => (
           <motion.h3
             initial={{ opacity: 0 }}
             animate={
@@ -37,7 +38,9 @@ const TimetableDay = props => {
             className={`${
               !props.searched.includes(
                 format[props.program][period].name.toLowerCase()
-              ) && "hidden"
+              )
+                ? "hidden"
+                : "searched"
             }
       `}
             key={Math.random()}>
@@ -62,7 +65,7 @@ const TimetableDay = props => {
         <h3>Lunch Break</h3>
       </div>
       <div className={`periods__afternoon ${props.blurred}`}>
-        {props.data.slice(3, 7).map(period => (
+        {props.data.slice(4, 7).map(period => (
           <motion.h3
             initial={{ opacity: 0 }}
             animate={
@@ -72,6 +75,13 @@ const TimetableDay = props => {
                 ? { opacity: 0 }
                 : { opacity: 1 }
             }
+            className={`${
+              !props.searched.includes(
+                format[props.program][period].name.toLowerCase()
+              )
+                ? "hidden"
+                : "searched"
+            }`}
             transition={{ delay: 0.35 }}
             key={Math.random()}>
             {format[props.program][period].name.length > 11 ? (

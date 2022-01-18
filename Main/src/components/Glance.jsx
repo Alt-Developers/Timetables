@@ -1,39 +1,33 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { format } from "./TimetableFormat";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-// import GlanceItem from "./GlanceItem";
 
 const Glance = props => {
   const [hour, setHour] = useState(new Date().getHours());
   const userInfo = useSelector(state => state.account.userInfo);
+  const format = useSelector(state => state.account.format);
 
   useEffect(() => {
     setInterval(() => {
       const hour = new Date().getHours();
       setHour(hour);
-      console.log("Refreshed Hour");
     }, [1800000]); // Half an hour
   }, []);
 
-  const DUMMY_CURPERIOD = {
-    name: "GUI",
-    program: "CHEN",
+  let currentPeriod = "MAT";
+  let nextPeriod = "MAT";
+  currentPeriod = {
+    name: format[userInfo.primaryClass.program][userInfo.glance.currentClass]
+      .name,
+    icon: format[userInfo.primaryClass.program][userInfo.glance.currentClass]
+      .icon,
   };
-  const DUMMY_NEXTPERIOD = {
-    name: "HIS",
-    program: "CHEN",
+  nextPeriod = {
+    name: format[userInfo.primaryClass.program][userInfo.glance.nextClass].name,
+    icon: format[userInfo.primaryClass.program][userInfo.glance.nextClass].icon,
   };
 
-  const currentPeriod = {
-    name: format[DUMMY_CURPERIOD.program][DUMMY_CURPERIOD.name].name,
-    icon: format[DUMMY_CURPERIOD.program][DUMMY_CURPERIOD.name].icon,
-  };
-  const nextPeriod = {
-    name: format[DUMMY_NEXTPERIOD.program][DUMMY_NEXTPERIOD.name].name,
-    icon: format[DUMMY_NEXTPERIOD.program][DUMMY_NEXTPERIOD.name].icon,
-  };
   if (userInfo.primaryClass) {
     return (
       <>
@@ -56,7 +50,11 @@ const Glance = props => {
                   {currentPeriod.name}
                 </h3>
                 <Link
-                  to={`/timetable?class=${userInfo.primaryClass.classNo}&program=${userInfo.primaryClass.program}}`}>
+                  to={`/timetable?class=${
+                    userInfo.primaryClass.classNo
+                  }&program=${
+                    userInfo.primaryClass.program
+                  }&color=${userInfo.color.replace("#", "")}`}>
                   <button className="btn bar__item--btn">
                     View in timetable
                   </button>
@@ -78,9 +76,12 @@ const Glance = props => {
                   Next Period: <br />
                   {nextPeriod.name}
                 </h3>
-                <p>Starting in 7 minutes</p>
                 <Link
-                  to={`/timetable?class=${userInfo.primaryClass.classNo}&program=${userInfo.primaryClass.program}}`}>
+                  to={`/timetable?class=${
+                    userInfo.primaryClass.classNo
+                  }&program=${
+                    userInfo.primaryClass.program
+                  }&color=${userInfo.color.replace("#", "")}`}>
                   <button className="btn bar__item--btn">
                     View in timetable
                   </button>
@@ -103,13 +104,6 @@ const Glance = props => {
                 style={{ backgroundColor: "#fa9e1e" }}>
                 <h3>You finished the day</h3>
                 <p>Well done!</p>
-                <button
-                  className="btn bar__item--btn"
-                  onClick={() => {
-                    setHour(10);
-                  }}>
-                  DEBUG: SET TIME TO 10AM
-                </button>
                 <img
                   src={`./icons/desk.png`}
                   className="bar__icon"
@@ -129,7 +123,11 @@ const Glance = props => {
                 </h3>
                 <p>Maybe this timetable could help</p>
                 <Link
-                  to={`/timetable?class=${userInfo.primaryClass.classNo}&program=${userInfo.primaryClass.program}}`}>
+                  to={`/timetable?class=${
+                    userInfo.primaryClass.classNo
+                  }&program=${
+                    userInfo.primaryClass.program
+                  }&color=${userInfo.color.replace("#", "")}`}>
                   <button className="btn bar__item--btn">View timetable</button>
                 </Link>
                 <img
@@ -157,12 +155,12 @@ const Glance = props => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="bar__item"
+            className="bar__item welcome"
             style={{ animation: "bgColor 5s infinite linear", width: "100%" }}>
             <h3>Welcome to Timetables!</h3>
-            <p>Add your primary class to see "At a glance"</p>
-            <Link className="btn bar__item--btn" to="/preferences">
-              Add primary class
+            <p>Add your primary class to get started.</p>
+            <Link to="/preferences">
+              <button className="btn bar__item--btn">Add primary class</button>
             </Link>
             <img
               src={`./icons/welcome.png`}

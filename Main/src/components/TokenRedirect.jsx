@@ -19,13 +19,9 @@ const TokenRedirect = props => {
     })
       .then(data => {
         if (data.status === 200) return data.json();
-        if (data.status === 500) {
-          console.log("Errored", data.json());
-          return;
-        }
+        if (data.status === 500) return;
       })
       .then(data => {
-        console.log(data);
         dispatch(accountActions.login(data));
         navigate("/");
       });

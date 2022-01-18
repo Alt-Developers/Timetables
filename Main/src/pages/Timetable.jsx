@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { format } from "../components/TimetableFormat";
+import { useEffect, useRef, useState } from "react";
+// import { format } from "../components/TimetableFormat";
 import { motion } from "framer-motion";
 import "react-loading-skeleton/dist/skeleton.css";
 import TimetableDay from "../components/TimetableDay";
@@ -17,11 +17,14 @@ const Timetable = props => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchedPeriod, setsearchedPeriod] = useState([]);
   const [timetableContent, setTimetableContent] = useState();
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
+  const format = useSelector(state => state.account.format);
   const userInfo = useSelector(state => state.account.userInfo);
+
+  const timetableColor = "#" + searchParams.get("color");
 
   const [clock, setClock] = useState(
     new Date().toLocaleString("en-US", {
@@ -49,11 +52,11 @@ const Timetable = props => {
         if (data.error) {
           navigate("/");
         }
-
         setTimetableContent(data.content);
       });
 
     window.scrollTo(0, 0);
+
     setInterval(() => {
       const date = new Date();
       const formatedDate = date.toLocaleString("en-US", {
@@ -70,50 +73,33 @@ const Timetable = props => {
     setTimesRendered(timesRendered + 1);
     if (timesRendered === 2) {
       setIsLoading(false);
+
+      let periodFull = [];
+      for (const day in timetableContent) {
+        timetableContent[day].map(period => {
+          periodFull.push(format[program][period].name.toLowerCase());
+        });
+      }
+      setsearchedPeriod(periodFull);
     }
   }, [timetableContent]);
 
-  const monHoverHandler = liftedData => {
-    setHoverMon(liftedData);
-  };
-  const tueHoverHandler = liftedData => {
-    setHoverTue(liftedData);
-  };
-  const wedHoverHandler = liftedData => {
-    setHoverWed(liftedData);
-  };
-  const thuHoverHandler = liftedData => {
-    setHoverThu(liftedData);
-  };
-  const friHoverHandler = liftedData => {
-    setHoverFri(liftedData);
-  };
-
-  const friBlurred =
-    hoverTue || hoverWed || hoverThu || hoverMon ? "blurred" : "";
+  const monHoverHandler = liftedData => setHoverMon(liftedData);
+  const tueHoverHandler = liftedData => setHoverTue(liftedData);
+  const wedHoverHandler = liftedData => setHoverWed(liftedData);
+  const thuHoverHandler = liftedData => setHoverThu(liftedData);
+  const friHoverHandler = liftedData => setHoverFri(liftedData);
 
   const searchHandler = event => {
     const keypress = event.target.value.toLowerCase();
     let periodFull = [];
-    timetableContent.monday.map(period => {
-      periodFull.push(format[program][period].name.toLowerCase());
-    });
-    timetableContent.tuesday.map(period => {
-      periodFull.push(format[program][period].name.toLowerCase());
-    });
-    timetableContent.wednesday.map(period => {
-      periodFull.push(format[program][period].name.toLowerCase());
-    });
-    timetableContent.thursday.map(period => {
-      periodFull.push(format[program][period].name.toLowerCase());
-    });
-    timetableContent.friday.map(period => {
-      periodFull.push(format[program][period].name.toLowerCase());
-    });
-    console.log(periodFull);
+    for (const day in timetableContent) {
+      timetableContent[day].map(period => {
+        periodFull.push(format[program][period].name.toLowerCase());
+      });
+    }
 
-    periodFull = periodFull.filter(period => period.includes(keypress));
-    setsearchedPeriod(periodFull);
+    setsearchedPeriod(periodFull.filter(period => period.includes(keypress)));
   };
 
   if (isLoading) {
@@ -121,7 +107,7 @@ const Timetable = props => {
       <>
         <section
           className="timetableNav"
-          style={{ backgroundColor: userInfo.color }}>
+          style={{ backgroundColor: timetableColor }}>
           <Link to="/">
             <h3>&#8249; Home</h3>
           </Link>
@@ -142,7 +128,7 @@ const Timetable = props => {
     <>
       <section
         className="timetableNav"
-        style={{ backgroundColor: userInfo.color }}>
+        style={{ backgroundColor: timetableColor }}>
         <Link to="/">
           <h3>&#8249; Home</h3>
         </Link>
@@ -168,7 +154,7 @@ const Timetable = props => {
             onChange={searchHandler}
             type="text"
             style={{
-              backgroundColor: userInfo.color + "50",
+              backgroundColor: timetableColor + "50",
             }}
             placeholder="Search Here"
           />

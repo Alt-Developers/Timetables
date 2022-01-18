@@ -1,6 +1,6 @@
 import "./sass/main.css";
 
-import { Route, Routes, useNavigate } from "react-router";
+import { Route, Routes } from "react-router";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
@@ -16,7 +16,6 @@ import Timetable from "./pages/Timetable";
 
 function App() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const refetch = useSelector(state => state.refetch.refetchCount);
 
   useEffect(() => {
@@ -31,7 +30,13 @@ function App() {
       .then(data => data.json())
       .then(data => dispatch(accountActions.covidWorldwide(data)));
 
-    if (!token) window.location.href = "http://localhost:3000/login/timetables";
+    fetch("https://apis.ssdevelopers.xyz/timetables/getCode")
+      .then(data => data.json())
+      .then(data => dispatch(accountActions.initFormat(data.codes)));
+
+    if (!token)
+      window.location.href =
+        "https://authentication.ssdevelopers.xyz/login/timetables";
     if (token)
       fetch("https://apis.ssdevelopers.xyz/timetables/getUser", {
         headers: {
@@ -41,7 +46,8 @@ function App() {
         .then(data => data.json())
         .then(data => {
           if (data.error) {
-            window.location.href = "http://localhost:3000/login/timetables";
+            window.location.href =
+              "https://authentication.ssdevelopers.xyz/login/timetables";
           } else {
             dispatch(accountActions.login(data));
           }

@@ -16,9 +16,15 @@
 .searched {
     opacity: 1;
     transition: all .2s;
+    // border: 1px solid var(--font-color);
 }
 
 .hidden {
     opacity: 0;
     transition: all .2s;
+}
+@media (prefers-color-scheme: light) {
+    .blurred {
+        filter: blur(1.1rem);
+    }
 }

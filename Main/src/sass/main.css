@@ -118,6 +118,10 @@ a {
   opacity: 0;
   transition: all .2s; }
 
+@media (prefers-color-scheme: light) {
+  .blurred {
+    filter: blur(1.1rem); } }
+
 .bar {
   width: 100%;
   background-color: var(--gray-light-1);
@@ -134,7 +138,10 @@ a {
   @media only screen and (max-width: 37.5em) {
     .bar {
       height: fit-content;
-      flex-direction: column; } }
+      flex-direction: column;
+      padding: 0;
+      background-color: transparent;
+      filter: none; } }
   .bar__header {
     margin-bottom: 1.5rem;
     font-size: 3rem;
@@ -154,13 +161,17 @@ a {
         padding-bottom: 8rem; } }
     .bar__item--btn {
       position: absolute;
-      bottom: 2rem; }
+      bottom: 2rem;
+      z-index: 2; }
     .bar__item h3 {
       font-size: 3rem;
-      color: #fff; }
+      color: #fff;
+      z-index: 5; }
     .bar__item p {
       font-size: 1.5rem;
       color: #fff; }
+    .bar__item img {
+      z-index: 1; }
   .bar__icon {
     position: absolute;
     right: 2rem;
@@ -189,6 +200,15 @@ a {
   @media only screen and (max-width: 37.5em) {
     .covid__global {
       display: none; } }
+
+@media only screen and (max-width: 37.5em) {
+  .welcome {
+    height: 50vh; }
+    .welcome img {
+      height: 250px;
+      width: 250px; }
+    .welcome a button {
+      z-index: 5; } }
 
 .btn {
   position: absolute;
@@ -310,7 +330,7 @@ a {
   height: 50px;
   width: 100%;
   padding: 0 40px 0 16px;
-  background: var(--gray-dark-1);
+  background: var(--background-color);
   border: 1px solid transparent;
   box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
   border-radius: 3px;
@@ -352,7 +372,7 @@ a {
  * Option row
  */
 .select-search__row:not(:first-child) {
-  border-top: 1px solid #404040; }
+  border-top: 1px solid var(--gray-); }
 
 /**
  * Option
@@ -381,7 +401,7 @@ a {
 
 .select-search__option.is-highlighted,
 .select-search__option:not(.is-selected):hover {
-  background: #4b4b4b; }
+  background: var(--gray-light-1); }
 
 .select-search__option.is-highlighted.is-selected,
 .select-search__option.is-selected:hover {
@@ -678,6 +698,62 @@ main {
     margin-left: 2rem;
     text-align: center; }
 
+.config {
+  padding: 3rem 3rem 0 3rem; }
+  @media only screen and (max-width: 37.5em) {
+    .config {
+      padding: 2rem; } }
+  .config__bar {
+    width: 100%;
+    background-color: var(--gray-light-1);
+    height: fit-content;
+    border-radius: 1.1rem;
+    padding: 2rem;
+    border: none;
+    filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25));
+    position: relative;
+    display: flex; }
+    @media only screen and (max-width: 37.5em) {
+      .config__bar {
+        flex-direction: column; } }
+    .config__bar h3 {
+      color: var(--font-color);
+      font-size: 2rem;
+      margin-right: 2rem; }
+  .config__item {
+    background-color: var(--gray-light-2);
+    padding: 2rem;
+    border-radius: 1.1rem;
+    display: flex;
+    width: fit-content;
+    height: fit-content; }
+    @media only screen and (max-width: 37.5em) {
+      .config__item {
+        width: 100%; } }
+  .config__logout {
+    background-color: var(--gray-light-2);
+    border: none;
+    border-radius: 1.1rem;
+    width: 15rem;
+    color: var(--font-color);
+    transition: all .2s;
+    font-size: 4rem;
+    display: grid;
+    align-items: center;
+    height: 10rem;
+    filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.1)); }
+    @media only screen and (max-width: 37.5em) {
+      .config__logout {
+        width: 100%;
+        font-size: 3rem;
+        height: 7rem;
+        margin-top: 2rem; } }
+    .config__logout:active {
+      transform: scale(0.85); }
+  @media only screen and (max-width: 37.5em) {
+    .config__switch {
+      margin-left: auto; } }
+
 .removeTimetables {
   padding: 3rem;
   height: 100%; }
@@ -757,6 +833,9 @@ main {
   margin: 0 1rem 0 1rem;
   display: flex;
   gap: 3rem; }
+  @media only screen and (max-width: 37.5em) {
+    .timetableBar {
+      padding: 2rem 2rem 2rem 2rem; } }
   .timetableBar__text {
     color: var(--font-color);
     text-align: left;
@@ -777,7 +856,8 @@ main {
       color: #fff; }
       @media only screen and (max-width: 37.5em) {
         .timetableBar__input input {
-          width: 50vw; } }
+          width: 50vw;
+          height: 80%; } }
 
 .timetableCon {
   height: fit-content;
@@ -805,7 +885,7 @@ main {
   height: 80vh;
   border-radius: 1.1rem;
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr 4fr;
+  grid-template-columns: 1fr 4fr 1fr 3fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   gap: 1rem;
   padding: 2rem;
@@ -819,7 +899,7 @@ main {
     display: none; }
   @media only screen and (max-width: 37.5em) {
     .timetableTable {
-      grid-template-columns: 10rem 30rem 10rem 40rem;
+      grid-template-columns: 10rem 40rem 10rem 30rem;
       border-radius: 1.1rem 0 0 1.1rem; } }
   .timetableTable div {
     background-color: var(--gray-light-3);
@@ -862,7 +942,7 @@ main {
 
 .periods__morning {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1rem; }
   .periods__morning h3 {
     display: grid;
@@ -875,7 +955,7 @@ main {
 
 .periods__afternoon {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   transition: all .2s;
   gap: 1rem; }
   .periods__afternoon h3 {

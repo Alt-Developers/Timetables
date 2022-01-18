@@ -20,12 +20,6 @@ const TimetableList = props => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2, delay: 0.2 }}
             className="bar timetable">
-            <button
-              onClick={() => {
-                dispatch(accountActions.logout());
-              }}>
-              DEBUG: LOGOUT
-            </button>
             {/* <button
             onClick={() => {
               dispatch(refetchActions.refetch());
@@ -33,20 +27,20 @@ const TimetableList = props => {
             DEBUG: REFETCH
           </button> */}
             <TimetableItem
-              color={userInfo.primaryClass.color}
+              color={userInfo.color}
               text={"My Class"}
               subText={userInfo.primaryClass.className}
               classNo={userInfo.primaryClass.classNo}
               program={userInfo.primaryClass.program}
             />
-            {userInfo.starredClasses.map(element => (
+            {userInfo.starredClasses.map(timetable => (
               <TimetableItem
                 style={{ width: 300 }}
                 key={Math.random}
-                color={element.color}
-                text={element.className}
-                classNo={element.classNo}
-                program={userInfo.primaryClass.program}
+                color={timetable.color}
+                text={timetable.className}
+                classNo={timetable.classNo}
+                program={timetable.program}
               />
             ))}
             <Link
@@ -65,12 +59,6 @@ const TimetableList = props => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, delay: 0.2 }}
           className="bar timetable">
-          <button
-            onClick={() => {
-              dispatch(accountActions.logout());
-            }}>
-            DEBUG: LOGOUT
-          </button>
           <Link
             to="/preferences"
             className="timetable__item"

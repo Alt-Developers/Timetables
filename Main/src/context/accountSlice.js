@@ -6,7 +6,9 @@ const initialAccountState = {
   covid: { isFetched: false },
   covidWorldwide: { isFetched: false },
   timetableContent: {},
+  format: {},
 };
+
 const accountSlice = createSlice({
   name: "account",
   initialState: initialAccountState,
@@ -19,7 +21,8 @@ const accountSlice = createSlice({
       state.userInfo = {};
       state.isAuthenticated = false;
       localStorage.removeItem("token");
-      window.location.href = "http://localhost:3000/login/timetables";
+      window.location.href =
+        "https://authentication.ssdevelopers.xyz/login/timetables";
     },
     covid(state, action) {
       const lastUpdated = new Date(action.payload.updated).toLocaleString(
@@ -59,6 +62,9 @@ const accountSlice = createSlice({
     },
     initializeTimetable(state, action) {
       state.timetableContent = action.payload;
+    },
+    initFormat(state, action) {
+      state.format = action.payload;
     },
   },
 });

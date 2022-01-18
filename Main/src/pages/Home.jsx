@@ -9,6 +9,7 @@ import { useEffect } from "react";
 
 const Home = props => {
   const isAuthenticated = useSelector(state => state.account.isAuthenticated);
+  const userInfo = useSelector(state => state.account.userInfo);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -21,8 +22,12 @@ const Home = props => {
           <Header />
           <main>
             <Glance />
-            <Covid />
-            <TimetableList />
+            {userInfo.primaryClass && (
+              <>
+                <Covid />
+                <TimetableList />
+              </>
+            )}
           </main>
         </motion.div>
       )}

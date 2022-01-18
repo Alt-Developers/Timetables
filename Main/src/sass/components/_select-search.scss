@@ -43,7 +43,7 @@
     height: 50px;
     width: 100%;
     padding: 0 40px 0 16px;
-    background: var(--gray-dark-1);
+    background: var(--background-color);
     border: 1px solid transparent;
     box-shadow: 0 .0625rem .125rem rgba(0, 0, 0, 0.15);
     border-radius: 3px;
@@ -90,7 +90,7 @@
  * Option row
  */
 .select-search__row:not(:first-child) {
-    border-top: 1px solid #404040;
+    border-top: 1px solid var(--gray-);
 }
 
 /**
@@ -123,7 +123,7 @@
 
 .select-search__option.is-highlighted,
 .select-search__option:not(.is-selected):hover {
-    background: #4b4b4b;
+    background: var(--gray-light-1);
 }
 
 .select-search__option.is-highlighted.is-selected,

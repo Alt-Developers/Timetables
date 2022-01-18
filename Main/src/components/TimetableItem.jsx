@@ -19,14 +19,27 @@ const TimetableList = props => {
   }
 
   if (isRemoved) {
-    dispatch(refetchActions.refetch());
+    fetch("https://apis.ssdevelopers.xyz/timetables/removeRegisteredClass", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      method: "POST",
+      body: JSON.stringify({
+        classNo: props.classNo,
+        program: props.program,
+      }),
+    }).then(data => window.location.reload());
 
     return <></>;
   }
 
-  if (props.classNo) {
+  if (!props.remove) {
     return (
-      <Link to={`/timetable?class=${props.classNo}&program=${props.program}`}>
+      <Link
+        to={`/timetable?class=${props.classNo}&program=${
+          props.program
+        }&color=${props.color.replace("#", "")}`}>
         <motion.div
           className={`timetable__item ${props.remove && "shake"}`}
           style={
