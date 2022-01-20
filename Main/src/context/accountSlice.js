@@ -7,6 +7,7 @@ const initialAccountState = {
   covidWorldwide: { isFetched: false },
   timetableContent: {},
   format: {},
+  language: "EN",
 };
 
 const accountSlice = createSlice({
@@ -65,6 +66,10 @@ const accountSlice = createSlice({
     },
     initFormat(state, action) {
       state.format = action.payload;
+    },
+    setLanguage(state, action) {
+      state.language = action.payload;
+      console.log(state.language);
     },
   },
 });

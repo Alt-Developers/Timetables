@@ -4,10 +4,13 @@ import { useSelector } from "react-redux";
 const Covid = props => {
   const covid = useSelector(state => state.account.covid);
   const covidWorldwide = useSelector(state => state.account.covidWorldwide);
+  const language = useSelector(state => state.account.language);
 
   return (
     <>
-      <h3 className="bar__header">Coronavirus</h3>
+      <h3 className="bar__header">
+        {language === "EN" ? "Coronavirus" : "สถานะการโควิด-19"}
+      </h3>
       <motion.section
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -17,16 +20,22 @@ const Covid = props => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="bar__item blarge"
+          className="bar__item blarge covid__item"
           style={{ backgroundColor: "#fc4a44" }}>
           {!covid.isFetched && (
             <h3>
-              {covid.newCases} Cases, {covid.newDeaths} Deaths
+              {covid.newCases} {language === "EN" ? "Cases, " : "เคส, "}
+              {language === "EN"
+                ? `${covid.newDeaths} Deaths`
+                : `เสียชีวิต ${covid.newDeaths} ราย`}
               <br />
-              in {covid.country}
+              {language === "EN" ? `in ${covid.country}` : `ใน ประเทศไทย`}
             </h3>
           )}
-          <p>Last Updated {covid.lastUpdated}</p>
+          <p>
+            {language === "EN" ? "Last Updated " : "อัปเดตข้อมูลล่าสุด "}
+            {covid.lastUpdated}
+          </p>
           <img
             src={`./icons/coronavirus.png`}
             className="bar__icon"
@@ -43,10 +52,16 @@ const Covid = props => {
           {!covidWorldwide.isFetched && (
             <>
               <h3>
-                {covidWorldwide.newCases} New Global Cases
+                {language === "EN"
+                  ? `${covidWorldwide.newCases} New Global Cases`
+                  : `เคสใหม่รอบโลก ${covidWorldwide.newCases} เคส`}
+
                 <br />
               </h3>
-              <p>Last Updated: {covidWorldwide.lastUpdated}</p>
+              <p>
+                {language === "EN" ? "Last Updated " : "อัปเดตข้อมูลล่าสุด "}
+                {covidWorldwide.lastUpdated}
+              </p>
             </>
           )}
           <img

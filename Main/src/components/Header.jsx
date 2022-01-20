@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const Header = props => {
   const userInfo = useSelector(state => state.account.userInfo);
+  const language = useSelector(state => state.account.language);
 
   const [clock, setClock] = useState(
     new Date().toLocaleString("en-US", {
@@ -31,17 +32,25 @@ const Header = props => {
     <div className="header" style={{ backgroundColor: userInfo.color }}>
       {!props.text ? (
         <h1>
-          It's currently <br />
+          {language === "EN" ? "It's currently" : "ขณะนี้เวลา"} <br />
           {clock}
         </h1>
       ) : (
         props.text
       )}
       <div className="header__account">
-        <h3>
-          {`${userInfo.firstName} ${userInfo.lastName}`}'s <br />
-          SS Account
-        </h3>
+        {language === "EN" ? (
+          <h3>
+            {`${userInfo.firstName} ${userInfo.lastName}'s`} <br />
+            SS Account
+          </h3>
+        ) : (
+          <h3>
+            SS Account ของ
+            <br />
+            {`${userInfo.firstName} ${userInfo.lastName}`}
+          </h3>
+        )}
         <div className="header__userProfile">
           <Link to={`${props.clickProfile === "home" ? "/" : "/preferences"}`}>
             <span>

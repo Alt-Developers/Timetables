@@ -7,6 +7,7 @@ const Glance = props => {
   const [hour, setHour] = useState(new Date().getHours());
   const userInfo = useSelector(state => state.account.userInfo);
   const format = useSelector(state => state.account.format);
+  const language = useSelector(state => state.account.language);
 
   useEffect(() => {
     setInterval(() => {
@@ -15,18 +16,25 @@ const Glance = props => {
     }, [1800000]); // Half an hour
   }, []);
 
+  console.log(userInfo.glance);
+
   let currentPeriod = "MAT";
   let nextPeriod = "MAT";
-  currentPeriod = {
-    name: format[userInfo.primaryClass.program][userInfo.glance.currentClass]
-      .name,
-    icon: format[userInfo.primaryClass.program][userInfo.glance.currentClass]
-      .icon,
-  };
-  nextPeriod = {
-    name: format[userInfo.primaryClass.program][userInfo.glance.nextClass].name,
-    icon: format[userInfo.primaryClass.program][userInfo.glance.nextClass].icon,
-  };
+
+  if (userInfo.glance && userInfo.primaryClass) {
+    currentPeriod = {
+      name: format[userInfo.primaryClass.program][userInfo.glance.currentClass]
+        .name,
+      icon: format[userInfo.primaryClass.program][userInfo.glance.currentClass]
+        .icon,
+    };
+    nextPeriod = {
+      name: format[userInfo.primaryClass.program][userInfo.glance.nextClass]
+        .name,
+      icon: format[userInfo.primaryClass.program][userInfo.glance.nextClass]
+        .icon,
+    };
+  }
 
   if (userInfo.primaryClass) {
     return (
@@ -46,7 +54,8 @@ const Glance = props => {
                 className="bar__item bsmall"
                 style={{ backgroundColor: "#69ACEA" }}>
                 <h3>
-                  Current Period: <br />
+                  {language === "EN" ? "Current Period:" : "ตอนนี้วิชา:"}
+                  <br />
                   {currentPeriod.name}
                 </h3>
                 <Link
@@ -56,7 +65,7 @@ const Glance = props => {
                     userInfo.primaryClass.program
                   }&color=${userInfo.color.replace("#", "")}`}>
                   <button className="btn bar__item--btn">
-                    View in timetable
+                    {language === "EN" ? "View in timetable" : "ดูในตารางสอน"}
                   </button>
                 </Link>
                 <img
@@ -73,7 +82,8 @@ const Glance = props => {
                 className="bar__item blarge"
                 style={{ backgroundColor: "#70F094" }}>
                 <h3>
-                  Next Period: <br />
+                  {language === "EN" ? "Next Period:" : "วิชาต่อไป:"}
+                  <br />
                   {nextPeriod.name}
                 </h3>
                 <Link
@@ -83,7 +93,7 @@ const Glance = props => {
                     userInfo.primaryClass.program
                   }&color=${userInfo.color.replace("#", "")}`}>
                   <button className="btn bar__item--btn">
-                    View in timetable
+                    {language === "EN" ? "View in timetable" : "ดูในตารางสอน"}
                   </button>
                 </Link>
                 <img
@@ -102,8 +112,12 @@ const Glance = props => {
                 transition={{ duration: 0.3 }}
                 className="bar__item bsmall"
                 style={{ backgroundColor: "#fa9e1e" }}>
-                <h3>You finished the day</h3>
-                <p>Well done!</p>
+                <h3>
+                  {language === "EN"
+                    ? "You finished the day"
+                    : "เรียนจบวันแล้ว"}
+                </h3>
+                <p>{language === "EN" ? "Well done!" : "ยินดีด้วย!"}</p>
                 <img
                   src={`./icons/desk.png`}
                   className="bar__icon"
@@ -118,10 +132,17 @@ const Glance = props => {
                 className="bar__item blarge"
                 style={{ backgroundColor: "#755cf7" }}>
                 <h3>
-                  What books do I <br />
-                  need to bring tomorrow?
+                  {language === "EN" ? "What books do I" : "พรุ่งนี้ต้อง"}
+                  <br />
+                  {language === "EN"
+                    ? "need to bring tomorrow?"
+                    : "เอาหนังสืออะไรไปบ้างนะ?"}
                 </h3>
-                <p>Maybe this timetable could help</p>
+                <p>
+                  {language === "EN"
+                    ? "Maybe this timetable could help"
+                    : "ลองดูตารางสอนก่อนมั้ย?"}
+                </p>
                 <Link
                   to={`/timetable?class=${
                     userInfo.primaryClass.classNo

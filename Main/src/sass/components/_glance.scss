@@ -21,6 +21,7 @@
         padding: 0;
         background-color: transparent;
         filter: none;
+        height: 40rem;
     }
 
     &__header {
@@ -54,16 +55,12 @@
         h3 {
             font-size: 3rem;
             color: #fff;
-            z-index: 5;
+            z-index: 100000000;
         }
 
         p {
             font-size: 1.5rem;
             color: #fff;
-        }
-
-        img {
-            z-index: 1;
         }
     }
 
@@ -107,6 +104,12 @@
     &__global {
         @include respond(phone) {
             display: none;
+        }
+    }
+
+    &__item {
+        @include respond(phone) {
+            height: 20rem !important; 
         }
     }
 }

@@ -5,25 +5,23 @@
     border-radius: 1.1rem;
     scrollbar-color: #404040 rgba(0, 0, 0, 0);
     scrollbar-width: medium;
-    ::-webkit-scrollbar-corner {
+    &::-webkit-scrollbar-corner {
         border-radius: 1.1rem
     }
+    &::-webkit-scrollbar {
+        display: none;
+      }
 
-    /* width */
-    // ::-webkit-scrollbar {
-    // width: 10px;
-    // }
-
-  ::-webkit-scrollbar-track {
+  &::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0);
   }
   
-  ::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 1.1rem;
   }
   
-  ::-webkit-scrollbar-thumb:hover {
+  &::-webkit-scrollbar-thumb:hover {
     background: #555;
   } 
     

@@ -187,8 +187,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 1rem;
-
-
+        overflow: hidden;
 
         h3 {
             display: grid;
@@ -198,6 +197,10 @@
             border-radius: 1.1rem;
             gap: 1rem;
             text-align: center;
+
+            @include respond(phone) {
+                font-size: 1.4rem;
+            }
         }
     }
     &__afternoon {
@@ -205,6 +208,7 @@
         grid-template-columns: 1fr 1fr 1fr;
         transition: all .2s;
         gap: 1rem;
+        overflow: hidden;
 
         h3 {
             display: grid;
@@ -213,6 +217,10 @@
             font-size: 1.6rem;
             transition: all .2s;
             text-align: center;
+
+            @include respond(phone) {
+                font-size: 1.4rem;
+            }
         }
     }
 }

@@ -9,10 +9,13 @@ import { Link } from "react-router-dom";
 const TimetableList = props => {
   const userInfo = useSelector(state => state.account.userInfo);
   const dispatch = useDispatch();
+  const language = useSelector(state => state.account.language);
 
   return (
     <>
-      <h3 className="bar__header">My Timetables</h3>
+      <h3 className="bar__header">
+        {language === "EN" ? "My Timetables" : "ตารางสอนของฉัน"}
+      </h3>
       {userInfo.primaryClass ? (
         <div className="box">
           <motion.section
@@ -28,7 +31,7 @@ const TimetableList = props => {
           </button> */}
             <TimetableItem
               color={userInfo.color}
-              text={"My Class"}
+              text={language === "EN" ? "My Class" : "ห้องของฉัน"}
               subText={userInfo.primaryClass.className}
               classNo={userInfo.primaryClass.classNo}
               program={userInfo.primaryClass.program}

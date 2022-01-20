@@ -13,10 +13,19 @@ import TokenRedirect from "./components/TokenRedirect";
 import Migrate from "./pages/Migrate";
 import AddTimetables from "./pages/AddTimetables";
 import Timetable from "./pages/Timetable";
+import openSocket from "socket.io-client";
 
 function App() {
   const dispatch = useDispatch();
   const refetch = useSelector(state => state.refetch.refetchCount);
+
+  // useEffect(() => {
+  //   const socket = openSocket("https://apis.ssdevelopers.xyz");
+  //   // socket.on("connect_error", () => {
+  //   //   console.log("failed");
+  //   // });
+  //   // socket.on("glance", data => {});
+  // }, []);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
