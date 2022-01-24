@@ -14,10 +14,14 @@ import Migrate from "./pages/Migrate";
 import AddTimetables from "./pages/AddTimetables";
 import Timetable from "./pages/Timetable";
 import openSocket from "socket.io-client";
+import Loading from "./components/Loading";
+import SimpleModal from "./lib/simpleModal";
 
 function App() {
   const dispatch = useDispatch();
   const refetch = useSelector(state => state.refetch.refetchCount);
+  const language = useSelector(state => state.account.language);
+  const userInfo = useSelector(state => state.account.userInfo);
 
   // useEffect(() => {
   //   const socket = openSocket("https://apis.ssdevelopers.xyz");
@@ -39,7 +43,9 @@ function App() {
       .then(data => data.json())
       .then(data => dispatch(accountActions.covidWorldwide(data)));
 
-    fetch("https://apis.ssdevelopers.xyz/timetables/getCode")
+    fetch(
+      `https://apis.ssdevelopers.xyz/timetables/getCode?language=${language}`
+    )
       .then(data => data.json())
       .then(data => dispatch(accountActions.initFormat(data.codes)));
 
@@ -59,11 +65,19 @@ function App() {
               "https://authentication.ssdevelopers.xyz/login/timetables";
           } else {
             dispatch(accountActions.login(data));
+            dispatch(accountActions.setLanguage(data.config.language));
+            dispatch(
+              accountActions.setConfig({
+                dateTime: data.config.dateTime,
+                showCovid: data.config.showCovid,
+              })
+            );
           }
         });
-  }, [dispatch, refetch]);
+  }, [dispatch, refetch, language]);
 
   return (
+    // <SimpleModal>
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -72,12 +86,16 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/migrate" element={<Migrate />} />
-        <Route path="/preferences" element={<AddTimetables />} />
+        <Route
+          path="/preferences"
+          element={<>{userInfo.config ? <AddTimetables /> : <Loading />}</>}
+        />
         <Route path="/token/:token" element={<TokenRedirect />} />
         <Route path="/timetable" element={<Timetable />} />
       </Routes>
       <Footer />
     </motion.div>
+    // </SimpleModal>
   );
 }
 

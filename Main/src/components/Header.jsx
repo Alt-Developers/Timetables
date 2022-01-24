@@ -7,33 +7,37 @@ import { Link } from "react-router-dom";
 const Header = props => {
   const userInfo = useSelector(state => state.account.userInfo);
   const language = useSelector(state => state.account.language);
+  const dateTime = useSelector(state => state.account.config.dateTime);
 
   const [clock, setClock] = useState(
     new Date().toLocaleString("en-US", {
       hour: "numeric",
       minute: "numeric",
-      hour12: true,
+      hour12: dateTime === "12h" ? true : false,
     })
   );
 
-  useEffect(() => {
-    setInterval(() => {
-      const date = new Date();
-      const formatedDate = date.toLocaleString("en-US", {
-        hour: "numeric",
-        minute: "numeric",
-        hour12: true,
-      });
-      date.getSeconds() === 0 && setClock(formatedDate);
-    }, [1000]);
-  }, []);
+  const hourFormat =
+    dateTime ===
+    useEffect(() => {
+      setInterval(() => {
+        const date = new Date();
+        const formatedDate = date.toLocaleString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: dateTime === "12h" ? true : false,
+        });
+        date.getSeconds() === 0 && setClock(formatedDate);
+      }, [1000]);
+    }, []);
 
   return (
     <div className="header" style={{ backgroundColor: userInfo.color }}>
       {!props.text ? (
         <h1>
           {language === "EN" ? "It's currently" : "ขณะนี้เวลา"} <br />
-          {clock}
+          {clock}{" "}
+          {dateTime === "12h" ? "" : language === "EN" ? "O'Clock" : "นาฬิกา"}
         </h1>
       ) : (
         props.text

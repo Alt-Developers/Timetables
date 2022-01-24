@@ -4,16 +4,23 @@ import TimetableItem from "../components/TimetableItem";
 import Header from "../components/Header";
 import AddTimetableItem from "../components/AddTimetableItem";
 import { useEffect } from "react";
-import Switch from "react-switch";
 import { accountActions } from "../context/accountSlice";
 import SelectSearch from "react-select-search";
 import { useState } from "react";
+import { refetchActions } from "../context/refetchSlice";
 
 const AddTimetables = props => {
   const userInfo = useSelector(state => state.account.userInfo);
   const dispatch = useDispatch();
   const language = useSelector(state => state.account.language);
-  const [selectedLanguage, setSelectedLanguage] = useState(language);
+
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    userInfo.config.language
+  );
+  const [selectedDateFormat, setSelectedDateFormat] = useState(
+    userInfo.config.dateTime
+  );
+  const [selectedCovid, setSelectedCovid] = useState(userInfo.config.showCovid);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,6 +29,31 @@ const AddTimetables = props => {
   useEffect(() => {
     dispatch(accountActions.setLanguage(selectedLanguage));
   }, [selectedLanguage]);
+  useEffect(() => {
+    dispatch(
+      accountActions.setConfig({
+        dateTime: selectedDateFormat,
+        showCovid: selectedCovid,
+      })
+    );
+    dispatch(refetchActions.refetch());
+  }, [selectedDateFormat, selectedCovid]);
+
+  useEffect(() => {
+    console.log(selectedLanguage, selectedCovid, selectedDateFormat);
+    fetch("https://apis.ssdevelopers.xyz/auth/editConfig", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        language: selectedLanguage,
+        showCovid: selectedCovid,
+        dateTime: selectedDateFormat,
+      }),
+    }).then(data => console.log(data.json()));
+  }, [selectedLanguage, selectedCovid, selectedDateFormat]);
 
   return (
     <>
@@ -35,39 +67,12 @@ const AddTimetables = props => {
         }
         clickProfile={"home"}
       />
-      <section className="config">
-        <h1 className="bar__header">
-          {language === "EN" ? "Configurations" : "ตั้งค่า"}
-        </h1>
-        <div className="config__bar">
-          <div className="config__container">
-            {/* <div className="config__item">
-              <h3>Hidden Period Time</h3>
-              <Switch
-                uncheckedIcon={false}
-                checkedIcon={false}
-                onColor={userInfo.color}
-                className="config__switch"
-              />
-            </div>
-            <div className="config__item">
-              <h3>24hr Time</h3>
-              <Switch
-                uncheckedIcon={false}
-                checkedIcon={false}
-                onColor={userInfo.color}
-                className="config__switch"
-              />
-            </div>
-            <div className="config__item">
-              <h3>Covid-19 Reports</h3>
-              <Switch
-                uncheckedIcon={false}
-                checkedIcon={false}
-                onColor={userInfo.color}
-                className="config__switch"
-              />
-            </div> */}
+      {userInfo.primaryClass && (
+        <section className="config">
+          <h1 className="bar__header">
+            {language === "EN" ? "Configurations" : "ตั้งค่า"}
+          </h1>
+          <div className="config__bar">
             <div className="config__item">
               <h3>{language === "EN" ? "Language" : "ภาษาของ Timetables"}</h3>
               <SelectSearch
@@ -80,21 +85,49 @@ const AddTimetables = props => {
                 value={selectedLanguage}
               />
             </div>
+            <div className="config__item">
+              <h3>{language === "EN" ? "Time Format" : "รูปแบบเวลา"}</h3>
+              <SelectSearch
+                width="100%"
+                options={[
+                  { value: "24h", name: "24 hours" },
+                  { value: "12h", name: "12 hours" },
+                ]}
+                onChange={setSelectedDateFormat}
+                value={selectedDateFormat}
+              />
+            </div>
+            <div className="config__item">
+              <h3>
+                {language === "EN"
+                  ? "Covid Reports"
+                  : "แสดงค่าการติดเชื้อโควิด-19"}
+              </h3>
+              <SelectSearch
+                width="100%"
+                options={[
+                  { value: "covShow", name: "Show" },
+                  { value: "covHide", name: "Hidden" },
+                ]}
+                onChange={setSelectedCovid}
+                value={selectedCovid}
+              />
+            </div>
+            <button
+              className="config__logout"
+              onClick={() => {
+                dispatch(accountActions.logout());
+              }}>
+              <i className="bx bx-log-out"></i>
+            </button>
           </div>
-          <button
-            className="config__logout"
-            onClick={() => {
-              dispatch(accountActions.logout());
-            }}>
-            <i className="bx bx-log-out"></i>
-          </button>
-        </div>
-      </section>
+        </section>
+      )}
       <section className="removeTimetables">
         <h1 className="bar__header">
           {language === "EN" ? "Add Timetables" : "เพิ่มตารางสอน"}
         </h1>
-        <div className="row box">
+        <div className="row">
           {userInfo.primaryClass && (
             <AddTimetableItem
               header={language === "EN" ? "Add new Classes" : "เพิ่มตารางสอน"}
@@ -134,34 +167,36 @@ const AddTimetables = props => {
             <h1 className="bar__header">
               {language === "EN" ? "Remove Timetables" : "เอาตารางสอนออก"}
             </h1>
-            <motion.section
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.2, delay: 0.2 }}
-              className="bar timetable">
-              {userInfo.primaryClass && (
-                <TimetableItem
-                  color={userInfo.primaryClass.color}
-                  text={language === "EN" ? "My Class" : "ห้องของฉัน"}
-                  disabled={true}
-                  subText={userInfo.primaryClass.className}
-                  classNo={userInfo.primaryClass.classNo}
-                  program={userInfo.primaryClass.program}
-                />
-              )}
-              {userInfo.starredClasses &&
-                userInfo.starredClasses.map(element => (
+            <div className="box">
+              <motion.section
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.2, delay: 0.2 }}
+                className="bar timetable">
+                {userInfo.primaryClass && (
                   <TimetableItem
-                    style={{ width: 300 }}
-                    key={Math.random}
-                    color={element.color}
-                    text={element.className}
-                    remove={true}
-                    classNo={element.classNo}
-                    program={element.program}
+                    color={userInfo.primaryClass.color}
+                    text={language === "EN" ? "My Class" : "ห้องของฉัน"}
+                    disabled={true}
+                    subText={userInfo.primaryClass.className}
+                    classNo={userInfo.primaryClass.classNo}
+                    program={userInfo.primaryClass.program}
                   />
-                ))}
-            </motion.section>
+                )}
+                {userInfo.starredClasses &&
+                  userInfo.starredClasses.map(element => (
+                    <TimetableItem
+                      style={{ width: 300 }}
+                      key={Math.random}
+                      color={element.color}
+                      text={element.className}
+                      remove={true}
+                      classNo={element.classNo}
+                      program={element.program}
+                    />
+                  ))}
+              </motion.section>
+            </div>
           </>
         )}
       </section>

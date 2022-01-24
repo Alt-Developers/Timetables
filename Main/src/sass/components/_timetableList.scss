@@ -36,8 +36,6 @@
     overflow-x: hidden;
     margin-bottom: 0;
 
-
- 
     @include respond(phone) {
         height: fit-content;
         width: inherit;

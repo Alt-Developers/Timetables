@@ -36,7 +36,8 @@ const Glance = props => {
     };
   }
 
-  if (userInfo.primaryClass) {
+  console.log(userInfo.glance);
+  if (userInfo.glance.currentClass === "WKN") {
     return (
       <>
         <h3 className="bar__header">At a glance</h3>
@@ -45,7 +46,43 @@ const Glance = props => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
           className="bar">
-          {hour > 7 && hour < 15 ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="bar__item welcome"
+            style={{
+              animation: "bgColorWeekend 5s infinite linear",
+              width: "100%",
+            }}>
+            <h3>
+              {language === "EN" ? "It's the weekends!" : "วันหยุดสัปดาห์แล้ว!"}
+            </h3>
+            <p>
+              {language === "EN"
+                ? "Breaks are essential for your brain."
+                : "พักผ่อนเยอะๆ นะ"}
+            </p>
+            <img
+              src={`./icons/welcome.png`}
+              className="bar__icon"
+              alt="Science Icon"
+              height="150"
+            />
+          </motion.div>
+        </motion.section>
+      </>
+    );
+  } else if (userInfo.primaryClass) {
+    return (
+      <>
+        <h3 className="bar__header">At a glance</h3>
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.1 }}
+          className="bar">
+          {hour >= 7 && hour < 15 ? (
             <>
               <motion.div
                 initial={{ opacity: 0 }}
@@ -149,7 +186,9 @@ const Glance = props => {
                   }&program=${
                     userInfo.primaryClass.program
                   }&color=${userInfo.color.replace("#", "")}`}>
-                  <button className="btn bar__item--btn">View timetable</button>
+                  <button className="btn bar__item--btn">
+                    {language === "EN" ? "View in timetable" : "ดูในตารางสอน"}
+                  </button>
                 </Link>
                 <img
                   src={`./icons/briefcase.png`}

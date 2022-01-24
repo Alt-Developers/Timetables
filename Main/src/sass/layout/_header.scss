@@ -7,9 +7,8 @@
 
     @include respond(phone) {
         flex-direction: column;
-        gap: 4rem;
         padding: 3vh;
-        height: 25vh;
+        height: 20rem;
     }
 
     h1 {
@@ -27,15 +26,9 @@
         flex-direction: row;
         align-items: center;
         gap: 2rem;
-        
-        img {
-            border-radius: 50%;
-            display: inline-block;
-            object-fit: cover;
-            @include respond(phone) {
-                height: 110px;
-                width: 110px;
-            }
+
+        @include respond(phone) {
+            gap: 0;
         }
 
         h3 {
@@ -54,6 +47,18 @@
     
 
     &__userProfile {
+        img {
+            border-radius: 50%;
+            display: inline-block;
+            object-fit: cover;
+            
+            @include respond(phone) {
+
+                height: 110px;
+                width: 110px;
+            }
+        }
+
         a {
             overflow: hidden;
             border-radius: 50%;

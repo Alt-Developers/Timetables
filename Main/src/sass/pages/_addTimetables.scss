@@ -12,12 +12,15 @@
         border-radius: 1.1rem;
         padding: 2rem;
         border: none;
-        filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25));
         position: relative;
         display: flex;
+        gap: 1rem;
+
+        filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25));
 
         @include respond(phone) {
             flex-direction: column;
+            padding: 1rem;
         }
 
 
@@ -34,28 +37,16 @@
         padding: 2rem;
         border-radius: 1.1rem;
         width: fit-content;
-        height: 100%;
+        height: 18rem;
 
         @include respond(phone) {
             width: 100%;
+            height: 15rem;
         }
 
         h3 {
             margin-bottom: 1rem;
             width: 100%;
-        }
-    }
-
-    &__container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        width: 50%;
-        // border-right: 2px solid var(--gray-dark-1);
-
-        @include respond(phone) {
-            width: 100%;
-            border-right: none;
         }
     }
 
@@ -69,7 +60,7 @@
         font-size: 4rem;
         display: grid;
         align-items: center;
-        height: 15rem;
+        height: 18rem;
         margin-left: auto;
 
         filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.10));
@@ -80,14 +71,26 @@
             font-size: 3rem;
             height: 7rem;
             margin-top: 2rem;
+
+            &:active {
+                transform: scale(1.05);
+                background-color: #FF5252;
+                box-shadow: 0px 0px 20px #FF5252;
+                color: #fff;
+            }
         }
 
-        // &:hover {
-        //     box-shadow: 0px 0px 20px #FF5252;
-        // }
+        &:hover {
+            transform: scale(1.05);
+            background-color: #FF5252;
+            box-shadow: 0px 0px 20px #FF5252;
+            color: #fff;
+        }
     
         &:active {
             transform: scale(.85);
+            background-color: var(--gray-light-2);
+            box-shadow: 0px 0px 20px var(--gray-light-2);
         }
     }
 
@@ -115,6 +118,9 @@
     margin-bottom: 2rem;
     padding: 2rem;
     position: relative;
+
+    filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25));
+
 
     @include respond(phone) {
         height: 20rem;

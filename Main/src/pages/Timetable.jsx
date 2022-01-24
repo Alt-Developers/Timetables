@@ -23,6 +23,7 @@ const Timetable = props => {
   const [searchParams, setSearchParams] = useSearchParams();
   const format = useSelector(state => state.account.format);
   const userInfo = useSelector(state => state.account.userInfo);
+  const dateTime = useSelector(state => state.account.config.dateTime);
 
   const timetableColor = "#" + searchParams.get("color");
 
@@ -30,7 +31,7 @@ const Timetable = props => {
     new Date().toLocaleString("en-US", {
       hour: "numeric",
       minute: "numeric",
-      hour12: true,
+      hour12: dateTime === "12h" ? true : false,
     })
   );
 

@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 const Home = props => {
   const isAuthenticated = useSelector(state => state.account.isAuthenticated);
   const userInfo = useSelector(state => state.account.userInfo);
+  const config = useSelector(state => state.account.config);
   const [fetchedUserInfo, setFetchedUserInfo] = useState(false);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const Home = props => {
             {fetchedUserInfo && <Glance />}
             {userInfo.primaryClass && (
               <>
-                <Covid />
+                {config.showCovid === "covShow" && <Covid />}
                 <TimetableList />
               </>
             )}

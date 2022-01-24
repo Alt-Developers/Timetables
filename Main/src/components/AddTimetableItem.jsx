@@ -3,9 +3,12 @@ import SelectSearch from "react-select-search";
 import { fuzzySearch } from "react-select-search";
 import { useState } from "react";
 import ColoredButton from "./ColoredButton";
+import { useDispatch } from "react-redux";
+import { refetchActions } from "../context/refetchSlice";
 
 const AddTimetableItem = props => {
   const [selectedOption, setSelectedOption] = useState(props.defaultOption);
+  const dispatch = useDispatch();
 
   const submitHandler = event => {
     event.preventDefault();
@@ -21,7 +24,7 @@ const AddTimetableItem = props => {
         program: selectedOption.split("+")[1],
         isPrimary: props.isPrimary,
       }),
-    }).then(data => window.location.reload());
+    }).then(data => dispatch(refetchActions.refetch()));
   };
 
   return (
