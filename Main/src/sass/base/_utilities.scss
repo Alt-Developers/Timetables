@@ -12,6 +12,13 @@
         display: none;
     }
 }
+.hiddenOnPC {
+    display: none;
+    
+    @include respond(phone) {
+        display: inline;
+    }
+}
 
 .searched {
     opacity: 1;

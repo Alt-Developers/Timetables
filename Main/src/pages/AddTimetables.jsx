@@ -158,6 +158,7 @@ const AddTimetables = props => {
                 language === "EN" ? "Search for timetables" : "ค้นหาห้อง"
               }
               isPrimary={true}
+              isNewUser={true}
             />
           )}
         </div>

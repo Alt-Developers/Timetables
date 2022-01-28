@@ -17,6 +17,8 @@ const Timetable = props => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchedPeriod, setsearchedPeriod] = useState([]);
   const [timetableContent, setTimetableContent] = useState();
+  const [identifier, setIdentifier] = useState();
+  const [tClassName, setTClassName] = useState();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,6 +26,7 @@ const Timetable = props => {
   const format = useSelector(state => state.account.format);
   const userInfo = useSelector(state => state.account.userInfo);
   const dateTime = useSelector(state => state.account.config.dateTime);
+  const language = useSelector(state => state.account.language);
 
   const timetableColor = "#" + searchParams.get("color");
 
@@ -54,6 +57,8 @@ const Timetable = props => {
           navigate("/");
         }
         setTimetableContent(data.content);
+        setIdentifier(data.identifier);
+        setTClassName(data.className);
       });
 
     window.scrollTo(0, 0);
@@ -131,7 +136,7 @@ const Timetable = props => {
         className="timetableNav"
         style={{ backgroundColor: timetableColor }}>
         <Link to="/">
-          <h3>&#8249; Home</h3>
+          <h3>&#8249; {language === "EN" ? "Home" : "หน้าหลัก"}</h3>
         </Link>
 
         <img
@@ -143,11 +148,11 @@ const Timetable = props => {
       </section>
       <section className="timetableBar">
         <div className="timetableBar__text">
-          <p>Timetable:</p>
-          <h1>{searchParams.get("class")} </h1>
+          <p>{language === "EN" ? "Timetable" : "ตารางสอน"}:</p>
+          <h1>{tClassName} </h1>
         </div>
         <div className="timetableBar__text timetableBar__time">
-          <p>Time:</p>
+          <p>{language === "EN" ? "Time" : "เวลาขณะนี้"}:</p>
           <h1>{clock}</h1>
         </div>
         <div className="timetableBar__input">
@@ -157,7 +162,7 @@ const Timetable = props => {
             style={{
               backgroundColor: timetableColor + "50",
             }}
-            placeholder="Search Here"
+            placeholder={language === "EN" ? "Search Here" : "ค้นหาวิชาตรงนี้"}
           />
         </div>
       </section>
@@ -211,7 +216,12 @@ const Timetable = props => {
             searched={searchedPeriod}
             periodTime={periodTime}
             liftHover={monHoverHandler}
-            weekday={["t-r1c1", "Monday"]}
+            weekday={[
+              "t-r1c1",
+              language === "EN" ? "Monday" : "วันจันทร์",
+              "monday",
+            ]}
+            identifier={identifier}
           />
 
           <TimetableDay
@@ -223,7 +233,12 @@ const Timetable = props => {
             searched={searchedPeriod}
             periodTime={periodTime}
             liftHover={tueHoverHandler}
-            weekday={["t-r2c1", "Tuesday"]}
+            weekday={[
+              "t-r2c1",
+              language === "EN" ? "Tuesday" : "วันอังคาร",
+              "tuesday",
+            ]}
+            identifier={identifier}
           />
 
           <TimetableDay
@@ -235,7 +250,12 @@ const Timetable = props => {
             searched={searchedPeriod}
             periodTime={periodTime}
             liftHover={wedHoverHandler}
-            weekday={["t-r3c1", "Wednesday"]}
+            weekday={[
+              "t-r3c1",
+              language === "EN" ? "Wednesday" : "วันพุทธ",
+              "wednesday",
+            ]}
+            identifier={identifier}
           />
 
           <TimetableDay
@@ -247,7 +267,12 @@ const Timetable = props => {
             searched={searchedPeriod}
             periodTime={periodTime}
             liftHover={thuHoverHandler}
-            weekday={["t-r4c1", "Thursday"]}
+            weekday={[
+              "t-r4c1",
+              language === "EN" ? "Tuesday" : "วันพฤหัส",
+              "thursday",
+            ]}
+            identifier={identifier}
           />
 
           <TimetableDay
@@ -259,7 +284,12 @@ const Timetable = props => {
             searched={searchedPeriod}
             periodTime={periodTime}
             liftHover={friHoverHandler}
-            weekday={["t-r5c1", "Friday"]}
+            weekday={[
+              "t-r5c1",
+              language === "EN" ? "Friday" : "วันศุกร์",
+              "friday",
+            ]}
+            identifier={identifier}
           />
         </motion.div>
       </section>

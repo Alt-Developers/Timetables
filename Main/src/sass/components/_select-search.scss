@@ -5,6 +5,7 @@
     width: 70%;
     position: relative;
     box-sizing: border-box;
+    transition: all .2s;
 
     @include respond(phone) {
         width: 100%;
@@ -15,6 +16,7 @@
 .select-search *::after,
 .select-search *::before {
     box-sizing: inherit;
+    transition: all .2s;
 }
 
 /**
@@ -184,7 +186,7 @@
 }
 
 .select-search:not(.select-search--multiple) .select-search__input:hover {
-    border-color: #FF5252;
+    border-color: var(--font-color);
 }
 
 

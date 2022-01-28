@@ -6,10 +6,20 @@ import { useSelector } from "react-redux";
 const TimetableDay = props => {
   const [hovering, setHovering] = useState(false);
   const format = useSelector(state => state.account.format);
+  const language = useSelector(state => state.account.language);
+  let isCurrentDay;
 
   useEffect(() => {
     props.liftHover(hovering);
   }, [hovering]);
+
+  console.log(props.identifier);
+  if (
+    props.identifier.curClass.day === props.weekday[2].toLowerCase() &&
+    props.identifier.nextClass.day === props.weekday[2].toLowerCase()
+  ) {
+    isCurrentDay = true;
+  }
 
   return (
     <>
@@ -24,7 +34,7 @@ const TimetableDay = props => {
         {props.weekday[1]}
       </div>
       <div className={`periods__morning ${props.blurred}`}>
-        {props.data.slice(0, 4).map(period => (
+        {props.data.slice(0, 4).map((period, index) => (
           <motion.h3
             initial={{ opacity: 0 }}
             animate={
@@ -41,6 +51,15 @@ const TimetableDay = props => {
               )
                 ? "hidden"
                 : "searched"
+            } ${
+              isCurrentDay &&
+              index === props.identifier.curClass.index &&
+              "curPeriodHighlight"
+            }
+            ${
+              isCurrentDay &&
+              index === props.identifier.nextClass.index &&
+              "nextPeriodHighlight"
             }
       `}
             key={Math.random()}>
@@ -56,16 +75,25 @@ const TimetableDay = props => {
         ))}
       </div>
       <div
-        className="t-r1c3"
+        className={`t-r1c3  ${
+          isCurrentDay &&
+          props.identifier.curClass.index === 3.5 &&
+          "curPeriodHighlight"
+        }
+        ${
+          isCurrentDay &&
+          props.identifier.curClass.index === 3.5 &&
+          "nextPeriodHighlight"
+        }`}
         style={
           props.periodTime
             ? { gridColumn: "3 /  4", gridRow: "2 / span 5" }
             : {}
         }>
-        <h3>Lunch Break</h3>
+        <h3>{language === "EN" ? "Lunch Break" : "พักกลางวัน"}</h3>
       </div>
       <div className={`periods__afternoon ${props.blurred}`}>
-        {props.data.slice(4, 7).map(period => (
+        {props.data.slice(4, 7).map((period, index) => (
           <motion.h3
             initial={{ opacity: 0 }}
             animate={
@@ -81,6 +109,15 @@ const TimetableDay = props => {
               )
                 ? "hidden"
                 : "searched"
+            } ${
+              isCurrentDay &&
+              index + 4 === props.identifier.curClass.index &&
+              "curPeriodHighlight"
+            }
+            ${
+              isCurrentDay &&
+              index + 4 === props.identifier.nextClass.index &&
+              "nextPeriodHighlight"
             }`}
             transition={{ delay: 0.35 }}
             key={Math.random()}>

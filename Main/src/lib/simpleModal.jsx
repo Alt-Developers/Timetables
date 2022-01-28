@@ -1,23 +1,34 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
+
 const SimpleModal = props => {
   return (
     <>
-      <div className="simpleModal__children" style={{ filter: "blur(1.1rem)" }}>
+      <motion.div
+        className="simpleModal__children"
+        animate={
+          props.isOpen ? { filter: "blur(1.1rem)" } : { filter: "none" }
+        }>
         {props.children}
-      </div>
-      <div className="simpleModal__overlay">
-        <div className="simpleModal">
-          <h1 className="simpleModal__header">Add your Primary Class.</h1>
-          <button className="simpleModal__close">
-            <i class="bx bx-window-close"></i>
-          </button>
-          <div className="simpleModal__content">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum,
-              commodi? Praesentium sapiente at veniam nihil tempore a eos, odio
-              dolorum nisi sequi, ratione nesciunt quaerat asperiores commodi
-              eius, quo sint.
-            </p>
-          </div>
+      </motion.div>
+      <div
+        className="simpleModal__overlay"
+        style={props.isOpen ? { display: "grid" } : { display: "none" }}>
+        <div className="simpleModal__wrapper">
+          <motion.div
+            className="simpleModal"
+            animate={
+              props.isOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: -200 }
+            }>
+            <h1 className="simpleModal__header">{props.header}</h1>
+            <button className="simpleModal__close">
+              <i class="bx bx-window-close"></i>
+            </button>
+            <div className="simpleModal__content">
+              {props.image && <img src={props.image} alt="modal image" />}
+              {props.text && <p>{props.text}</p>}
+            </div>
+          </motion.div>
         </div>
       </div>
     </>

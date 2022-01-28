@@ -238,8 +238,18 @@
     }
 }
 
-.learning {
-   background-color: #fff;
+.curPeriodHighlight {
    border-radius: 1.1rem;
-   color: #000 !important;
+   color: #fff !important;
+   text-shadow: 0px 0px 20px #fff;
+   font-weight: 800;
+   font-size: 1.8rem !important;
+}
+
+.nextPeriodHighlight {
+   border-radius: 1.1rem;
+   color: #dedede !important;
+   text-shadow: 0px 0px 20px #dedede;
+   font-weight: 800;
+   font-size: 1.8rem !important;
 }

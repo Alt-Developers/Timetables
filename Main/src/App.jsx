@@ -16,20 +16,14 @@ import Timetable from "./pages/Timetable";
 import openSocket from "socket.io-client";
 import Loading from "./components/Loading";
 import SimpleModal from "./lib/simpleModal";
+import { useState } from "react";
 
 function App() {
   const dispatch = useDispatch();
   const refetch = useSelector(state => state.refetch.refetchCount);
   const language = useSelector(state => state.account.language);
   const userInfo = useSelector(state => state.account.userInfo);
-
-  // useEffect(() => {
-  //   const socket = openSocket("https://apis.ssdevelopers.xyz");
-  //   // socket.on("connect_error", () => {
-  //   //   console.log("failed");
-  //   // });
-  //   // socket.on("glance", data => {});
-  // }, []);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -77,25 +71,32 @@ function App() {
   }, [dispatch, refetch, language]);
 
   return (
-    // <SimpleModal>
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.2 }}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/migrate" element={<Migrate />} />
-        <Route
-          path="/preferences"
-          element={<>{userInfo.config ? <AddTimetables /> : <Loading />}</>}
-        />
-        <Route path="/token/:token" element={<TokenRedirect />} />
-        <Route path="/timetable" element={<Timetable />} />
-      </Routes>
-      <Footer />
-    </motion.div>
-    // </SimpleModal>
+    <SimpleModal
+      isOpen={isOpen}
+      header={"Something"}
+      text={"Aaaaaaa "}
+      // image={
+      //   "https://st4.depositphotos.com/6900204/27450/v/1600/depositphotos_274505508-stock-illustration-continuous-cooperation-and-partnership-cartoon.jpg"
+      // }
+      backgroundColor={"#FF5252"}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2 }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/migrate" element={<Migrate />} />
+          <Route
+            path="/preferences"
+            element={<>{userInfo.config ? <AddTimetables /> : <Loading />}</>}
+          />
+          <Route path="/token/:token" element={<TokenRedirect />} />
+          <Route path="/timetable" element={<Timetable />} />
+        </Routes>
+        <Footer />
+      </motion.div>
+    </SimpleModal>
   );
 }
 

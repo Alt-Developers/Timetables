@@ -25,11 +25,14 @@ const Covid = props => {
           {!covid.isFetched && (
             <h3>
               {covid.newCases} {language === "EN" ? "Cases, " : "เคส, "}
+              <br className="hiddenOnPC" />
               {language === "EN"
                 ? `${covid.newDeaths} Deaths`
                 : `เสียชีวิต ${covid.newDeaths} ราย`}
               <br />
-              {language === "EN" ? `in ${covid.country}` : `ใน ประเทศไทย`}
+              <span className="hiddenOnPhone">
+                {language === "EN" ? `in ${covid.country}` : `ใน ประเทศไทย`}
+              </span>
             </h3>
           )}
           <p>

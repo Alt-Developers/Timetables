@@ -80,8 +80,8 @@ const TimetableList = props => {
                 boxShadow: `0px 0px 20px ${color}`,
               }
         }
-        exit={{ width: 0 }}
-        transition={{ duration: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         onMouseEnter={() => {
           setIsHovering(true);
         }}

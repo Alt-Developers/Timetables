@@ -118,9 +118,15 @@ a {
 .blurred {
   filter: blur(1.1rem) brightness(0.85); }
 
-@media only screen and (max-width: 37.5em) {
+@media only screen and (max-width: 56.25em) {
   .hiddenOnPhone {
     display: none; } }
+
+.hiddenOnPC {
+  display: none; }
+  @media only screen and (max-width: 56.25em) {
+    .hiddenOnPC {
+      display: inline; } }
 
 .searched {
   opacity: 1;
@@ -147,7 +153,7 @@ a {
   -ms-overflow-style: none;
   scrollbar-width: none;
   filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25)); }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .bar {
       height: fit-content;
       flex-direction: column;
@@ -160,7 +166,7 @@ a {
     font-size: 3rem;
     margin-left: 2rem;
     color: var(--font-color); }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .bar__header {
         margin-left: 1rem; } }
   .bar__item {
@@ -169,7 +175,7 @@ a {
     padding: 2rem;
     position: relative;
     transition: all 0.5s cubic-bezier(0.85, 0, 0.15, 1); }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .bar__item {
         padding-bottom: 8rem;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15)); } }
@@ -188,20 +194,20 @@ a {
     position: absolute;
     right: 2rem;
     bottom: 2rem; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .bar__icon {
         width: 70px;
         height: 70px; } }
 
 .bsmall {
   width: 40%; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .bsmall {
       width: 100%; } }
 
 .blarge {
   width: 60%; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .blarge {
       width: 100%; } }
 
@@ -209,14 +215,14 @@ a {
   height: fit-content; }
   .covid div {
     height: 16rem; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .covid__global {
       display: none; } }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .covid__item {
       height: 20rem !important; } }
 
-@media only screen and (max-width: 37.5em) {
+@media only screen and (max-width: 56.25em) {
   .welcome {
     height: 50vh; }
     .welcome img {
@@ -277,7 +283,7 @@ a {
   width: fit-content;
   overflow-x: hidden;
   margin-bottom: 0; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .timetable {
       height: fit-content;
       width: inherit; } }
@@ -289,7 +295,7 @@ a {
     transition: all 0.4s cubic-bezier(0.85, 0, 0.15, 1);
     text-decoration: none;
     width: 30rem; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .timetable__item {
         width: 100%; } }
     .timetable__item:hover {
@@ -312,15 +318,17 @@ a {
 .select-search {
   width: 70%;
   position: relative;
-  box-sizing: border-box; }
-  @media only screen and (max-width: 37.5em) {
+  box-sizing: border-box;
+  transition: all .2s; }
+  @media only screen and (max-width: 56.25em) {
     .select-search {
       width: 100%; } }
 
 .select-search *,
 .select-search *::after,
 .select-search *::before {
-  box-sizing: inherit; }
+  box-sizing: inherit;
+  transition: all .2s; }
 
 /**
  * Value wrapper
@@ -467,7 +475,7 @@ a {
   cursor: default; }
 
 .select-search:not(.select-search--multiple) .select-search__input:hover {
-  border-color: #FF5252; }
+  border-color: var(--font-color); }
 
 .select-search:not(.select-search--multiple) .select-search__select {
   position: absolute;
@@ -497,7 +505,7 @@ a {
   padding: 8vh;
   display: flex;
   width: 100%; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .header {
       flex-direction: column;
       padding: 3vh;
@@ -505,7 +513,7 @@ a {
   .header h1 {
     color: #fff;
     font-size: 6rem; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .header h1 {
         font-size: 4rem; } }
   .header__account {
@@ -514,14 +522,14 @@ a {
     flex-direction: row;
     align-items: center;
     gap: 2rem; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .header__account {
         gap: 0; } }
     .header__account h3 {
       color: white;
       font-size: 3rem;
       text-align: right; }
-      @media only screen and (max-width: 37.5em) {
+      @media only screen and (max-width: 56.25em) {
         .header__account h3 {
           font-size: 2rem;
           display: hidden;
@@ -531,7 +539,7 @@ a {
     border-radius: 50%;
     display: inline-block;
     object-fit: cover; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .header__userProfile img {
         height: 110px;
         width: 110px; } }
@@ -597,25 +605,34 @@ footer {
   margin-top: -30rem;
   margin-left: -40rem;
   width: 80rem;
-  height: 60rem;
+  height: fit-content;
   border-radius: 1.1rem;
   padding: 2rem;
   filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25)); }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .simpleModal {
-      margin-left: 0;
-      margin-top: 0;
-      height: 100vh;
-      width: 100vw; } }
+      left: 2.5vw;
+      margin: 0;
+      top: auto;
+      bottom: 1rem !important;
+      width: 95vw;
+      height: fit-content; } }
   .simpleModal__overlay {
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
     width: 100vw; }
+  .simpleModal__wrapper {
+    height: 100%;
+    width: 100%; }
   .simpleModal__header {
     display: inline;
-    font-size: 3.5rem; }
+    font-size: 3.5rem;
+    padding: 1rem; }
+    @media only screen and (max-width: 56.25em) {
+      .simpleModal__header {
+        padding: 0rem; } }
   .simpleModal__close {
     position: absolute;
     top: 2rem;
@@ -631,23 +648,40 @@ footer {
     place-items: center;
     height: 5rem;
     width: 5rem; }
+    @media only screen and (max-width: 56.25em) {
+      .simpleModal__close {
+        top: auto;
+        bottom: 2rem;
+        right: 2rem;
+        width: 90%; } }
     .simpleModal__close:hover {
       box-shadow: 0px 0px 20px #FF5252;
       scale: 1.05; }
     .simpleModal__close:active {
       scale: 0.9; }
   .simpleModal__content {
-    height: 50rem;
+    height: fit-content;
     margin-top: 2rem;
     color: var(--font-color);
     background-color: var(--modal-background);
     border-radius: 1.1rem;
     padding: 2rem;
-    font-size: 2rem; }
+    font-size: 1.7rem; }
+    @media only screen and (max-width: 56.25em) {
+      .simpleModal__content {
+        height: 30rem;
+        margin-bottom: 6rem;
+        overflow-y: scroll; } }
+    .simpleModal__content img {
+      object-fit: cover;
+      border-radius: 2rem;
+      width: 100%;
+      height: 200px;
+      margin-bottom: 2rem; }
 
 main {
   padding: 3rem; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     main {
       padding: 2rem 2rem 2rem 2rem; } }
 
@@ -688,7 +722,7 @@ main {
     position: fixed;
     right: 2rem;
     top: 2rem; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .login__logo {
         display: none; } }
   .login__rectangle {
@@ -711,7 +745,7 @@ main {
     padding: 2rem;
     z-index: 10;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25); }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .login__modal {
         position: absolute;
         bottom: 0;
@@ -745,7 +779,7 @@ main {
     right: 2rem;
     text-align: right;
     opacity: 50%; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .login__footer {
         display: none; } }
     .login__footer p {
@@ -760,7 +794,7 @@ main {
   .redirect div {
     display: flex;
     align-items: center; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .redirect div {
         flex-direction: column; } }
   .redirect h3 {
@@ -772,7 +806,7 @@ main {
 
 .config {
   padding: 3rem 3rem 0 3rem; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .config {
       padding: 2rem; } }
   .config__bar {
@@ -786,7 +820,7 @@ main {
     display: flex;
     gap: 1rem;
     filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25)); }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .config__bar {
         flex-direction: column;
         padding: 1rem; } }
@@ -800,7 +834,7 @@ main {
     border-radius: 1.1rem;
     width: fit-content;
     height: 18rem; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .config__item {
         width: 100%;
         height: 15rem; } }
@@ -820,7 +854,7 @@ main {
     height: 18rem;
     margin-left: auto;
     filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.1)); }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .config__logout {
         width: 100%;
         font-size: 3rem;
@@ -840,14 +874,14 @@ main {
       transform: scale(0.85);
       background-color: var(--gray-light-2);
       box-shadow: 0px 0px 20px var(--gray-light-2); }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .config__switch {
       margin-left: auto; } }
 
 .removeTimetables {
   padding: 3rem;
   height: 100%; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .removeTimetables {
       padding: 2rem; } }
 
@@ -860,14 +894,14 @@ main {
   padding: 2rem;
   position: relative;
   filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25)); }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .addTimetables {
       height: 20rem; } }
   .addTimetables h3 {
     color: var(--font-color);
     font-size: 2rem;
     margin-bottom: 1rem; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .addTimetables {
       width: 100%; } }
   .addTimetables__submit {
@@ -893,7 +927,7 @@ main {
 .row {
   display: flex;
   gap: 2rem; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .row {
       flex-direction: column; } }
 
@@ -924,14 +958,14 @@ main {
   margin: 0 1rem 0 1rem;
   display: flex;
   gap: 3rem; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .timetableBar {
       padding: 2rem 2rem 2rem 2rem; } }
   .timetableBar__text {
     color: var(--font-color);
     text-align: left;
     font-size: 1.5rem; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .timetableBar__time {
       display: none; } }
   .timetableBar__input {
@@ -945,7 +979,7 @@ main {
       width: 30vw;
       height: 100%;
       color: #fff; }
-      @media only screen and (max-width: 37.5em) {
+      @media only screen and (max-width: 56.25em) {
         .timetableBar__input input {
           width: 50vw;
           height: 80%; } }
@@ -957,7 +991,7 @@ main {
   transition: .2s all;
   display: flex;
   flex-direction: column; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .timetableCon {
       margin: 0 0 2rem 2rem; } }
   .timetableCon button {
@@ -988,7 +1022,7 @@ main {
   /* Firefox */ }
   .timetableTable::-webkit-scrollbar {
     display: none; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .timetableTable {
       grid-template-columns: 10rem 40rem 10rem 30rem;
       border-radius: 1.1rem 0 0 1.1rem; } }
@@ -1044,7 +1078,7 @@ main {
     border-radius: 1.1rem;
     gap: 1rem;
     text-align: center; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .periods__morning h3 {
         font-size: 1.4rem; } }
 
@@ -1061,7 +1095,7 @@ main {
     font-size: 1.6rem;
     transition: all .2s;
     text-align: center; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 56.25em) {
       .periods__afternoon h3 {
         font-size: 1.4rem; } }
 
@@ -1075,7 +1109,16 @@ main {
     font-size: 1.3rem;
     font-weight: 500; }
 
-.learning {
-  background-color: #fff;
+.curPeriodHighlight {
   border-radius: 1.1rem;
-  color: #000 !important; }
+  color: #fff !important;
+  text-shadow: 0px 0px 20px #fff;
+  font-weight: 800;
+  font-size: 1.8rem !important; }
+
+.nextPeriodHighlight {
+  border-radius: 1.1rem;
+  color: #dedede !important;
+  text-shadow: 0px 0px 20px #dedede;
+  font-weight: 800;
+  font-size: 1.8rem !important; }
