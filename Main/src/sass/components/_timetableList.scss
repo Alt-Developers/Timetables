@@ -32,7 +32,8 @@
 
 .timetable {
     height: 20rem;
-    width: fit-content; 
+    width: fit-content;
+    min-width: 100%;
     overflow-x: hidden;
     margin-bottom: 0;
 
@@ -75,6 +76,14 @@
         h4 {
             font-size: 2rem;
             color: #fff;
+        }
+    }
+
+    &__add {
+        background-color: var(--gray-light-3) !important;
+        h3 {
+            font-size: 4rem;
+            line-height: 3rem;
         }
     }
 }

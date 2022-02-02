@@ -140,6 +140,9 @@ a {
   .blurred {
     filter: blur(1.1rem); } }
 
+.noHover {
+  pointer-events: none; }
+
 .bar {
   width: 100%;
   background-color: var(--gray-light-1);
@@ -160,7 +163,8 @@ a {
       padding: 0;
       background-color: transparent;
       filter: none;
-      height: 40rem; } }
+      height: 40rem;
+      margin-bottom: 2rem; } }
   .bar__header {
     margin-bottom: 1.5rem;
     font-size: 3rem;
@@ -223,13 +227,11 @@ a {
       height: 20rem !important; } }
 
 @media only screen and (max-width: 56.25em) {
-  .welcome {
-    height: 50vh; }
-    .welcome img {
-      height: 150px;
-      width: 150px; }
-    .welcome a button {
-      z-index: 5; } }
+  .welcome img {
+    height: 150px;
+    width: 150px; }
+  .welcome a button {
+    z-index: 5; } }
 
 .btn {
   position: absolute;
@@ -281,6 +283,7 @@ a {
 .timetable {
   height: 20rem;
   width: fit-content;
+  min-width: 100%;
   overflow-x: hidden;
   margin-bottom: 0; }
   @media only screen and (max-width: 56.25em) {
@@ -311,6 +314,11 @@ a {
     .timetable__item h4 {
       font-size: 2rem;
       color: #fff; }
+  .timetable__add {
+    background-color: var(--gray-light-3) !important; }
+    .timetable__add h3 {
+      font-size: 4rem;
+      line-height: 3rem; }
 
 /**
  * Main wrapper
@@ -937,20 +945,27 @@ main {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 0 2.5rem 0 2.5rem; }
-  .timetableNav a {
+  padding: 0 2.5rem 0 2.5rem;
+  text-align: center; }
+  .timetableNav__home {
     color: var(--font-color);
     font-size: 3rem;
     margin-right: auto; }
-  .timetableNav img {
-    justify-self: flex-start;
-    border-radius: 50%;
-    display: inline-block;
-    object-fit: cover; }
   .timetableNav h3 {
     font-size: 2.5rem;
     font-weight: 600;
     color: #fff; }
+  .timetableNav img {
+    justify-self: flex-start;
+    border-radius: 50%;
+    display: inline-block;
+    object-fit: cover;
+    margin-right: 1rem; }
+  .timetableNav__pref {
+    color: var(--font-color);
+    font-size: 3rem;
+    padding-right: 1rem;
+    margin-top: .5rem; }
 
 .timetableBar {
   height: 12rem;
@@ -965,6 +980,9 @@ main {
     color: var(--font-color);
     text-align: left;
     font-size: 1.5rem; }
+    @media only screen and (max-width: 56.25em) {
+      .timetableBar__text h1 {
+        font-size: 2.8rem; } }
   @media only screen and (max-width: 56.25em) {
     .timetableBar__time {
       display: none; } }
@@ -1112,13 +1130,83 @@ main {
 .curPeriodHighlight {
   border-radius: 1.1rem;
   color: #fff !important;
-  text-shadow: 0px 0px 20px #fff;
+  text-shadow: 0px 0px 10px var(--font-color);
   font-weight: 800;
   font-size: 1.8rem !important; }
 
-.nextPeriodHighlight {
-  border-radius: 1.1rem;
-  color: #dedede !important;
-  text-shadow: 0px 0px 20px #dedede;
-  font-weight: 800;
-  font-size: 1.8rem !important; }
+.landing {
+  padding: 3rem;
+  overflow: hidden;
+  min-height: 95vh; }
+  @media only screen and (max-width: 56.25em) {
+    .landing {
+      padding: 2rem; } }
+  .landing__header {
+    display: flex; }
+    @media only screen and (max-width: 56.25em) {
+      .landing__header {
+        flex-direction: column; } }
+    .landing__header h1 {
+      font-size: 5rem; }
+      @media only screen and (max-width: 56.25em) {
+        .landing__header h1 {
+          font-size: 4rem; } }
+    .landing__header h3 {
+      font-size: 2rem;
+      color: var(--font-color);
+      padding-top: 1rem;
+      font-weight: 500; }
+      @media only screen and (max-width: 56.25em) {
+        .landing__header h3 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem; } }
+  .landing__button {
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-top: 2rem; }
+    @media only screen and (max-width: 56.25em) {
+      .landing__button {
+        margin-left: 0;
+        margin-bottom: 8rem;
+        margin-top: 4rem; } }
+  .landing__a {
+    background-color: #fff;
+    padding: 2rem;
+    font-weight: 700;
+    border-radius: 10rem;
+    font-size: 1.5rem;
+    color: #000;
+    margin-right: 1rem;
+    transition: all .2s; }
+    @media only screen and (max-width: 56.25em) {
+      .landing__a {
+        padding: 1.5rem;
+        margin: 1rem 1rem 1rem 0; } }
+    .landing__a:active {
+      font-size: 1rem; }
+  .landing__art {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-right: -4rem;
+    margin-top: 3rem; }
+  .landing__row {
+    display: flex;
+    align-self: flex-end;
+    gap: 1.5rem; }
+  .landing__row2 {
+    display: flex;
+    align-self: flex-end;
+    gap: 1.5rem; }
+    .landing__row2 div {
+      height: 25vh;
+      width: 23vw; }
+      @media only screen and (max-width: 56.25em) {
+        .landing__row2 div {
+          width: 20rem; } }
+  .landing__item {
+    height: 30vh;
+    width: 30vw; }
+    @media only screen and (max-width: 56.25em) {
+      .landing__item {
+        width: 30rem; } }

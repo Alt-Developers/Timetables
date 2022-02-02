@@ -5,11 +5,18 @@
     align-items: center;
     justify-content: flex-end;
     padding: 0 2.5rem 0 2.5rem;
+    text-align: center;
 
-    a {
+    &__home {
         color: var(--font-color);
         font-size: 3rem;
         margin-right: auto;
+    }
+
+    h3 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #fff;
     }
 
     img {
@@ -17,12 +24,15 @@
         border-radius: 50%;
         display: inline-block;
         object-fit: cover;
+        margin-right: 1rem;
     }
 
-    h3 {
-        font-size: 2.5rem;
-        font-weight: 600;
-        color: #fff;
+
+    &__pref {
+        color: var(--font-color);
+        font-size: 3rem;
+        padding-right: 1rem;
+        margin-top: .5rem;
     }
 }
 
@@ -41,6 +51,12 @@
         color: var(--font-color);
         text-align: left;
         font-size: 1.5rem;
+
+        h1 {
+            @include respond(phone) {
+                font-size: 2.8rem;
+            }
+        }
     }
 
     &__time {
@@ -241,15 +257,14 @@
 .curPeriodHighlight {
    border-radius: 1.1rem;
    color: #fff !important;
-   text-shadow: 0px 0px 20px #fff;
+   text-shadow: 0px 0px 10px var(--font-color);
    font-weight: 800;
    font-size: 1.8rem !important;
 }
 
 .nextPeriodHighlight {
-   border-radius: 1.1rem;
-   color: #dedede !important;
-   text-shadow: 0px 0px 20px #dedede;
-   font-weight: 800;
-   font-size: 1.8rem !important;
+//    border-radius: 1.1rem;
+//    color: #ffffff !important;
+//    text-shadow: 0px 0px 10px #ffffff;
+//    font-weight: 800;
 }

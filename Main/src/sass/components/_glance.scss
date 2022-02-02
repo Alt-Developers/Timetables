@@ -22,6 +22,7 @@
         background-color: transparent;
         filter: none;
         height: 40rem;
+        margin-bottom: 2rem;
     }
 
     &__header {
@@ -117,8 +118,6 @@
 
 .welcome {
     @include respond(phone) {
-        height: 50vh;
-
         img {
             height: 150px;
             width: 150px;

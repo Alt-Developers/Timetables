@@ -48,7 +48,7 @@ const TimetableList = props => {
             ))}
             <Link
               to="/preferences"
-              className="timetable__item"
+              className="timetable__item timetable__add"
               style={{
                 backgroundColor: "#FFFFFF",
               }}>

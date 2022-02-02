@@ -135,15 +135,18 @@ const Timetable = props => {
       <section
         className="timetableNav"
         style={{ backgroundColor: timetableColor }}>
-        <Link to="/">
+        <Link to="/" className="timetableNav__home">
           <h3>&#8249; {language === "EN" ? "Home" : "หน้าหลัก"}</h3>
         </Link>
 
+        <Link to="/preferences" className="timetableNav__pref">
+          <i class="bx bx-slider" />
+        </Link>
         <img
           src={`https://apis.ssdevelopers.xyz/${userInfo.profilePicture}`}
           alt="user profile picture"
-          height="60"
-          width="60"
+          height="50"
+          width="50"
         />
       </section>
       <section className="timetableBar">

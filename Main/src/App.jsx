@@ -1,6 +1,6 @@
 import "./sass/main.css";
 
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes, useNavigate } from "react-router";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
@@ -17,12 +17,14 @@ import openSocket from "socket.io-client";
 import Loading from "./components/Loading";
 import SimpleModal from "./lib/simpleModal";
 import { useState } from "react";
+import Landing from "./pages/Landing";
 
 function App() {
   const dispatch = useDispatch();
   const refetch = useSelector(state => state.refetch.refetchCount);
   const language = useSelector(state => state.account.language);
   const userInfo = useSelector(state => state.account.userInfo);
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -43,9 +45,7 @@ function App() {
       .then(data => data.json())
       .then(data => dispatch(accountActions.initFormat(data.codes)));
 
-    if (!token)
-      window.location.href =
-        "https://authentication.ssdevelopers.xyz/login/timetables";
+    if (!token) navigate("/landing");
     if (token)
       fetch("https://apis.ssdevelopers.xyz/timetables/getUser", {
         headers: {
@@ -55,8 +55,7 @@ function App() {
         .then(data => data.json())
         .then(data => {
           if (data.error) {
-            window.location.href =
-              "https://authentication.ssdevelopers.xyz/login/timetables";
+            navigate("/landing");
           } else {
             dispatch(accountActions.login(data));
             dispatch(accountActions.setLanguage(data.config.language));
@@ -85,6 +84,7 @@ function App() {
         transition={{ duration: 0.2 }}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/landing" element={<Landing />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/migrate" element={<Migrate />} />
           <Route

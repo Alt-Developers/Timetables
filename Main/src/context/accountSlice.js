@@ -23,8 +23,8 @@ const accountSlice = createSlice({
       state.userInfo = {};
       state.isAuthenticated = false;
       localStorage.removeItem("token");
-      window.location.href =
-        "https://authentication.ssdevelopers.xyz/login/timetables";
+      window.location.href = "https://timetables.ssdevelopers.xyz/landing";
+      // window.location.href = "http://localhost:3000/landing";
     },
     covid(state, action) {
       const lastUpdated = new Date(action.payload.updated).toLocaleString(
