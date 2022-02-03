@@ -58,9 +58,18 @@
 
         &:hover {
             width: 35rem;
+
+            @include respond(phone) {
+                width: 100% !important;
+            }
         }
+
         &:active {
             transform: scale(.9);
+
+            @include respond(phone) {
+                scale: 1 !important;
+            }
         }
 
         &--btn {

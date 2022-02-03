@@ -7,20 +7,15 @@
 
     &__bar {
         width: 100%;
-        background-color: var(--gray-light-1);
         height: fit-content;
         border-radius: 1.1rem;
-        padding: 2rem;
         border: none;
         position: relative;
         display: flex;
-        gap: 1rem;
-
-        filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25));
+        gap: 2rem;
 
         @include respond(phone) {
             flex-direction: column;
-            padding: 1rem;
         }
 
 
@@ -33,11 +28,13 @@
 
     &__item {
         // border: 2px solid var(--gray-dark-1);
-        background-color:var(--gray-light-2);
+        background-color: var(--gray-light-1);
         padding: 2rem;
         border-radius: 1.1rem;
         width: fit-content;
         height: 18rem;
+        filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25));
+
 
         @include respond(phone) {
             width: 100%;
@@ -51,19 +48,24 @@
     }
 
     &__logout {
-        background-color: var(--gray-light-2);
+        // background-color: var(--gray-light-1);
+        background-color: #FF5252;
         border: none;
         border-radius: 1.1rem;
         width: 15rem;
         color: var(--font-color);
         transition: all .2s;
-        font-size: 4rem;
         display: grid;
         align-items: center;
         height: 18rem;
         margin-left: auto;
 
         filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.10));
+
+        i {
+            font-size: 4rem;
+            line-height: 2rem;
+        }
 
 
         @include respond(phone) {

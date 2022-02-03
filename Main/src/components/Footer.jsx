@@ -19,6 +19,9 @@ const Footer = () => {
         <Link to="/">
           <li>{language === "EN" ? "Home" : "หน้าหลัก"}</li>
         </Link>
+        <Link to="/credentials">
+          <li>{language === "EN" ? "Credits" : "อ้างอิง"}</li>
+        </Link>
         <li>SS Timetables v2</li>
       </ul>
     </footer>

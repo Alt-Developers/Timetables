@@ -74,7 +74,7 @@ const AddTimetables = props => {
           </h1>
           <div className="config__bar">
             <div className="config__item">
-              <h3>{language === "EN" ? "Language" : "ภาษาของ Timetables"}</h3>
+              <h3>{language === "EN" ? "Language" : "ภาษา / Language"}</h3>
               <SelectSearch
                 width="100%"
                 options={[

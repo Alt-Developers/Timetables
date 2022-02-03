@@ -225,6 +225,7 @@ const Timetable = props => {
               "monday",
             ]}
             identifier={identifier}
+            highlightColor={timetableColor}
           />
 
           <TimetableDay
@@ -242,6 +243,7 @@ const Timetable = props => {
               "tuesday",
             ]}
             identifier={identifier}
+            highlightColor={timetableColor}
           />
 
           <TimetableDay
@@ -259,6 +261,7 @@ const Timetable = props => {
               "wednesday",
             ]}
             identifier={identifier}
+            highlightColor={timetableColor}
           />
 
           <TimetableDay
@@ -276,6 +279,7 @@ const Timetable = props => {
               "thursday",
             ]}
             identifier={identifier}
+            highlightColor={timetableColor}
           />
 
           <TimetableDay
@@ -293,6 +297,7 @@ const Timetable = props => {
               "friday",
             ]}
             identifier={identifier}
+            highlightColor={timetableColor}
           />
         </motion.div>
       </section>

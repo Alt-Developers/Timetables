@@ -18,15 +18,11 @@ const Landing = props => {
           <h3>Timetables v2 is here</h3>
         </div>
         <div className="landing__button">
-          <a
-            href="https://authentication.ssdevelopers.xyz/login/timetables"
-            className="landing__a">
-            Login
+          <a href="https://authentication.ssdevelopers.xyz/login/timetables">
+            <button className="landing__a">Login</button>
           </a>
-          <a
-            href="https://authentication.ssdevelopers.xyz/signup/timetables"
-            className="landing__a">
-            Signup
+          <a href="https://authentication.ssdevelopers.xyz/signup/timetables">
+            <button className="landing__a">Signup</button>
           </a>
         </div>
       </div>

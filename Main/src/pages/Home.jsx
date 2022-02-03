@@ -8,10 +8,22 @@ import Covid from "../components/Covid";
 import { useEffect, useState } from "react";
 
 const Home = props => {
+  Array.prototype.move = function (from, to) {
+    this.splice(to, 0, this.splice(from, 1)[0]);
+  };
+
   const isAuthenticated = useSelector(state => state.account.isAuthenticated);
   const userInfo = useSelector(state => state.account.userInfo);
   const config = useSelector(state => state.account.config);
   const [fetchedUserInfo, setFetchedUserInfo] = useState(false);
+  const testOrder = [
+    ["Glance", fetchedUserInfo && <Glance />],
+    [
+      "Covid",
+      userInfo.primaryClass && config.showCovid === "covShow" && <Covid />,
+    ],
+    ["TimetableList", userInfo.primaryClass && <TimetableList />],
+  ];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -32,13 +44,10 @@ const Home = props => {
         <motion.div exit={{ scale: 0.8 }} transition={{ duration: 0.3 }}>
           <Header />
           <main>
-            {fetchedUserInfo && <Glance />}
-            {userInfo.primaryClass && (
-              <>
-                {config.showCovid === "covShow" && <Covid />}
-                <TimetableList />
-              </>
-            )}
+            {/* <button onClick={() => setTestOrder(testOrder.move(0, 1))}>
+              Move
+            </button> */}
+            {testOrder.map(component => component[1])}
           </main>
         </motion.div>
       )}

@@ -1,17 +1,16 @@
 .landing {
-    padding: 3rem;
+    // padding: 3rem;
     overflow: hidden;
     min-height: 95vh;
 
-    @include respond(phone) {
-        padding: 2rem;
-    }
-
     &__header {
         display: flex;
+        background-color: var(--gray-dark-1);
+        padding: 3rem;
 
         @include respond(phone) {
             flex-direction: column;
+            padding: 2rem;
         }
 
         h1 {
@@ -57,14 +56,17 @@
         color: #000;
         margin-right: 1rem;
         transition: all .2s;
+        width: 10rem;
+        border: none;
+        
+        &:hover {
+            box-shadow: white 0px 0px 10px;
+            scale: 1.1;
+        }
 
         @include respond(phone) {
             padding: 1.5rem;
             margin: 1rem 1rem 1rem 0;
-        }
-
-        &:active {
-            font-size: 1rem;
         }
     }
 

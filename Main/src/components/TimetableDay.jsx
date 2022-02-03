@@ -8,6 +8,8 @@ const TimetableDay = props => {
   const format = useSelector(state => state.account.format);
   const language = useSelector(state => state.account.language);
   let isCurrentDay;
+  console.log(props.highlightColor);
+  console.log(props.identifier.curClass.index);
 
   useEffect(() => {
     props.liftHover(hovering);
@@ -51,17 +53,20 @@ const TimetableDay = props => {
               )
                 ? "hidden"
                 : "searched"
-            } ${
-              isCurrentDay &&
-              index === props.identifier.curClass.index &&
-              "curPeriodHighlight"
-            }
-            ${
-              isCurrentDay &&
-              index === props.identifier.nextClass.index &&
-              "nextPeriodHighlight"
             }
       `}
+            style={
+              isCurrentDay && index === props.identifier.curClass.index
+                ? {
+                    color: props.highlightColor,
+                    textShadow:
+                      window.matchMedia &&
+                      window.matchMedia("(prefers-color-scheme: dark)").matches
+                        ? `0px 0px 10px ${props.highlightColor}`
+                        : "none",
+                  }
+                : {}
+            }
             key={Math.random()}>
             {format[props.program][period].name.length > 11 ? (
               <>
@@ -75,22 +80,31 @@ const TimetableDay = props => {
         ))}
       </div>
       <div
-        className={`t-r1c3  ${
-          isCurrentDay &&
-          props.identifier.curClass.index === 3.5 &&
-          "curPeriodHighlight"
-        }
-        ${
-          isCurrentDay &&
-          props.identifier.curClass.index === 3.5 &&
-          "nextPeriodHighlight"
-        }`}
+        className={`t-r1c3`}
         style={
-          props.periodTime
-            ? { gridColumn: "3 /  4", gridRow: "2 / span 5" }
-            : {}
+          props.identifier.curClass.index === 3.5
+            ? {
+                color: `${props.highlightColor} !important`,
+                textShadow: `0px 0px 10px ${props.highlightColor}`,
+                gridColumn: "3 /  4",
+                gridRow: "2 / span 5",
+              }
+            : { gridColumn: "3 /  4", gridRow: "2 / span 5" }
         }>
-        <h3>{language === "EN" ? "Lunch Break" : "พักกลางวัน"}</h3>
+        <h3
+          style={
+            props.identifier.curClass.index === 3.5
+              ? {
+                  color: props.highlightColor,
+                  textShadow: `0px 0px 10px ${props.highlightColor}`,
+                }
+              : {
+                  color: `var(--font-color)`,
+                  textShadow: `none`,
+                }
+          }>
+          {language === "EN" ? "Lunch Break" : "พักกลางวัน"}
+        </h3>
       </div>
       <div className={`periods__afternoon ${props.blurred}`}>
         {props.data.slice(4, 7).map((period, index) => (
@@ -109,16 +123,15 @@ const TimetableDay = props => {
               )
                 ? "hidden"
                 : "searched"
-            } ${
-              isCurrentDay &&
-              index + 4 === props.identifier.curClass.index &&
-              "curPeriodHighlight"
-            }
-            ${
-              isCurrentDay &&
-              index + 4 === props.identifier.nextClass.index &&
-              "nextPeriodHighlight"
             }`}
+            style={
+              isCurrentDay && index + 5 === props.identifier.nextClass.index
+                ? {
+                    color: props.highlightColor,
+                    textShadow: `0px 0px 10px ${props.highlightColor}`,
+                  }
+                : {}
+            }
             transition={{ delay: 0.35 }}
             key={Math.random()}>
             {format[props.program][period].name.length > 11 ? (
