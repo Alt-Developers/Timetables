@@ -50,11 +50,8 @@ const Glance = props => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="bar__item welcome"
-            style={{
-              animation: "bgColorWeekend 5s infinite linear",
-              width: "100%",
-            }}>
+            className="bar__item bsmall"
+            style={{ backgroundColor: "#3fd9a5" }}>
             <h3>
               {language === "EN" ? "It's the weekends!" : "วันหยุดสัปดาห์แล้ว!"}
             </h3>
@@ -64,7 +61,40 @@ const Glance = props => {
                 : "พักผ่อนเยอะๆ นะ"}
             </p>
             <img
-              src={`./icons/welcome.png`}
+              src={`./icons/openBook.png`}
+              className="bar__icon"
+              alt="Science Icon"
+              height="150"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1, duration: 0.3 }}
+            className="bar__item blarge"
+            style={{ backgroundColor: "#eb345b" }}>
+            <h3>
+              {language === "EN" ? "Wonder which" : "ได้เวลาเตรียมตัว"}
+              <br />
+              {language === "EN"
+                ? "lessons are coming up?"
+                : "สำหรับสัปดาห์หน้าแล้ว"}
+            </h3>
+            <p>
+              {language === "EN"
+                ? "Timetables to the rescue!"
+                : "ตารางสอนอาจจะช่วยได้นะ"}
+            </p>
+            <Link
+              to={`/timetable?class=${userInfo.primaryClass.classNo}&program=${
+                userInfo.primaryClass.program
+              }&color=${userInfo.color.replace("#", "")}`}>
+              <button className="btn bar__item--btn">
+                {language === "EN" ? "View timetable" : "ดูตารางสอน"}
+              </button>
+            </Link>
+            <img
+              src={`./icons/neural.png`}
               className="bar__icon"
               alt="Science Icon"
               height="150"

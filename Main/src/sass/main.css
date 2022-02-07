@@ -598,13 +598,15 @@ footer {
     list-style: none;
     display: inline-block;
     margin-left: 5rem;
-    color: var(--font-color); }
+    color: var(--font-color);
+    transition: all .2s; }
+  footer a:hover > li {
+    text-decoration: underline; }
   footer a {
     color: var(--font-color);
     text-decoration: none;
-    transition: color 0.5s; }
-    footer a:hover {
-      color: var(--gray-dark-1); }
+    transition: color 0.5s;
+    transition: all .2s; }
   footer h3 {
     color: var(--font-color); }
 
@@ -857,7 +859,7 @@ main {
     border: none;
     border-radius: 1.1rem;
     width: 15rem;
-    color: var(--font-color);
+    color: #fff;
     transition: all .2s;
     display: grid;
     align-items: center;
@@ -1147,22 +1149,23 @@ main {
   min-height: 95vh; }
   .landing__header {
     display: flex;
-    background-color: var(--gray-dark-1);
+    background-color: #FF5252;
     padding: 3rem; }
     @media only screen and (max-width: 56.25em) {
       .landing__header {
         flex-direction: column;
         padding: 2rem; } }
     .landing__header h1 {
-      font-size: 5rem; }
+      font-size: 5rem;
+      color: #fff; }
       @media only screen and (max-width: 56.25em) {
         .landing__header h1 {
           font-size: 4rem; } }
     .landing__header h3 {
       font-size: 2rem;
-      color: var(--font-color);
       padding-top: 1rem;
-      font-weight: 500; }
+      font-weight: 500;
+      color: #fff; }
       @media only screen and (max-width: 56.25em) {
         .landing__header h3 {
           font-size: 1.5rem;

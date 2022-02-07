@@ -5,7 +5,7 @@
 
     &__header {
         display: flex;
-        background-color: var(--gray-dark-1);
+        background-color: #FF5252;
         padding: 3rem;
 
         @include respond(phone) {
@@ -15,6 +15,7 @@
 
         h1 {
             font-size: 5rem;
+            color: #fff;
 
             @include respond(phone) {
                 font-size: 4rem;
@@ -23,9 +24,9 @@
 
         h3 {
             font-size: 2rem;
-            color: var(--font-color);
             padding-top: 1rem;
             font-weight: 500;
+            color: #fff;
 
             @include respond(phone) {
                 font-size: 1.5rem;

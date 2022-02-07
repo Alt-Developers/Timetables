@@ -16,10 +16,7 @@ const TimetableDay = props => {
   }, [hovering]);
 
   console.log(props.identifier);
-  if (
-    props.identifier.curClass.day === props.weekday[2].toLowerCase() &&
-    props.identifier.nextClass.day === props.weekday[2].toLowerCase()
-  ) {
+  if (props.identifier.curClass.day === props.weekday[2].toLowerCase()) {
     isCurrentDay = true;
   }
 
@@ -125,7 +122,7 @@ const TimetableDay = props => {
                 : "searched"
             }`}
             style={
-              isCurrentDay && index + 5 === props.identifier.nextClass.index
+              isCurrentDay && index + 4 === props.identifier.curClass.index
                 ? {
                     color: props.highlightColor,
                     textShadow: `0px 0px 10px ${props.highlightColor}`,

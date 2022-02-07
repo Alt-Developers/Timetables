@@ -12,16 +12,18 @@ footer {
     display: inline-block;
     margin-left: 5rem;
     color: var(--font-color);
+    transition: all .2s;
+  }
+
+  a:hover > li {
+    text-decoration: underline;
   }
 
   a {
     color: var(--font-color);
     text-decoration: none;
     transition: color 0.5s;
-
-    &:hover {
-      color: var(--gray-dark-1);
-    }
+    transition: all .2s;
   }
 
   h3 {
