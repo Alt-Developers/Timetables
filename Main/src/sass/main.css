@@ -146,7 +146,7 @@ a {
 .bar {
   width: 100%;
   background-color: var(--gray-light-1);
-  height: 45vh;
+  height: 30rem;
   border-radius: 1.1rem;
   display: flex;
   padding: 2rem;
@@ -213,6 +213,12 @@ a {
   width: 60%; }
   @media only screen and (max-width: 56.25em) {
     .blarge {
+      width: 100%; } }
+
+.bfull {
+  width: 100%; }
+  @media only screen and (max-width: 56.25em) {
+    .bfull {
       width: 100%; } }
 
 .covid {
@@ -333,7 +339,8 @@ a {
   width: 70%;
   position: relative;
   box-sizing: border-box;
-  transition: all .2s; }
+  transition: all .2s;
+  z-index: 1000; }
   @media only screen and (max-width: 56.25em) {
     .select-search {
       width: 100%; } }
@@ -349,7 +356,8 @@ a {
  */
 .select-search__value {
   position: relative;
-  z-index: 1; }
+  z-index: 1;
+  color: #fff; }
 
 .select-search__value::after {
   content: '';
@@ -358,7 +366,8 @@ a {
   top: calc(50% - 9px);
   right: 19px;
   width: 11px;
-  height: 11px; }
+  height: 11px;
+  color: #fff !important; }
 
 /**
  * Input
@@ -397,7 +406,8 @@ a {
   background: var(--gray-dark-1);
   box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
   border-radius: 1.1rem !important;
-  margin-top: 1rem; }
+  margin-top: 1rem;
+  z-index: 1000; }
 
 /**
  * Options
@@ -867,14 +877,22 @@ main {
     margin-left: auto;
     filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.1)); }
     .config__logout i {
-      font-size: 4rem;
+      font-size: 3rem;
       line-height: 2rem; }
+      @media only screen and (max-width: 56.25em) {
+        .config__logout i {
+          padding-left: .5rem;
+          font-weight: 600;
+          margin-left: auto; } }
     @media only screen and (max-width: 56.25em) {
       .config__logout {
         width: 100%;
-        font-size: 3rem;
+        font-size: 2rem;
+        font-weight: 600;
         height: 7rem;
-        margin-top: 2rem; }
+        display: flex;
+        justify-self: center;
+        padding-left: 2rem; }
         .config__logout:active {
           transform: scale(1.05);
           background-color: #FF5252;
@@ -905,7 +923,7 @@ main {
   height: 30rem;
   border-radius: 1.1rem;
   background-color: var(--gray-light-1);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   padding: 2rem;
   position: relative;
   filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25)); }
@@ -1022,6 +1040,9 @@ main {
   @media only screen and (max-width: 56.25em) {
     .timetableCon {
       margin: 0 0 2rem 2rem; } }
+  @media only screen and (min-width: 112.5em) {
+    .timetableCon {
+      margin: 0 4rem 4rem 4rem; } }
   .timetableCon button {
     color: var(--font-color);
     font-size: 1.6rem;
@@ -1054,6 +1075,11 @@ main {
     .timetableTable {
       grid-template-columns: 10rem 40rem 10rem 30rem;
       border-radius: 1.1rem 0 0 1.1rem; } }
+  @media only screen and (min-width: 112.5em) {
+    .timetableTable {
+      height: 70rem !important;
+      width: 85vw;
+      align-self: center; } }
   .timetableTable div {
     background-color: var(--gray-light-3);
     border-radius: 1.1rem;

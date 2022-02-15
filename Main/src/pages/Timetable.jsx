@@ -87,6 +87,7 @@ const Timetable = props => {
         });
       }
       setsearchedPeriod(periodFull);
+      console.log(periodFull);
     }
   }, [timetableContent]);
 

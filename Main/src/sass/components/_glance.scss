@@ -1,7 +1,7 @@
 .bar {
     width: 100%;
     background-color: var(--gray-light-1);
-    height: 45vh;
+    height: 30rem;
     border-radius: 1.1rem;
     display: flex;
     padding: 2rem;
@@ -89,6 +89,14 @@
 
     &large {
         width: 60%;
+
+        @include respond(phone) {
+            width: 100%;
+        }
+    }
+
+    &full {
+        width: 100%;
 
         @include respond(phone) {
             width: 100%;

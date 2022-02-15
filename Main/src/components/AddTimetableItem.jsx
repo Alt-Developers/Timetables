@@ -33,7 +33,10 @@ const AddTimetableItem = props => {
   };
 
   return (
-    <form className="addTimetables" onSubmit={submitHandler}>
+    <form
+      className="addTimetables"
+      onSubmit={submitHandler}
+      style={props.style}>
       <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
         <h3>{props.header}</h3>
         <SelectSearch

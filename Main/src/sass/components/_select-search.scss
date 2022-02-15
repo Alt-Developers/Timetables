@@ -6,6 +6,7 @@
     position: relative;
     box-sizing: border-box;
     transition: all .2s;
+    z-index: 1000;
 
     @include respond(phone) {
         width: 100%;
@@ -25,6 +26,7 @@
 .select-search__value {
     position: relative;
     z-index: 1;
+    color: #fff;
 }
 
 .select-search__value::after {
@@ -35,6 +37,8 @@
     right: 19px;
     width: 11px;
     height: 11px;
+    color: #fff !important;
+
 }
 
 /**
@@ -78,6 +82,7 @@
     box-shadow: 0 .0625rem .125rem rgba(0, 0, 0, 0.15);
     border-radius: 1.1rem !important;
     margin-top: 1rem;
+    z-index: 1000;
 }
 
 /**

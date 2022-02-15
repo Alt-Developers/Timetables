@@ -63,16 +63,25 @@
         filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.10));
 
         i {
-            font-size: 4rem;
+            font-size: 3rem;
             line-height: 2rem;
+
+            @include respond(phone) {
+                padding-left: .5rem;
+                font-weight: 600;
+                margin-left: auto;
+            }
         }
 
 
         @include respond(phone) {
             width: 100%;
-            font-size: 3rem;
+            font-size: 2rem;
+            font-weight: 600;
             height: 7rem;
-            margin-top: 2rem;
+            display: flex;
+            justify-self: center;
+            padding-left: 2rem;
 
             &:active {
                 transform: scale(1.05);
@@ -117,7 +126,7 @@
     height: 30rem;
     border-radius: 1.1rem;
     background-color: var(--gray-light-1);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     padding: 2rem;
     position: relative;
 

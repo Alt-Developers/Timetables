@@ -22,7 +22,7 @@ const SimpleModal = props => {
             }>
             <h1 className="simpleModal__header">{props.header}</h1>
             <button className="simpleModal__close">
-              <i class="bx bx-window-close"></i>
+              <i className="bx bx-window-close"></i>
             </button>
             <div className="simpleModal__content">
               {props.image && <img src={props.image} alt="modal image" />}

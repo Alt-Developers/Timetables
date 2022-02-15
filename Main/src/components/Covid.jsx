@@ -54,14 +54,14 @@ const Covid = props => {
           style={{ backgroundColor: "#c232d9" }}>
           {!covidWorldwide.isFetched && (
             <>
-              <h3>
+              <h3 style={{ width: "80%" }}>
                 {language === "EN"
                   ? `${covidWorldwide.newCases} New Global Cases`
                   : `เคสใหม่รอบโลก ${covidWorldwide.newCases} เคส`}
 
                 <br />
               </h3>
-              <p>
+              <p style={{ width: "60%" }}>
                 {language === "EN" ? "Last Updated " : "อัปเดตข้อมูลล่าสุด "}
                 {covidWorldwide.lastUpdated}
               </p>

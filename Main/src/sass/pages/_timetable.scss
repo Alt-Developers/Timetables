@@ -86,7 +86,6 @@
                 width: 50vw;
                 height: 80%;
             }
-
         }   
     }
 
@@ -103,6 +102,10 @@
 
     @include respond(phone) {
         margin: 0 0 2rem 2rem;
+    }
+
+    @include respond(big-desktop) {
+        margin: 0 4rem 4rem 4rem;
     }
 
     button {
@@ -148,6 +151,11 @@
         border-radius: 1.1rem 0 0 1.1rem;
     }
 
+    @include respond(big-desktop) {
+        height: 70rem !important;
+        width: 85vw;
+        align-self: center;
+    }
 
     div {
         background-color: var(--gray-light-3);

@@ -118,7 +118,8 @@ const AddTimetables = props => {
               onClick={() => {
                 dispatch(accountActions.logout());
               }}>
-              <i className="bx bx-log-out"></i>
+              <p className="hiddenOnPC">Logout</p>
+              <i className="bx bx-log-out hiddenOnPhone"></i>
             </button>
           </div>
         </section>
@@ -149,6 +150,7 @@ const AddTimetables = props => {
               }
               defaultOption={userInfo.primaryClass.classNo}
               isPrimary={true}
+              style={{ marginBottom: "2rem" }}
             />
           ) : (
             <AddTimetableItem
@@ -159,6 +161,7 @@ const AddTimetables = props => {
               }
               isPrimary={true}
               isNewUser={true}
+              style={{ marginBottom: "2rem" }}
             />
           )}
         </div>
