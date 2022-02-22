@@ -64,9 +64,6 @@ const Header = props => {
                 }`}></i>
             </span>
             <motion.img
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.4 }}
               src={`https://apis.ssdevelopers.xyz/${userInfo.profilePicture}`}
               alt="user profile picture"
               height="150"

@@ -1,16 +1,28 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import GlanceItem from "./GlanceItem";
+import { modalActions } from "../context/modalSlice";
 
 const Glance = props => {
   const [hour, setHour] = useState(new Date().getHours());
   const userInfo = useSelector(state => state.account.userInfo);
   const format = useSelector(state => state.account.format);
   const language = useSelector(state => state.account.language);
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!userInfo.primaryClass) {
+      dispatch(
+        modalActions.openModal({
+          header: "Let's get started!",
+          text: "Please select the class you are in",
+          type: { type: "NEW-USER" },
+        })
+      );
+    }
+
     setInterval(() => {
       const hour = new Date().getHours();
       setHour(hour);
@@ -92,7 +104,7 @@ const Glance = props => {
         </motion.section>
       </>
     );
-  } else if (currentPeriod.name === nextPeriod.name) {
+  } else if (currentPeriod.name === nextPeriod.name && userInfo.primaryClass) {
     return (
       <>
         <h3 className="bar__header">At a glance</h3>
@@ -127,7 +139,6 @@ const Glance = props => {
             />
           ) : (
             <>
-              <button onClick={() => setHour(10)}>DEBUG</button>
               <GlanceItem
                 color={"#fa9e1e"}
                 header={
@@ -229,7 +240,6 @@ const Glance = props => {
             </>
           ) : (
             <>
-              <button onClick={() => setHour(10)}>DEBUG</button>
               <GlanceItem
                 color={"#fa9e1e"}
                 header={

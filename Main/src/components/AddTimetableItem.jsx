@@ -6,6 +6,7 @@ import ColoredButton from "./ColoredButton";
 import { useDispatch } from "react-redux";
 import { refetchActions } from "../context/refetchSlice";
 import { useNavigate } from "react-router";
+import { modalActions } from "../context/modalSlice";
 
 const AddTimetableItem = props => {
   const [selectedOption, setSelectedOption] = useState(props.defaultOption);
@@ -28,7 +29,10 @@ const AddTimetableItem = props => {
       }),
     }).then(data => {
       dispatch(refetchActions.refetch());
-      if (props.isNewUser) navigate("/");
+      if (props.isNewUser) {
+        navigate("/");
+        dispatch(modalActions.closeModal());
+      }
     });
   };
 

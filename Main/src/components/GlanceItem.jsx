@@ -19,12 +19,12 @@ const GlanceItem = props => {
             <button className="btn bar__item--btn">{props.link.text}</button>
           </Link>
         )}
-        <img
-          src={props.icon}
-          className="bar__icon"
-          alt="Science Icon"
-          height="150"
-        />
+        {props.a && (
+          <a href={props.a.href}>
+            <button className="btn bar__item--btn">{props.a.text}</button>
+          </a>
+        )}
+        <img src={props.icon} className="bar__icon" alt="" height="150" />
       </motion.div>
     </>
   );

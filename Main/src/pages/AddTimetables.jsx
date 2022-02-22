@@ -8,6 +8,7 @@ import { accountActions } from "../context/accountSlice";
 import SelectSearch from "react-select-search";
 import { useState } from "react";
 import { refetchActions } from "../context/refetchSlice";
+import GlanceItem from "../components/GlanceItem";
 
 const AddTimetables = props => {
   const userInfo = useSelector(state => state.account.userInfo);
@@ -69,50 +70,33 @@ const AddTimetables = props => {
       />
       {userInfo.primaryClass && (
         <section className="config">
-          <h1 className="bar__header">
-            {language === "EN" ? "Configurations" : "ตั้งค่า"}
-          </h1>
-          <div className="config__bar">
-            <div className="config__item">
-              <h3>{language === "EN" ? "Language" : "ภาษา / Language"}</h3>
-              <SelectSearch
-                width="100%"
-                options={[
-                  { value: "EN", name: "English" },
-                  { value: "TH", name: "ไทย" },
-                ]}
-                onChange={setSelectedLanguage}
-                value={selectedLanguage}
-              />
-            </div>
-            <div className="config__item">
-              <h3>{language === "EN" ? "Time Format" : "รูปแบบเวลา"}</h3>
-              <SelectSearch
-                width="100%"
-                options={[
-                  { value: "24h", name: "24 hours" },
-                  { value: "12h", name: "12 hours" },
-                ]}
-                onChange={setSelectedDateFormat}
-                value={selectedDateFormat}
-              />
-            </div>
-            <div className="config__item">
-              <h3>
-                {language === "EN"
-                  ? "Covid Reports"
-                  : "แสดงค่าการติดเชื้อโควิด-19"}
-              </h3>
-              <SelectSearch
-                width="100%"
-                options={[
-                  { value: "covShow", name: "Show" },
-                  { value: "covHide", name: "Hidden" },
-                ]}
-                onChange={setSelectedCovid}
-                value={selectedCovid}
-              />
-            </div>
+          <h1 className="bar__header">SS Account</h1>
+          <div className="bar ssAcc__bar">
+            <GlanceItem
+              color={"#fa7c5c"}
+              header={
+                <h3>
+                  {language === "EN"
+                    ? "Where are the SS Account settings?"
+                    : "อ้าว แล้วการตั้งค่าของ SS Account อยู่ไหนหละ?"}
+                </h3>
+              }
+              subheader={
+                language === "EN"
+                  ? "If you want to edit stuff like accent color or name, You'll need to use the account dashboard"
+                  : "ถ้าคุณต้องการเปลี่ยนธีมสีหรือชื่อ, คุณต้องไปที่ Account Dashboard"
+              }
+              size={"large"}
+              a={{
+                href: `https://authentication.ssdevelopers.xyz/redirect/?service=timetables&token=${localStorage.getItem(
+                  "token"
+                )}`,
+                text:
+                  language === "EN"
+                    ? "To Account Dashboard"
+                    : "ไป Account Dashboard",
+              }}
+            />
             <button
               className="config__logout"
               onClick={() => {
@@ -121,6 +105,55 @@ const AddTimetables = props => {
               <p className="hiddenOnPC">Logout</p>
               <i className="bx bx-log-out hiddenOnPhone"></i>
             </button>
+          </div>
+          <h1 className="bar__header">
+            {language === "EN" ? "Configurations" : "ตั้งค่า"}
+          </h1>
+          <div
+            className="bar"
+            style={{ height: "fit-content", marginBottom: "0rem" }}>
+            <div className="config__bar">
+              <div className="config__item">
+                <h3>{language === "EN" ? "Language" : "ภาษา / Language"}</h3>
+                <SelectSearch
+                  width="100%"
+                  options={[
+                    { value: "EN", name: "English" },
+                    { value: "TH", name: "ไทย" },
+                  ]}
+                  onChange={setSelectedLanguage}
+                  value={selectedLanguage}
+                />
+              </div>
+              <div className="config__item">
+                <h3>{language === "EN" ? "Time Format" : "รูปแบบเวลา"}</h3>
+                <SelectSearch
+                  width="100%"
+                  options={[
+                    { value: "24h", name: "24 hours" },
+                    { value: "12h", name: "12 hours" },
+                  ]}
+                  onChange={setSelectedDateFormat}
+                  value={selectedDateFormat}
+                />
+              </div>
+              <div className="config__item">
+                <h3>
+                  {language === "EN"
+                    ? "Covid Reports"
+                    : "แสดงค่าการติดเชื้อโควิด-19"}
+                </h3>
+                <SelectSearch
+                  width="100%"
+                  options={[
+                    { value: "covShow", name: "Show" },
+                    { value: "covHide", name: "Hidden" },
+                  ]}
+                  onChange={setSelectedCovid}
+                  value={selectedCovid}
+                />
+              </div>
+            </div>
           </div>
         </section>
       )}

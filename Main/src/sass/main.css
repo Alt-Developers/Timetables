@@ -106,10 +106,15 @@ h1 {
   color: var(--font-color); }
 
 body {
-  background-color: var(--background-color); }
+  background-color: var(--background-color);
+  min-height: 100vh; }
 
 a {
   text-decoration: none; }
+
+main {
+  background-color: var(--background-color);
+  min-height: 60vh; }
 
 .u-remove-a-eff {
   text-decoration: none;
@@ -647,15 +652,18 @@ footer {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
-    width: 100vw; }
+    height: 100%;
+    width: 100vw;
+    overflow: hidden;
+    transition: all .2s; }
   .simpleModal__wrapper {
     height: 100%;
     width: 100%; }
   .simpleModal__header {
     display: inline;
     font-size: 3.5rem;
-    padding: 1rem; }
+    padding: 1rem;
+    color: var(--font-color); }
     @media only screen and (max-width: 56.25em) {
       .simpleModal__header {
         padding: 0rem; } }
@@ -856,11 +864,12 @@ main {
     border-radius: 1.1rem;
     width: fit-content;
     height: 18rem;
-    filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25)); }
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.1)); }
     @media only screen and (max-width: 56.25em) {
       .config__item {
         width: 100%;
-        height: 15rem; } }
+        height: 15rem;
+        filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.15)); } }
     .config__item h3 {
       margin-bottom: 1rem;
       width: 100%; }
@@ -873,7 +882,7 @@ main {
     transition: all .2s;
     display: grid;
     align-items: center;
-    height: 18rem;
+    height: 100%;
     margin-left: auto;
     filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.1)); }
     .config__logout i {
@@ -919,14 +928,14 @@ main {
       padding: 2rem; } }
 
 .addTimetables {
-  width: 40%;
-  height: 30rem;
+  width: 40rem;
+  height: 23rem;
   border-radius: 1.1rem;
   background-color: var(--gray-light-1);
   margin-bottom: 1rem;
   padding: 2rem;
   position: relative;
-  filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25)); }
+  filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.15)); }
   @media only screen and (max-width: 56.25em) {
     .addTimetables {
       height: 20rem; } }
@@ -963,6 +972,12 @@ main {
   @media only screen and (max-width: 56.25em) {
     .row {
       flex-direction: column; } }
+
+.ssAcc__bar {
+  height: 23rem; }
+  @media only screen and (max-width: 56.25em) {
+    .ssAcc__bar {
+      height: fit-content; } }
 
 .timetableNav {
   width: 100%;
@@ -1197,32 +1212,36 @@ main {
           font-size: 1.5rem;
           margin-bottom: 1rem; } }
   .landing__button {
+    display: flex;
     justify-content: flex-end;
     margin-left: auto;
-    margin-top: 2rem; }
+    margin-top: 2rem;
+    align-content: center; }
     @media only screen and (max-width: 56.25em) {
       .landing__button {
-        margin-left: 0;
-        margin-bottom: 8rem;
-        margin-top: 4rem; } }
+        margin-left: 0; } }
   .landing__a {
     background-color: #fff;
     padding: 2rem;
     font-weight: 700;
-    border-radius: 10rem;
+    border-radius: 2rem !important;
     font-size: 1.5rem;
     color: #000;
-    margin-right: 1rem;
     transition: all .2s;
-    width: 10rem;
-    border: none; }
+    width: 15rem;
+    border: none;
+    height: 15rem;
+    margin-top: -2rem;
+    filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.1)); }
     .landing__a:hover {
       box-shadow: white 0px 0px 10px;
       scale: 1.1; }
     @media only screen and (max-width: 56.25em) {
       .landing__a {
         padding: 1.5rem;
-        margin: 1rem 1rem 1rem 0; } }
+        margin: 1rem 1rem 1rem 0;
+        width: 80vw;
+        height: 6rem; } }
   .landing__art {
     display: flex;
     flex-direction: column;

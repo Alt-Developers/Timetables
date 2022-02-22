@@ -24,8 +24,8 @@ function App() {
   const refetch = useSelector(state => state.refetch.refetchCount);
   const language = useSelector(state => state.account.language);
   const userInfo = useSelector(state => state.account.userInfo);
+  const modalState = useSelector(state => state.modal);
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -71,13 +71,10 @@ function App() {
 
   return (
     <SimpleModal
-      isOpen={isOpen}
-      header={"Something"}
-      text={"Aaaaaaa "}
-      // image={
-      //   "https://st4.depositphotos.com/6900204/27450/v/1600/depositphotos_274505508-stock-illustration-continuous-cooperation-and-partnership-cartoon.jpg"
-      // }
-      backgroundColor={"#FF5252"}>
+      isOpen={modalState.isOpen}
+      header={modalState.header}
+      text={modalState.text}
+      type={modalState.type}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

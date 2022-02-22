@@ -4,8 +4,7 @@ import TimetableItem from "../components/TimetableItem";
 import { motion } from "framer-motion";
 
 const Landing = props => {
-  const language = navigator.locale;
-  console.log(language);
+  const language = navigator.languages;
 
   return (
     <section className="landing">
@@ -18,11 +17,8 @@ const Landing = props => {
           <h3>Timetables v2 is here</h3>
         </div>
         <div className="landing__button">
-          <a href="https://authentication.ssdevelopers.xyz/login/timetables">
-            <button className="landing__a">Login</button>
-          </a>
           <a href="https://authentication.ssdevelopers.xyz/signup/timetables">
-            <button className="landing__a">Signup</button>
+            <button className="landing__a">Let's get started</button>
           </a>
         </div>
       </div>

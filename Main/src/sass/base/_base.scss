@@ -17,9 +17,14 @@ h1 {
 
 body {
   background-color: var(--background-color);
+  min-height: 100vh;
 }
 
 a {
   text-decoration: none;
 }
 
+main {
+  background-color: var(--background-color);
+  min-height: 60vh;
+}

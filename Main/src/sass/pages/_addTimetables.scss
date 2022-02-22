@@ -33,12 +33,13 @@
         border-radius: 1.1rem;
         width: fit-content;
         height: 18rem;
-        filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25));
+        filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.10));
 
 
         @include respond(phone) {
             width: 100%;
             height: 15rem;
+            filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.15));
         }
 
         h3 {
@@ -57,7 +58,7 @@
         transition: all .2s;
         display: grid;
         align-items: center;
-        height: 18rem;
+        height: 100%;
         margin-left: auto;
 
         filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.10));
@@ -122,15 +123,16 @@
 }
 
 .addTimetables {
-    width: 40%;
-    height: 30rem;
+    width: 40rem;
+    height: 23rem;
     border-radius: 1.1rem;
     background-color: var(--gray-light-1);
     margin-bottom: 1rem;
     padding: 2rem;
     position: relative;
 
-    filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.15));
+
 
 
     @include respond(phone) {
@@ -188,5 +190,15 @@
 
     @include respond(phone) {
         flex-direction: column;
+    }
+}
+
+.ssAcc {
+    &__bar {
+        height: 23rem;
+
+        @include respond(phone) {
+            height: fit-content;
+        }
     }
 }
