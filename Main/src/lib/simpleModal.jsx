@@ -3,10 +3,12 @@ import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import AddTimetableItem from "../components/AddTimetableItem";
 import { modalActions } from "../context/modalSlice";
+import { useMediaQuery } from "react-responsive";
 
 const SimpleModal = props => {
   const language = useSelector(state => state.account.language);
   const dispatch = useDispatch();
+  const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
 
   return (
     <>

@@ -286,6 +286,7 @@ const Timetable = props => {
           <TimetableDay
             data={timetableContent.friday}
             program={program}
+            data={timetableContent.friday}
             blurred={
               hoverTue || hoverWed || hoverMon || hoverThu ? "blurred" : ""
             }

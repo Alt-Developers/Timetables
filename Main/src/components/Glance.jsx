@@ -104,7 +104,11 @@ const Glance = props => {
         </motion.section>
       </>
     );
-  } else if (currentPeriod.name === nextPeriod.name && userInfo.primaryClass) {
+  } else if (
+    currentPeriod.name === "FTD" &&
+    nextPeriod.name === "FTD" &&
+    userInfo.primaryClass
+  ) {
     return (
       <>
         <h3 className="bar__header">At a glance</h3>
@@ -113,31 +117,7 @@ const Glance = props => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
           className="bar">
-          {hour >= 7 && hour < 15 ? (
-            <GlanceItem
-              color={
-                "linear-gradient(45deg, rgba(105,172,234,1) 0%, rgba(110,223,100,1) 71%)"
-              }
-              header={
-                <h3>
-                  {language === "EN"
-                    ? "Current Double Period:"
-                    : "ขณะนี้คาบคู่:"}
-                  <br />
-                  {currentPeriod.name}
-                </h3>
-              }
-              subheader={false}
-              link={{
-                class: userInfo.primaryClass.classNo,
-                program: userInfo.primaryClass.program,
-                color: userInfo.color.replace("#", ""),
-                text: language === "EN" ? "View in timetable" : "ดูในตารางสอน",
-              }}
-              icon={`./icons/${currentPeriod.icon}.png`}
-              size={"full"}
-            />
-          ) : (
+          {currentPeriod === "FTD" && nextPeriod === "FTD" ? (
             <>
               <GlanceItem
                 color={"#fa9e1e"}
@@ -179,6 +159,34 @@ const Glance = props => {
                 }}
                 icon={`./icons/desk.png`}
                 size={"large"}
+              />
+            </>
+          ) : (
+            <>
+              {" "}
+              <GlanceItem
+                color={
+                  "linear-gradient(45deg, rgba(105,172,234,1) 0%, rgba(110,223,100,1) 71%)"
+                }
+                header={
+                  <h3>
+                    {language === "EN"
+                      ? "Current Double Period:"
+                      : "ขณะนี้คาบคู่:"}
+                    <br />
+                    {currentPeriod.name}
+                  </h3>
+                }
+                subheader={false}
+                link={{
+                  class: userInfo.primaryClass.classNo,
+                  program: userInfo.primaryClass.program,
+                  color: userInfo.color.replace("#", ""),
+                  text:
+                    language === "EN" ? "View in timetable" : "ดูในตารางสอน",
+                }}
+                icon={`./icons/${currentPeriod.icon}.png`}
+                size={"full"}
               />
             </>
           )}

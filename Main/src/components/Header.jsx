@@ -32,7 +32,14 @@ const Header = props => {
     }, []);
 
   return (
-    <div className="header" style={{ backgroundColor: userInfo.color }}>
+    <div
+      className="header"
+      style={{
+        backgroundColor: userInfo.color,
+        // backgroundImage:
+        //   'url("https://i.ytimg.com/vi/q0ch_cCLvVo/maxresdefault.jpg")',
+        // filter: "blur(1.1rem)",
+      }}>
       {!props.text ? (
         <h1>
           {language === "EN" ? "It's currently" : "ขณะนี้เวลา"} <br />

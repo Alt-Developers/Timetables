@@ -18,6 +18,7 @@ import Loading from "./components/Loading";
 import SimpleModal from "./lib/simpleModal";
 import { useState } from "react";
 import Landing from "./pages/Landing";
+import { modalActions } from "./context/modalSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,11 +53,19 @@ function App() {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
-        .then(data => data.json())
+        .then(data => {
+          console.log(data.status);
+          if (data.status === 404) {
+            localStorage.removeItem("token");
+            navigate("/landing");
+          }
+          return data.json();
+        })
         .then(data => {
           if (data.error) {
             navigate("/landing");
           } else {
+            console.log(data);
             dispatch(accountActions.login(data));
             dispatch(accountActions.setLanguage(data.config.language));
             dispatch(

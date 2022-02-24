@@ -5,7 +5,7 @@ const GlanceItem = props => {
   return (
     <>
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={props.animation === "none" ? { opacity: 1 } : { opacity: 0 }}
         animate={{ opacity: 1 }}
         className={`bar__item ${props.size === "small" && "bsmall"} ${
           props.size === "large" && "blarge"
@@ -24,7 +24,9 @@ const GlanceItem = props => {
             <button className="btn bar__item--btn">{props.a.text}</button>
           </a>
         )}
-        <img src={props.icon} className="bar__icon" alt="" height="150" />
+        {props.icon && (
+          <img src={props.icon} className="bar__icon" alt="" height="150" />
+        )}
       </motion.div>
     </>
   );

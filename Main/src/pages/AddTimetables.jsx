@@ -78,7 +78,7 @@ const AddTimetables = props => {
                 <h3>
                   {language === "EN"
                     ? "Where are the SS Account settings?"
-                    : "อ้าว แล้วการตั้งค่าของ SS Account อยู่ไหนหละ?"}
+                    : "อ้าว แล้วการตั้งค่าของ SS Account อยู่ไหนล่ะ?"}
                 </h3>
               }
               subheader={
@@ -96,6 +96,7 @@ const AddTimetables = props => {
                     ? "To Account Dashboard"
                     : "ไป Account Dashboard",
               }}
+              animation={"none"}
             />
             <button
               className="config__logout"
