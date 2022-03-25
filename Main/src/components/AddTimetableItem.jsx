@@ -1,8 +1,9 @@
-import { motion } from "framer-motion";
+import ColoredButton from "./ColoredButton";
 import SelectSearch from "react-select-search";
+
+import { motion } from "framer-motion";
 import { fuzzySearch } from "react-select-search";
 import { useState } from "react";
-import ColoredButton from "./ColoredButton";
 import { useDispatch } from "react-redux";
 import { refetchActions } from "../context/refetchSlice";
 import { useNavigate } from "react-router";
@@ -10,6 +11,7 @@ import { modalActions } from "../context/modalSlice";
 
 const AddTimetableItem = props => {
   const [selectedOption, setSelectedOption] = useState(props.defaultOption);
+  const [selectedSchool, setSelectedSchool] = useState("ASSUMPTION");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,8 +25,7 @@ const AddTimetableItem = props => {
       },
       method: "POST",
       body: JSON.stringify({
-        classNo: selectedOption.split("+")[0],
-        program: selectedOption.split("+")[1],
+        classId: selectedOption,
         isPrimary: props.isPrimary,
       }),
     }).then(data => {
@@ -41,43 +42,72 @@ const AddTimetableItem = props => {
       className="addTimetables"
       onSubmit={submitHandler}
       style={props.style}>
-      <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
-        <h3>{props.header}</h3>
-        <SelectSearch
-          options={[]}
-          getOptions={query => {
-            return new Promise((resolve, reject) => {
-              fetch(
-                `https://apis.ssdevelopers.xyz/timetables/getNotUserClass`,
-                {
-                  headers: {
-                    Authorization: "Bearer " + localStorage.getItem("token"),
-                  },
-                }
-              )
-                .then(response => response.json())
-                .then(data => {
-                  resolve(
-                    data.data.map(({ classNo, program, className }) => ({
-                      value: `${classNo}+${program}`,
-                      name: className,
-                    }))
-                  );
-                })
-                .catch(reject);
-            });
-          }}
-          value={selectedOption}
-          filterOptions={fuzzySearch}
-          placeholder={props.placeholder}
-          onChange={setSelectedOption}
-          emptyMessage={() => (
-            <div style={{ textAlign: "center", fontSize: "0.8em" }}>
-              Timetable not found
-            </div>
-          )}
-          search
-        />
+      <motion.div
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        className="addTimetables__inputWrapper">
+        {props.header2 && (
+          <div>
+            <h3>{props.header2}</h3>
+            <SelectSearch
+              options={[
+                { name: "Assumption College", value: "ASSUMPTION" },
+                { name: "The Newton", value: "NEWTON" },
+                { name: "The Essence", value: "ESSENCE" },
+              ]}
+              value={selectedSchool}
+              filterOptions={fuzzySearch}
+              placeholder={props.placeholder2}
+              onChange={setSelectedSchool}
+              emptyMessage={() => (
+                <div style={{ textAlign: "center", fontSize: "0.8em" }}>
+                  School Not Found
+                </div>
+              )}
+              search
+            />
+          </div>
+        )}
+
+        <div>
+          <h3>{props.header}</h3>
+          <SelectSearch
+            options={[]}
+            getOptions={query => {
+              return new Promise((resolve, reject) => {
+                fetch(
+                  `https://apis.ssdevelopers.xyz/timetables/getClassFromSchool?school=${selectedSchool}`,
+                  {
+                    headers: {
+                      Authorization: "Bearer " + localStorage.getItem("token"),
+                    },
+                  }
+                )
+                  .then(response => response.json())
+                  .then(data => {
+                    resolve(
+                      data.response.map(({ name, value }) => ({
+                        value,
+                        name,
+                      }))
+                    );
+                  })
+                  .catch(reject);
+              });
+            }}
+            value={selectedOption}
+            filterOptions={fuzzySearch}
+            placeholder={props.placeholder}
+            onChange={setSelectedOption}
+            emptyMessage={() => (
+              <div style={{ textAlign: "center", fontSize: "0.8em" }}>
+                Timetable not found
+              </div>
+            )}
+            search
+          />
+        </div>
+
         <ColoredButton
           onSubmit={submitHandler}
           type={"submit"}

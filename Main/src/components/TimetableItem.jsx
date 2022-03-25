@@ -26,10 +26,9 @@ const TimetableList = props => {
       },
       method: "POST",
       body: JSON.stringify({
-        classNo: props.classNo,
-        program: props.program,
+        classId: props.id,
       }),
-    }).then(data => window.location.reload());
+    }).then(data => dispatch(refetchActions.refetch()));
 
     return <></>;
   }

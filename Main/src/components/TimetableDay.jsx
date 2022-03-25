@@ -8,14 +8,11 @@ const TimetableDay = props => {
   const format = useSelector(state => state.account.format);
   const language = useSelector(state => state.account.language);
   let isCurrentDay;
-  console.log(props.highlightColor);
-  console.log(props.identifier.curClass.index);
 
   useEffect(() => {
     props.liftHover(hovering);
   }, [hovering]);
 
-  console.log(props.identifier);
   if (props.identifier.curClass.day === props.weekday[2].toLowerCase()) {
     isCurrentDay = true;
   }

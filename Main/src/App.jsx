@@ -1,31 +1,31 @@
 import "./sass/main.css";
 
-import { Navigate, Route, Routes, useNavigate } from "react-router";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
-import { motion } from "framer-motion";
-
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { accountActions } from "./context/accountSlice";
 import TokenRedirect from "./components/TokenRedirect";
 import Migrate from "./pages/Migrate";
-import AddTimetables from "./pages/AddTimetables";
+import Preferences from "./pages/Preferences";
 import Timetable from "./pages/Timetable";
-import openSocket from "socket.io-client";
 import Loading from "./components/Loading";
 import SimpleModal from "./lib/simpleModal";
-import { useState } from "react";
 import Landing from "./pages/Landing";
-import { modalActions } from "./context/modalSlice";
+
+import { Route, Routes, useNavigate } from "react-router";
+import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { accountActions } from "./context/accountSlice";
+import { timetableActions } from "./context/timetableSlice";
+import axios from "axios";
 
 function App() {
   const dispatch = useDispatch();
   const refetch = useSelector(state => state.refetch.refetchCount);
   const language = useSelector(state => state.account.language);
-  const userInfo = useSelector(state => state.account.userInfo);
+  const userInfo = useSelector(state => state.account);
   const modalState = useSelector(state => state.modal);
+  const [isLoading, setIsLoading] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,20 +41,31 @@ function App() {
       .then(data => dispatch(accountActions.covidWorldwide(data)));
 
     fetch(
-      `https://apis.ssdevelopers.xyz/timetables/getCode?language=${language}`
+      `https://apis.ssdevelopers.xyz/timetables/getFormat?language=${language}`
     )
       .then(data => data.json())
-      .then(data => dispatch(accountActions.initFormat(data.codes)));
+      .then(data => {
+        dispatch(timetableActions.initFormat(data.formattedFormat));
+      });
+
+    axios
+      .get("https://apis.ssdevelopers.xyz/timetables/getMyClass", {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      })
+      .then(({ data }) => {
+        dispatch(timetableActions.initClassInfo(data));
+        console.log("a");
+        setIsLoading(isLoading + 1);
+      });
 
     if (!token) navigate("/landing");
     if (token)
-      fetch("https://apis.ssdevelopers.xyz/timetables/getUser", {
+      fetch("https://apis.ssdevelopers.xyz/auth/getUser", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
         .then(data => {
-          console.log(data.status);
           if (data.status === 404) {
             localStorage.removeItem("token");
             navigate("/landing");
@@ -65,7 +76,6 @@ function App() {
           if (data.error) {
             navigate("/landing");
           } else {
-            console.log(data);
             dispatch(accountActions.login(data));
             dispatch(accountActions.setLanguage(data.config.language));
             dispatch(
@@ -74,36 +84,46 @@ function App() {
                 showCovid: data.config.showCovid,
               })
             );
+            console.log("b");
+            setIsLoading(isLoading + 1);
           }
         });
   }, [dispatch, refetch, language]);
 
-  return (
-    <SimpleModal
-      isOpen={modalState.isOpen}
-      header={modalState.header}
-      text={modalState.text}
-      type={modalState.type}>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.2 }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/landing" element={<Landing />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/migrate" element={<Migrate />} />
-          <Route
-            path="/preferences"
-            element={<>{userInfo.config ? <AddTimetables /> : <Loading />}</>}
-          />
-          <Route path="/token/:token" element={<TokenRedirect />} />
-          <Route path="/timetable" element={<Timetable />} />
-        </Routes>
-        <Footer />
-      </motion.div>
-    </SimpleModal>
-  );
+  useEffect(() => {
+    console.log(isLoading);
+  }, [isLoading]);
+
+  if (isLoading < 1) {
+    return <Loading />;
+  } else {
+    return (
+      <SimpleModal
+        isOpen={modalState.isOpen}
+        header={modalState.header}
+        text={modalState.text}
+        type={modalState.type}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/landing" element={<Landing />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/migrate" element={<Migrate />} />
+            <Route
+              path="/preferences"
+              element={<>{userInfo.config ? <Preferences /> : <Loading />}</>}
+            />
+            <Route path="/token/:token" element={<TokenRedirect />} />
+            <Route path="/timetable" element={<Timetable />} />
+          </Routes>
+          <Footer />
+        </motion.div>
+      </SimpleModal>
+    );
+  }
 }
 
 export default App;

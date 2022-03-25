@@ -63,19 +63,15 @@ const Header = props => {
           </h3>
         )}
         <div className="header__userProfile">
+          <motion.img
+            src={`https://apis.ssdevelopers.xyz/${userInfo.profilePicture}`}
+            alt="user profile picture"
+            height="150"
+            width="150"
+          />
+
           <Link to={`${props.clickProfile === "home" ? "/" : "/preferences"}`}>
-            <span>
-              <i
-                className={`bx ${
-                  props.clickProfile === "home" ? "bx-home-alt" : "bx-slider"
-                }`}></i>
-            </span>
-            <motion.img
-              src={`https://apis.ssdevelopers.xyz/${userInfo.profilePicture}`}
-              alt="user profile picture"
-              height="150"
-              width="150"
-            />
+            <i className="bx bxs-cog header__icon"></i>
           </Link>
         </div>
       </div>

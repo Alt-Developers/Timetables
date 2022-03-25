@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialAccountState = {
   isAuthenticated: false,
-  userInfo: {},
+  // userInfo: {},
   covid: { isFetched: false },
   covidWorldwide: { isFetched: false },
-  timetableContent: {},
-  format: {},
+  // timetableContent: {},
+  // format: {},
   language: "EN",
-  config: {},
+  // config: {},
 };
 
 const accountSlice = createSlice({
@@ -70,7 +70,6 @@ const accountSlice = createSlice({
     },
     setLanguage(state, action) {
       state.language = action.payload;
-      console.log(state.language);
     },
     setConfig(state, action) {
       state.config = {

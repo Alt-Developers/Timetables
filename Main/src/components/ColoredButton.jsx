@@ -13,9 +13,12 @@ const ColoredButton = props => {
       onMouseLeave={() => {
         setIsHovering(false);
       }}
-      className="addTimetables__submit"
+      className={`addTimetables__submit ${
+        props.className ? props.className : ""
+      }`}
       type={props.type}
       onSubmit={props.onSubmit}
+      onClick={props.onClick}
       style={
         !isHovering
           ? { backgroundColor: userInfo.color }

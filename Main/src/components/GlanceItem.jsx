@@ -5,8 +5,11 @@ const GlanceItem = props => {
   return (
     <>
       <motion.div
-        initial={props.animation === "none" ? { opacity: 1 } : { opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={props.animation === "none" ? { y: 0 } : { y: 300 }}
+        animate={{ y: 0 }}
+        transition={
+          props.secondItem ? { duration: 0.1, delay: 0.05 } : { duration: 0.1 }
+        }
         className={`bar__item ${props.size === "small" && "bsmall"} ${
           props.size === "large" && "blarge"
         } ${props.size === "full" && "bfull"}`}

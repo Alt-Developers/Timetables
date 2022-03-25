@@ -1,0 +1,295 @@
+.config {
+  padding: 3rem 3rem 0 3rem;
+
+  @include respond(phone) {
+    padding: 2rem;
+  }
+
+  &__realBar {
+    height: 100%;
+  }
+
+  &__bar {
+    width: 100%;
+    height: fit-content;
+    border-radius: 1.1rem;
+    border: none;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 1fr;
+    position: relative;
+
+    @include respond(phone) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+      filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.1));
+      overflow: hidden;
+      height: 45rem;
+      background-color: var(--gray-light-1);
+    }
+
+    h3 {
+      color: var(--font-color);
+      font-size: 2rem;
+      margin-right: 2rem;
+    }
+  }
+
+  &__buttonWrapper {
+    @include respond(phone) {
+      margin: 2rem !important;
+    }
+  }
+
+  &__button {
+    width: 10% !important;
+    top: 0rem !important;
+    right: 0rem !important;
+    left: auto !important;
+    height: 100% !important;
+
+    @include respond(phone) {
+      position: static !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  &__item {
+    background-color: var(--gray-light-1);
+    // background-color: orangered;
+    padding: 2rem;
+    border-right: 1px solid var(--gray-dark-1);
+    display: flex;
+    align-items: center;
+    height: 10rem;
+    filter: none;
+
+    @include respond(phone) {
+      width: 100%;
+      height: 10rem;
+      border-right: none;
+      border-bottom: 1px solid var(--gray-dark-1);
+    }
+
+    h3 {
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+  }
+
+  &__logout {
+    // background-color: var(--gray-light-1);
+    background-color: #ff5252;
+    border: none;
+    border-radius: 1.1rem;
+    width: 15rem;
+    color: #fff;
+    transition: all 0.2s;
+    display: grid;
+    align-items: center;
+    height: 100%;
+    margin-left: auto;
+
+    filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.1));
+
+    i {
+      font-size: 3rem;
+      line-height: 2rem;
+
+      @include respond(phone) {
+        padding-left: 0.5rem;
+        font-weight: 600;
+        margin-left: auto;
+      }
+    }
+
+    @include respond(phone) {
+      width: 100%;
+      font-size: 2rem;
+      font-weight: 600;
+      height: 7rem;
+      display: flex;
+      justify-self: center;
+      padding-left: 2rem;
+
+      &:active {
+        transform: scale(1.05);
+        background-color: #ff5252;
+        box-shadow: 0px 0px 20px #ff5252;
+        color: #fff;
+      }
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      background-color: #ff5252;
+      box-shadow: 0px 0px 20px #ff5252;
+      color: #fff;
+    }
+
+    &:active {
+      transform: scale(0.85);
+      background-color: var(--gray-light-2);
+      box-shadow: 0px 0px 20px var(--gray-light-2);
+    }
+  }
+
+  &__switch {
+    @include respond(phone) {
+      margin-left: auto;
+    }
+  }
+}
+
+.removeTimetables {
+  padding: 3rem;
+  height: 100%;
+
+  @include respond(phone) {
+    padding: 2rem;
+  }
+}
+
+.addTimetables {
+  width: 50rem;
+  height: 23rem;
+  border-radius: 1.1rem;
+  background-color: var(--gray-light-1);
+  margin-bottom: 1rem;
+  padding: 2rem;
+  position: relative;
+
+  filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.15));
+
+  @include respond(phone) {
+    height: 20rem;
+  }
+
+  &__inputWrapper {
+    display: flex;
+    gap: 2rem;
+  }
+
+  h3 {
+    color: var(--font-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  @include respond(phone) {
+    width: 100%;
+  }
+
+  // select {
+  //     padding: 2rem;
+  //     border: none;
+  //     background-color: var(--gray-dark-1);
+  //     z-index: 2;
+  //     border-radius: 1.1rem;
+  //     width: 60%;
+  //     color: var(--font-color);
+  //     margin-bottom: 2rem;
+  // }
+
+  &__submit {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    border: none;
+    background-color: #ff5252;
+    padding: 1rem;
+    width: 40%;
+    border-radius: 1.1rem;
+    height: 5rem;
+    color: white;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+
+    &:active {
+      transform: scale(0.85);
+    }
+  }
+}
+
+.row {
+  display: flex;
+  gap: 2rem;
+
+  @include respond(phone) {
+    flex-direction: column;
+  }
+}
+
+.ssAcc {
+  &__bar {
+    height: 23rem;
+    display: flex;
+
+    @include respond(phone) {
+      height: fit-content;
+    }
+  }
+
+  &__item {
+    padding: 1rem;
+    width: 40rem;
+    border-right: 1px solid var(--gray-dark-1);
+    position: relative;
+    color: var(--font-color);
+
+    @include respond(phone) {
+      background-color: var(--gray-light-1);
+      padding: 2rem;
+      height: 15rem;
+      border-radius: 1.1rem;
+      width: 100%;
+    }
+
+    a {
+      position: absolute;
+      background: var(--background-color);
+      border-radius: 11px;
+      padding: 2rem;
+      transition: all 0.4s;
+      width: fit-content;
+      height: 4rem;
+      bottom: 0.5rem;
+      right: 2rem;
+      font-size: 1.2rem;
+      height: 5rem;
+      display: flex;
+      align-items: center;
+      color: var(--font-color);
+
+      @include respond(phone) {
+        bottom: 2rem;
+      }
+
+      &:hover {
+        color: #000;
+        background-color: white;
+        transform: scale(1.05);
+        box-shadow: white 0px 0px 10px;
+      }
+
+      &:active {
+        color: #000;
+        background-color: white;
+        box-shadow: white 0px 0px 10px;
+        transform: scale(0.9);
+      }
+    }
+
+    h3 {
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1.3rem;
+    }
+  }
+}

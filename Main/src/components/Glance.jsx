@@ -4,16 +4,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import GlanceItem from "./GlanceItem";
 import { modalActions } from "../context/modalSlice";
+import axios from "axios";
 
 const Glance = props => {
   const [hour, setHour] = useState(new Date().getHours());
-  const userInfo = useSelector(state => state.account.userInfo);
-  const format = useSelector(state => state.account.format);
+  const [glanceInfo, setGlanceInfo] = useState({});
+  const [currentPeriod, setCurrentPeriod] = useState({
+    name: "WKN",
+    icon: "WKN",
+  });
+  const [isLoading, setIsLoading] = useState(true);
+  const [nextPeriod, setNextPeriod] = useState({ name: "WKN", icon: "WKN" });
+  const classInfo = useSelector(state => state.timetable.classInfo);
   const language = useSelector(state => state.account.language);
+  const userInfo = useSelector(state => state.account.userInfo);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!userInfo.primaryClass) {
+    console.log(classInfo.primaryClass);
+    if (!classInfo.primaryClass) {
       dispatch(
         modalActions.openModal({
           header: "Let's get started!",
@@ -23,32 +32,52 @@ const Glance = props => {
       );
     }
 
+    axios
+      .get("https://apis.ssdevelopers.xyz/timetables/getGlance", {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      })
+      .then(({ data }) => {
+        setGlanceInfo(data);
+        setIsLoading(false);
+      });
+
     setInterval(() => {
       const hour = new Date().getHours();
       setHour(hour);
     }, [1800000]); // Half an hour
   }, []);
 
-  let currentPeriod = "MAT";
-  let nextPeriod = "MAT";
+  useEffect(() => {
+    if (Object.keys(glanceInfo).length !== 0 && classInfo.primaryClass) {
+      setCurrentPeriod({
+        name: glanceInfo.format["classCode"][language][glanceInfo.curClass]
+          .name,
+        icon: glanceInfo.format["classCode"][language][glanceInfo.curClass]
+          .icon,
+      });
+      setNextPeriod({
+        name: glanceInfo.format["classCode"][language][glanceInfo.nextClass]
+          .name,
+        icon: glanceInfo.format["classCode"][language][glanceInfo.nextClass]
+          .icon,
+      });
+      console.log(currentPeriod, nextPeriod);
+    }
+  }, [glanceInfo]);
 
-  if (userInfo.glance && userInfo.primaryClass) {
-    currentPeriod = {
-      name: format[userInfo.primaryClass.program][userInfo.glance.currentClass]
-        .name,
-      icon: format[userInfo.primaryClass.program][userInfo.glance.currentClass]
-        .icon,
-    };
-    nextPeriod = {
-      name: format[userInfo.primaryClass.program][userInfo.glance.nextClass]
-        .name,
-      icon: format[userInfo.primaryClass.program][userInfo.glance.nextClass]
-        .icon,
-    };
+  if (isLoading) {
+    return (
+      <>
+        <h3 className="bar__header">At a glance</h3>
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.1 }}
+          className="bar"></motion.section>
+      </>
+    );
   }
-
-  console.log(userInfo.glance);
-  if (userInfo.glance.currentClass === "WKN") {
+  if (currentPeriod.name === "WKN") {
     return (
       <>
         <h3 className="bar__header">At a glance</h3>
@@ -93,8 +122,7 @@ const Glance = props => {
                 : "ตารางสอนอาจจะช่วยได้นะ"
             }
             link={{
-              class: userInfo.primaryClass.classNo,
-              program: userInfo.primaryClass.program,
+              id: classInfo.primaryClass._id,
               color: userInfo.color.replace("#", ""),
               text: language === "EN" ? "View in timetable" : "ดูในตารางสอน",
             }}
@@ -105,9 +133,9 @@ const Glance = props => {
       </>
     );
   } else if (
-    currentPeriod.name === "FTD" &&
-    nextPeriod.name === "FTD" &&
-    userInfo.primaryClass
+    currentPeriod.name === "Finished The Day" &&
+    nextPeriod.name === "Finished The Day" &&
+    classInfo.primaryClass
   ) {
     return (
       <>
@@ -151,8 +179,7 @@ const Glance = props => {
                     : "ลองดูตารางสอนก่อนมั้ย?"
                 }
                 link={{
-                  class: userInfo.primaryClass.classNo,
-                  program: userInfo.primaryClass.program,
+                  id: classInfo.primaryClass._id,
                   color: userInfo.color.replace("#", ""),
                   text:
                     language === "EN" ? "View in timetable" : "ดูในตารางสอน",
@@ -179,8 +206,7 @@ const Glance = props => {
                 }
                 subheader={false}
                 link={{
-                  class: userInfo.primaryClass.classNo,
-                  program: userInfo.primaryClass.program,
+                  id: classInfo.primaryClass._id,
                   color: userInfo.color.replace("#", ""),
                   text:
                     language === "EN" ? "View in timetable" : "ดูในตารางสอน",
@@ -193,7 +219,7 @@ const Glance = props => {
         </motion.section>
       </>
     );
-  } else if (userInfo.primaryClass) {
+  } else if (classInfo.primaryClass) {
     return (
       <>
         <h3 className="bar__header">At a glance</h3>
@@ -202,95 +228,46 @@ const Glance = props => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
           className="bar">
-          {hour >= 7 && hour < 15 ? (
-            <>
-              <GlanceItem
-                color={"#69ACEA"}
-                header={
-                  <h3>
-                    {language === "EN" ? "Current Period:" : "ตอนนี้วิชา:"}
-                    <br />
-                    {currentPeriod.name}
-                  </h3>
-                }
-                subheader={false}
-                link={{
-                  class: userInfo.primaryClass.classNo,
-                  program: userInfo.primaryClass.program,
-                  color: userInfo.color.replace("#", ""),
-                  text:
-                    language === "EN" ? "View in timetable" : "ดูในตารางสอน",
-                }}
-                icon={`./icons/${currentPeriod.icon}.png`}
-                size={"small"}
-              />
+          <>
+            <GlanceItem
+              color={"#69ACEA"}
+              header={
+                <h3>
+                  {language === "EN" ? "Current Period:" : "ตอนนี้วิชา:"}
+                  <br />
+                  {currentPeriod.name}
+                </h3>
+              }
+              subheader={false}
+              link={{
+                id: classInfo.primaryClass._id,
+                color: userInfo.color.replace("#", ""),
+                text: language === "EN" ? "View in timetable" : "ดูในตารางสอน",
+              }}
+              icon={`./icons/${currentPeriod.icon}.png`}
+              size={"small"}
+            />
 
-              <GlanceItem
-                color={"#70F094"}
-                header={
-                  <h3>
-                    {language === "EN" ? "Next Period:" : "วิชาต่อไป:"}
-                    <br />
-                    {nextPeriod.name}
-                  </h3>
-                }
-                subheader={false}
-                link={{
-                  class: userInfo.primaryClass.classNo,
-                  program: userInfo.primaryClass.program,
-                  color: userInfo.color.replace("#", ""),
-                  text:
-                    language === "EN" ? "View in timetable" : "ดูในตารางสอน",
-                }}
-                icon={`./icons/${nextPeriod.icon}.png`}
-                size={"large"}
-              />
-            </>
-          ) : (
-            <>
-              <GlanceItem
-                color={"#fa9e1e"}
-                header={
-                  <h3>
-                    {language === "EN"
-                      ? "You finished the day"
-                      : "เรียนจบวันแล้ว"}
-                  </h3>
-                }
-                subheader={language === "EN" ? "Well done!" : "ยินดีด้วย!"}
-                link={false}
-                icon={`./icons/desk.png`}
-                size={"small"}
-              />
-
-              <GlanceItem
-                color={"#755cf7"}
-                header={
-                  <h3>
-                    {language === "EN" ? "What books do I" : "พรุ่งนี้ต้อง"}
-                    <br />
-                    {language === "EN"
-                      ? "need to bring tomorrow?"
-                      : "เอาหนังสืออะไรไปบ้างนะ?"}
-                  </h3>
-                }
-                subheader={
-                  language === "EN"
-                    ? "Maybe this timetable could help"
-                    : "ลองดูตารางสอนก่อนมั้ย?"
-                }
-                link={{
-                  class: userInfo.primaryClass.classNo,
-                  program: userInfo.primaryClass.program,
-                  color: userInfo.color.replace("#", ""),
-                  text:
-                    language === "EN" ? "View in timetable" : "ดูในตารางสอน",
-                }}
-                icon={`./icons/desk.png`}
-                size={"large"}
-              />
-            </>
-          )}
+            <GlanceItem
+              color={"#70F094"}
+              header={
+                <h3>
+                  {language === "EN" ? "Next Period:" : "วิชาต่อไป:"}
+                  <br />
+                  {nextPeriod.name}
+                </h3>
+              }
+              secondItem
+              subheader={false}
+              link={{
+                id: classInfo.primaryClass._id,
+                color: userInfo.color.replace("#", ""),
+                text: language === "EN" ? "View in timetable" : "ดูในตารางสอน",
+              }}
+              icon={`./icons/${nextPeriod.icon}.png`}
+              size={"large"}
+            />
+          </>
         </motion.section>
       </>
     );

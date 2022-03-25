@@ -18,7 +18,7 @@ const Landing = props => {
         </div>
         <div className="landing__button">
           <a href="https://authentication.ssdevelopers.xyz/signup/timetables">
-            <button className="landing__a">Let's get started</button>
+            <button className="landing__a">Let's go</button>
           </a>
         </div>
       </div>

@@ -1,20 +1,26 @@
-import { motion } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
 import TimetableItem from "../components/TimetableItem";
 import Header from "../components/Header";
 import AddTimetableItem from "../components/AddTimetableItem";
+import SelectSearch from "react-select-search";
+import GlanceItem from "../components/GlanceItem";
+import ColoredButton from "../components/ColoredButton";
+import lang from "../lib/language";
+
+import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { accountActions } from "../context/accountSlice";
-import SelectSearch from "react-select-search";
 import { useState } from "react";
 import { refetchActions } from "../context/refetchSlice";
-import GlanceItem from "../components/GlanceItem";
+import { modalActions } from "../context/modalSlice";
 
-const AddTimetables = props => {
+const Preferences = props => {
   const userInfo = useSelector(state => state.account.userInfo);
-  const dispatch = useDispatch();
   const language = useSelector(state => state.account.language);
-
+  const classInfo = useSelector(state => state.timetable.classInfo);
+  const dispatch = useDispatch();
+  const [savedConfig, setSavedConfig] = useState(1);
+  const [timesEffected, setTimesEffected] = useState(0);
   const [selectedLanguage, setSelectedLanguage] = useState(
     userInfo.config.language
   );
@@ -28,20 +34,6 @@ const AddTimetables = props => {
   }, []);
 
   useEffect(() => {
-    dispatch(accountActions.setLanguage(selectedLanguage));
-  }, [selectedLanguage]);
-  useEffect(() => {
-    dispatch(
-      accountActions.setConfig({
-        dateTime: selectedDateFormat,
-        showCovid: selectedCovid,
-      })
-    );
-    dispatch(refetchActions.refetch());
-  }, [selectedDateFormat, selectedCovid]);
-
-  useEffect(() => {
-    console.log(selectedLanguage, selectedCovid, selectedDateFormat);
     fetch("https://apis.ssdevelopers.xyz/auth/editConfig", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -53,8 +45,26 @@ const AddTimetables = props => {
         showCovid: selectedCovid,
         dateTime: selectedDateFormat,
       }),
-    }).then(data => console.log(data.json()));
-  }, [selectedLanguage, selectedCovid, selectedDateFormat]);
+    }).then(data => {
+      if (timesEffected !== 0)
+        dispatch(
+          modalActions.openModal({
+            header: lang(
+              language,
+              "Saved Settings",
+              "บันทึกการตั้งค่าใหม่เรียบร้อย"
+            ),
+            text: lang(
+              language,
+              "Successfuly changed the settings.",
+              "การตั้งค่าของคุณได้ถูกบันทึก"
+            ),
+          })
+        );
+    });
+    setTimesEffected(timesEffected + 1);
+    dispatch(refetchActions.refetch());
+  }, [savedConfig]);
 
   return (
     <>
@@ -68,11 +78,21 @@ const AddTimetables = props => {
         }
         clickProfile={"home"}
       />
-      {userInfo.primaryClass && (
+      {classInfo.primaryClass && (
         <section className="config">
           <h1 className="bar__header">SS Account</h1>
           <div className="bar ssAcc__bar">
-            <GlanceItem
+            <div className="ssAcc__item">
+              <h3>Account Dashboard</h3>
+              <p>Change your name, profile picture are more</p>
+              <a
+                href={`https://authentication.ssdevelopers.xyz/redirect/?service=timetables&token=${localStorage.getItem(
+                  "token"
+                )}`}>
+                To Dashboard
+              </a>
+            </div>
+            {/* <GlanceItem
               color={"#fa7c5c"}
               header={
                 <h3>
@@ -97,7 +117,7 @@ const AddTimetables = props => {
                     : "ไป Account Dashboard",
               }}
               animation={"none"}
-            />
+            /> */}
             <button
               className="config__logout"
               onClick={() => {
@@ -110,11 +130,9 @@ const AddTimetables = props => {
           <h1 className="bar__header">
             {language === "EN" ? "Configurations" : "ตั้งค่า"}
           </h1>
-          <div
-            className="bar"
-            style={{ height: "fit-content", marginBottom: "0rem" }}>
+          <div className="bar config__realBar">
             <div className="config__bar">
-              <div className="config__item">
+              <div className="config__item" style={{ paddingLeft: "1rem" }}>
                 <h3>{language === "EN" ? "Language" : "ภาษา / Language"}</h3>
                 <SelectSearch
                   width="100%"
@@ -138,7 +156,7 @@ const AddTimetables = props => {
                   value={selectedDateFormat}
                 />
               </div>
-              <div className="config__item">
+              <div className="config__item" style={{ borderRight: "none" }}>
                 <h3>
                   {language === "EN"
                     ? "Covid Reports"
@@ -154,6 +172,13 @@ const AddTimetables = props => {
                   value={selectedCovid}
                 />
               </div>
+              <div className="config__buttonWrapper">
+                <ColoredButton
+                  text={language === "EN" ? "Save" : "บันทึก"}
+                  className={"config__button"}
+                  onClick={() => setSavedConfig(savedConfig + 1)}
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -163,17 +188,21 @@ const AddTimetables = props => {
           {language === "EN" ? "Add Timetables" : "เพิ่มตารางสอน"}
         </h1>
         <div className="row">
-          {userInfo.primaryClass && (
+          {classInfo.primaryClass && (
             <AddTimetableItem
-              header={language === "EN" ? "Add new Classes" : "เพิ่มตารางสอน"}
+              header={language === "EN" ? "Class" : "ห้อง"}
               button={language === "EN" ? "Add" : "เพิ่ม"}
+              header2={language === "EN" ? "School" : "โรงเรียน"}
+              placeholder2={
+                language === "EN" ? "Search for schools" : "ค้นหาโรงเรียน"
+              }
               placeholder={
                 language === "EN" ? "Search for timetables" : "ค้นหาห้อง"
               }
               isPrimary={false}
             />
           )}
-          {userInfo.primaryClass ? (
+          {classInfo.primaryClass ? (
             <AddTimetableItem
               header={
                 language === "EN" ? "Change My Class" : "เปลี่ยนห้องของฉัน"
@@ -182,7 +211,11 @@ const AddTimetables = props => {
               placeholder={
                 language === "EN" ? "Search for timetables" : "ค้นหาห้อง"
               }
-              defaultOption={userInfo.primaryClass.classNo}
+              header2={language === "EN" ? "School" : "โรงเรียน"}
+              placeholder2={
+                language === "EN" ? "Search for schools" : "ค้นหาโรงเรียน"
+              }
+              defaultOption={classInfo.primaryClass._id}
               isPrimary={true}
               style={{ marginBottom: "2rem" }}
             />
@@ -200,7 +233,7 @@ const AddTimetables = props => {
           )}
         </div>
 
-        {userInfo.primaryClass && (
+        {classInfo.primaryClass && (
           <>
             <h1 className="bar__header">
               {language === "EN" ? "Remove Timetables" : "เอาตารางสอนออก"}
@@ -211,28 +244,44 @@ const AddTimetables = props => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.2, delay: 0.2 }}
                 className="bar timetable">
-                {userInfo.primaryClass && (
+                {classInfo.primaryClass && (
                   <TimetableItem
-                    color={userInfo.primaryClass.color}
+                    color={classInfo.primaryClass.color}
                     text={language === "EN" ? "My Class" : "ห้องของฉัน"}
                     disabled={true}
-                    subText={userInfo.primaryClass.className}
-                    classNo={userInfo.primaryClass.classNo}
-                    program={userInfo.primaryClass.program}
+                    subText={classInfo.primaryClass.className}
                   />
                 )}
-                {userInfo.starredClasses &&
-                  userInfo.starredClasses.map(element => (
-                    <TimetableItem
-                      style={{ width: 300 }}
-                      key={Math.random}
-                      color={element.color}
-                      text={element.className}
-                      remove={true}
-                      classNo={element.classNo}
-                      program={element.program}
-                    />
-                  ))}
+                {classInfo.starredClass &&
+                  classInfo.starredClass.map(element => {
+                    let schoolName;
+                    switch (element.school) {
+                      case "ASSUMPTION":
+                        language === "EN"
+                          ? (schoolName = "Assumption")
+                          : (schoolName = "อัสสัมชัญ");
+                        break;
+                      case "NEWTON":
+                        language === "EN"
+                          ? (schoolName = "Newton")
+                          : (schoolName = "นิวตัน");
+                      case "ESSENCE":
+                        language === "EN"
+                          ? (schoolName = "Essence")
+                          : (schoolName = "เอสเซนส์");
+                    }
+                    return (
+                      <TimetableItem
+                        style={{ width: 300 }}
+                        key={Math.random}
+                        color={element.color}
+                        text={element.className}
+                        subText={schoolName}
+                        remove={true}
+                        id={element._id}
+                      />
+                    );
+                  })}
               </motion.section>
             </div>
           </>
@@ -242,4 +291,4 @@ const AddTimetables = props => {
   );
 };
 
-export default AddTimetables;
+export default Preferences;

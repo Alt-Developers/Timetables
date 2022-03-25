@@ -8,9 +8,15 @@ const Footer = () => {
   return (
     <footer className="dark-footer">
       {language === "EN" ? (
-        <h3>All Rights Reserved &copy;2022 SS Developers Group</h3>
+        <h3>
+          All Rights Reserved &copy;2022 - Prawich Thawansakdivudhi and Jirat
+          Chutrakul
+        </h3>
       ) : (
-        <h3>สงวนลิขสิทธิ์ทั้งหมด &copy; 2565 SS Developers Group</h3>
+        <h3>
+          สงวนลิขสิทธิ์ทั้งหมด &copy; พ.ศ.2565 - ด.ช.ปวิช ถวัลย์ศักดิวุฒิ และ
+          ด.ช.จิรัฏฐ์ ชูตระกูล
+        </h3>
       )}
       <ul>
         <a href="https://ssdevelopers.xyz">

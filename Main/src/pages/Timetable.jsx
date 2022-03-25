@@ -68,7 +68,7 @@ const Timetable = props => {
       const formatedDate = date.toLocaleString("en-US", {
         hour: "numeric",
         minute: "numeric",
-        hour12: true,
+        hour12: dateTime === "12h" ? true : false,
       });
       date.getSeconds() === 0 && setClock(formatedDate);
     }, [1000]);
@@ -87,7 +87,6 @@ const Timetable = props => {
         });
       }
       setsearchedPeriod(periodFull);
-      console.log(periodFull);
     }
   }, [timetableContent]);
 
