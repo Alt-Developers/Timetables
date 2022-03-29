@@ -10,42 +10,63 @@ const TimetableList = props => {
   const userInfo = useSelector(state => state.account.userInfo);
   const dispatch = useDispatch();
   const language = useSelector(state => state.account.language);
+  const classInfo = useSelector(state => state.timetable.classInfo);
+
+  console.log(classInfo.starredClass);
 
   return (
     <>
       <h3 className="bar__header">
         {language === "EN" ? "My Timetables" : "ตารางสอนของฉัน"}
       </h3>
-      {userInfo.primaryClass ? (
+      {classInfo.primaryClass ? (
         <div className="box">
           <motion.section
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2, delay: 0.2 }}
             className="bar timetable">
-            {/* <button
-            onClick={() => {
-              dispatch(refetchActions.refetch());
-            }}>
-            DEBUG: REFETCH
-          </button> */}
             <TimetableItem
               color={userInfo.color}
               text={language === "EN" ? "My Class" : "ห้องของฉัน"}
-              subText={userInfo.primaryClass.className}
-              classNo={userInfo.primaryClass.classNo}
-              program={userInfo.primaryClass.program}
+              subText={classInfo.primaryClass.className}
+              id={classInfo.primaryClass._id}
             />
-            {userInfo.starredClasses.map(timetable => (
-              <TimetableItem
-                style={{ width: 300 }}
-                key={Math.random}
-                color={timetable.color}
-                text={timetable.className}
-                classNo={timetable.classNo}
-                program={timetable.program}
-              />
-            ))}
+            {classInfo.starredClass &&
+              classInfo.starredClass.map((element, index) => {
+                let schoolName;
+                switch (element.school) {
+                  case "ASSUMPTION":
+                    language === "EN"
+                      ? (schoolName = "Assumption")
+                      : (schoolName = "อัสสัมชัญ");
+                    break;
+                  case "NEWTON":
+                    language === "EN"
+                      ? (schoolName = "Newton")
+                      : (schoolName = "นิวตัน");
+                    break;
+                  case "ESSENCE":
+                    language === "EN"
+                      ? (schoolName = "Essence")
+                      : (schoolName = "เอสเซนส์");
+                    break;
+                  default:
+                    language === "EN" ? (schoolName = "") : (schoolName = "");
+                    break;
+                }
+                return (
+                  <TimetableItem
+                    style={{ width: 300 }}
+                    key={Math.random}
+                    color={element.color}
+                    text={element.className}
+                    subText={schoolName}
+                    id={element._id}
+                    delay={index / 10}
+                  />
+                );
+              })}
             <Link
               to="/preferences"
               className="timetable__item timetable__add"

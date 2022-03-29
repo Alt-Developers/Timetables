@@ -3,10 +3,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { refetchActions } from "../context/refetchSlice";
 import { Link } from "react-router-dom";
+import { modalActions } from "../context/modalSlice";
+import { useSelector } from "react-redux";
 
 const TimetableList = props => {
   const [isHovering, setIsHovering] = useState(false);
   const [isRemoved, setIsRemoved] = useState();
+  const language = useSelector(state => state.account.language);
   const dispatch = useDispatch();
   let color;
 
@@ -19,7 +22,7 @@ const TimetableList = props => {
   }
 
   if (isRemoved) {
-    fetch("https://apis.ssdevelopers.xyz/timetables/removeRegisteredClass", {
+    fetch("https://apis.ssdevelopers.xyz/timetables/removeUserClass", {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -28,7 +31,9 @@ const TimetableList = props => {
       body: JSON.stringify({
         classId: props.id,
       }),
-    }).then(data => dispatch(refetchActions.refetch()));
+    }).then(data => {
+      console.log(data.json());
+    });
 
     return <></>;
   }
@@ -36,9 +41,11 @@ const TimetableList = props => {
   if (!props.remove) {
     return (
       <Link
-        to={`/timetable?class=${props.classNo}&program=${
-          props.program
-        }&color=${props.color.replace("#", "")}`}>
+        to={
+          props.disabled
+            ? ""
+            : `/timetable?id=${props.id}&color=${props.color.replace("#", "")}`
+        }>
         <motion.div
           className={`timetable__item ${props.remove && "shake"}`}
           style={
@@ -49,8 +56,9 @@ const TimetableList = props => {
                   boxShadow: `0px 0px 20px ${color}`,
                 }
           }
-          exit={{ width: 0 }}
-          transition={{ duration: 1 }}
+          initial={{ y: 300 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 1, delay: props.delay }}
           onMouseEnter={() => {
             setIsHovering(true);
           }}
@@ -60,6 +68,20 @@ const TimetableList = props => {
           onClick={() => {
             if (props.remove) {
               setIsRemoved(true);
+            }
+            if (props.disabled) {
+              dispatch(
+                modalActions.openModal({
+                  header:
+                    language === "EN"
+                      ? "You can't remove your primary class"
+                      : "ไม่สามารถลบห้องหลักของคุณได้",
+                  text:
+                    language === "EN"
+                      ? "You can only change your primary class to another class."
+                      : "คุณสามารถทำได้แค่เปลี่ยนห้องหลักคุณได้",
+                })
+              );
             }
           }}>
           <h3>{props.text}</h3>

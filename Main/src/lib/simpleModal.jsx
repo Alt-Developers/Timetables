@@ -23,6 +23,7 @@ const SimpleModal = props => {
       </motion.div>
       <motion.div
         className="simpleModal__overlay"
+        initial={{ display: "hidden", y: -1000 }}
         animate={
           props.isOpen
             ? { display: "grid", y: 0 }

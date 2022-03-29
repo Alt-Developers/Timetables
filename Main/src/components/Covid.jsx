@@ -15,11 +15,12 @@ const Covid = props => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="bar covid">
+        className="bar covid"
+        style={{ overflow: "hidden" }}>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
+          initial={{ y: 300 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.3, delay: 0.15 }}
           className="bar__item blarge covid__item"
           style={{ backgroundColor: "#fc4a44" }}>
           {!covid.isFetched && (
@@ -47,9 +48,9 @@ const Covid = props => {
           />
         </motion.div>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
+          initial={{ y: 300 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
           className="bar__item bsmall covid__global"
           style={{ backgroundColor: "#c232d9" }}>
           {!covidWorldwide.isFetched && (

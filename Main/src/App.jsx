@@ -6,27 +6,29 @@ import Footer from "./components/Footer";
 import TokenRedirect from "./components/TokenRedirect";
 import Migrate from "./pages/Migrate";
 import Preferences from "./pages/Preferences";
-import Timetable from "./pages/Timetable";
 import Loading from "./components/Loading";
 import SimpleModal from "./lib/simpleModal";
 import Landing from "./pages/Landing";
+import React from "react";
+import axios from "axios";
 
 import { Route, Routes, useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { accountActions } from "./context/accountSlice";
 import { timetableActions } from "./context/timetableSlice";
-import axios from "axios";
 
 function App() {
+  const Timetable = React.lazy(() => import("./pages/Timetable"));
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const refetch = useSelector(state => state.refetch.refetchCount);
   const language = useSelector(state => state.account.language);
   const userInfo = useSelector(state => state.account);
   const modalState = useSelector(state => state.modal);
-  const [isLoading, setIsLoading] = useState(0);
-  const navigate = useNavigate();
+  const [getUserIsLoading, setGetUserIsLoading] = useState(true);
+  const [getMyClassIsLoading, setGetMyClassIsLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -55,7 +57,7 @@ function App() {
       .then(({ data }) => {
         dispatch(timetableActions.initClassInfo(data));
         console.log("a");
-        setIsLoading(isLoading + 1);
+        setGetMyClassIsLoading(false);
       });
 
     if (!token) navigate("/landing");
@@ -85,16 +87,12 @@ function App() {
               })
             );
             console.log("b");
-            setIsLoading(isLoading + 1);
+            setGetUserIsLoading(false);
           }
         });
   }, [dispatch, refetch, language]);
 
-  useEffect(() => {
-    console.log(isLoading);
-  }, [isLoading]);
-
-  if (isLoading < 1) {
+  if (getMyClassIsLoading && getUserIsLoading) {
     return <Loading />;
   } else {
     return (
@@ -117,7 +115,14 @@ function App() {
               element={<>{userInfo.config ? <Preferences /> : <Loading />}</>}
             />
             <Route path="/token/:token" element={<TokenRedirect />} />
-            <Route path="/timetable" element={<Timetable />} />
+            <Route
+              path="/timetable"
+              element={
+                <Suspense fallback={<Loading />}>
+                  <Timetable />
+                </Suspense>
+              }
+            />
           </Routes>
           <Footer />
         </motion.div>

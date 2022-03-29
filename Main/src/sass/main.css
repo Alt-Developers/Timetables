@@ -162,7 +162,6 @@ main {
   gap: 2rem;
   margin-bottom: 4rem;
   border: none;
-  overflow: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
   filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25)); }
@@ -828,23 +827,23 @@ main {
       font-weight: 800;
       font-size: 1.5rem; }
 
-.redirect {
+.loading {
   display: grid;
   place-items: center;
   height: 100vh;
   width: 100%; }
-  .redirect div {
+  .loading div {
     display: flex;
     align-items: center; }
     @media only screen and (max-width: 56.25em) {
-      .redirect div {
+      .loading div {
         flex-direction: column; } }
-  .redirect h3 {
+  .loading h3 {
     color: var(--font-color);
     font-size: 3rem;
-    font-weight: 500;
+    font-weight: 600;
     margin-left: 2rem;
-    text-align: center; }
+    text-align: left; }
 
 .config {
   padding: 3rem 3rem 0 3rem; }
@@ -1089,7 +1088,7 @@ main {
     color: #fff;
     font-size: 3rem;
     padding-right: 1rem;
-    margin-top: .5rem; }
+    margin-top: 0.5rem; }
 
 .timetableBar {
   height: 12rem;
@@ -1130,7 +1129,7 @@ main {
   height: fit-content;
   margin: 0 3rem 3rem 3rem;
   border-radius: 1.1rem;
-  transition: .2s all;
+  transition: 0.2s all;
   display: flex;
   flex-direction: column; }
   @media only screen and (max-width: 56.25em) {
@@ -1160,7 +1159,7 @@ main {
   gap: 1rem;
   padding: 2rem;
   overflow: scroll;
-  transition: all .2s;
+  transition: all 0.2s;
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;
@@ -1179,26 +1178,36 @@ main {
   .timetableTable div {
     background-color: var(--gray-light-3);
     border-radius: 1.1rem;
-    transition: all .2s; }
+    transition: all 0.2s; }
+
+.monday {
+  background-color: #f0d750 !important;
+  grid-column: 1/2;
+  grid-row: 2/3; }
+
+.tuesday {
+  background-color: #ff7f7f !important;
+  grid-column: 1/2;
+  grid-row: 3/4; }
+
+.wednesday {
+  background-color: #6edf64 !important;
+  grid-column: 1/2;
+  grid-row: 4/5; }
+
+.thursday {
+  background-color: #ff8a00 !important;
+  grid-column: 1/2;
+  grid-row: 5/6; }
+
+.friday {
+  background-color: #00988f !important;
+  grid-column: 1/2;
+  grid-row: 6/7; }
 
 .t-r1c3 {
   grid-column: 3 / 4;
   grid-row: 1 / span 5; }
-
-.t-r1c1 {
-  background-color: #F0D750 !important; }
-
-.t-r2c1 {
-  background-color: #FF7F7F !important; }
-
-.t-r3c1 {
-  background-color: #6EDF64 !important; }
-
-.t-r4c1 {
-  background-color: #FF8A00 !important; }
-
-.t-r5c1 {
-  background-color: #00988F !important; }
 
 .t-r1c3 {
   display: grid;
@@ -1207,20 +1216,39 @@ main {
     color: var(--font-color);
     font-size: 1.5rem; }
 
-.weekdays {
-  color: #fff;
+.weekday {
+  color: var(--font-color);
   font-weight: 600;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   display: grid;
   place-items: center;
-  padding: 1rem; }
+  text-align: center;
+  width: 100%;
+  padding: 1rem;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */ }
+  .weekday::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */ }
 
-.periods__morning {
+.weekdays {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  place-items: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.5rem; }
+
+.period__item {
+  display: grid;
   gap: 1rem;
-  overflow: hidden; }
-  .periods__morning h3 {
+  overflow: hidden;
+  place-items: center; }
+  .period__item h3 {
     display: grid;
     place-items: center;
     color: var(--font-color);
@@ -1229,24 +1257,7 @@ main {
     gap: 1rem;
     text-align: center; }
     @media only screen and (max-width: 56.25em) {
-      .periods__morning h3 {
-        font-size: 1.4rem; } }
-
-.periods__afternoon {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  transition: all .2s;
-  gap: 1rem;
-  overflow: hidden; }
-  .periods__afternoon h3 {
-    display: grid;
-    place-items: center;
-    color: var(--font-color);
-    font-size: 1.6rem;
-    transition: all .2s;
-    text-align: center; }
-    @media only screen and (max-width: 56.25em) {
-      .periods__afternoon h3 {
+      .period__item h3 {
         font-size: 1.4rem; } }
 
 .timetablePeriodTime {
@@ -1269,83 +1280,84 @@ main {
 .landing {
   overflow: hidden;
   min-height: 95vh; }
-  .landing__header {
-    display: flex;
-    background-color: #FF5252;
-    padding: 3rem; }
-    @media only screen and (max-width: 56.25em) {
-      .landing__header {
-        flex-direction: column;
-        padding: 2rem; } }
-    .landing__header h1 {
-      font-size: 5rem;
-      color: #fff; }
-      @media only screen and (max-width: 56.25em) {
-        .landing__header h1 {
-          font-size: 4rem; } }
-    .landing__header h3 {
-      font-size: 2rem;
-      padding-top: 1rem;
-      font-weight: 500;
-      color: #fff; }
-      @media only screen and (max-width: 56.25em) {
-        .landing__header h3 {
-          font-size: 1.5rem;
-          margin-bottom: 1rem; } }
-  .landing__button {
-    display: flex;
-    justify-content: flex-end;
-    margin-left: auto;
-    margin-top: 2rem;
-    align-content: center; }
-    @media only screen and (max-width: 56.25em) {
-      .landing__button {
-        margin-left: 0; } }
-  .landing__a {
-    background-color: #fff;
+  .landing__nav {
+    width: 100%;
+    height: 10vh;
+    background-color: #fd5252;
     padding: 2rem;
-    font-weight: 700;
-    border-radius: 2rem !important;
-    font-size: 1.5rem;
-    color: #000;
-    transition: all .2s;
-    width: 15rem;
-    border: none;
-    height: 15rem;
-    margin-top: -2rem;
-    filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.1)); }
-    .landing__a:hover {
-      box-shadow: white 0px 0px 10px;
-      scale: 1.1; }
-    @media only screen and (max-width: 56.25em) {
-      .landing__a {
-        padding: 1.5rem;
-        margin: 1rem 1rem 1rem 0;
-        width: 80vw;
-        height: 6rem; } }
-  .landing__art {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-right: -4rem;
-    margin-top: 3rem; }
-  .landing__row {
-    display: flex;
-    align-self: flex-end;
-    gap: 1.5rem; }
-  .landing__row2 {
-    display: flex;
-    align-self: flex-end;
-    gap: 1.5rem; }
-    .landing__row2 div {
-      height: 25vh;
-      width: 23vw; }
-      @media only screen and (max-width: 56.25em) {
-        .landing__row2 div {
-          width: 20rem; } }
-  .landing__item {
-    height: 30vh;
-    width: 30vw; }
-    @media only screen and (max-width: 56.25em) {
-      .landing__item {
-        width: 30rem; } }
+    align-items: center;
+    color: #fff;
+    font-size: 1.5rem; }
+  .landing__header {
+    padding: 3rem;
+    height: 90vh;
+    background-color: var(--gray-light-2);
+    position: relative; }
+    .landing__header img {
+      position: absolute;
+      bottom: 3rem;
+      right: 1rem;
+      height: 80vh; }
+  .landing__text {
+    position: absolute;
+    top: 3rem;
+    left: 4rem;
+    color: var(--font-color); }
+    .landing__text h1 {
+      font-size: 5.5rem; }
+    .landing__text h3 {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-top: 1rem; }
+  .landing__buttons {
+    position: absolute;
+    bottom: 5rem; }
+    .landing__buttons button {
+      background-color: #fd5252;
+      padding: 2.5rem;
+      border-radius: 20rem;
+      box-shadow: none;
+      width: 15rem;
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: 700;
+      border: none;
+      transition: all 0.2s; }
+      .landing__buttons button:hover {
+        box-shadow: #fd5252 0px 0px 20px; }
+      .landing__buttons button:active {
+        scale: 0.9; }
+    .landing__buttons a {
+      font-weight: 700;
+      color: var(--font-color);
+      font-size: 1.5rem;
+      text-decoration: underline; }
+  .landing__main {
+    padding: 3rem; }
+  .landing__boxCon {
+    border-radius: 1.1rem;
+    height: 35rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width: 100%;
+    gap: 2rem; }
+    .landing__boxCon div {
+      border-radius: 2rem;
+      padding: 3rem; }
+      .landing__boxCon div h3 {
+        font-size: 2.3rem; }
+      .landing__boxCon div p {
+        font-size: 1.5rem;
+        margin-top: 1rem;
+        padding-top: 2rem;
+        font-weight: 500; }
+  .landing__boxRight {
+    background-color: var(--gray-light-2); }
+    .landing__boxRight p {
+      border-top: 1px solid #fff; }
+  .landing__boxLeft {
+    background-color: #fd5252;
+    color: #fff; }
+    .landing__boxLeft p {
+      border-top: 1px solid var(--gray-dark-1) !important; }

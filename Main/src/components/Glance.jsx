@@ -21,15 +21,14 @@ const Glance = props => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(classInfo.primaryClass);
-    if (!classInfo.primaryClass) {
-      dispatch(
-        modalActions.openModal({
-          header: "Let's get started!",
-          text: "Please select the class you are in",
-          type: { type: "NEW-USER" },
-        })
-      );
+    if (Object.keys(classInfo).length === 0) {
+      // dispatch(
+      //   modalActions.openModal({
+      //     header: "Let's get started!",
+      //     text: "Please select the class you are in",
+      //     type: { type: "NEW-USER" },
+      //   })
+      // );
     }
 
     axios
@@ -77,7 +76,7 @@ const Glance = props => {
       </>
     );
   }
-  if (currentPeriod.name === "WKN") {
+  if (currentPeriod.name === "WKN" && classInfo.primaryClass) {
     return (
       <>
         <h3 className="bar__header">At a glance</h3>
@@ -85,7 +84,8 @@ const Glance = props => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
-          className="bar">
+          className="bar"
+          style={{ overflow: "hidden" }}>
           <GlanceItem
             color={"#3fd9a5"}
             header={
@@ -144,7 +144,8 @@ const Glance = props => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
-          className="bar">
+          className="bar"
+          style={{ overflow: "hidden" }}>
           {currentPeriod === "FTD" && nextPeriod === "FTD" ? (
             <>
               <GlanceItem
@@ -227,7 +228,8 @@ const Glance = props => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
-          className="bar">
+          className="bar"
+          style={{ overflow: "hidden" }}>
           <>
             <GlanceItem
               color={"#69ACEA"}
@@ -280,7 +282,8 @@ const Glance = props => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
-          className="bar">
+          className="bar"
+          style={{ overflow: "hidden" }}>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

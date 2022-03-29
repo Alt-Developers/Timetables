@@ -2,15 +2,14 @@ import TimetableItem from "../components/TimetableItem";
 import Header from "../components/Header";
 import AddTimetableItem from "../components/AddTimetableItem";
 import SelectSearch from "react-select-search";
-import GlanceItem from "../components/GlanceItem";
 import ColoredButton from "../components/ColoredButton";
 import lang from "../lib/language";
 
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useMediaQuerry } from "react-responsive";
+import { useEffect, useState } from "react";
 import { accountActions } from "../context/accountSlice";
-import { useState } from "react";
 import { refetchActions } from "../context/refetchSlice";
 import { modalActions } from "../context/modalSlice";
 
@@ -21,13 +20,14 @@ const Preferences = props => {
   const dispatch = useDispatch();
   const [savedConfig, setSavedConfig] = useState(1);
   const [timesEffected, setTimesEffected] = useState(0);
+  const [selectedCovid, setSelectedCovid] = useState(userInfo.config.showCovid);
   const [selectedLanguage, setSelectedLanguage] = useState(
     userInfo.config.language
   );
   const [selectedDateFormat, setSelectedDateFormat] = useState(
     userInfo.config.dateTime
   );
-  const [selectedCovid, setSelectedCovid] = useState(userInfo.config.showCovid);
+  const isPhone = useMediaQuerry;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -46,7 +46,8 @@ const Preferences = props => {
         dateTime: selectedDateFormat,
       }),
     }).then(data => {
-      if (timesEffected !== 0)
+      if (timesEffected !== 0) {
+        dispatch(accountActions.setLanguage(selectedLanguage));
         dispatch(
           modalActions.openModal({
             header: lang(
@@ -61,6 +62,7 @@ const Preferences = props => {
             ),
           })
         );
+      }
     });
     setTimesEffected(timesEffected + 1);
     dispatch(refetchActions.refetch());
@@ -84,47 +86,25 @@ const Preferences = props => {
           <div className="bar ssAcc__bar">
             <div className="ssAcc__item">
               <h3>Account Dashboard</h3>
-              <p>Change your name, profile picture are more</p>
+              <p>
+                {language === "EN"
+                  ? "Change your name, profile picture are more"
+                  : "เปลี่ยนชื่อ, ภาพโปรไฟลและอีกมากมาย"}
+              </p>
               <a
                 href={`https://authentication.ssdevelopers.xyz/redirect/?service=timetables&token=${localStorage.getItem(
                   "token"
                 )}`}>
-                To Dashboard
+                {language === "EN" ? "To Dashboard" : "ไป Dashboard"}
               </a>
             </div>
-            {/* <GlanceItem
-              color={"#fa7c5c"}
-              header={
-                <h3>
-                  {language === "EN"
-                    ? "Where are the SS Account settings?"
-                    : "อ้าว แล้วการตั้งค่าของ SS Account อยู่ไหนล่ะ?"}
-                </h3>
-              }
-              subheader={
-                language === "EN"
-                  ? "If you want to edit stuff like accent color or name, You'll need to use the account dashboard"
-                  : "ถ้าคุณต้องการเปลี่ยนธีมสีหรือชื่อ, คุณต้องไปที่ Account Dashboard"
-              }
-              size={"large"}
-              a={{
-                href: `https://authentication.ssdevelopers.xyz/redirect/?service=timetables&token=${localStorage.getItem(
-                  "token"
-                )}`,
-                text:
-                  language === "EN"
-                    ? "To Account Dashboard"
-                    : "ไป Account Dashboard",
-              }}
-              animation={"none"}
-            /> */}
             <button
               className="config__logout"
               onClick={() => {
                 dispatch(accountActions.logout());
               }}>
               <p className="hiddenOnPC">Logout</p>
-              <i className="bx bx-log-out hiddenOnPhone"></i>
+              <p> {language === "EN" ? "Logout" : "ออกจากระบบ"}</p>
             </button>
           </div>
           <h1 className="bar__header">
@@ -253,7 +233,7 @@ const Preferences = props => {
                   />
                 )}
                 {classInfo.starredClass &&
-                  classInfo.starredClass.map(element => {
+                  classInfo.starredClass.map((element, index) => {
                     let schoolName;
                     switch (element.school) {
                       case "ASSUMPTION":
@@ -265,10 +245,17 @@ const Preferences = props => {
                         language === "EN"
                           ? (schoolName = "Newton")
                           : (schoolName = "นิวตัน");
+                        break;
                       case "ESSENCE":
                         language === "EN"
                           ? (schoolName = "Essence")
                           : (schoolName = "เอสเซนส์");
+                        break;
+                      default:
+                        language === "EN"
+                          ? (schoolName = "")
+                          : (schoolName = "");
+                        break;
                     }
                     return (
                       <TimetableItem
@@ -279,6 +266,7 @@ const Preferences = props => {
                         subText={schoolName}
                         remove={true}
                         id={element._id}
+                        delay={index / 10}
                       />
                     );
                   })}

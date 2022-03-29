@@ -1,25 +1,28 @@
 import { useState } from "react";
 import { SpinnerRoundFilled } from "spinners-react";
+import { useEffect } from "react";
 
 const Loading = props => {
   const [notLoading, setNotLoading] = useState(false);
 
-  setTimeout(() => {
-    if (notLoading) setNotLoading(true);
-  }, 5000);
+  useEffect(() => {
+    setTimeout(() => {
+      setNotLoading(true);
+    }, 5000);
+  }, []);
 
   return (
-    <section className="redirect">
+    <section className="loading">
       <div>
         <SpinnerRoundFilled
-          className="redirect__icon"
+          className="loading__icon"
           color="#FF5252"
           size={150}
         />
 
         {notLoading ? (
           <h3>
-            Not Loading?
+            Still not loading?
             <br />
             Try refreshing
           </h3>

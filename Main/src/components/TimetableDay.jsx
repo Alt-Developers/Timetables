@@ -1,144 +1,83 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-
 const TimetableDay = props => {
-  const [hovering, setHovering] = useState(false);
-  const format = useSelector(state => state.account.format);
-  const language = useSelector(state => state.account.language);
-  let isCurrentDay;
+  let dayName;
+  let dayCode;
 
-  useEffect(() => {
-    props.liftHover(hovering);
-  }, [hovering]);
-
-  if (props.identifier.curClass.day === props.weekday[2].toLowerCase()) {
-    isCurrentDay = true;
+  switch (props.day) {
+    case 0:
+      props.language === "EN" ? (dayName = "Monday") : (dayName = "วันจันทร์");
+      dayCode = "monday";
+      break;
+    case 1:
+      props.language === "EN" ? (dayName = "Tuesday") : (dayName = "วันอังคาร");
+      dayCode = "tuesday";
+      break;
+    case 2:
+      props.language === "EN" ? (dayName = "Wednesday") : (dayName = "วันพุทธ");
+      dayCode = "wednesday";
+      break;
+    case 3:
+      props.language === "EN"
+        ? (dayName = "Thursday")
+        : (dayName = "วันพฤหัสบดี");
+      dayCode = "thursday";
+      break;
+    case 4:
+      props.language === "EN" ? (dayName = "Friday") : (dayName = "วันศุกร");
+      dayCode = "friday";
+      break;
   }
 
   return (
     <>
-      <div
-        className={`${props.weekday[0]} weekdays ${props.blurred}`}
-        onMouseEnter={() => {
-          setHovering(true);
-        }}
-        onMouseLeave={() => {
-          setHovering(false);
-        }}>
-        {props.weekday[1]}
-      </div>
-      <div className={`periods__morning ${props.blurred}`}>
-        {props.data.slice(0, 4).map((period, index) => (
-          <motion.h3
-            initial={{ opacity: 0 }}
-            animate={
-              !props.searched.includes(
-                format[props.program][period].name.toLowerCase()
-              )
-                ? { opacity: 0 }
-                : { opacity: 1 }
+      <div className={`${dayCode} weekdays`}>{dayName}</div>
+      {props.periodsArray[props.day] &&
+        props.periodsArray[props.day].map((period, index) => {
+          let cumulativeSpanned = 0;
+
+          for (let i = 0; i < index; i++) {
+            if (index < 2) {
+              cumulativeSpanned +=
+                +props.periodsArray[props.day][index - i].slice(-1);
+            } else {
+              cumulativeSpanned +=
+                +props.periodsArray[props.day][index - i].slice(-1);
             }
-            transition={{ delay: 0.35 }}
-            className={`${
-              !props.searched.includes(
-                format[props.program][period].name.toLowerCase()
-              )
-                ? "hidden"
-                : "searched"
-            }
-      `}
-            style={
-              isCurrentDay && index === props.identifier.curClass.index
-                ? {
-                    color: props.highlightColor,
-                    textShadow:
-                      window.matchMedia &&
-                      window.matchMedia("(prefers-color-scheme: dark)").matches
-                        ? `0px 0px 10px ${props.highlightColor}`
-                        : "none",
-                  }
-                : {}
-            }
-            key={Math.random()}>
-            {format[props.program][period].name.length > 11 ? (
-              <>
-                {format[props.program][period].name.split(" ")[0]} <br />
-                {format[props.program][period].name.split(" ")[1]}
-              </>
-            ) : (
-              format[props.program][period].name
-            )}
-          </motion.h3>
-        ))}
-      </div>
-      <div
-        className={`t-r1c3`}
-        style={
-          props.identifier.curClass.index === 3.5
-            ? {
-                color: `${props.highlightColor} !important`,
-                textShadow: `0px 0px 10px ${props.highlightColor}`,
-                gridColumn: "3 /  4",
-                gridRow: "2 / span 5",
-              }
-            : { gridColumn: "3 /  4", gridRow: "2 / span 5" }
-        }>
-        <h3
-          style={
-            props.identifier.curClass.index === 3.5
-              ? {
-                  color: props.highlightColor,
-                  textShadow: `0px 0px 10px ${props.highlightColor}`,
-                }
-              : {
-                  color: `var(--font-color)`,
-                  textShadow: `none`,
-                }
-          }>
-          {language === "EN" ? "Lunch Break" : "พักกลางวัน"}
-        </h3>
-      </div>
-      <div className={`periods__afternoon ${props.blurred}`}>
-        {props.data.slice(4, 7).map((period, index) => (
-          <motion.h3
-            initial={{ opacity: 0 }}
-            animate={
-              !props.searched.includes(
-                format[props.program][period].name.toLowerCase()
-              )
-                ? { opacity: 0 }
-                : { opacity: 1 }
-            }
-            className={`${
-              !props.searched.includes(
-                format[props.program][period].name.toLowerCase()
-              )
-                ? "hidden"
-                : "searched"
-            }`}
-            style={
-              isCurrentDay && index + 4 === props.identifier.curClass.index
-                ? {
-                    color: props.highlightColor,
-                    textShadow: `0px 0px 10px ${props.highlightColor}`,
-                  }
-                : {}
-            }
-            transition={{ delay: 0.35 }}
-            key={Math.random()}>
-            {format[props.program][period].name.length > 11 ? (
-              <>
-                {format[props.program][period].name.split(" ")[0]} <br />
-                {format[props.program][period].name.split(" ")[1]}
-              </>
-            ) : (
-              format[props.program][period].name
-            )}
-          </motion.h3>
-        ))}
-      </div>
+          }
+
+          if (props.school === ("NEWTON" || "ESSENCE")) {
+            if (period.slice(-1) === "3") cumulativeSpanned += 1;
+            if (period.slice(-1) === "2") cumulativeSpanned += 2;
+            if (period.slice(-1) === "1") cumulativeSpanned += 3;
+            if (cumulativeSpanned + 1 > 6) cumulativeSpanned += 1;
+          } else {
+            if (period.slice(-1) === "1") cumulativeSpanned += 1;
+            if (cumulativeSpanned + 1 > 5) cumulativeSpanned += 1;
+          }
+
+          return (
+            <div
+              className="weekday"
+              key={index + 1000}
+              style={
+                props.highlight.day === props.day &&
+                props.highlight.period === index
+                  ? {
+                      gridColumn: `${
+                        cumulativeSpanned + 1
+                      } / span ${period.slice(-1)}`,
+                      color: props.color,
+                      textShadow: `0px 0px 10px ${props.color}`,
+                    }
+                  : {
+                      gridColumn: `${
+                        cumulativeSpanned + 1
+                      } / span ${period.slice(-1)}`,
+                    }
+              }>
+              {props.format[props.language][period.slice(0, 3)].name}
+            </div>
+          );
+        })}
     </>
   );
 };

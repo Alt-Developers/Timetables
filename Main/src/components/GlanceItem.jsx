@@ -18,7 +18,9 @@ const GlanceItem = props => {
         {props.subheader && <p>{props.subheader}</p>}
         {props.link && (
           <Link
-            to={`/timetable?class=${props.link.class}&program=${props.link.program}&color=${props.link.color}`}>
+            to={`/timetable?id=${
+              props.link.id
+            }&color=${props.link.color.replace("#", "")}`}>
             <button className="btn bar__item--btn">{props.link.text}</button>
           </Link>
         )}
