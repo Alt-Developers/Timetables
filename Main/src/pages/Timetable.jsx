@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
 
 const Timetable = props => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,6 +21,8 @@ const Timetable = props => {
   const [mergedPeriods, setMergedPeriods] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [formatted, setFormatted] = useState({});
+  const [identifier, setIdentifier] = useState({});
+  const isTabLand = useMediaQuery({ query: "(max-width: 75em)" });
 
   const [clock, setClock] = useState(
     new Date().toLocaleString("en-US", {
@@ -30,6 +33,7 @@ const Timetable = props => {
   );
 
   const timetableColor = "#" + searchParams.get("color");
+  const isNewton = timetableData.school === ("NEWTON" || "ESSENCE");
 
   useEffect(() => {
     fetch(
@@ -49,6 +53,7 @@ const Timetable = props => {
         }
         console.log(data);
 
+        setIdentifier(data.identifier);
         setFormat(data.timetableFormat.classCode);
         setTimetableData(data.timetableData);
         setTimetableName(data.className);
@@ -183,31 +188,45 @@ const Timetable = props => {
           className="timetableTable"
           style={{
             gridTemplateRows: "1fr 2fr 2fr 2fr 2fr 2fr",
-            gridTemplateColumns: `repeat(${timeLayout.length}, 1fr)`,
+            gridTemplateColumns: `${
+              isNewton ? (isTabLand ? "12rem " : "2fr ") : ""
+            }repeat(${
+              isNewton ? timeLayout.length - 1 : timeLayout.length + 1
+            }, ${isTabLand ? (isNewton ? "6.5rem" : "10rem") : "1fr"})`,
             height: "85vh",
           }}>
-          <div></div>
           <div
             className="timetablePeriodTime"
             style={{
-              gridColumn: `2 / span ${timeLayout.length + 3}`,
-              gridRow: "1 / 2",
-              display: "flex",
-              gap: "1rem",
-              justifyContent: "space-evenly",
+              borderRadius: "1.1rem 0 0 1.1rem !important",
+              margin: "0 0 0 0 !important",
             }}>
-            {timeLayout.map((element, index) => (
-              <h3
-                style={
-                  timeLayout.length > 10
-                    ? { fontSize: "1rem" }
-                    : { fontSize: "1.3rem" }
-                }
-                key={index}>
-                {element}
-              </h3>
-            ))}
+            <h3></h3>
           </div>
+          {timeLayout.map((element, index) => (
+            <div
+              style={
+                timeLayout.length > 10
+                  ? {
+                      fontSize: ".9rem",
+                      margin: " 0 -0.5rem 0 -0.5rem",
+                      borderRadius: "0",
+                    }
+                  : {
+                      fontSize: "1.3rem",
+                      margin: " 0 -0.5rem 0 -0.5rem",
+                      borderRadius: "0",
+                    }
+              }
+              className={`timetablePeriodTime ${
+                index === 0 && "timetablePeriodTime__first"
+              } ${
+                index === timeLayout.length - 1 && "timetablePeriodTime__last"
+              }`}
+              key={index}>
+              <h3>{element}</h3>
+            </div>
+          ))}
 
           {mergedPeriods.map((day, index) => (
             <TimetableDay
@@ -216,7 +235,10 @@ const Timetable = props => {
               language={language}
               format={format}
               school={timetableData.school}
-              highlight={{ day: 0, period: 5 }}
+              highlight={{
+                day: 1,
+                period: identifier.classIndex.classIndex - 1,
+              }}
               color={timetableColor}
             />
           ))}
@@ -224,15 +246,12 @@ const Timetable = props => {
           <div
             className="weekday"
             style={{
-              gridColumn:
-                timetableData.school === ("NEWTON" || "ESSENCE")
-                  ? "8 / 9"
-                  : "6 / 7",
+              gridColumn: isNewton ? "8 / 9" : "6 / 7",
               gridRow: "2/7",
               display: "grid",
               placeItems: "center",
             }}>
-            Lunch
+            {language === "EN" ? "Lunch" : "พักกลางวัน"}
           </div>
         </motion.div>
       </section>

@@ -5,7 +5,7 @@
 
   &__nav {
     width: 100%;
-    height: 10vh;
+    height: 6rem;
     background-color: #fd5252;
     padding: 2rem;
     display: flex;
@@ -16,26 +16,45 @@
 
   &__header {
     padding: 3rem;
-    height: 90vh;
+    height: 85vh;
     background-color: var(--gray-light-2);
     position: relative;
 
+    @include respond(phone) {
+      height: 80vh;
+    }
+
     img {
       position: absolute;
-      bottom: 3rem;
-      right: 1rem;
+      bottom: 2rem;
+      right: 0;
       height: 80vh;
+      width: 60vw;
+      object-fit: contain;
+
+      @include respond(phone) {
+        width: 100%;
+      }
     }
   }
 
   &__text {
     position: absolute;
-    top: 3rem;
+    top: 4rem;
     left: 4rem;
     color: var(--font-color);
 
+    @include respond(phone) {
+      top: 2rem;
+      left: 2rem;
+    }
+
     h1 {
       font-size: 5.5rem;
+
+      @include respond(phone) {
+        font-size: 5rem;
+      }
     }
 
     h3 {
@@ -47,7 +66,16 @@
 
   &__buttons {
     position: absolute;
-    bottom: 5rem;
+    bottom: 4rem;
+    left: 4rem;
+
+    @include respond(phone) {
+      bottom: 3rem;
+      left: 3rem;
+      width: 60vw;
+      display: flex;
+      align-items: center;
+    }
 
     button {
       background-color: #fd5252;
@@ -60,6 +88,10 @@
       font-weight: 700;
       border: none;
       transition: all 0.2s;
+
+      @include respond(phone) {
+        width: 50vw;
+      }
 
       &:hover {
         // scale: 1.1;
@@ -75,7 +107,10 @@
       font-weight: 700;
       color: var(--font-color);
       font-size: 1.5rem;
-      text-decoration: underline;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 
@@ -89,39 +124,42 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     width: 100%;
-    gap: 2rem;
+    gap: 3rem;
+
+    @include respond(phone) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      height: 70rem;
+    }
 
     div {
       border-radius: 2rem;
       padding: 3rem;
 
       h3 {
-        font-size: 2.3rem;
+        font-size: 4rem;
       }
 
       p {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         margin-top: 1rem;
-        padding-top: 2rem;
         font-weight: 500;
       }
     }
   }
 
   &__boxRight {
-    background-color: var(--gray-light-2);
-
-    p {
-      border-top: 1px solid #fff;
-    }
+    background-color: #fff;
+    color: var(--font-color);
   }
 
   &__boxLeft {
     background-color: #fd5252;
     color: #fff;
+  }
 
-    p {
-      border-top: 1px solid var(--gray-dark-1) !important;
-    }
+  &__extraHeader {
+    font-size: 4rem;
+    margin: 3rem;
   }
 }

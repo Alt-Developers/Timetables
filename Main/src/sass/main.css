@@ -385,16 +385,16 @@ main {
     background-color: var(--gray-light-2);
     border-radius: 50%;
     padding: 1rem;
-    transition: all .2s; }
+    transition: all 0.2s; }
     @media only screen and (max-width: 56.25em) {
       .header__icon {
         font-size: 2rem; } }
     .header__icon:hover {
-      transform: rotate(50deg);
+      transform: rotate(-50deg);
       scale: 1.1; }
     .header__icon:active {
-      transform: rotate(-250deg);
-      scale: .9; }
+      transform: rotate(250deg);
+      scale: 0.9; }
   .header__userProfile {
     position: relative; }
     .header__userProfile img {
@@ -1132,7 +1132,7 @@ main {
   transition: 0.2s all;
   display: flex;
   flex-direction: column; }
-  @media only screen and (max-width: 56.25em) {
+  @media only screen and (max-width: 75em) {
     .timetableCon {
       margin: 0 0 2rem 2rem; } }
   @media only screen and (min-width: 112.5em) {
@@ -1166,6 +1166,9 @@ main {
   /* Firefox */ }
   .timetableTable::-webkit-scrollbar {
     display: none; }
+  @media only screen and (max-width: 75em) {
+    .timetableTable {
+      border-radius: 1.1rem 0 0 1.1rem; } }
   @media only screen and (max-width: 56.25em) {
     .timetableTable {
       grid-template-columns: 10rem 40rem 10rem 30rem;
@@ -1262,13 +1265,20 @@ main {
 
 .timetablePeriodTime {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; }
+  place-items: center;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background-color: var(--gray-light-3); }
   .timetablePeriodTime h3 {
-    display: grid;
-    place-items: center;
-    color: var(--font-color);
-    font-size: 1.3rem;
-    font-weight: 500; }
+    color: #fff !important; }
+  .timetablePeriodTime__first {
+    border-radius: 1.1rem 0 0 1.1rem !important;
+    margin: 0 -1rem 0 0 !important; }
+  .timetablePeriodTime__last {
+    border-radius: 0 1.1rem 1.1rem 0 !important;
+    margin: 0 0 0 -1rem !important;
+    padding: 0 1rem 0 1rem; }
 
 .curPeriodHighlight {
   border-radius: 1.1rem;
@@ -1282,7 +1292,7 @@ main {
   min-height: 95vh; }
   .landing__nav {
     width: 100%;
-    height: 10vh;
+    height: 6rem;
     background-color: #fd5252;
     padding: 2rem;
     display: flex;
@@ -1291,28 +1301,51 @@ main {
     font-size: 1.5rem; }
   .landing__header {
     padding: 3rem;
-    height: 90vh;
+    height: 85vh;
     background-color: var(--gray-light-2);
     position: relative; }
+    @media only screen and (max-width: 56.25em) {
+      .landing__header {
+        height: 80vh; } }
     .landing__header img {
       position: absolute;
-      bottom: 3rem;
-      right: 1rem;
-      height: 80vh; }
+      bottom: 2rem;
+      right: 0;
+      height: 80vh;
+      width: 60vw;
+      object-fit: contain; }
+      @media only screen and (max-width: 56.25em) {
+        .landing__header img {
+          width: 100%; } }
   .landing__text {
     position: absolute;
-    top: 3rem;
+    top: 4rem;
     left: 4rem;
     color: var(--font-color); }
+    @media only screen and (max-width: 56.25em) {
+      .landing__text {
+        top: 2rem;
+        left: 2rem; } }
     .landing__text h1 {
       font-size: 5.5rem; }
+      @media only screen and (max-width: 56.25em) {
+        .landing__text h1 {
+          font-size: 5rem; } }
     .landing__text h3 {
       font-size: 2rem;
       font-weight: 500;
       margin-top: 1rem; }
   .landing__buttons {
     position: absolute;
-    bottom: 5rem; }
+    bottom: 4rem;
+    left: 4rem; }
+    @media only screen and (max-width: 56.25em) {
+      .landing__buttons {
+        bottom: 3rem;
+        left: 3rem;
+        width: 60vw;
+        display: flex;
+        align-items: center; } }
     .landing__buttons button {
       background-color: #fd5252;
       padding: 2.5rem;
@@ -1324,6 +1357,9 @@ main {
       font-weight: 700;
       border: none;
       transition: all 0.2s; }
+      @media only screen and (max-width: 56.25em) {
+        .landing__buttons button {
+          width: 50vw; } }
       .landing__buttons button:hover {
         box-shadow: #fd5252 0px 0px 20px; }
       .landing__buttons button:active {
@@ -1331,8 +1367,9 @@ main {
     .landing__buttons a {
       font-weight: 700;
       color: var(--font-color);
-      font-size: 1.5rem;
-      text-decoration: underline; }
+      font-size: 1.5rem; }
+      .landing__buttons a:hover {
+        text-decoration: underline; }
   .landing__main {
     padding: 3rem; }
   .landing__boxCon {
@@ -1341,23 +1378,27 @@ main {
     display: grid;
     grid-template-columns: 2fr 1fr;
     width: 100%;
-    gap: 2rem; }
+    gap: 3rem; }
+    @media only screen and (max-width: 56.25em) {
+      .landing__boxCon {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 70rem; } }
     .landing__boxCon div {
       border-radius: 2rem;
       padding: 3rem; }
       .landing__boxCon div h3 {
-        font-size: 2.3rem; }
+        font-size: 4rem; }
       .landing__boxCon div p {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         margin-top: 1rem;
-        padding-top: 2rem;
         font-weight: 500; }
   .landing__boxRight {
-    background-color: var(--gray-light-2); }
-    .landing__boxRight p {
-      border-top: 1px solid #fff; }
+    background-color: #fff;
+    color: var(--font-color); }
   .landing__boxLeft {
     background-color: #fd5252;
     color: #fff; }
-    .landing__boxLeft p {
-      border-top: 1px solid var(--gray-dark-1) !important; }
+  .landing__extraHeader {
+    font-size: 4rem;
+    margin: 3rem; }

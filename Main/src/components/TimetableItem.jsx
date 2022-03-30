@@ -75,11 +75,11 @@ const TimetableList = props => {
                   header:
                     language === "EN"
                       ? "You can't remove your primary class"
-                      : "ไม่สามารถลบห้องหลักของคุณได้",
+                      : "ไม่สามารถนำห้องหลักของคุณออกได้",
                   text:
                     language === "EN"
-                      ? "You can only change your primary class to another class."
-                      : "คุณสามารถทำได้แค่เปลี่ยนห้องหลักคุณได้",
+                      ? "Due to system limitations you can only change your primary class to another class."
+                      : "เนื่องด้วยข้อจำกัดของระบบ คุณไม่สามารถนำห้องหลักของคุณออกได้",
                 })
               );
             }

@@ -97,7 +97,7 @@
   display: flex;
   flex-direction: column;
 
-  @include respond(phone) {
+  @include respond(tab-land) {
     margin: 0 0 2rem 2rem;
   }
 
@@ -137,11 +137,9 @@
     display: none;
   }
 
-  // @include respond(big-desktop) {
-  //     width: 180rem;
-  //     height: 70rem;
-
-  // }
+  @include respond(tab-land) {
+    border-radius: 1.1rem 0 0 1.1rem;
+  }
 
   @include respond(phone) {
     grid-template-columns: 10rem 40rem 10rem 30rem;
@@ -260,14 +258,27 @@
 
 .timetablePeriodTime {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  place-items: center;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background-color: var(--gray-light-3);
+  // margin: 0 -0.5rem 0 -0.5rem !important;
+  // border-radius: 0 !important;
 
   h3 {
-    display: grid;
-    place-items: center;
-    color: var(--font-color);
-    font-size: 1.3rem;
-    font-weight: 500;
+    color: #fff !important;
+  }
+
+  &__first {
+    border-radius: 1.1rem 0 0 1.1rem !important;
+    margin: 0 -1rem 0 0 !important;
+  }
+
+  &__last {
+    border-radius: 0 1.1rem 1.1rem 0 !important;
+    margin: 0 0 0 -1rem !important;
+    padding: 0 1rem 0 1rem;
   }
 }
 

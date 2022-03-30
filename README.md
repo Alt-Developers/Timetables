@@ -1,42 +1,50 @@
 # What are Timetables? 📅
 
-Timetable is a normal timetable with a superset of features like,<br/>
-search , automatic system theme detection and for unsupported classes<br/>
-use the JSON file included in the "class isn't here" section from the website and send to the SS Developers discord , Enjoy! <br/>
 
-## Supported Classes
+## ***🎊 Now Feturing Version 3.0 🎊***
+<br>
 
-| Language Options     | Class          |
-| :------------------- | :------------- |
-| **Thai and English** | 2/2 , 2/6      |
-| **English**          | EP 2/2, EP 2/3 |
+## Update Logs 📜
 
-> You can download JSON file to add your class into the system then contact us at
->
-> > Discord: S Ξ N#3334
->
-> > Discord: saikaaawastaken#8066
-
-## Versions
 
 | Version  | Update Note                                      |
 | :------- | :----------------------------------------------- |
-| **v1.1** | **Implemented JSON file for easy customization** |
+| **v3.0** | Update for supporting 2 new schools |
+|  | Performance Enhancing  ⚡⚡⚡ |
+|  | UI tweaks and manh more... |
+|**v2.0**|A whole new level for Timetables |
+|*Notes*|*Version below is now in the legacy respositry* __[Click Here](https://github.com/SS-Developers/Legacy)__|
+| **v1.1** | Implemented JSON file for easy customization |
 | **v1.0** | Initial release of Timetables                    |
 
-## Languages and Technologies
+## Languages and Technologies 🏗️
 
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) ![NODEJS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white) ![EXPRESS](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge) <br>
-![EJS](https://img.shields.io/badge/EJS-A50000?style=for-the-badge) ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![SASS](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+### Languages
+![JS](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) ![sass](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+
+### Frontend Frameworks
+![REACT](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+
+### This project backend is using SS APIs __[Click Here](https://github.com/SS-Developers/SS-APIs)__
 
 ## Copyrights
 
-This Project is protected under the
+```
+All Rights Reserved
 
-```sh
-Mozilla Public License V2.0
+
+All Rights Reserved (c) 2022 Timetables Prawich Thawansakdivudhi & Jirat Chutrakul
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 ```
 
 to the license file [Click Here](LICENSE)
 
-**MPL 2.0 © 2021 Prawich & Jirat**
+**All Rights Reserved (c) Timetables Prawich Thawansakdivudhi & Jirat Chutrakul**
+

@@ -12,7 +12,7 @@ import Landing from "./pages/Landing";
 import React from "react";
 import axios from "axios";
 
-import { Route, Routes, useNavigate } from "react-router";
+import { Route, Routes, useLocation, useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { Suspense, useEffect, useState } from "react";
@@ -29,6 +29,7 @@ function App() {
   const modalState = useSelector(state => state.modal);
   const [getUserIsLoading, setGetUserIsLoading] = useState(true);
   const [getMyClassIsLoading, setGetMyClassIsLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -92,8 +93,15 @@ function App() {
         });
   }, [dispatch, refetch, language]);
 
-  if (getMyClassIsLoading && getUserIsLoading) {
-    return <Loading />;
+  if (getMyClassIsLoading && userInfo.isAuthenticated) {
+    return (
+      <>
+        <Routes>
+          <Route path="/landing" element={<Landing />} />
+        </Routes>
+        {location.pathname !== "/landing" && <Loading />}
+      </>
+    );
   } else {
     return (
       <SimpleModal

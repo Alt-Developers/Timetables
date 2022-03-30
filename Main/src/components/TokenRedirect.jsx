@@ -12,7 +12,7 @@ const TokenRedirect = props => {
   useEffect(() => {
     localStorage.setItem("token", params.replace(":", ""));
 
-    fetch("https://apis.ssdevelopers.xyz/timetables/getUser", {
+    fetch("https://apis.ssdevelopers.xyz/auth/getUser", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -23,6 +23,13 @@ const TokenRedirect = props => {
       })
       .then(data => {
         dispatch(accountActions.login(data));
+        dispatch(accountActions.setLanguage(data.config.language));
+        dispatch(
+          accountActions.setConfig({
+            dateTime: data.config.dateTime,
+            showCovid: data.config.showCovid,
+          })
+        );
         navigate("/");
       });
   }, [dispatch, navigate, params]);
