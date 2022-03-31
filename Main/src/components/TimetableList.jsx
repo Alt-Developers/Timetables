@@ -58,7 +58,7 @@ const TimetableList = props => {
                 return (
                   <TimetableItem
                     style={{ width: 300 }}
-                    key={Math.random}
+                    key={index}
                     color={element.color}
                     text={element.className}
                     subText={schoolName}

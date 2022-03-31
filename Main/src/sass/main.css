@@ -1266,12 +1266,12 @@ main {
 .timetablePeriodTime {
   display: grid;
   place-items: center;
-  color: #fff;
+  color: var(--font-color);
   font-size: 0.8rem;
   font-weight: 500;
   background-color: var(--gray-light-3); }
   .timetablePeriodTime h3 {
-    color: #fff !important; }
+    color: var(--font-color) !important; }
   .timetablePeriodTime__first {
     border-radius: 1.1rem 0 0 1.1rem !important;
     margin: 0 -1rem 0 0 !important; }
@@ -1279,6 +1279,10 @@ main {
     border-radius: 0 1.1rem 1.1rem 0 !important;
     margin: 0 0 0 -1rem !important;
     padding: 0 1rem 0 1rem; }
+    @media only screen and (max-width: 75em) {
+      .timetablePeriodTime__last {
+        padding: 0 1rem 0 1rem;
+        width: 9rem; } }
 
 .curPeriodHighlight {
   border-radius: 1.1rem;
@@ -1394,7 +1398,7 @@ main {
         margin-top: 1rem;
         font-weight: 500; }
   .landing__boxRight {
-    background-color: #fff;
+    background-color: var(--gray-light-3);
     color: var(--font-color); }
   .landing__boxLeft {
     background-color: #fd5252;

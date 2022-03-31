@@ -128,13 +128,14 @@ const Glance = props => {
             }}
             icon={`./icons/neural.png`}
             size={"large"}
+            secondItem
           />
         </motion.section>
       </>
     );
   } else if (
-    currentPeriod.name === "Finished The Day" &&
-    nextPeriod.name === "Finished The Day" &&
+    currentPeriod.name === "Finish the day" &&
+    nextPeriod.name === "Finish the day" &&
     classInfo.primaryClass
   ) {
     return (
@@ -146,7 +147,8 @@ const Glance = props => {
           transition={{ duration: 0.1 }}
           className="bar"
           style={{ overflow: "hidden" }}>
-          {currentPeriod === "FTD" && nextPeriod === "FTD" ? (
+          {currentPeriod.name === "Finish the day" &&
+          nextPeriod.name === "Finish the day" ? (
             <>
               <GlanceItem
                 color={"#fa9e1e"}
@@ -187,6 +189,7 @@ const Glance = props => {
                 }}
                 icon={`./icons/desk.png`}
                 size={"large"}
+                secondItem
               />
             </>
           ) : (

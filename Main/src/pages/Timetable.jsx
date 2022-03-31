@@ -20,8 +20,9 @@ const Timetable = props => {
   const [timetableName, setTimetableName] = useState();
   const [mergedPeriods, setMergedPeriods] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-  const [formatted, setFormatted] = useState({});
+  const [formattedPeriods, setFormattedPeriods] = useState([]);
   const [identifier, setIdentifier] = useState({});
+  const [searchedArray, setSearchedArray] = useState(null);
   const isTabLand = useMediaQuery({ query: "(max-width: 75em)" });
 
   const [clock, setClock] = useState(
@@ -48,15 +49,14 @@ const Timetable = props => {
     )
       .then(data => data.json())
       .then(data => {
-        if (data.error) {
-          navigate("/");
-        }
-        console.log(data);
+        if (data.error) navigate("/");
 
+        console.log(data);
         setIdentifier(data.identifier);
         setFormat(data.timetableFormat.classCode);
         setTimetableData(data.timetableData);
         setTimetableName(data.className);
+
         switch (data.timetableData.school) {
           case "ASSUMPTION":
             setTimeLayout([
@@ -97,23 +97,35 @@ const Timetable = props => {
             const dayArray = data.timetableData.timetableContent[day];
             const positionsArray = [];
             const mergedArray = [];
-
+            const formattedArr = [];
             const counts = {};
+
+            // maping dayArray to get mergedArray and positionsArray
             dayArray.forEach(period => {
               counts[period] = (counts[period] || 0) + 1;
               if (!positionsArray.includes(period)) {
                 positionsArray.push(period);
               }
             });
+
             positionsArray.map(position =>
               mergedArray.push(`${position}${counts[position]}`)
             );
+            mergedArray.map(period =>
+              formattedArr.push([
+                data.timetableFormat.classCode[language][period.slice(0, 3)]
+                  .name,
+                period.slice(0, 3),
+              ])
+            );
 
+            setFormattedPeriods(formattedPeriods => [
+              ...formattedPeriods,
+              ...formattedArr,
+            ]);
             setMergedPeriods(mergedPeriods => [...mergedPeriods, mergedArray]);
           }
         }
-
-        data.timetableData.timetableContent.forEach((element, index) => {});
       });
 
     setInterval(() => {
@@ -131,13 +143,14 @@ const Timetable = props => {
 
   const searchKeypressHandler = event => {
     const keypress = event.target.value;
+    const searchedArray = [];
+    const regex = new RegExp(keypress, "i");
     setSearchValue(keypress);
-    const testArr = ["mom", "dad", "brother"];
 
-    const regex = new RegExp(keypress, "g");
-    testArr.forEach((cur, index) => {
-      console.log({ isSearched: regex.test(cur), ele: cur });
+    formattedPeriods.forEach((cur, index) => {
+      if (regex.test(cur[0])) searchedArray.push(cur[1]);
     });
+    setSearchedArray([...new Set(searchedArray)]);
   };
 
   return (
@@ -150,7 +163,7 @@ const Timetable = props => {
         </Link>
 
         <Link to="/preferences" className="timetableNav__pref">
-          <i class="bx bx-slider" />
+          <i className="bx bx-slider" />
         </Link>
         <img
           src={`https://apis.ssdevelopers.xyz/${userInfo.profilePicture}`}
@@ -236,10 +249,11 @@ const Timetable = props => {
               format={format}
               school={timetableData.school}
               highlight={{
-                day: 1,
-                period: identifier.classIndex.classIndex - 1,
+                day: identifier.today + 1,
+                period: identifier.curClass,
               }}
               color={timetableColor}
+              searched={searchedArray}
             />
           ))}
 

@@ -92,7 +92,7 @@ const Preferences = props => {
                   : "เปลี่ยนชื่อ, ภาพโปรไฟลและอีกมากมาย"}
               </p>
               <a
-                href={`https://authentication.ssdevelopers.xyz/redirect/?service=timetables&token=${localStorage.getItem(
+                href={`http://authentication.ssdevelopers.xyz/redirect/?service=timetables&token=${localStorage.getItem(
                   "token"
                 )}`}>
                 {language === "EN" ? "To Dashboard" : "ไป Dashboard"}

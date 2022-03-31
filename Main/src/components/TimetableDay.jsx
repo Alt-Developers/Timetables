@@ -56,7 +56,7 @@ const TimetableDay = props => {
 
           return (
             <div
-              className="weekday"
+              className={`weekday`}
               key={index + 1000}
               style={
                 props.highlight.day === props.day &&
@@ -67,11 +67,21 @@ const TimetableDay = props => {
                       } / span ${period.slice(-1)}`,
                       color: props.color,
                       textShadow: `0px 0px 10px ${props.color}`,
+                      opacity:
+                        props.searched === null ||
+                        props.searched.includes(period.slice(0, 3))
+                          ? 1
+                          : 0,
                     }
                   : {
                       gridColumn: `${
                         cumulativeSpanned + 1
                       } / span ${period.slice(-1)}`,
+                      opacity:
+                        props.searched === null ||
+                        props.searched.includes(period.slice(0, 3))
+                          ? 1
+                          : 0,
                     }
               }>
               {props.format[props.language][period.slice(0, 3)].name}

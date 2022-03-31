@@ -2,7 +2,7 @@ import Header from "../components/Header";
 import Glance from "../components/Glance";
 import TimetableList from "../components/TimetableList";
 import { useSelector } from "react-redux";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Loading from "../components/Loading";
 import Covid from "../components/Covid";
 import { useEffect, useState } from "react";
@@ -18,12 +18,14 @@ const Home = props => {
   const config = useSelector(state => state.account.config);
   const [fetchedUserInfo, setFetchedUserInfo] = useState(false);
   const testOrder = [
-    ["Glance", fetchedUserInfo && <Glance />],
+    ["Glance", fetchedUserInfo && <Glance key="1" />],
     [
       "Covid",
-      classInfo.primaryClass && config.showCovid === "covShow" && <Covid />,
+      classInfo.primaryClass && config.showCovid === "covShow" && (
+        <Covid key="2" />
+      ),
     ],
-    ["TimetableList", classInfo.primaryClass && <TimetableList />],
+    ["TimetableList", classInfo.primaryClass && <TimetableList key="3" />],
   ];
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const Home = props => {
   }, [userInfo]);
 
   return (
-    <AnimatePresence>
+    <>
       {isAuthenticated && (
         <motion.div exit={{ scale: 0.8 }} transition={{ duration: 0.3 }}>
           <Header />
@@ -47,7 +49,7 @@ const Home = props => {
         </motion.div>
       )}
       {!isAuthenticated && <Loading />}
-    </AnimatePresence>
+    </>
   );
 };
 
