@@ -2,6 +2,8 @@
 
 Timetables is a web-based timetables program for a Simple, Customizable and Practical experience.
 
+![preview](https://apis.ssdevelopers.xyz/images/macbooktimetable.png)
+
 ---
 ## **Contents**
 
