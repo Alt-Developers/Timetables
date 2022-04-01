@@ -73,4 +73,4 @@ GNU General Public License v2.0
 ```
 to the license file [Click Here](LICENSE)
 
-GNU General Public License v2.0 ©️ 2021 - 2022 Prawich Thawansakdivudhi & Jirat Chutrakul (SS Developers)
+GNU General Public License v2.0 © 2021 - 2022 Prawich Thawansakdivudhi & Jirat Chutrakul (SS Developers)
