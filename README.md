@@ -64,7 +64,7 @@ The installation process is just like any javascript react project.
     > yarn run sass
     ```
 ---
-## **Licenses** ⚖️
+## **License** ⚖️
 
 This Project is protected under
 
