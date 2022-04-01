@@ -28,7 +28,7 @@ const Footer = () => {
         <Link to="/credentials">
           <li>{language === "EN" ? "Credits" : "อ้างอิง"}</li>
         </Link>
-        <li>SS Timetables v2</li>
+        <li>SS Timetables v3</li>
       </ul>
     </footer>
   );

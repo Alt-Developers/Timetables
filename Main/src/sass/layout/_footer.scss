@@ -4,7 +4,7 @@ footer {
   padding: 2rem 5rem 2rem 5rem;
   font-size: 1.3rem;
   width: 100%;
-  background-color: var(--gray-dark-1);
+  background-color: var(--gray-light-2);
   z-index: 1000;
 
   li {
@@ -12,7 +12,7 @@ footer {
     display: inline-block;
     margin-left: 5rem;
     color: var(--font-color);
-    transition: all .2s;
+    transition: all 0.2s;
   }
 
   a:hover > li {
@@ -23,14 +23,10 @@ footer {
     color: var(--font-color);
     text-decoration: none;
     transition: color 0.5s;
-    transition: all .2s;
+    transition: all 0.2s;
   }
 
   h3 {
-      color: var(--font-color);
+    color: var(--font-color);
   }
-}
-
-.dark-footer {
-  background-color: var(--gray-dark-1);
 }

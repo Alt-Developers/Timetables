@@ -9,7 +9,9 @@ const Landing = props => {
   return (
     <section className="landing">
       <div className="landing__nav">
-        <h2>Timetables</h2>
+        <h2>
+          Timetables <span>by SS Developers</span>
+        </h2>
       </div>
 
       <div className="landing__header">
@@ -55,18 +57,12 @@ const Landing = props => {
       <div className="landing__main">
         <div className="landing__boxCon">
           <div className="landing__boxRight">
-            <h3>Why use Timetables?</h3>
-            <p>
-              Timetables is designed to be simple.
-              <br />
-              Instead of looking at the clock and needing to trace your hand
-              over the timebar just look at Timetable's{" "}
-              <span style={{ fontWeight: "700" }}>
-                At a Glance.
-              </span> <br /> And customizability features like{" "}
-              <span style={{ fontWeight: "700" }}>accent colors</span> and class
-              colors because we beleive that Timetables your be yours.
-            </p>
+            <h3>
+              Timetables is <br />
+              <span className="landing__boxRight--1">Simple</span> <br />
+              <span className="landing__boxRight--2">Customizable</span> <br />
+              <span className="landing__boxRight--3">and Practical</span>
+            </h3>
           </div>
           <div className="landing__boxLeft">
             <h3>Whats new in v3</h3>

@@ -422,26 +422,23 @@ footer {
   padding: 2rem 5rem 2rem 5rem;
   font-size: 1.3rem;
   width: 100%;
-  background-color: var(--gray-dark-1);
+  background-color: var(--gray-light-2);
   z-index: 1000; }
   footer li {
     list-style: none;
     display: inline-block;
     margin-left: 5rem;
     color: var(--font-color);
-    transition: all .2s; }
+    transition: all 0.2s; }
   footer a:hover > li {
     text-decoration: underline; }
   footer a {
     color: var(--font-color);
     text-decoration: none;
     transition: color 0.5s;
-    transition: all .2s; }
+    transition: all 0.2s; }
   footer h3 {
     color: var(--font-color); }
-
-.dark-footer {
-  background-color: var(--gray-dark-1); }
 
 .simpleModal {
   background-color: var(--gray-light-2);
@@ -1303,6 +1300,9 @@ main {
     align-items: center;
     color: #fff;
     font-size: 1.5rem; }
+    .landing__nav span {
+      font-size: 1.2rem;
+      font-weight: 500; }
   .landing__header {
     padding: 3rem;
     height: 85vh;
@@ -1320,7 +1320,8 @@ main {
       object-fit: contain; }
       @media only screen and (max-width: 56.25em) {
         .landing__header img {
-          width: 100%; } }
+          width: 100%;
+          bottom: 0; } }
   .landing__text {
     position: absolute;
     top: 4rem;
@@ -1385,21 +1386,34 @@ main {
     gap: 3rem; }
     @media only screen and (max-width: 56.25em) {
       .landing__boxCon {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        height: 70rem; } }
+        display: flex;
+        flex-direction: column;
+        height: fit-content; } }
     .landing__boxCon div {
       border-radius: 2rem;
       padding: 3rem; }
       .landing__boxCon div h3 {
         font-size: 4rem; }
+        @media only screen and (max-width: 56.25em) {
+          .landing__boxCon div h3 {
+            font-size: 3rem; } }
       .landing__boxCon div p {
         font-size: 1.8rem;
         margin-top: 1rem;
         font-weight: 500; }
   .landing__boxRight {
     background-color: var(--gray-light-3);
-    color: var(--font-color); }
+    color: var(--font-color);
+    transition: all 0.2s; }
+    .landing__boxRight h3 {
+      font-size: 3rem !important; }
+    .landing__boxRight span {
+      transition: all 0.2s;
+      font-size: 5rem;
+      color: #fd5252; }
+      @media only screen and (max-width: 56.25em) {
+        .landing__boxRight span {
+          font-size: 4rem; } }
   .landing__boxLeft {
     background-color: #fd5252;
     color: #fff; }

@@ -12,6 +12,11 @@
     align-items: center;
     color: #fff;
     font-size: 1.5rem;
+
+    span {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
   }
 
   &__header {
@@ -34,6 +39,7 @@
 
       @include respond(phone) {
         width: 100%;
+        bottom: 0;
       }
     }
   }
@@ -127,9 +133,9 @@
     gap: 3rem;
 
     @include respond(phone) {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 1fr;
-      height: 70rem;
+      display: flex;
+      flex-direction: column;
+      height: fit-content;
     }
 
     div {
@@ -138,6 +144,10 @@
 
       h3 {
         font-size: 4rem;
+
+        @include respond(phone) {
+          font-size: 3rem;
+        }
       }
 
       p {
@@ -151,6 +161,21 @@
   &__boxRight {
     background-color: var(--gray-light-3);
     color: var(--font-color);
+    transition: all 0.2s;
+
+    h3 {
+      font-size: 3rem !important;
+    }
+
+    span {
+      transition: all 0.2s;
+      font-size: 5rem;
+      color: #fd5252;
+
+      @include respond(phone) {
+        font-size: 4rem;
+      }
+    }
   }
 
   &__boxLeft {
