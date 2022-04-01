@@ -7,7 +7,7 @@ import lang from "../lib/language";
 
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { useMediaQuerry } from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 import { useEffect, useState } from "react";
 import { accountActions } from "../context/accountSlice";
 import { refetchActions } from "../context/refetchSlice";
@@ -27,7 +27,7 @@ const Preferences = props => {
   const [selectedDateFormat, setSelectedDateFormat] = useState(
     userInfo.config.dateTime
   );
-  const isPhone = useMediaQuerry;
+  const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -103,7 +103,6 @@ const Preferences = props => {
               onClick={() => {
                 dispatch(accountActions.logout());
               }}>
-              <p className="hiddenOnPC">Logout</p>
               <p> {language === "EN" ? "Logout" : "ออกจากระบบ"}</p>
             </button>
           </div>
@@ -112,7 +111,9 @@ const Preferences = props => {
           </h1>
           <div className="bar config__realBar">
             <div className="config__bar">
-              <div className="config__item" style={{ paddingLeft: "1rem" }}>
+              <div
+                className="config__item"
+                style={isPhone ? {} : { paddingLeft: "1rem" }}>
                 <h3>{language === "EN" ? "Language" : "ภาษา / Language"}</h3>
                 <SelectSearch
                   width="100%"
@@ -266,7 +267,6 @@ const Preferences = props => {
                         subText={schoolName}
                         remove={true}
                         id={element._id}
-                        delay={index / 10}
                       />
                     );
                   })}

@@ -15,6 +15,7 @@ const Glance = props => {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [nextPeriod, setNextPeriod] = useState({ name: "WKN", icon: "WKN" });
+  const [unformattedPeriod, setUnformattedPeriod] = useState();
   const classInfo = useSelector(state => state.timetable.classInfo);
   const language = useSelector(state => state.account.language);
   const userInfo = useSelector(state => state.account.userInfo);
@@ -36,6 +37,7 @@ const Glance = props => {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       })
       .then(({ data }) => {
+        console.log(data);
         setGlanceInfo(data);
         setIsLoading(false);
       });
@@ -48,6 +50,14 @@ const Glance = props => {
 
   useEffect(() => {
     if (Object.keys(glanceInfo).length !== 0 && classInfo.primaryClass) {
+      setUnformattedPeriod({
+        currentPeriod: glanceInfo.curClass,
+        nextPeriod: glanceInfo.nextClass,
+      });
+      console.log({
+        currentPeriod: glanceInfo.curClass,
+        nextPeriod: glanceInfo.nextPeriod,
+      });
       setCurrentPeriod({
         name: glanceInfo.format["classCode"][language][glanceInfo.curClass]
           .name,
@@ -76,7 +86,7 @@ const Glance = props => {
       </>
     );
   }
-  if (currentPeriod.name === "WKN" && classInfo.primaryClass) {
+  if (unformattedPeriod.currentPeriod === "WKN" && classInfo.primaryClass) {
     return (
       <>
         <h3 className="bar__header">At a glance</h3>
@@ -134,8 +144,8 @@ const Glance = props => {
       </>
     );
   } else if (
-    currentPeriod.name === "Finish the day" &&
-    nextPeriod.name === "Finish the day" &&
+    unformattedPeriod.currentPeriod === "FTD" &&
+    unformattedPeriod.nextPeriod === "FTD" &&
     classInfo.primaryClass
   ) {
     return (
@@ -147,8 +157,8 @@ const Glance = props => {
           transition={{ duration: 0.1 }}
           className="bar"
           style={{ overflow: "hidden" }}>
-          {currentPeriod.name === "Finish the day" &&
-          nextPeriod.name === "Finish the day" ? (
+          {unformattedPeriod.currentPeriod === "FTD" &&
+          unformattedPeriod.nextPeriod === "FTD" ? (
             <>
               <GlanceItem
                 color={"#fa9e1e"}

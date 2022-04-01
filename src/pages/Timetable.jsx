@@ -23,7 +23,8 @@ const Timetable = props => {
   const [formattedPeriods, setFormattedPeriods] = useState([]);
   const [identifier, setIdentifier] = useState({});
   const [searchedArray, setSearchedArray] = useState(null);
-  const isTabLand = useMediaQuery({ query: "(max-width: 75em)" });
+  const [isLoading, setIsLoading] = useState(true);
+  const isTabLand = useMediaQuery({ query: "(max-width: 56.25em)" });
 
   const [clock, setClock] = useState(
     new Date().toLocaleString("en-US", {
@@ -126,6 +127,8 @@ const Timetable = props => {
             setMergedPeriods(mergedPeriods => [...mergedPeriods, mergedArray]);
           }
         }
+
+        setIsLoading(false);
       });
 
     setInterval(() => {
@@ -153,6 +156,54 @@ const Timetable = props => {
     setSearchedArray([...new Set(searchedArray)]);
   };
 
+  if (isLoading) {
+    return (
+      <>
+        <section
+          className="timetableNav"
+          style={{ backgroundColor: timetableColor }}>
+          <Link to="/" className="timetableNav__home">
+            <h3>&#8249; {language === "EN" ? "Home" : "หน้าหลัก"}</h3>
+          </Link>
+
+          <Link to="/preferences" className="timetableNav__pref">
+            <i className="bx bx-slider" />
+          </Link>
+          <img
+            src={`https://apis.ssdevelopers.xyz/${userInfo.profilePicture}`}
+            alt="user profile picture"
+            height="50"
+            width="50"
+          />
+        </section>
+        <section className="timetableBar">
+          <div className="timetableBar__text">
+            <p>{language === "EN" ? "Timetable" : "ตารางสอน"}:</p>
+          </div>
+          <div className="timetableBar__text timetableBar__time">
+            <p>{language === "EN" ? "Time" : "เวลาขณะนี้"}:</p>
+          </div>
+          <div className="timetableBar__input">
+            <input
+              type="text"
+              style={{
+                backgroundColor: timetableColor + "50",
+              }}
+              onChange={searchKeypressHandler}
+              value={searchValue}
+              placeholder={
+                language === "EN" ? "Search Here" : "ค้นหาวิชาตรงนี้"
+              }
+            />
+          </div>
+        </section>
+        <section className={`timetableCon`}>
+          <div className="timetableTable"></div>
+        </section>
+      </>
+    );
+  }
+
   return (
     <>
       <section
@@ -175,11 +226,18 @@ const Timetable = props => {
       <section className="timetableBar">
         <div className="timetableBar__text">
           <p>{language === "EN" ? "Timetable" : "ตารางสอน"}:</p>
-          <h1>{timetableName} </h1>
+          <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            {timetableName}{" "}
+          </motion.h1>
         </div>
         <div className="timetableBar__text timetableBar__time">
           <p>{language === "EN" ? "Time" : "เวลาขณะนี้"}:</p>
-          <h1>{clock}</h1>
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}>
+            {clock}
+          </motion.h1>
         </div>
         <div className="timetableBar__input">
           <input
@@ -195,9 +253,6 @@ const Timetable = props => {
       </section>
       <section className={`timetableCon`}>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
           className="timetableTable"
           style={{
             gridTemplateRows: "1fr 2fr 2fr 2fr 2fr 2fr",
@@ -205,7 +260,7 @@ const Timetable = props => {
               isNewton ? (isTabLand ? "12rem " : "2fr ") : ""
             }repeat(${
               isNewton ? timeLayout.length - 1 : timeLayout.length + 1
-            }, ${isTabLand ? (isNewton ? "6.5rem" : "10rem") : "1fr"})`,
+            }, ${isTabLand ? (isNewton ? "6.5rem" : "12rem") : "1fr"})`,
             height: "85vh",
           }}>
           <div

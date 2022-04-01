@@ -1,50 +1,76 @@
-# What are Timetables? 📅
+# **Timetables** 🗓️
+
+Timetables is a web-based timetables program for a Simple, Customizable and Practical experience.
+
+---
+## **Contents**
+
+- [**Timetables** 🗓️](#timetables-️)
+  - [**Contents**](#contents)
+  - [**Introduction** 👋](#introduction-)
+  - [**Features** ✨](#features-)
+  - [**Versions** ⇋](#versions-)
+  - [**Installation Guide** ⬇️](#installation-guide-️)
+  - [**Licenses** ⚖️](#licenses-️)
 
 
-## ***🎊 Now Feturing Version 3.0 🎊***
-<br>
+---
+## **Introduction** 👋
 
-## Update Logs 📜
+Instead of needing to trace your finger on the timebar in your physical timetable in Timetables simply just look at **At a Glance** and you instantly see what is the current period and the following period.
 
+When you want to see which how many "Maths" period are there in this week simply just use the **period searchbar** for it in the searchbar
 
-| Version  | Update Note                                      |
-| :------- | :----------------------------------------------- |
-| **v3.0** | Update for supporting 2 new schools |
-|  | Performance Enhancing  ⚡⚡⚡ |
-|  | UI tweaks and manh more... |
-|**v2.0**|A whole new level for Timetables |
-|*Notes*|*Version below is now in the legacy respositry* __[Click Here](https://github.com/SS-Developers/Legacy)__|
-| **v1.1** | Implemented JSON file for easy customization |
-| **v1.0** | Initial release of Timetables                    |
+We beleive that Timetables should be **yours**. Thats why unline a normal timetable you can change your accent color.
 
-## Languages and Technologies 🏗️
+---
+## **Features** ✨
 
-### Languages
-![JS](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) ![sass](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+- At a glance for a quick peek at the current period you are learning and the following
+- Customizability features because we believe Timetables should be **yours**
+   - Accent color tinting
+   - Class colors
+   - Profile picture
+- Daily covid reports
+- Period searching
+- Current period highlighting
 
-### Frontend Frameworks
-![REACT](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+---
+## **Versions** ⇋
 
-### This project backend is using SS APIs __[Click Here](https://github.com/SS-Developers/SS-APIs)__
+|Version| Notes |
+|:------|:------------|
+|v1.0|Forked project from [Galax028](https://github.com/Galax028) and added few basic features.
+|v2.0|Rebuilt timetables from the ground up with a fresh new look to Timetables with the Azalea Design language|
+|v2.1|Made the Landing page, added the simple modal and configuration bar |
+|v3.0|Multiple school support, smoother animations, huge performance increase, future-proofing features and a new and better Landing page |
 
-## Copyrights
+---
+## **Installation Guide** ⬇️
+The installation process is just like any javascript react project.
+
+1. **Install the node packages**
+    ```zsh
+    > npm install
+    # or
+    > yarn install
+    ```
+2. **Start the react project and compile scss**
+    ```zsh
+    > npm start
+    > npm run sass
+    # or
+    > yarn start
+    > yarn run sass
+    ```
+---
+## **Licenses** ⚖️
+
+This Project is protected under
 
 ```
-All Rights Reserved
-
-
-All Rights Reserved (c) 2022 Timetables Prawich Thawansakdivudhi & Jirat Chutrakul
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+GNU General Public License v2.0
 ```
-
 to the license file [Click Here](LICENSE)
 
-**All Rights Reserved (c) Timetables Prawich Thawansakdivudhi & Jirat Chutrakul**
-
+GNU General Public License v2.0 ©️ 2021 - 2022 Prawich Thawansakdivudhi & Jirat Chutrakul (SS Developers)
