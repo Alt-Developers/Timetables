@@ -1,13 +1,16 @@
 # **Timetables** 🗓️
 
+![preview](https://apis.ssdevelopers.xyz/images/macbooktimetable.png)
+
+---
+## What is Timetables?
+
 Timetables is a web-based timetables program for a Simple, Customizable and Practical experience.
 
-Instead of needing to trace your finger on the timebar in your physical timetable in Timetables simply just look at **At a Glance** and you instantly see what is the current period and the following period. And under that is a daily covid report so you dont need to look up google for the latest covid reports. 
+Instead of needing to trace your finger on the timebar in your physical timetable, in Timetables simply just look at **At a Glance** and you instantly glimpse the current period and the following period. And under that is a daily covid report so you dont need to look up google for the latest covid reports. 
 
 When you want to see which how many "Maths" period are there in this week simply just search using the the **period searchbar**. <br />
-We beleive that Timetables should be **yours**. Thats why unline a normal timetable you can change your accent color.
-
-![preview](https://apis.ssdevelopers.xyz/images/macbooktimetable.png)
+We beleive that Timetables should be **yours**. Thats why you can change your accent color.
 
 ---
 ## **Contents**
@@ -17,19 +20,23 @@ We beleive that Timetables should be **yours**. Thats why unline a normal timeta
   - [**Features** ✨](#features-)
   - [**Versions** ⇋](#versions-)
   - [**Installation Guide** ⬇️](#installation-guide-️)
-  - [**Licenses** ⚖️](#licenses-️)
+  - [**License** ⚖️](#license-️)
 
 ---
 ## **Features** ✨
 
-- At a glance for a quick peek at the current period you are learning and the following
+- At a glance for a grasp at the current period you are learning and the following period.
+- Daily covid reports.
+- In week period searching.
+- Period spotlight.
+- Azalea design language (The new SS design language built on top of Chocolate Cosmos).
+- Powered by [SS Apis](https://github.com/SS-Developers/SS-APIs)
 - Customizability features
-   - Accent color tinting
-   - Class colors
-   - Profile picture
-- Daily covid reports
-- Period searching
-- Current period highlighting
+   - Accent color based tinting.
+   - Per class color tinting. 
+- Multiple language support.
+   - English
+   - Thai
 
 ---
 ## **Versions** ⇋
