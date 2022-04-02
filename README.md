@@ -12,6 +12,8 @@ Instead of needing to trace your finger on the timebar in your physical timetabl
 When you want to see which how many "Maths" period are there in this week simply just search using the the **period searchbar**. <br />
 We beleive that Timetables should be **yours**. Thats why you can change your accent color.
 
+**[Check out timetables!](https://timetables.ssdevelopers.xyz)**
+
 ---
 ## **Contents**
 
