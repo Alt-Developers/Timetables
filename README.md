@@ -2,6 +2,11 @@
 
 Timetables is a web-based timetables program for a Simple, Customizable and Practical experience.
 
+Instead of needing to trace your finger on the timebar in your physical timetable in Timetables simply just look at **At a Glance** and you instantly see what is the current period and the following period. And under that is a daily covid report so you dont need to look up google for the latest covid reports. 
+
+When you want to see which how many "Maths" period are there in this week simply just search using the the **period searchbar**. <br />
+We beleive that Timetables should be **yours**. Thats why unline a normal timetable you can change your accent color.
+
 ![preview](https://apis.ssdevelopers.xyz/images/macbooktimetable.png)
 
 ---
@@ -9,27 +14,16 @@ Timetables is a web-based timetables program for a Simple, Customizable and Prac
 
 - [**Timetables** 🗓️](#timetables-️)
   - [**Contents**](#contents)
-  - [**Introduction** 👋](#introduction-)
   - [**Features** ✨](#features-)
   - [**Versions** ⇋](#versions-)
   - [**Installation Guide** ⬇️](#installation-guide-️)
   - [**Licenses** ⚖️](#licenses-️)
 
-
----
-## **Introduction** 👋
-
-Instead of needing to trace your finger on the timebar in your physical timetable in Timetables simply just look at **At a Glance** and you instantly see what is the current period and the following period.
-
-When you want to see which how many "Maths" period are there in this week simply just use the **period searchbar** for it in the searchbar
-
-We beleive that Timetables should be **yours**. Thats why unline a normal timetable you can change your accent color.
-
 ---
 ## **Features** ✨
 
 - At a glance for a quick peek at the current period you are learning and the following
-- Customizability features because we believe Timetables should be **yours**
+- Customizability features
    - Accent color tinting
    - Class colors
    - Profile picture
