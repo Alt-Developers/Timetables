@@ -94,8 +94,7 @@ const Glance = props => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
-          className="bar"
-          style={{ overflow: "hidden" }}>
+          className="bar">
           <GlanceItem
             color={"#3fd9a5"}
             header={
@@ -155,8 +154,7 @@ const Glance = props => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
-          className="bar"
-          style={{ overflow: "hidden" }}>
+          className="bar">
           {unformattedPeriod.currentPeriod === "FTD" &&
           unformattedPeriod.nextPeriod === "FTD" ? (
             <>
@@ -241,8 +239,7 @@ const Glance = props => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
-          className="bar"
-          style={{ overflow: "hidden" }}>
+          className="bar">
           <>
             <GlanceItem
               color={"#69ACEA"}
@@ -295,8 +292,7 @@ const Glance = props => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
-          className="bar"
-          style={{ overflow: "hidden" }}>
+          className="bar">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

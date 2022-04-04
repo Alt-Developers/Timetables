@@ -8,6 +8,7 @@ const Header = props => {
   const userInfo = useSelector(state => state.account.userInfo);
   const language = useSelector(state => state.account.language);
   const dateTime = useSelector(state => state.account.config.dateTime);
+  // const dateTime = "24h";
 
   const [clock, setClock] = useState(
     new Date().toLocaleString("en-US", {

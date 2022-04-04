@@ -24,6 +24,9 @@ const Timetable = props => {
   const [identifier, setIdentifier] = useState({});
   const [searchedArray, setSearchedArray] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [refresher, setRefresher] = useState(1);
+  const [refresherTime, setRefresherTime] = useState([]);
+  const [refreshCount, setRefreshCount] = useState(0);
   const isTabLand = useMediaQuery({ query: "(max-width: 56.25em)" });
 
   const [clock, setClock] = useState(
@@ -38,6 +41,7 @@ const Timetable = props => {
   const isNewton = timetableData.school === ("NEWTON" || "ESSENCE");
 
   useEffect(() => {
+    console.log("Re-fetched!");
     fetch(
       `https://apis.ssdevelopers.xyz/timetables/getTimetable/${searchParams.get(
         "id"
@@ -53,10 +57,12 @@ const Timetable = props => {
         if (data.error) navigate("/");
 
         console.log(data);
+        console.log(data.refresher);
         setIdentifier(data.identifier);
         setFormat(data.timetableFormat.classCode);
         setTimetableData(data.timetableData);
         setTimetableName(data.className);
+        setRefresherTime(data.refresher);
 
         switch (data.timetableData.school) {
           case "ASSUMPTION":
@@ -93,9 +99,16 @@ const Timetable = props => {
             break;
         }
 
+        const timetableContent = data.timetableData.timetableContent;
+        for (const day in timetableContent) {
+          timetableContent[day] = timetableContent[day].filter(
+            period => period !== "FTD"
+          );
+        }
+
         if (mergedPeriods.length < 4) {
-          for (const day in data.timetableData.timetableContent) {
-            const dayArray = data.timetableData.timetableContent[day];
+          for (const day in timetableContent) {
+            const dayArray = timetableContent[day];
             const positionsArray = [];
             const mergedArray = [];
             const formattedArr = [];
@@ -112,13 +125,14 @@ const Timetable = props => {
             positionsArray.map(position =>
               mergedArray.push(`${position}${counts[position]}`)
             );
-            mergedArray.map(period =>
-              formattedArr.push([
+
+            mergedArray.map(period => {
+              return formattedArr.push([
                 data.timetableFormat.classCode[language][period.slice(0, 3)]
                   .name,
                 period.slice(0, 3),
-              ])
-            );
+              ]);
+            });
 
             setFormattedPeriods(formattedPeriods => [
               ...formattedPeriods,
@@ -130,19 +144,38 @@ const Timetable = props => {
 
         setIsLoading(false);
       });
+  }, [refresher]);
 
-    setInterval(() => {
+  useEffect(() => {
+    if (refresherTime.length !== 0) {
+      setRefreshCount(refreshCount + 1);
+    }
+  }, [refresherTime]);
+
+  let intervalId;
+  useEffect(() => {
+    // let startingDate = new Date("2022-04-04T14:29:55").getTime();
+    intervalId = setInterval(() => {
       const date = new Date();
       const formatedDate = date.toLocaleString("en-US", {
         hour: "numeric",
         minute: "numeric",
         hour12: userInfo.config.dateTime === "12h" ? true : false,
       });
+      const advanceTime = +`${date.getHours()}${
+        (date.getMinutes() < 10 ? "0" : "") + date.getMinutes()
+      }${(date.getSeconds() < 10 ? "0" : "") + date.getSeconds()}`;
+      if (refresherTime.includes(advanceTime.toString()))
+        setRefresher(refresher + 1);
+
       date.getSeconds() === 0 && setClock(formatedDate);
     }, [1000]);
 
     window.scrollTo(0, 0);
-  }, []);
+
+    // cleanup function
+    return () => clearInterval(intervalId);
+  }, [refreshCount]);
 
   const searchKeypressHandler = event => {
     const keypress = event.target.value;
@@ -304,7 +337,7 @@ const Timetable = props => {
               format={format}
               school={timetableData.school}
               highlight={{
-                day: identifier.today + 1,
+                day: identifier.today - 1,
                 period: identifier.curClass,
               }}
               color={timetableColor}

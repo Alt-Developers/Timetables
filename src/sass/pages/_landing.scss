@@ -3,6 +3,10 @@
   overflow: hidden;
   min-height: 95vh;
 
+  &__thai {
+    line-height: 5rem;
+  }
+
   &__nav {
     width: 100%;
     height: 6rem;
@@ -17,12 +21,30 @@
       font-size: 1.2rem;
       font-weight: 500;
     }
+
+    button {
+      margin-left: auto;
+      padding: 1rem;
+      border: none;
+      border-radius: 1.1rem;
+      width: fit-content;
+      background: var(--background-color);
+      transition: all 0.2s;
+
+      &:hover {
+        box-shadow: #fff 0px 0px 20px;
+      }
+
+      &:active {
+        scale: 0.9;
+      }
+    }
   }
 
   &__header {
     padding: 3rem;
     height: 85vh;
-    background-color: var(--gray-light-2);
+    background-color: var(--gray-light-1);
     position: relative;
 
     @include respond(phone) {
@@ -186,5 +208,36 @@
   &__extraHeader {
     font-size: 4rem;
     margin: 3rem;
+  }
+}
+
+.glancePreview {
+  height: 70vh;
+  background: #ff6a6a90;
+  margin: 3rem -3rem 2rem -3rem;
+  padding: 5rem;
+  position: relative;
+
+  &__bar {
+    position: absolute;
+    right: -30%;
+    top: 50%;
+    transform: translateY(-30%);
+
+    section {
+      width: 90vw;
+    }
+  }
+
+  &__textCon {
+    h1 {
+      color: #fff;
+    }
+
+    p {
+      color: #fff;
+      font-size: 1.5rem;
+      margin-top: 1rem;
+    }
   }
 }

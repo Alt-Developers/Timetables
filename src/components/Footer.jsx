@@ -9,13 +9,17 @@ const Footer = () => {
     <footer className="dark-footer">
       {language === "EN" ? (
         <h3>
-          All Rights Reserved &copy;2022 - Prawich Thawansakdivudhi and Jirat
-          Chutrakul
+          <a href="https://github.com/SS-Developers/Timetables/blob/main/LICENSE">
+            GNU General Public License v2.0 &copy;2022
+          </a>
+          - Prawich Thawansakdivudhi and Jirat Chutrakul
         </h3>
       ) : (
         <h3>
-          สงวนลิขสิทธิ์ทั้งหมด &copy; พ.ศ.2565 - ด.ช.ปวิช ถวัลย์ศักดิวุฒิ และ
-          ด.ช.จิรัฏฐ์ ชูตระกูล
+          <a href="https://github.com/SS-Developers/Timetables/blob/main/LICENSE">
+            GNU General Public License v2.0 &copy; พ.ศ.2565
+          </a>{" "}
+          - ด.ช.ปวิช ถวัลย์ศักดิวุฒิ และ ด.ช.จิรัฏฐ์ ชูตระกูล
         </h3>
       )}
       <ul>

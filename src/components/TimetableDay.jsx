@@ -59,12 +59,6 @@ const TimetableDay = props => {
           return (
             <motion.div
               className={`weekday`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{
-                delay: index / 10 + props.day / 10,
-                duration: 0.01,
-              }}
               key={index + 1000}
               style={
                 props.highlight.day === props.day &&
@@ -75,7 +69,7 @@ const TimetableDay = props => {
                       } / span ${period.slice(-1)}`,
                       color: props.color,
                       textShadow: `0px 0px 10px ${props.color}`,
-                      scale:
+                      opacity:
                         props.searched === null ||
                         props.searched.includes(period.slice(0, 3))
                           ? 1
@@ -85,7 +79,7 @@ const TimetableDay = props => {
                       gridColumn: `${
                         cumulativeSpanned + 1
                       } / span ${period.slice(-1)}`,
-                      scale:
+                      opacity:
                         props.searched === null ||
                         props.searched.includes(period.slice(0, 3))
                           ? 1

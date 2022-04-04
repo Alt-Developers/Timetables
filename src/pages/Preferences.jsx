@@ -109,7 +109,7 @@ const Preferences = props => {
           <h1 className="bar__header">
             {language === "EN" ? "Configurations" : "ตั้งค่า"}
           </h1>
-          <div className="bar config__realBar">
+          <div className="bar config__realBar" style={{ overflow: "visible" }}>
             <div className="config__bar">
               <div
                 className="config__item"

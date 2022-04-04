@@ -79,6 +79,7 @@ function App() {
           if (data.error) {
             navigate("/landing");
           } else {
+            console.log(data);
             dispatch(accountActions.login(data));
             dispatch(accountActions.setLanguage(data.config.language));
             dispatch(
@@ -93,13 +94,14 @@ function App() {
         });
   }, [dispatch, refetch, language]);
 
-  if (getMyClassIsLoading && userInfo.isAuthenticated) {
+  if (getUserIsLoading && getMyClassIsLoading && !userInfo.isAuthenticated) {
     return (
       <>
         <Routes>
           <Route path="/landing" element={<Landing />} />
         </Routes>
         {location.pathname !== "/landing" && <Loading />}
+        <Footer />
       </>
     );
   } else {

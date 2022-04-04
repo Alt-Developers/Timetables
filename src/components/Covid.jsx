@@ -15,8 +15,7 @@ const Covid = props => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="bar covid"
-        style={{ overflow: "hidden" }}>
+        className="bar covid">
         <motion.div
           initial={{ y: 300 }}
           animate={{ y: 0 }}

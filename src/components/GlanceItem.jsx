@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 const GlanceItem = props => {
+  const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
+
   return (
     <>
       <motion.div

@@ -8,7 +8,7 @@ const initialAccountState = {
   // timetableContent: {},
   // format: {},
   language: "EN",
-  // config: {},
+  config: {},
 };
 
 const accountSlice = createSlice({

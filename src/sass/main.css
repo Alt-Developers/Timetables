@@ -120,6 +120,15 @@ main {
   background-color: var(--background-color);
   min-height: 60vh; }
 
+.code {
+  padding: 2rem;
+  border-radius: 1.1rem;
+  width: 100%;
+  background: var(--gray-light-2);
+  height: 80vh;
+  overflow-y: scroll;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15); }
+
 .u-remove-a-eff {
   text-decoration: none;
   color: white; }
@@ -162,9 +171,10 @@ main {
   gap: 2rem;
   margin-bottom: 4rem;
   border: none;
+  overflow: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25)); }
+  filter: drop-shadow(0 2.4rem 4.8rem rgba(0, 0, 0, 0.15)); }
   @media only screen and (max-width: 56.25em) {
     .bar {
       height: fit-content;
@@ -173,7 +183,8 @@ main {
       background-color: transparent;
       filter: none;
       height: 40rem;
-      margin-bottom: 2rem; } }
+      margin-bottom: 2rem;
+      overflow: none; } }
   .bar__header {
     margin-bottom: 1.5rem;
     font-size: 3rem;
@@ -339,6 +350,13 @@ main {
     .timetable__add h3 {
       font-size: 4rem;
       line-height: 3rem; }
+
+.license {
+  padding: 3rem;
+  height: fit-content;
+  min-height: 100vh; }
+  .license h1 {
+    margin-bottom: 2rem; }
 
 .header {
   background-size: cover;
@@ -1291,6 +1309,8 @@ main {
 .landing {
   overflow: hidden;
   min-height: 95vh; }
+  .landing__thai {
+    line-height: 5rem; }
   .landing__nav {
     width: 100%;
     height: 6rem;
@@ -1303,10 +1323,22 @@ main {
     .landing__nav span {
       font-size: 1.2rem;
       font-weight: 500; }
+    .landing__nav button {
+      margin-left: auto;
+      padding: 1rem;
+      border: none;
+      border-radius: 1.1rem;
+      width: fit-content;
+      background: var(--background-color);
+      transition: all 0.2s; }
+      .landing__nav button:hover {
+        box-shadow: #fff 0px 0px 20px; }
+      .landing__nav button:active {
+        scale: 0.9; }
   .landing__header {
     padding: 3rem;
     height: 85vh;
-    background-color: var(--gray-light-2);
+    background-color: var(--gray-light-1);
     position: relative; }
     @media only screen and (max-width: 56.25em) {
       .landing__header {
@@ -1420,3 +1452,23 @@ main {
   .landing__extraHeader {
     font-size: 4rem;
     margin: 3rem; }
+
+.glancePreview {
+  height: 70vh;
+  background: #ff6a6a90;
+  margin: 3rem -3rem 2rem -3rem;
+  padding: 5rem;
+  position: relative; }
+  .glancePreview__bar {
+    position: absolute;
+    right: -30%;
+    top: 50%;
+    transform: translateY(-30%); }
+    .glancePreview__bar section {
+      width: 90vw; }
+  .glancePreview__textCon h1 {
+    color: #fff; }
+  .glancePreview__textCon p {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-top: 1rem; }
