@@ -25,8 +25,9 @@ const Home = props => {
         <Covid key="2" />
       ),
     ],
-    ["TimetableList", classInfo.primaryClass && <TimetableList key="3" />],
+    ["TimetableList", classInfo.starredClass && <TimetableList key="3" />],
   ];
+  console.log(classInfo);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -48,7 +49,6 @@ const Home = props => {
           <main>{testOrder.map(component => component[1])}</main>
         </motion.div>
       )}
-      {!isAuthenticated && <Loading />}
     </>
   );
 };

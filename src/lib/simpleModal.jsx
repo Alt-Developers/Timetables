@@ -46,33 +46,6 @@ const SimpleModal = props => {
             <div className="simpleModal__content">
               {props.image && <img src={props.image} alt="modal image" />}
               {props.text && <p>{props.text}</p>}
-              {props.type && props.type.type === "NEW-USER" && (
-                <>
-                  <AddTimetableItem
-                    header={language === "EN" ? "Class" : "ห้องของฉันคือ"}
-                    header2={language === "EN" ? "School" : "โรงเรียนฉันคือ"}
-                    placeholder2={
-                      language === "EN" ? "Search for schools" : "ค้นหาโรงเรียน"
-                    }
-                    button={
-                      language === "EN"
-                        ? "Make this my class"
-                        : "ตั้งห้องนี้เป็นห้องของฉัน"
-                    }
-                    placeholder={
-                      language === "EN" ? "Search for timetables" : "ค้นหาห้อง"
-                    }
-                    isPrimary={true}
-                    isNewUser={true}
-                    style={{
-                      marginTop: "2rem",
-                      width: "100%",
-                      marginBottom: "0rem",
-                      filter: "none",
-                    }}
-                  />
-                </>
-              )}
             </div>
           </motion.div>
         </div>

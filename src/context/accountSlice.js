@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialAccountState = {
   isAuthenticated: false,
-  // userInfo: {},
+  userInfo: {},
   covid: { isFetched: false },
   covidWorldwide: { isFetched: false },
   // timetableContent: {},

@@ -32,6 +32,7 @@ const AddTimetableItem = props => {
       dispatch(refetchActions.refetch());
       if (props.isNewUser) {
         navigate("/");
+        // dispatch(refet);
         dispatch(modalActions.closeModal());
       }
     });

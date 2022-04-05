@@ -397,7 +397,7 @@ main {
     position: absolute;
     bottom: 0;
     right: 0;
-    font-size: 3rem;
+    font-size: 4rem;
     z-index: 1000;
     color: var(--gray-dark-2);
     background-color: var(--gray-light-2);
@@ -412,6 +412,24 @@ main {
       scale: 1.1; }
     .header__icon:active {
       transform: rotate(250deg);
+      scale: 0.9; }
+  .header__homeIcon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 4rem;
+    z-index: 1000;
+    color: var(--gray-dark-2);
+    background-color: var(--gray-light-2);
+    border-radius: 50%;
+    padding: 1rem;
+    transition: all 0.2s; }
+    @media only screen and (max-width: 56.25em) {
+      .header__homeIcon {
+        font-size: 2rem; } }
+    .header__homeIcon:hover {
+      scale: 1.1; }
+    .header__homeIcon:active {
       scale: 0.9; }
   .header__userProfile {
     position: relative; }
@@ -1305,6 +1323,63 @@ main {
   text-shadow: 0px 0px 10px #fff;
   font-weight: 800;
   font-size: 1.8rem !important; }
+
+.setup {
+  display: flex;
+  min-height: 100vh; }
+  @media only screen and (max-width: 56.25em) {
+    .setup {
+      flex-direction: column; } }
+  .setup__left {
+    width: fit-content;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--gray-dark-1); }
+    @media only screen and (max-width: 56.25em) {
+      .setup__left {
+        width: 100%; } }
+    .setup__left p {
+      color: #fff;
+      font-size: 1.5rem; }
+  .setup__textCon {
+    margin: -3rem -3rem 0 -3rem;
+    padding: 3rem 4rem 3rem 3rem; }
+  .setup__right {
+    padding: 3rem;
+    color: var(--font-color);
+    font-size: 2.5rem; }
+  .setup__preview {
+    height: 50rem;
+    background-color: var(--gray-light-1);
+    border-radius: 1.1rem;
+    margin-top: 3rem;
+    box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
+    width: 80%; }
+    @media only screen and (max-width: 56.25em) {
+      .setup__preview {
+        display: none; } }
+    .setup__preview h4 {
+      color: var(--font-color);
+      font-size: 3rem;
+      margin-top: 2rem; }
+    .setup__preview img {
+      border-radius: 2rem;
+      height: 10rem;
+      width: 10rem; }
+  .setup__nameCon {
+    padding: 0 2rem 2rem 2rem;
+    border-bottom: 1px solid var(--gray-dark-1); }
+  .setup__infoCon {
+    padding: 2rem; }
+    .setup__infoCon h4 {
+      font-size: 2rem;
+      padding: 0;
+      margin: 0; }
+  .setup__imgCon {
+    height: 30%;
+    border-radius: 1.1rem 1.1rem 0 0;
+    padding: 2rem; }
 
 .landing {
   overflow: hidden;

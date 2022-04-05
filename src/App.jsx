@@ -11,6 +11,7 @@ import SimpleModal from "./lib/simpleModal";
 import Landing from "./pages/Landing";
 import React from "react";
 import axios from "axios";
+import Setup from "./pages/Setup";
 
 import { Route, Routes, useLocation, useNavigate } from "react-router";
 import { motion } from "framer-motion";
@@ -18,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Suspense, useEffect, useState } from "react";
 import { accountActions } from "./context/accountSlice";
 import { timetableActions } from "./context/timetableSlice";
+import { modalActions } from "./context/modalSlice";
 
 function App() {
   const Timetable = React.lazy(() => import("./pages/Timetable"));
@@ -56,8 +58,11 @@ function App() {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       })
       .then(({ data }) => {
+        if (!data.primaryClass) {
+          navigate(`/setup/${token}`);
+        }
+        console.log(data);
         dispatch(timetableActions.initClassInfo(data));
-        console.log("a");
         setGetMyClassIsLoading(false);
       });
 
@@ -99,6 +104,8 @@ function App() {
       <>
         <Routes>
           <Route path="/landing" element={<Landing />} />
+          <Route path="/token/:token" element={<TokenRedirect />} />
+          <Route path="/setup/:token" element={<Setup />} />
         </Routes>
         {location.pathname !== "/landing" && <Loading />}
         <Footer />
@@ -120,6 +127,8 @@ function App() {
             <Route path="/landing" element={<Landing />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/migrate" element={<Migrate />} />
+            <Route path="/setup/:token" element={<Setup />} />
+
             <Route
               path="/preferences"
               element={<>{userInfo.config ? <Preferences /> : <Loading />}</>}

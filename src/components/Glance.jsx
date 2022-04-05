@@ -15,23 +15,13 @@ const Glance = props => {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [nextPeriod, setNextPeriod] = useState({ name: "WKN", icon: "WKN" });
-  const [unformattedPeriod, setUnformattedPeriod] = useState();
+  const [unformattedPeriod, setUnformattedPeriod] = useState({});
   const classInfo = useSelector(state => state.timetable.classInfo);
   const language = useSelector(state => state.account.language);
   const userInfo = useSelector(state => state.account.userInfo);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (Object.keys(classInfo).length === 0) {
-      // dispatch(
-      //   modalActions.openModal({
-      //     header: "Let's get started!",
-      //     text: "Please select the class you are in",
-      //     type: { type: "NEW-USER" },
-      //   })
-      // );
-    }
-
     axios
       .get("https://apis.ssdevelopers.xyz/timetables/getGlance", {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
@@ -74,6 +64,10 @@ const Glance = props => {
     }
   }, [glanceInfo]);
 
+  useEffect(() => {
+    console.log(unformattedPeriod);
+  }, [unformattedPeriod]);
+
   if (isLoading) {
     return (
       <>
@@ -82,7 +76,9 @@ const Glance = props => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
-          className="bar"></motion.section>
+          className="bar">
+          a
+        </motion.section>
       </>
     );
   }
@@ -284,36 +280,43 @@ const Glance = props => {
       </>
     );
   }
+
   {
-    return (
-      <>
-        <h3 className="bar__header">At a glance</h3>
-        <motion.section
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.1 }}
-          className="bar">
-          <motion.div
+    if (!classInfo.primaryClass)
+      return (
+        <>
+          <h3 className="bar__header">At a glance</h3>
+          <motion.section
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="bar__item welcome"
-            style={{ animation: "bgColor 5s infinite linear", width: "100%" }}>
-            <h3>Welcome to Timetables!</h3>
-            <p>Add your primary class to get started.</p>
-            <Link to="/preferences">
-              <button className="btn bar__item--btn">Add primary class</button>
-            </Link>
-            <img
-              src={`./icons/welcome.png`}
-              className="bar__icon"
-              alt="Science Icon"
-              height="150"
-            />
-          </motion.div>
-        </motion.section>
-      </>
-    );
+            transition={{ duration: 0.1 }}
+            className="bar">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              className="bar__item welcome"
+              style={{
+                animation: "bgColor 5s infinite linear",
+                width: "100%",
+              }}>
+              <h3>Welcome to Timetables!</h3>
+              <p>Add your primary class to get started.</p>
+              <Link to="/preferences">
+                <button className="btn bar__item--btn">
+                  Add primary class
+                </button>
+              </Link>
+              <img
+                src={`./icons/welcome.png`}
+                className="bar__icon"
+                alt="Science Icon"
+                height="150"
+              />
+            </motion.div>
+          </motion.section>
+        </>
+      );
   }
 };
 
