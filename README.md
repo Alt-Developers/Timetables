@@ -9,10 +9,10 @@ Timetables is a web-based timetables program for a Simple, Customizable and Prac
 
 Instead of needing to trace your finger on the timebar in your physical timetable, in Timetables simply just look at **At a Glance** and you instantly glimpse the current period and the following period. And under that is a daily covid report so you dont need to look up google for the latest covid reports. 
 
-When you want to see which how many "Maths" period are there in this week simply just search using the the **period searchbar**. <br />
+When you want to see which how many "Maths" period are there in this week simply just search using the the **period searchbar**.
 We beleive that Timetables should be **yours**. Thats why you can change your accent color.
 
-**[Check out timetables!](https://timetables.ssdevelopers.xyz)**
+**[Check out timetables!](https://timetables.ssdevelopers.xyz)** 	&#8211; **[Preview Channel (Unstable)](https://timetables-jiraties.vercel.app)**
 
 ---
 ## **Contents**
