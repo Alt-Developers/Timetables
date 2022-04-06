@@ -59,7 +59,7 @@ function App() {
       })
       .then(({ data }) => {
         if (!data.primaryClass) {
-          navigate(`/setup/${token}`);
+          navigate(`/setup`);
         }
         console.log(data);
         dispatch(timetableActions.initClassInfo(data));
@@ -93,7 +93,6 @@ function App() {
                 showCovid: data.config.showCovid,
               })
             );
-            console.log("b");
             setGetUserIsLoading(false);
           }
         });
@@ -104,8 +103,8 @@ function App() {
       <>
         <Routes>
           <Route path="/landing" element={<Landing />} />
-          <Route path="/token/:token" element={<TokenRedirect />} />
-          <Route path="/setup/:token" element={<Setup />} />
+          <Route path="/token" element={<TokenRedirect />} />
+          <Route path="/setup" element={<Setup />} />
         </Routes>
         {location.pathname !== "/landing" && <Loading />}
         <Footer />
@@ -127,13 +126,13 @@ function App() {
             <Route path="/landing" element={<Landing />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/migrate" element={<Migrate />} />
-            <Route path="/setup/:token" element={<Setup />} />
+            <Route path="/setup" element={<Setup />} />
 
             <Route
               path="/preferences"
               element={<>{userInfo.config ? <Preferences /> : <Loading />}</>}
             />
-            <Route path="/token/:token" element={<TokenRedirect />} />
+            <Route path="/token" element={<TokenRedirect />} />
             <Route
               path="/timetable"
               element={

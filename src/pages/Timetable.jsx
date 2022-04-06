@@ -160,6 +160,7 @@ const Timetable = props => {
       const formatedDate = date.toLocaleString("en-US", {
         hour: "numeric",
         minute: "numeric",
+        second: "2",
         hour12: userInfo.config.dateTime === "12h" ? true : false,
       });
       const advanceTime = +`${date.getHours()}${

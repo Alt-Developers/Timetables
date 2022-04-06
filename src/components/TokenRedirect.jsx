@@ -2,15 +2,16 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { accountActions } from "../context/accountSlice";
+import { useSearchParams } from "react-router-dom";
 import Loading from "./Loading";
 
 const TokenRedirect = props => {
-  const { token: params } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    localStorage.setItem("token", params.replace(":", ""));
+    localStorage.setItem("token", searchParams.get("token").replace(":", ""));
 
     fetch("https://apis.ssdevelopers.xyz/auth/getUser", {
       headers: {
@@ -30,9 +31,11 @@ const TokenRedirect = props => {
             showCovid: data.config.showCovid,
           })
         );
-        navigate("/");
+
+        if (searchParams.get("to") === "home") navigate("/");
+        if (searchParams.get("to") === "setup") navigate("/setup");
       });
-  }, [dispatch, navigate, params]);
+  }, [dispatch, navigate]);
 
   return <Loading />;
 };

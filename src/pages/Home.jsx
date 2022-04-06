@@ -44,7 +44,9 @@ const Home = props => {
   return (
     <>
       {isAuthenticated && (
-        <motion.div exit={{ scale: 0.8 }} transition={{ duration: 0.3 }}>
+        <motion.div
+          exit={{ transform: " scale( 0.8)" }}
+          transition={{ duration: 0.3 }}>
           <Header />
           <main>{testOrder.map(component => component[1])}</main>
         </motion.div>

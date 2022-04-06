@@ -166,12 +166,12 @@ const Preferences = props => {
       )}
       <section className="removeTimetables">
         <h1 className="bar__header">
-          {language === "EN" ? "Add Timetables" : "เพิ่มตารางสอน"}
+          {language === "EN" ? "Add / Set Timetables" : "เพิ่มตารางสอน"}
         </h1>
         <div className="row">
           {classInfo.primaryClass && (
             <AddTimetableItem
-              header={language === "EN" ? "Class" : "ห้อง"}
+              header={language === "EN" ? "Add Class" : "ห้อง"}
               button={language === "EN" ? "Add" : "เพิ่ม"}
               header2={language === "EN" ? "School" : "โรงเรียน"}
               placeholder2={

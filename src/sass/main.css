@@ -120,15 +120,6 @@ main {
   background-color: var(--background-color);
   min-height: 60vh; }
 
-.code {
-  padding: 2rem;
-  border-radius: 1.1rem;
-  width: 100%;
-  background: var(--gray-light-2);
-  height: 80vh;
-  overflow-y: scroll;
-  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15); }
-
 .u-remove-a-eff {
   text-decoration: none;
   color: white; }
@@ -335,7 +326,7 @@ main {
       transform: scale(0.9); }
       @media only screen and (max-width: 56.25em) {
         .timetable__item:active {
-          scale: 1 !important; } }
+          transform: scale(1) !important; } }
     .timetable__item--btn {
       position: absolute;
       bottom: 2rem; }
@@ -397,7 +388,7 @@ main {
     position: absolute;
     bottom: 0;
     right: 0;
-    font-size: 4rem;
+    font-size: 3rem;
     z-index: 1000;
     color: var(--gray-dark-2);
     background-color: var(--gray-light-2);
@@ -408,16 +399,14 @@ main {
       .header__icon {
         font-size: 2rem; } }
     .header__icon:hover {
-      transform: rotate(-50deg);
-      scale: 1.1; }
+      transform: rotate(-50deg) scale(1.1) !important; }
     .header__icon:active {
-      transform: rotate(250deg);
-      scale: 0.9; }
+      transform: rotate(250deg) scale(0.9) !important; }
   .header__homeIcon {
     position: absolute;
     bottom: 0;
     right: 0;
-    font-size: 4rem;
+    font-size: 3rem;
     z-index: 1000;
     color: var(--gray-dark-2);
     background-color: var(--gray-light-2);
@@ -428,9 +417,9 @@ main {
       .header__homeIcon {
         font-size: 2rem; } }
     .header__homeIcon:hover {
-      scale: 1.1; }
+      transform: scale(1.1) !important; }
     .header__homeIcon:active {
-      scale: 0.9; }
+      transform: rotate(250deg) scale(0.9) !important; }
   .header__userProfile {
     position: relative; }
     .header__userProfile img {
@@ -503,7 +492,7 @@ footer {
     height: 100%;
     width: 100vw;
     overflow: hidden;
-    transition: all .2s; }
+    transition: all 0.2s; }
   .simpleModal__wrapper {
     height: 100%;
     width: 100%; }
@@ -522,10 +511,10 @@ footer {
     border: none;
     font-size: 2rem;
     color: #fff;
-    background-color: #FF5252;
+    background-color: #ff5252;
     border-radius: 1.1rem;
     padding: 1rem;
-    transition: all .2s;
+    transition: all 0.2s;
     display: grid;
     place-items: center;
     height: 5rem;
@@ -537,10 +526,10 @@ footer {
         right: 2rem;
         width: 90%; } }
     .simpleModal__close:hover {
-      box-shadow: 0px 0px 20px #FF5252;
-      scale: 1.05; }
+      box-shadow: 0px 0px 20px #ff5252;
+      transform: scale(1.05); }
     .simpleModal__close:active {
-      scale: 0.9; }
+      transform: scale(0.9); }
   .simpleModal__content {
     height: fit-content;
     margin-top: 2rem;
@@ -1325,17 +1314,18 @@ main {
   font-size: 1.8rem !important; }
 
 .setup {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   min-height: 100vh; }
   @media only screen and (max-width: 56.25em) {
     .setup {
+      display: flex;
       flex-direction: column; } }
   .setup__left {
-    width: fit-content;
     padding: 3rem;
     display: flex;
     flex-direction: column;
-    background-color: var(--gray-dark-1); }
+    background-color: var(--gray-light-3); }
     @media only screen and (max-width: 56.25em) {
       .setup__left {
         width: 100%; } }
@@ -1344,11 +1334,40 @@ main {
       font-size: 1.5rem; }
   .setup__textCon {
     margin: -3rem -3rem 0 -3rem;
-    padding: 3rem 4rem 3rem 3rem; }
+    padding: 3rem 4rem 3rem 3rem;
+    color: #fff; }
+    .setup__textCon h1 {
+      color: #fff; }
+  .setup__steps {
+    padding: 3rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; }
+  .setup__step {
+    padding: 2rem;
+    background: var(--gray-light-1);
+    border-radius: 1.1rem;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    transition: all 0.5s; }
+    .setup__step p {
+      color: var(--font-color); }
+    .setup__step i {
+      font-size: 3rem;
+      color: var(--font-color); }
+    .setup__step span {
+      font-weight: 700; }
   .setup__right {
     padding: 3rem;
     color: var(--font-color);
-    font-size: 2.5rem; }
+    font-size: 2.5rem;
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: scroll; }
   .setup__preview {
     height: 50rem;
     background-color: var(--gray-light-1);
@@ -1381,6 +1400,35 @@ main {
     border-radius: 1.1rem 1.1rem 0 0;
     padding: 2rem; }
 
+.eula {
+  padding: 2rem;
+  border-radius: 1.1rem;
+  width: 100%;
+  background: var(--gray-light-1);
+  font-size: 1rem; }
+  .eula__text {
+    height: 15rem;
+    overflow-y: scroll;
+    margin-bottom: 2rem; }
+  .eula__button {
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-dark-1);
+    display: flex;
+    align-items: center;
+    gap: 1rem; }
+    .eula__button h3 {
+      font-size: 2rem;
+      margin-left: auto; }
+    .eula__button button {
+      height: 3rem;
+      width: 3rem;
+      border: none;
+      background-color: transparent;
+      border-radius: 1.1rem;
+      color: var(--font-color);
+      font-weight: 700;
+      font-size: 3rem; }
+
 .landing {
   overflow: hidden;
   min-height: 95vh; }
@@ -1409,7 +1457,7 @@ main {
       .landing__nav button:hover {
         box-shadow: #fff 0px 0px 20px; }
       .landing__nav button:active {
-        scale: 0.9; }
+        transform: scale(0.9); }
   .landing__header {
     padding: 3rem;
     height: 85vh;
@@ -1475,7 +1523,7 @@ main {
       .landing__buttons button:hover {
         box-shadow: #fd5252 0px 0px 20px; }
       .landing__buttons button:active {
-        scale: 0.9; }
+        transform: scale(0.9); }
     .landing__buttons a {
       font-weight: 700;
       color: var(--font-color);

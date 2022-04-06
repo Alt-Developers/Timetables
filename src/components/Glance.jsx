@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import GlanceItem from "./GlanceItem";
 import { modalActions } from "../context/modalSlice";
 import axios from "axios";
+import moment from "moment";
 
 const Glance = props => {
   const [hour, setHour] = useState(new Date().getHours());
@@ -16,10 +17,24 @@ const Glance = props => {
   const [isLoading, setIsLoading] = useState(true);
   const [nextPeriod, setNextPeriod] = useState({ name: "WKN", icon: "WKN" });
   const [unformattedPeriod, setUnformattedPeriod] = useState({});
+  const [refresher, setRefresher] = useState(1);
+  const [refresherTime, setRefresherTime] = useState([]);
+  const [refreshCount, setRefreshCount] = useState(0);
+  const [tillNextPeriod, setTillNextPeriod] = useState("");
   const classInfo = useSelector(state => state.timetable.classInfo);
   const language = useSelector(state => state.account.language);
   const userInfo = useSelector(state => state.account.userInfo);
   const dispatch = useDispatch();
+
+  const advanceTimetoTime = (advanceTime, now) =>
+    new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      +advanceTime.slice(0, 1),
+      +advanceTime.slice(1, 3),
+      +advanceTime.slice(3, 5)
+    );
 
   useEffect(() => {
     axios
@@ -28,15 +43,56 @@ const Glance = props => {
       })
       .then(({ data }) => {
         console.log(data);
+        setRefresherTime(data.refresher);
         setGlanceInfo(data);
         setIsLoading(false);
       });
-
-    setInterval(() => {
-      const hour = new Date().getHours();
-      setHour(hour);
-    }, [1800000]); // Half an hour
   }, []);
+
+  useEffect(() => {
+    if (refresherTime.length !== 0) {
+      setRefreshCount(refreshCount + 1);
+    }
+  }, [refresherTime]);
+
+  let intervalId;
+  useEffect(() => {
+    intervalId = setInterval(() => {
+      const now = new Date();
+      const advanceTime = +`${now.getHours()}${
+        (now.getMinutes() < 10 ? "0" : "") + now.getMinutes()
+      }${(now.getSeconds() < 10 ? "0" : "") + now.getSeconds()}`;
+      console.log(advanceTime);
+      if (refresherTime.includes(advanceTime.toString()))
+        setRefresher(refresher + 1);
+
+      // Till next period calculations
+      if (now.getSeconds() === 0 || refreshCount === 1) {
+        const nextPeriodAdvanceTime = refresherTime.reduce((a, b) =>
+          Math.abs(b - advanceTime) < Math.abs(a - advanceTime) ? b : a
+        );
+        const nextPeriodTime = advanceTimetoTime(nextPeriodAdvanceTime, now);
+
+        const till = moment.duration(moment(nextPeriodTime).diff(moment(now)));
+        const hoursTill = parseInt(till.asHours());
+        const minutesTill = parseInt(till.asMinutes()) % 60;
+        setTillNextPeriod(
+          hoursTill === 0
+            ? `in ${hoursTill} ${hoursTill === 1 ? "hour" : "hours"}.`
+            : `in ${hoursTill} ${
+                hoursTill === 1 ? "hour" : "hours"
+              } and ${minutesTill} ${minutesTill === 1 ? "minute" : "minutes"}`
+        );
+      }
+
+      now.getMinutes() === 0 && setHour(now.getHours());
+    }, [1000]);
+
+    window.scrollTo(0, 0);
+
+    // cleanup function
+    return () => clearInterval(intervalId);
+  }, [refreshCount]);
 
   useEffect(() => {
     if (Object.keys(glanceInfo).length !== 0 && classInfo.primaryClass) {
@@ -65,8 +121,8 @@ const Glance = props => {
   }, [glanceInfo]);
 
   useEffect(() => {
-    console.log(unformattedPeriod);
-  }, [unformattedPeriod]);
+    console.log(tillNextPeriod);
+  }, [tillNextPeriod]);
 
   if (isLoading) {
     return (
@@ -266,7 +322,7 @@ const Glance = props => {
                 </h3>
               }
               secondItem
-              subheader={false}
+              subheader={tillNextPeriod}
               link={{
                 id: classInfo.primaryClass._id,
                 color: userInfo.color.replace("#", ""),
