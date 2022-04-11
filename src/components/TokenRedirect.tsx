@@ -11,7 +11,10 @@ const TokenRedirect = props => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    localStorage.setItem("token", searchParams.get("token").replace(":", ""));
+    localStorage.setItem(
+      "token",
+      searchParams?.get("token")?.replace(":", "") ?? ""
+    );
 
     fetch("https://apis.ssdevelopers.xyz/auth/getUser", {
       headers: {
@@ -25,12 +28,6 @@ const TokenRedirect = props => {
       .then(data => {
         dispatch(accountActions.login(data));
         dispatch(accountActions.setLanguage(data.config.language));
-        dispatch(
-          accountActions.setConfig({
-            dateTime: data.config.dateTime,
-            showCovid: data.config.showCovid,
-          })
-        );
 
         if (searchParams.get("to") === "home") navigate("/");
         if (searchParams.get("to") === "setup") navigate("/setup");

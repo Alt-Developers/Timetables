@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { RootState } from "../context";
 
 const ColoredButton = props => {
-  const [isHovering, setIsHovering] = useState();
-  const userInfo = useSelector(state => state.account.userInfo);
+  const [isHovering, setIsHovering] = useState<boolean>();
+  const userInfo = useSelector((state: RootState) => state.account.userInfo);
 
   return (
     <button

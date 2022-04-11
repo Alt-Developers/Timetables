@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import { RootState } from "../context";
 
 const Covid = props => {
-  const covid = useSelector(state => state.account.covid);
-  const covidWorldwide = useSelector(state => state.account.covidWorldwide);
-  const language = useSelector(state => state.account.language);
+  const covid = useSelector((state: RootState) => state.account.covid);
+  const covidWorldwide = useSelector(
+    (state: RootState) => state.account.covidWorldwide
+  );
+  const language = useSelector((state: RootState) => state.account.language);
 
   return (
     <>
@@ -22,7 +25,7 @@ const Covid = props => {
           transition={{ duration: 0.3, delay: 0.15 }}
           className="bar__item blarge covid__item"
           style={{ backgroundColor: "#fc4a44" }}>
-          {!covid.isFetched && (
+          {covid.isFetched && (
             <h3>
               {covid.newCases} {language === "EN" ? "Cases, " : "เคส, "}
               <br className="hiddenOnPC" />
@@ -52,7 +55,7 @@ const Covid = props => {
           transition={{ duration: 0.3, delay: 0.2 }}
           className="bar__item bsmall covid__global"
           style={{ backgroundColor: "#c232d9" }}>
-          {!covidWorldwide.isFetched && (
+          {covidWorldwide.isFetched && (
             <>
               <h3 style={{ width: "80%" }}>
                 {language === "EN"

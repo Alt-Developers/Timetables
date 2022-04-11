@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { RootState } from "../context";
 
 const Footer = () => {
-  const language = useSelector(state => state.account.language);
+  const language = useSelector((state: RootState) => state.account.language);
 
   return (
     <footer className="dark-footer">

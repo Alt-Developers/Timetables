@@ -12,20 +12,25 @@ import { useEffect, useState } from "react";
 import { accountActions } from "../context/accountSlice";
 import { refetchActions } from "../context/refetchSlice";
 import { modalActions } from "../context/modalSlice";
+import { RootState } from "../context";
 
 const Preferences = props => {
-  const userInfo = useSelector(state => state.account.userInfo);
-  const language = useSelector(state => state.account.language);
-  const classInfo = useSelector(state => state.timetable.classInfo);
+  const userInfo = useSelector((state: RootState) => state.account.userInfo);
+  const language = useSelector((state: RootState) => state.account.language);
+  const classInfo = useSelector(
+    (state: RootState) => state.timetable.classInfo
+  );
   const dispatch = useDispatch();
   const [savedConfig, setSavedConfig] = useState(1);
   const [timesEffected, setTimesEffected] = useState(0);
-  const [selectedCovid, setSelectedCovid] = useState(userInfo.config.showCovid);
+  const [selectedCovid, setSelectedCovid] = useState(
+    userInfo.config?.showCovid
+  );
   const [selectedLanguage, setSelectedLanguage] = useState(
-    userInfo.config.language
+    userInfo.config?.language
   );
   const [selectedDateFormat, setSelectedDateFormat] = useState(
-    userInfo.config.dateTime
+    userInfo.config?.dateTime
   );
   const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
 
@@ -65,7 +70,7 @@ const Preferences = props => {
       }
     });
     setTimesEffected(timesEffected + 1);
-    dispatch(refetchActions.refetch());
+    dispatch(refetchActions.refetch(""));
   }, [savedConfig]);
 
   return (
@@ -116,7 +121,6 @@ const Preferences = props => {
                 style={isPhone ? {} : { paddingLeft: "1rem" }}>
                 <h3>{language === "EN" ? "Language" : "ภาษา / Language"}</h3>
                 <SelectSearch
-                  width="100%"
                   options={[
                     { value: "EN", name: "English" },
                     { value: "TH", name: "ไทย" },
@@ -128,7 +132,6 @@ const Preferences = props => {
               <div className="config__item">
                 <h3>{language === "EN" ? "Time Format" : "รูปแบบเวลา"}</h3>
                 <SelectSearch
-                  width="100%"
                   options={[
                     { value: "24h", name: "24 hours" },
                     { value: "12h", name: "12 hours" },
@@ -144,7 +147,6 @@ const Preferences = props => {
                     : "แสดงค่าการติดเชื้อโควิด-19"}
                 </h3>
                 <SelectSearch
-                  width="100%"
                   options={[
                     { value: "covShow", name: "Show" },
                     { value: "covHide", name: "Hidden" },

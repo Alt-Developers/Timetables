@@ -18,7 +18,11 @@ const GlanceItem = props => {
         } ${props.size === "full" && "bfull"}`}
         style={{ background: props.color }}>
         {props.header}
-        {props.subheader && <p>{props.subheader}</p>}
+        {props.subheader && (
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            {props.subheader}
+          </motion.p>
+        )}
         {props.link && (
           <Link
             to={`/timetable?id=${

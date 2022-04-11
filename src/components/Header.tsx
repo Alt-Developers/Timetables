@@ -3,11 +3,14 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
+import { RootState } from "../context";
 
 const Header = props => {
-  const userInfo = useSelector(state => state.account.userInfo);
-  const language = useSelector(state => state.account.language);
-  const dateTime = useSelector(state => state.account.config.dateTime);
+  const userInfo = useSelector((state: RootState) => state.account.userInfo);
+  const language = useSelector((state: RootState) => state.account.language);
+  const dateTime = useSelector(
+    (state: RootState) => state.account?.userInfo?.config?.dateTime
+  );
   const location = useLocation();
 
   const [clock, setClock] = useState(
@@ -29,6 +32,7 @@ const Header = props => {
           hour12: dateTime === "12h" ? true : false,
         });
         date.getSeconds() === 0 && setClock(formatedDate);
+        // @ts-ignore
       }, [1000]);
     }, []);
 
@@ -68,7 +72,7 @@ const Header = props => {
             {location.pathname === "/" ? (
               <i className="bx bxs-cog header__icon"></i>
             ) : (
-              <i class="bx bxs-home header__homeIcon"></i>
+              <i className="bx bxs-home header__homeIcon"></i>
             )}
           </Link>
         </div>

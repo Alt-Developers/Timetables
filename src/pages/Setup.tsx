@@ -8,10 +8,11 @@ import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import { accountActions } from "../context/accountSlice";
 import { useState } from "react";
+import { RootState } from "../context";
 
 const Setup = props => {
-  const language = useSelector(state => state.account.language);
-  const userInfo = useSelector(state => state.account.userInfo);
+  const language = useSelector((state: RootState) => state.account.language);
+  const userInfo = useSelector((state: RootState) => state.account.userInfo);
   const [selectedPrimary, setSelectedPrimary] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const dispatch = useDispatch();
@@ -30,19 +31,13 @@ const Setup = props => {
       .then(data => {
         dispatch(accountActions.login(data));
         dispatch(accountActions.setLanguage(data.config.language));
-        dispatch(
-          accountActions.setConfig({
-            dateTime: data.config.dateTime,
-            showCovid: data.config.showCovid,
-          })
-        );
       });
   }, []);
 
   if (selectedPrimary && agreed) {
     setTimeout(() => {
       navigate("/");
-    }, "1000");
+    }, 1000);
   }
 
   const liftDone = isDone => {
@@ -65,7 +60,7 @@ const Setup = props => {
           <p>
             {language === "EN"
               ? "We'll first need to set you up"
-              : "เราต้องขอทำการตั้งค่าแอคเค้าวทคุณ"}
+              : "เราต้องขอทำการตั้งค่าแอคเค้าท์คุณ"}
           </p>
         </div>
 
@@ -97,7 +92,10 @@ const Setup = props => {
                     }
                   : {}
               }>
-              <span>Step 1.</span> Agree to the End User License Agreement
+              <span>{language === "EN" ? "Step 1." : "ขั้นตอนที่ 1."}</span>{" "}
+              {language === "EN"
+                ? "Agree to the End User License Agreement"
+                : "ตกลงกับข้อตกลงของ Timetables"}
             </p>
           </div>
           <div
@@ -127,7 +125,10 @@ const Setup = props => {
                     }
                   : {}
               }>
-              <span>Step 2.</span> Set your primary class
+              <span>{language === "EN" ? "Step 2." : "ขั้นตอนที่ 2."}</span>{" "}
+              {language === "EN"
+                ? "Set your primary class"
+                : "ตั้งห้องหลักของคุณ"}
             </p>
           </div>
         </div>
@@ -154,7 +155,7 @@ const Setup = props => {
         </div> */}
         <div>
           <h3 className="bar__header">
-            {language === "EN" ? "Agreements" : "คุณอยู่ห้องอะไร"}
+            {language === "EN" ? "Agreements" : "ข้อตกลง"}
           </h3>
           <div className="eula">
             <div className="eula__text">
@@ -224,7 +225,7 @@ const Setup = props => {
               governed by and construed in accordance with the laws of th.
             </div>
             <div className="eula__button">
-              <h3>Agree</h3>
+              <h3>{language === "EN" ? "Agree" : "ตกลง"}</h3>
               <button onClick={() => setAgreed(!agreed)}>
                 {agreed ? (
                   <i className="bx bx-checkbox-checked"></i>

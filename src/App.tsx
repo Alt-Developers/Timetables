@@ -7,7 +7,7 @@ import TokenRedirect from "./components/TokenRedirect";
 import Migrate from "./pages/Migrate";
 import Preferences from "./pages/Preferences";
 import Loading from "./components/Loading";
-import SimpleModal from "./lib/simpleModal";
+import SimpleModal from "./lib/SimpleModal/SimpleModal";
 import Landing from "./pages/Landing";
 import React from "react";
 import axios from "axios";
@@ -20,15 +20,16 @@ import { Suspense, useEffect, useState } from "react";
 import { accountActions } from "./context/accountSlice";
 import { timetableActions } from "./context/timetableSlice";
 import { modalActions } from "./context/modalSlice";
+import { RootState } from "./context";
 
 function App() {
   const Timetable = React.lazy(() => import("./pages/Timetable"));
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const refetch = useSelector(state => state.refetch.refetchCount);
-  const language = useSelector(state => state.account.language);
-  const userInfo = useSelector(state => state.account);
-  const modalState = useSelector(state => state.modal);
+  const refetch = useSelector((state: RootState) => state.refetch.refetchCount);
+  const language = useSelector((state: RootState) => state.account.language);
+  const userInfo = useSelector((state: RootState) => state.account);
+  const modalState = useSelector((state: RootState) => state.modal);
   const [getUserIsLoading, setGetUserIsLoading] = useState(true);
   const [getMyClassIsLoading, setGetMyClassIsLoading] = useState(true);
   const location = useLocation();
@@ -38,6 +39,7 @@ function App() {
     fetch("https://static.easysunday.com/covid-19/getTodayCases.json")
       .then(data => data.json())
       .then(data => {
+        console.log(data);
         dispatch(accountActions.covid(data));
       });
 
@@ -87,12 +89,12 @@ function App() {
             console.log(data);
             dispatch(accountActions.login(data));
             dispatch(accountActions.setLanguage(data.config.language));
-            dispatch(
-              accountActions.setConfig({
-                dateTime: data.config.dateTime,
-                showCovid: data.config.showCovid,
-              })
-            );
+            // dispatch(
+            //   accountActions.setConfig({
+            //     dateTime: data.config.dateTime,
+            //     showCovid: data.config.showCovid,
+            //   })
+            // );
             setGetUserIsLoading(false);
           }
         });
@@ -112,11 +114,7 @@ function App() {
     );
   } else {
     return (
-      <SimpleModal
-        isOpen={modalState.isOpen}
-        header={modalState.header}
-        text={modalState.text}
-        type={modalState.type}>
+      <SimpleModal>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -130,7 +128,9 @@ function App() {
 
             <Route
               path="/preferences"
-              element={<>{userInfo.config ? <Preferences /> : <Loading />}</>}
+              element={
+                <>{userInfo.userInfo.config ? <Preferences /> : <Loading />}</>
+              }
             />
             <Route path="/token" element={<TokenRedirect />} />
             <Route

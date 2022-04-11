@@ -29,7 +29,7 @@ const AddTimetableItem = props => {
         isPrimary: props.isPrimary,
       }),
     }).then(data => {
-      dispatch(refetchActions.refetch());
+      dispatch(refetchActions.refetch(""));
       if (props.isNewUser) {
         props.liftDone(true);
         // navigate("/");
@@ -59,11 +59,7 @@ const AddTimetableItem = props => {
               filterOptions={fuzzySearch}
               placeholder={props.placeholder2}
               onChange={setSelectedSchool}
-              emptyMessage={() => (
-                <div style={{ textAlign: "center", fontSize: "0.8em" }}>
-                  School Not Found
-                </div>
-              )}
+              emptyMessage={() => "School Not Found"}
               search
             />
           </div>
@@ -99,11 +95,7 @@ const AddTimetableItem = props => {
             filterOptions={fuzzySearch}
             placeholder={props.placeholder}
             onChange={setSelectedOption}
-            emptyMessage={() => (
-              <div style={{ textAlign: "center", fontSize: "0.8em" }}>
-                Timetable not found
-              </div>
-            )}
+            emptyMessage={() => "Timetable not found"}
             search
           />
         </div>

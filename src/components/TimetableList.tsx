@@ -4,15 +4,16 @@ import TimetableItem from "./TimetableItem";
 import { motion } from "framer-motion";
 import { accountActions } from "../context/accountSlice";
 import { Link } from "react-router-dom";
+import { RootState } from "../context";
 // import { refetchActions } from "../context/refetchSlice";
 
-const TimetableList = props => {
-  const userInfo = useSelector(state => state.account.userInfo);
+const TimetableList = () => {
+  const userInfo = useSelector((state: RootState) => state.account.userInfo);
   const dispatch = useDispatch();
-  const language = useSelector(state => state.account.language);
-  const classInfo = useSelector(state => state.timetable.classInfo);
-
-  console.log(classInfo.starredClass);
+  const language = useSelector((state: RootState) => state.account.language);
+  const classInfo = useSelector(
+    (state: RootState) => state.timetable.classInfo
+  );
 
   return (
     <>

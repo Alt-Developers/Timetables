@@ -1,21 +1,38 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { accountState } from "../models/reduxStates";
 
-const initialAccountState = {
+interface loginPayload {
+  color: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  profilePicture: string;
+  config: {
+    dateTime: string;
+    showCovid: string;
+    language: string;
+  };
+}
+
+interface configPayload {
+  dateTime?: string;
+  showCovid?: string;
+  language?: string;
+}
+
+const initialState: accountState = {
   isAuthenticated: false,
   userInfo: {},
   covid: { isFetched: false },
   covidWorldwide: { isFetched: false },
-  // timetableContent: {},
-  // format: {},
   language: "EN",
-  config: {},
 };
 
 const accountSlice = createSlice({
   name: "account",
-  initialState: initialAccountState,
+  initialState,
   reducers: {
-    login(state, action) {
+    login(state, action: PayloadAction<loginPayload>) {
       state.userInfo = action.payload;
       state.isAuthenticated = true;
     },
@@ -26,7 +43,7 @@ const accountSlice = createSlice({
       window.location.href = "https://timetables.ssdevelopers.xyz/landing";
       // window.location.href = "http://localhost:3000/landing";
     },
-    covid(state, action) {
+    covid(state, action: PayloadAction<any>) {
       const lastUpdated = new Date(action.payload.updated).toLocaleString(
         "en-GB",
         {
@@ -39,13 +56,15 @@ const accountSlice = createSlice({
       );
 
       state.covid = {
+        isFetched: true,
         newCases: action.payload.NewConfirmed,
         newDeaths: action.payload.NewDeaths,
         country: action.payload.country,
         lastUpdated,
       };
+      console.log(state.covid);
     },
-    covidWorldwide(state, action) {
+    covidWorldwide(state, action: PayloadAction<any>) {
       const lastUpdated = new Date(action.payload.updated).toLocaleString(
         "en-GB",
         {
@@ -58,24 +77,13 @@ const accountSlice = createSlice({
       );
 
       state.covidWorldwide = {
+        isFetched: true,
         newCases: action.payload.todayCases,
         lastUpdated,
       };
     },
-    initializeTimetable(state, action) {
-      state.timetableContent = action.payload;
-    },
-    initFormat(state, action) {
-      state.format = action.payload;
-    },
     setLanguage(state, action) {
       state.language = action.payload;
-    },
-    setConfig(state, action) {
-      state.config = {
-        dateTime: action.payload.dateTime,
-        showCovid: action.payload.showCovid,
-      };
     },
   },
 });

@@ -7,22 +7,23 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
+import { RootState } from "../context";
 
-const Timetable = props => {
+const Timetable = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const userInfo = useSelector(state => state.account.userInfo);
-  const language = useSelector(state => state.account.language);
+  const userInfo = useSelector((state: RootState) => state.account.userInfo);
+  const language = useSelector((state: RootState) => state.account.language);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [timeLayout, setTimeLayout] = useState([]);
-  const [timetableData, setTimetableData] = useState({});
+  const [timeLayout, setTimeLayout] = useState<string[]>([]);
+  const [timetableData, setTimetableData] = useState<any>({});
   const [format, setFormat] = useState({});
   const [timetableName, setTimetableName] = useState();
   const [mergedPeriods, setMergedPeriods] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [formattedPeriods, setFormattedPeriods] = useState([]);
-  const [identifier, setIdentifier] = useState({});
-  const [searchedArray, setSearchedArray] = useState(null);
+  const [identifier, setIdentifier] = useState<any>({});
+  const [searchedArray, setSearchedArray] = useState<string[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [refresher, setRefresher] = useState(1);
   const [refresherTime, setRefresherTime] = useState([]);
@@ -33,12 +34,13 @@ const Timetable = props => {
     new Date().toLocaleString("en-US", {
       hour: "numeric",
       minute: "numeric",
-      hour12: userInfo.config.dateTime === "12h" ? true : false,
+      second: "numeric",
+      hour12: userInfo?.config?.dateTime === "12h" ? true : false,
     })
   );
 
   const timetableColor = "#" + searchParams.get("color");
-  const isNewton = timetableData.school === ("NEWTON" || "ESSENCE");
+  const isNewton = timetableData?.school === ("NEWTON" || "ESSENCE");
 
   useEffect(() => {
     console.log("Re-fetched!");
@@ -102,16 +104,16 @@ const Timetable = props => {
         const timetableContent = data.timetableData.timetableContent;
         for (const day in timetableContent) {
           timetableContent[day] = timetableContent[day].filter(
-            period => period !== "FTD"
+            (period: any) => period !== "FTD"
           );
         }
 
         if (mergedPeriods.length < 4) {
           for (const day in timetableContent) {
             const dayArray = timetableContent[day];
-            const positionsArray = [];
-            const mergedArray = [];
-            const formattedArr = [];
+            const positionsArray: any[] = [];
+            const mergedArray: any[] = [];
+            const formattedArr: any[] = [];
             const counts = {};
 
             // maping dayArray to get mergedArray and positionsArray
@@ -134,10 +136,12 @@ const Timetable = props => {
               ]);
             });
 
+            // @ts-ignore
             setFormattedPeriods(formattedPeriods => [
               ...formattedPeriods,
               ...formattedArr,
             ]);
+            // @ts-ignore
             setMergedPeriods(mergedPeriods => [...mergedPeriods, mergedArray]);
           }
         }
@@ -160,16 +164,21 @@ const Timetable = props => {
       const formatedDate = date.toLocaleString("en-US", {
         hour: "numeric",
         minute: "numeric",
-        second: "2",
-        hour12: userInfo.config.dateTime === "12h" ? true : false,
+        second: "numeric",
+        hour12: userInfo?.config?.dateTime === "12h" ? true : false,
       });
-      const advanceTime = +`${date.getHours()}${
-        (date.getMinutes() < 10 ? "0" : "") + date.getMinutes()
-      }${(date.getSeconds() < 10 ? "0" : "") + date.getSeconds()}`;
+      const advanceTime: number | string =
+        date.getHours() +
+        (date.getMinutes() < 10 ? "0" : "") +
+        date.getMinutes() +
+        (date.getSeconds() < 10 ? "0" : "") +
+        date.getSeconds();
+      // @ts-ignore
       if (refresherTime.includes(advanceTime.toString()))
         setRefresher(refresher + 1);
 
-      date.getSeconds() === 0 && setClock(formatedDate);
+      setClock(formatedDate);
+      // @ts-ignore
     }, [1000]);
 
     window.scrollTo(0, 0);
@@ -336,10 +345,10 @@ const Timetable = props => {
               day={index}
               language={language}
               format={format}
-              school={timetableData.school}
+              school={timetableData?.school}
               highlight={{
-                day: identifier.today - 1,
-                period: identifier.curClass,
+                day: identifier?.today - 1,
+                period: identifier?.curClass,
               }}
               color={timetableColor}
               searched={searchedArray}

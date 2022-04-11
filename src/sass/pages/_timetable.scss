@@ -147,8 +147,8 @@
   }
 
   @include respond(big-desktop) {
-    height: 70rem !important;
-    width: 85vw;
+    height: 80vh !important;
+    width: 100%;
     align-self: center;
   }
 

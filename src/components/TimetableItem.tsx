@@ -5,11 +5,12 @@ import { refetchActions } from "../context/refetchSlice";
 import { Link } from "react-router-dom";
 import { modalActions } from "../context/modalSlice";
 import { useSelector } from "react-redux";
+import { RootState } from "../context";
 
 const TimetableList = props => {
   const [isHovering, setIsHovering] = useState(false);
-  const [isRemoved, setIsRemoved] = useState();
-  const language = useSelector(state => state.account.language);
+  const [isRemoved, setIsRemoved] = useState(false);
+  const language = useSelector((state: RootState) => state.account.language);
   const dispatch = useDispatch();
   let color;
 

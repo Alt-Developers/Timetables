@@ -1197,8 +1197,8 @@ main {
       border-radius: 1.1rem 0 0 1.1rem; } }
   @media only screen and (min-width: 112.5em) {
     .timetableTable {
-      height: 70rem !important;
-      width: 85vw;
+      height: 80vh !important;
+      width: 100%;
       align-self: center; } }
   .timetableTable div {
     background-color: var(--gray-light-3);

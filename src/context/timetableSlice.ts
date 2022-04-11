@@ -1,13 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { timetableState } from "../models/reduxStates";
 
-const initialTimetableState = {
+const initialState: timetableState = {
   format: {},
   classInfo: {},
 };
 
 const timetableSlice = createSlice({
   name: "timetable",
-  initialState: initialTimetableState,
+  initialState,
   reducers: {
     initFormat(state, action) {
       state.format = action.payload;

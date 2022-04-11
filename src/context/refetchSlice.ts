@@ -1,14 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { refetchState } from "../models/reduxStates";
 
-const initialrefetchState = {
+const initialState: refetchState = {
   refetchCount: 0,
   refetchTimetableCount: 0,
 };
+
 const refetchSlice = createSlice({
   name: "refetch",
-  initialState: initialrefetchState,
+  initialState,
   reducers: {
-    refetch(state, action) {
+    refetch(state, action: PayloadAction<string>) {
       if (action.payload === "Timetable List") {
         state.refetchTimetableCount++;
       }
