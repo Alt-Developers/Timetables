@@ -40,7 +40,7 @@ const SimpleModal = (props: any) => {
                     opacity: 1,
                     y: 0,
                   }
-                : { opacity: 0, y: -200 }
+                : { opacity: 0, y: -1000 }
             }
             transition={{ type: "ease", duration: ".15" }}>
             <h1 className="simpleModal__header">

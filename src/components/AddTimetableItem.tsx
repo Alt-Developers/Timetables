@@ -58,6 +58,7 @@ const AddTimetableItem = props => {
               value={selectedSchool}
               filterOptions={fuzzySearch}
               placeholder={props.placeholder2}
+              // @ts-ignore
               onChange={setSelectedSchool}
               emptyMessage={() => "School Not Found"}
               search

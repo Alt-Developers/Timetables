@@ -7,7 +7,17 @@ import { modalActions } from "../context/modalSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../context";
 
-const TimetableList = props => {
+interface props {
+  remove?: boolean;
+  disabled?: boolean;
+  color?: string;
+  id?: string;
+  delay?: number;
+  text: string;
+  subText?: string;
+}
+
+const TimetableList: React.FC<props> = props => {
   const [isHovering, setIsHovering] = useState(false);
   const [isRemoved, setIsRemoved] = useState(false);
   const language = useSelector((state: RootState) => state.account.language);
@@ -45,7 +55,7 @@ const TimetableList = props => {
         to={
           props.disabled
             ? ""
-            : `/timetable?id=${props.id}&color=${props.color.replace("#", "")}`
+            : `/timetable?id=${props.id}&color=${props.color?.replace("#", "")}`
         }>
         <motion.div
           className={`timetable__item ${props.remove && "shake"}`}
@@ -59,7 +69,7 @@ const TimetableList = props => {
           }
           initial={{ y: 300 }}
           animate={{ y: 0 }}
-          transition={{ duration: 1, delay: props.delay }}
+          transition={{ delay: props.delay }}
           onMouseEnter={() => {
             setIsHovering(true);
           }}

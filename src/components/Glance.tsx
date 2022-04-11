@@ -88,7 +88,7 @@ const Glance = props => {
         (glanceInfo.time?.nextClassTime &&
           glanceInfo.time?.thisClassTime &&
           now.getSeconds() === 0) ||
-        refreshCount === 1
+        refreshCount === 2
       ) {
         const nextPeriodTime = advanceTimetoTime(
           glanceInfo.time?.nextClassTime,
@@ -188,8 +188,8 @@ const Glance = props => {
   }, [glanceInfo]);
 
   useEffect(() => {
-    console.log(tillNextPeriod);
-  }, [tillNextPeriod]);
+    console.log(refreshCount);
+  }, [refreshCount]);
 
   if (isLoading) {
     return (

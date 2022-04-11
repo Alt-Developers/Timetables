@@ -49,12 +49,13 @@ We beleive that Timetables should be **yours**. Thats why you can change your ac
 |v2.0|Rebuilt timetables from the ground up with a fresh new look to Timetables with the Azalea Design language|
 |v2.1|Made the Landing page, added the simple modal and configuration bar |
 |v3.0|Multiple school support, smoother animations, huge performance increase, future-proofing features and a new and better Landing page |
+|v3.1|Automatic class refetching , converted project to Typescript and brand new setup page|
 
 ---
 ## **Installation Guide** ⬇️
-The installation process is just like any javascript react project.
+The installation process is just like any typescript react project.
 
-1. **Install the node packages**
+1. **Install the project dependecies**
     ```zsh
     > npm install
     # or
