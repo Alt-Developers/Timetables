@@ -125,6 +125,7 @@ const Preferences = props => {
                     { value: "EN", name: "English" },
                     { value: "TH", name: "ไทย" },
                   ]}
+                  // @ts-ignore
                   onChange={setSelectedLanguage}
                   value={selectedLanguage}
                 />
@@ -136,6 +137,7 @@ const Preferences = props => {
                     { value: "24h", name: "24 hours" },
                     { value: "12h", name: "12 hours" },
                   ]}
+                  // @ts-ignore
                   onChange={setSelectedDateFormat}
                   value={selectedDateFormat}
                 />
@@ -151,6 +153,7 @@ const Preferences = props => {
                     { value: "covShow", name: "Show" },
                     { value: "covHide", name: "Hidden" },
                   ]}
+                  // @ts-ignore
                   onChange={setSelectedCovid}
                   value={selectedCovid}
                 />
@@ -262,8 +265,7 @@ const Preferences = props => {
                     }
                     return (
                       <TimetableItem
-                        style={{ width: 300 }}
-                        key={Math.random}
+                        key={index}
                         color={element.color}
                         text={element.className}
                         subText={schoolName}

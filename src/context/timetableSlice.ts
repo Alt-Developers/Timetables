@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { timetableState } from "../models/reduxStates";
+import { timetableState } from "../models/stateTypes";
 
 const initialState: timetableState = {
   format: {},

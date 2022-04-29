@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { modalActions } from "../context/modalSlice";
 import { RootState } from "../context";
-import { glanceInfo, unformattedPeriod } from "../models/glance";
+import { glanceInfo, unformattedPeriod } from "../models/glanceTypes";
 
 const Glance = props => {
   const [glanceInfo, setGlanceInfo] = useState<glanceInfo>({});

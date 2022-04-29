@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
 import { useState } from "react";
-import { useEffect } from "react";
+import { Typewriter } from "react-simple-typewriter";
+import Snackbar from "../components/Snackbar";
 
 const Landing = props => {
-  const [isThai, setIsThai] = useState(false);
+  const [isThai, setIsThai] = useState("EN");
   const isDarkMode =
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -14,17 +14,10 @@ const Landing = props => {
     return thai;
   };
 
-  useEffect(() => {
-    if (navigator.language === "th") {
-      setIsThai(true);
-    } else {
-      setIsThai(false);
-    }
-  }, []);
-
   return (
     <section className={`landing`}>
-      <div className="landing__nav">
+      <Snackbar />
+      {/* <div className="landing__nav">
         <h2>
           Timetables <span>by SS Developers</span>
         </h2>
@@ -35,19 +28,30 @@ const Landing = props => {
           }}>
           {isThai ? "TH" : "EN"}
         </button>
-      </div>
+      </div> */}
 
       <div className="landing__header">
         <div className="landing__text">
           <h1 style={isThai ? {} : { lineHeight: "7rem", marginTop: "-1rem" }}>
-            {lang("Next level", "ตารางเรียน")}
-            <br />
-            {lang("of Timetables", "ที่เหนือกว่าใครๆ")}
+            <Typewriter
+              words={[
+                "Next Level of Timetables",
+                "Timetables with superpowers",
+                "See everything at a glance",
+                "Find your favorite subjects",
+                "Period highlights",
+                "A physical timetable? Never heard of that",
+              ]}
+              cursor
+              cursorStyle="_"
+              loop
+            />
           </h1>
           <h3>{lang("Timetables v3 is here", "Timetables v3 มาแล้ว")}</h3>
         </div>
 
         <img
+          className=""
           src={
             isDarkMode
               ? "./icons/darkLandingPreview.png"
@@ -66,15 +70,15 @@ const Landing = props => {
               <button>{lang("Login", "เข้าสู่ระบบ")}</button>
             </Link>
           )}
-          <a
-            href="https://authentication.ssdevelopers.xyz/signup/timetables"
-            style={{ marginLeft: "2rem" }}>
-            {lang("Signup", "ลงทะเบียน")}
-          </a>
+          <div className="landing__buttons__aWrapper">
+            <a href="https://authentication.ssdevelopers.xyz/signup/timetables">
+              {lang("Signup", "ลงทะเบียน")}
+            </a>
+          </div>
         </div>
       </div>
 
-      <div className="landing__main">
+      <div className="landing__main hiddenOnPhone">
         <div className="landing__boxCon">
           <div className={`landing__boxRight ${isThai ? "" : "landing__thai"}`}>
             <h3>

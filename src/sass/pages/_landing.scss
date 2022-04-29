@@ -1,3 +1,13 @@
+.bigDisplayCover {
+  display: grid;
+  place-items: center;
+
+  &__cover {
+    height: 1080px;
+    width: 1920px;
+  }
+}
+
 .landing {
   // padding: 3rem;
   overflow: hidden;
@@ -44,11 +54,13 @@
   &__header {
     padding: 3rem;
     height: 85vh;
-    background-color: var(--gray-light-1);
+    background-color: #fd5252;
     position: relative;
 
     @include respond(phone) {
-      height: 80vh;
+      height: 100vh;
+      background-color: var(--background-color);
+      // background-color: #;
     }
 
     img {
@@ -60,8 +72,7 @@
       object-fit: contain;
 
       @include respond(phone) {
-        width: 100%;
-        bottom: 0;
+        display: none;
       }
     }
   }
@@ -70,18 +81,27 @@
     position: absolute;
     top: 4rem;
     left: 4rem;
-    color: var(--font-color);
+    color: #fff;
+    width: 40rem;
+    transition: all 0.2s;
 
     @include respond(phone) {
-      top: 2rem;
-      left: 2rem;
+      top: 0rem;
+      left: 0rem;
+      padding: 3rem;
+      background-color: #fd5252;
+      transition: all 0.2s;
+      width: 100%;
+      // height: 40vh;
+      border-radius: 0 0 2rem 2rem;
     }
 
     h1 {
       font-size: 5.5rem;
+      color: #fff;
 
       @include respond(phone) {
-        font-size: 5rem;
+        font-size: 4rem;
       }
     }
 
@@ -96,34 +116,48 @@
     position: absolute;
     bottom: 4rem;
     left: 4rem;
+    display: flex;
+    align-items: center;
 
     @include respond(phone) {
-      bottom: 3rem;
-      left: 3rem;
-      width: 60vw;
+      bottom: 2rem;
+      left: 2rem;
+      height: fit-content;
+      width: 100vw;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: start;
     }
 
     button {
-      background-color: #fd5252;
+      background-color: #fff;
+      border: none;
       padding: 2.5rem;
       border-radius: 20rem;
       box-shadow: none;
       width: 15rem;
-      color: #fff;
+      color: #000;
       font-size: 1.8rem;
       font-weight: 700;
-      border: none;
       transition: all 0.2s;
 
       @include respond(phone) {
-        width: 50vw;
+        width: calc(100vw - 5rem);
+        border-radius: 1.1rem;
+        order: 2;
+        background-color: #fd6262;
+        color: #fff;
       }
 
       &:hover {
         // scale: 1.1;
-        box-shadow: #fd5252 0px 0px 20px;
+        box-shadow: #fff 0px 0px 20px;
+        scale: 1.1;
+
+        @include respond(phone) {
+          box-shadow: none;
+        }
       }
 
       &:active {
@@ -133,11 +167,41 @@
 
     a {
       font-weight: 700;
-      color: var(--font-color);
+      color: #fff;
       font-size: 1.5rem;
+
+      @include respond(phone) {
+        width: 50vw;
+        font-size: 1.8rem;
+      }
 
       &:hover {
         text-decoration: underline;
+
+        @include respond(phone) {
+          text-decoration: none;
+        }
+      }
+    }
+
+    &__aWrapper {
+      @include respond(phone) {
+        display: grid;
+        place-items: center;
+        height: 7rem;
+        width: calc(100vw - 5rem);
+        background: var(--gray-light-3);
+        border-radius: 1.1rem;
+      }
+
+      a {
+        width: fit-content;
+        margin-left: 2rem;
+
+        @include respond(phone) {
+          margin-left: 0;
+          color: var(--font-color);
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { accountState } from "../models/reduxStates";
+import { accountState } from "../models/stateTypes";
 
 interface loginPayload {
   color: string;

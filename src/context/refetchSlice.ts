@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { refetchState } from "../models/reduxStates";
+import { refetchState } from "../models/stateTypes";
 
 const initialState: refetchState = {
   refetchCount: 0,

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { modalState } from "../models/reduxStates";
+import { modalState } from "../models/stateTypes";
 
 interface openModalPayload {
   header: string;

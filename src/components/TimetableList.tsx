@@ -46,6 +46,7 @@ const TimetableList = () => {
         <SelectSearch
           className="timetableSort"
           options={sortOptions}
+          // @ts-ignore
           onChange={setSelectedSortOption}
         />
       </div>

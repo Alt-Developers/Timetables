@@ -28,13 +28,20 @@ const AddTimetableItem = props => {
         classId: selectedOption,
         isPrimary: props.isPrimary,
       }),
-    }).then(data => {
-      dispatch(refetchActions.refetch(""));
-      if (props.isNewUser) {
-        props.liftDone(true);
-        // navigate("/");
-      }
-    });
+    })
+      .then(data => data.json())
+      .then(data => {
+        dispatch(refetchActions.refetch(""));
+        if (props.isNewUser) {
+          props.liftDone(true);
+          // navigate("/");
+        }
+        if (data.modal) {
+          dispatch(
+            modalActions.openModal({ header: data.header, text: data.message })
+          );
+        }
+      });
   };
 
   return (
@@ -95,6 +102,7 @@ const AddTimetableItem = props => {
             value={selectedOption}
             filterOptions={fuzzySearch}
             placeholder={props.placeholder}
+            // @ts-ignore
             onChange={setSelectedOption}
             emptyMessage={() => "Timetable not found"}
             search
