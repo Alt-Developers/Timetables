@@ -357,12 +357,31 @@ const Timetable = () => {
 
           <div
             className="weekday"
-            style={{
-              gridColumn: isNewton ? "8 / 9" : "6 / 7",
-              gridRow: "2/7",
-              display: "grid",
-              placeItems: "center",
-            }}>
+            style ={ 
+              identifier?.curClass === -70
+                ? {
+                    color: timetableColor,
+                    textShadow: `0px 0px 10px ${timetableColor}`,
+                    gridColumn: isNewton ? "8 / 9" : "6 / 7",
+                    gridRow: "2/7",
+                    display: "grid",
+                    placeItems: "center",
+                  }
+                : {
+                  gridColumn: isNewton ? "8 / 9" : "6 / 7",
+                  gridRow: "2/7",
+                  display: "grid",
+                  placeItems: "center",
+                  }
+                }
+            
+            // style={{
+              // gridColumn: isNewton ? "8 / 9" : "6 / 7",
+              // gridRow: "2/7",
+              // display: "grid",
+              // placeItems: "center",
+            // }}
+            >
             {language === "EN" ? "Lunch" : "พักกลางวัน"}
           </div>
         </motion.div>

@@ -103,6 +103,10 @@ const Preferences = props => {
                 {language === "EN" ? "To Dashboard" : "ไป Dashboard"}
               </a>
             </div>
+            <div className="ssAcc__item">
+              {/* <button onClick={() => }>Change themes</button> */}
+            </div>
+
             <button
               className="config__logout"
               onClick={() => {
