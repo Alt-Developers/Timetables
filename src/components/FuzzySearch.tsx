@@ -1,4 +1,4 @@
-import Fuse from "fuse.js";
+import Fuse from "fuse";
 
 export default function fuzzySearch(options) {
   const fuse = new Fuse(options, {

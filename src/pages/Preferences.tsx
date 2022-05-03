@@ -14,7 +14,7 @@ import { refetchActions } from "../context/refetchSlice";
 import { modalActions } from "../context/modalSlice";
 import { RootState } from "../context";
 
-const Preferences = props => {
+const Preferences = (props) => {
   const userInfo = useSelector((state: RootState) => state.account.userInfo);
   const language = useSelector((state: RootState) => state.account.language);
   const classInfo = useSelector(
@@ -35,6 +35,7 @@ const Preferences = props => {
   const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
 
   useEffect(() => {
+    document.title = "Preferences | SS Timetables";
     window.scrollTo(0, 0);
   }, []);
 
@@ -50,7 +51,7 @@ const Preferences = props => {
         showCovid: selectedCovid,
         dateTime: selectedDateFormat,
       }),
-    }).then(data => {
+    }).then((data) => {
       if (timesEffected !== 0) {
         dispatch(accountActions.setLanguage(selectedLanguage));
         dispatch(
@@ -99,15 +100,70 @@ const Preferences = props => {
               <a
                 href={`http://authentication.ssdevelopers.xyz/redirect/?service=timetables&token=${localStorage.getItem(
                   "token"
-                )}`}>
+                )}`}
+              >
                 {language === "EN" ? "To Dashboard" : "ไป Dashboard"}
               </a>
+            </div>
+            <div className="ssAcc__item themeSwitcher">
+              <h3>
+                {language === "EN" ? "Theme Switcher" : "เปลี่ยนธีมของคุณ"}
+              </h3>
+              <p>
+                {language === "EN"
+                  ? "Dark theme, light theme and system theme"
+                  : "ธีมมืด ธีมสว่าง และธีมระบบ"}
+              </p>
+              <div className="themeSwitcher__buttons">
+                <button
+                  onClick={() => {
+                    document.documentElement.setAttribute(
+                      "data-theme",
+                      "light"
+                    );
+                    localStorage.setItem("theme", "light");
+                  }}
+                >
+                  <i className="bx bx-sun"></i>
+                </button>{" "}
+                <button
+                  onClick={() => {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                    localStorage.setItem("theme", "dark");
+                  }}
+                >
+                  <i className="bx bx-moon"></i>
+                </button>
+                <button
+                  onClick={() => {
+                    if (
+                      window.matchMedia &&
+                      window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ) {
+                      document.documentElement.setAttribute(
+                        "data-theme",
+                        "dark"
+                      );
+                      localStorage.setItem("theme", "dark");
+                    } else {
+                      document.documentElement.setAttribute(
+                        "data-theme",
+                        "light"
+                      );
+                      localStorage.setItem("theme", "light");
+                    }
+                  }}
+                >
+                  <i className="bx bx-desktop"></i>
+                </button>
+              </div>
             </div>
             <button
               className="config__logout"
               onClick={() => {
                 dispatch(accountActions.logout());
-              }}>
+              }}
+            >
               <p> {language === "EN" ? "Logout" : "ออกจากระบบ"}</p>
             </button>
           </div>
@@ -118,7 +174,8 @@ const Preferences = props => {
             <div className="config__bar">
               <div
                 className="config__item"
-                style={isPhone ? {} : { paddingLeft: "1rem" }}>
+                style={isPhone ? {} : { paddingLeft: "1rem" }}
+              >
                 <h3>{language === "EN" ? "Language" : "ภาษา / Language"}</h3>
                 <SelectSearch
                   options={[
@@ -229,7 +286,8 @@ const Preferences = props => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.2, delay: 0.2 }}
-                className="bar timetable">
+                className="bar timetable"
+              >
                 {classInfo.primaryClass && (
                   <TimetableItem
                     color={classInfo.primaryClass.color}

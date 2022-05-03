@@ -8,7 +8,7 @@ import Covid from "../components/Covid";
 import { useEffect, useState } from "react";
 import { RootState } from "../context";
 
-const Home = props => {
+const Home = (props) => {
   const isAuthenticated = useSelector(
     (state: RootState) => state.account.isAuthenticated
   );
@@ -23,6 +23,8 @@ const Home = props => {
   console.log(classInfo);
 
   useEffect(() => {
+    document.title = "Home | SS Timetables";
+
     window.scrollTo(0, 0);
   }, []);
 
@@ -39,7 +41,8 @@ const Home = props => {
       {isAuthenticated && (
         <motion.div
           exit={{ transform: " scale( 0.8)" }}
-          transition={{ duration: 0.3 }}>
+          transition={{ duration: 0.3 }}
+        >
           <Header />
           <main>
             {fetchedUserInfo && <Glance />}

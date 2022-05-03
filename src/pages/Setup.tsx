@@ -10,7 +10,7 @@ import { accountActions } from "../context/accountSlice";
 import { useState } from "react";
 import { RootState } from "../context";
 
-const Setup = props => {
+const Setup = (props) => {
   const language = useSelector((state: RootState) => state.account.language);
   const userInfo = useSelector((state: RootState) => state.account.userInfo);
   const [selectedPrimary, setSelectedPrimary] = useState(false);
@@ -24,11 +24,11 @@ const Setup = props => {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
-      .then(data => {
+      .then((data) => {
         if (data.status === 200) return data.json();
         if (data.status === 500) return;
       })
-      .then(data => {
+      .then((data) => {
         dispatch(accountActions.login(data));
         dispatch(accountActions.setLanguage(data.config.language));
       });
@@ -40,7 +40,7 @@ const Setup = props => {
     }, 1000);
   }
 
-  const liftDone = isDone => {
+  const liftDone = (isDone) => {
     setSelectedPrimary(isDone);
   };
 
@@ -50,7 +50,8 @@ const Setup = props => {
         className="setup__left"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ type: "ease-in" }}>
+        transition={{ type: "ease-in" }}
+      >
         <div className="setup__textCon" style={{ background: userInfo.color }}>
           <h1>
             {language === "EN"
@@ -74,7 +75,8 @@ const Setup = props => {
                     boxShadow: `0 0 3rem ${userInfo.color}`,
                   }
                 : {}
-            }>
+            }
+          >
             <i
               className="bx bx-check-shield"
               style={
@@ -83,7 +85,8 @@ const Setup = props => {
                       color: "#fff",
                     }
                   : {}
-              }></i>
+              }
+            ></i>
             <p
               style={
                 agreed
@@ -91,11 +94,12 @@ const Setup = props => {
                       color: "#fff",
                     }
                   : {}
-              }>
+              }
+            >
               <span>{language === "EN" ? "Step 1." : "ขั้นตอนที่ 1."}</span>{" "}
               {language === "EN"
-                ? "Agree to the End User License Agreement"
-                : "ตกลงกับข้อตกลงของ Timetables"}
+                ? "Agree to the PDPA."
+                : "ตกลงกับ พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล"}
             </p>
           </div>
           <div
@@ -107,7 +111,8 @@ const Setup = props => {
                     boxShadow: `0 0 3rem ${userInfo.color}`,
                   }
                 : {}
-            }>
+            }
+          >
             <i
               className="bx bx-calendar-exclamation"
               style={
@@ -116,7 +121,8 @@ const Setup = props => {
                       color: "#fff",
                     }
                   : {}
-              }></i>
+              }
+            ></i>
             <p
               style={
                 selectedPrimary
@@ -124,7 +130,8 @@ const Setup = props => {
                       color: "#fff",
                     }
                   : {}
-              }>
+              }
+            >
               <span>{language === "EN" ? "Step 2." : "ขั้นตอนที่ 2."}</span>{" "}
               {language === "EN"
                 ? "Set your primary class"
@@ -155,77 +162,127 @@ const Setup = props => {
         </div> */}
         <div>
           <h3 className="bar__header">
-            {language === "EN" ? "Agreements" : "ข้อตกลง"}
+            {language === "EN" ? "PDPA Agreements" : "ข้อตกลง"}
           </h3>
           <div className="eula">
             <div className="eula__text">
-              End-User License Agreement (EULA) of Timetables This End-User
-              License Agreement ("EULA") is a legal agreement between you and SS
-              Developers. Our EULA was created by EULA Template for Timetables.
-              This EULA agreement governs your acquisition and use of our
-              Timetables software ("Software") directly from SS Developers or
-              indirectly through a SS Developers authorized reseller or
-              distributor (a "Reseller"). Please read this EULA agreement
-              carefully before completing the installation process and using the
-              Timetables software. It provides a license to use the Timetables
-              software and contains warranty information and liability
-              disclaimers. If you register for a free trial of the Timetables
-              software, this EULA agreement will also govern that trial. By
-              clicking "accept" or installing and/or using the Timetables
-              software, you are confirming your acceptance of the Software and
-              agreeing to become bound by the terms of this EULA agreement. If
-              you are entering into this EULA agreement on behalf of a company
-              or other legal entity, you represent that you have the authority
-              to bind such entity and its affiliates to these terms and
-              conditions. If you do not have such authority or if you do not
-              agree with the terms and conditions of this EULA agreement, do not
-              install or use the Software, and you must not accept this EULA
-              agreement. This EULA agreement shall apply only to the Software
-              supplied by SS Developers herewith regardless of whether other
-              software is referred to or described herein. The terms also apply
-              to any SS Developers updates, supplements, Internet-based
-              services, and support services for the Software, unless other
-              terms accompany those items on delivery. If so, those terms apply.
-              License Grant SS Developers hereby grants you a personal,
-              non-transferable, non-exclusive licence to use the Timetables
-              software on your devices in accordance with the terms of this EULA
-              agreement. You are permitted to load the Timetables software (for
-              example a PC, laptop, mobile or tablet) under your control. You
-              are responsible for ensuring your device meets the minimum
-              requirements of the Timetables software. You are not permitted to:
-              Edit, alter, modify, adapt, translate or otherwise change the
-              whole or any part of the Software nor permit the whole or any part
-              of the Software to be combined with or become incorporated in any
-              other software, nor decompile, disassemble or reverse engineer the
-              Software or attempt to do any such things Reproduce, copy,
-              distribute, resell or otherwise use the Software for any
-              commercial purpose Allow any third party to use the Software on
-              behalf of or for the benefit of any third party Use the Software
-              in any way which breaches any applicable local, national or
-              international law use the Software for any purpose that SS
-              Developers considers is a breach of this EULA agreement
-              Intellectual Property and Ownership SS Developers shall at all
-              times retain ownership of the Software as originally downloaded by
-              you and all subsequent downloads of the Software by you. The
-              Software (and the copyright, and other intellectual property
-              rights of whatever nature in the Software, including any
-              modifications made thereto) are and shall remain the property of
-              SS Developers. SS Developers reserves the right to grant licences
-              to use the Software to third parties. Termination This EULA
-              agreement is effective from the date you first use the Software
-              and shall continue until terminated. You may terminate it at any
-              time upon written notice to SS Developers. It will also terminate
-              immediately if you fail to comply with any term of this EULA
-              agreement. Upon such termination, the licenses granted by this
-              EULA agreement will immediately terminate and you agree to stop
-              all access and use of the Software. The provisions that by their
-              nature continue and survive will survive any termination of this
-              EULA agreement. Governing Law This EULA agreement, and any dispute
-              arising out of or in connection with this EULA agreement, shall be
-              governed by and construed in accordance with the laws of th.
+              Personal Data Protection Policy SS Developers regconizes the
+              importance of the protection of your personal data. This privacy
+              policy explains our practices regarding the collection used or
+              discosure of personal data including other's right of data.
+              Subject in accordance with the Personal Data Laws of Thailand. 1.)
+              Collection of Personal Data Personal data we have received
+              directly receive from the user in the account registeration
+              process 2.) Types of Data Collected Personal data which is name,
+              surname, date of brith and age. Contact information which is Email
+              Adress Account details such as username, password, account data
+              and others. 3.) Children If you are under the age of 20 or having
+              legal restrictions, we collect or disclose your personal data. We
+              require your parents or guardian to provide consent to us or allow
+              by the applicable laws. If we become aware that we have collected
+              personal data from children without verification of parental
+              consent, we take step to remove that information from our
+              databases. 4.) Storage of Data We store your personal data as soft
+              copy (Electronic Documents). We store your personal data by using
+              a server in Thailand and third-party server service providers
+              outside of Thailand 5.) Use of Data We use the collected data to
+              create and manage accounts, to improve products, services, or user
+              experiences and to share and manage information within
+              organization 6.) Disclosure of Personal Data We may disclose your
+              personal data to the organization in certain circumstances. We may
+              disclose your personal data within our organization to provide and
+              develop our products or service. We may combine information
+              internally across the different products or services covered by
+              this Privacy Policy to help us be more relevant and useful to you
+              and others. 7.) Data Retention We will retain your personal data
+              for as long as necessary during the period you are a customer or
+              under relationship with us, or for as long as necessary in
+              connection with the purposes set out in this Privacy Policy,
+              unless law requires or permits a longer retention period. We will
+              erase, destroy or anonymize your personal data when it is no
+              longer necessary or when the period lapses. 8.) Data Subject
+              Rights Subject to the Personal Data Protection Laws thereof, you
+              may exercise any of these rights in the following: Withdrawal of
+              consent: If you have given consent to us to collect, use or
+              disclose your personal data whether before or after the effective
+              date of the Personal Data Protection Laws, you have the right to
+              withdraw such consent at any time throughout the period your
+              personal data available to us, unless it is restricted by laws or
+              you are still under beneficial contract. Data access: You have the
+              right to access your personal data that is under our
+              responsibility; to request us to make a copy of such data for you;
+              and to request us to reveal as to how we obtain your personal
+              data. Data portability: You have the right to obtain your personal
+              data if we organize such personal data in automatic
+              machine-readable or usable format and can be processed or
+              disclosed by automatic means; to request us to send or transfer
+              the personal data in such format directly to other data
+              controllers if doable by automatic means; and to request to obtain
+              the personal data in such format sent or transferred by us
+              directly to other data controller unless not technically feasible.
+              Objection: You have the right to object to collection, use or
+              disclosure of your personal data at any time if such doing is
+              conducted for legitimate interests of us, corporation or
+              individual which is within your reasonable expectation; or for
+              carrying out public tasks. Data erasure or destruction: You have
+              the right to request us to erase, destroy or anonymize your
+              personal data if you believe that the collection, use or
+              disclosure of your personal data is against relevant laws; or
+              retention of the data by us is no longer necessary in connection
+              with related purposes under this Privacy Policy; or when you
+              request to withdraw your consent or to object to the processing as
+              earlier described. Suspension: You have the right to request us to
+              suspend processing your personal data during the period where we
+              examine your rectification or objection request; or when it is no
+              longer necessary and we must erase or destroy your personal data
+              pursuant to relevant laws but you instead request us to suspend
+              the processing. Rectification: You have the right to rectify your
+              personal data to be updated, complete and not misleading.
+              Complaint lodging: You have the right to complain to competent
+              authorities pursuant to relevant laws if you believe that the
+              collection, use or disclosure of your personal data is violating
+              or not in compliance with relevant laws. You can exercise these
+              rights as the Data Subject by contacting our Data Protection
+              Officer as mentioned below. We will notify the result of your
+              request within 30 days upon receipt of such request. If we deny
+              the request, we will inform you of the reason via SMS, email
+              address, telephone, registered mail (if applicable). 9.) Data
+              Security We endeavor to protect your personal data by establishing
+              security measures in accordance with the principles of
+              confidentiality, integrity, and availability to prevent loss,
+              unauthorized or unlawful access, destruction, use, alteration, or
+              disclosure including administrative safeguard, technical
+              safeguard, physical safeguard and access controls. 10.) Data
+              Breach Notification We will notify the Office of the Personal Data
+              Protection Committee without delay and, where feasible, within 72
+              hours after having become aware of it, unless such personal data
+              breach is unlikely to result in a risk to the rights and freedoms
+              of you. If the personal data breach is likely to result in a high
+              risk to the rights and freedoms of you, we will also notify the
+              personal data breach and the remedial measures to you without
+              delay through our website, SMS, email address, telephone or
+              registered mail (if applicable). 10.) Changes to this Privacy
+              Policy We may change this Privacy Policy from time to time. Any
+              changes of this Privacy Policy, we encourage you to frequently
+              check on our website. This Privacy Policy was last updated and
+              effective on 18th April 2022 11.) Links to Other Sites The purpose
+              of this Privacy Policy is to offer products or services and use of
+              our website. Any websites from other domains found on our site is
+              subject to their privacy policy which is not related to us. 12.)
+              Contact Information If you have any questions about this Privacy
+              Policy or would like to exercise your rights, you can contact us
+              by using the following details: Data Controller SS Developers 316
+              Banlatdao alley, Sanphawut Rd., Bang Na Nuea, Bang Na, Bangkok,
+              10260 Email: prawich@ssdevelopers.xyz,
+              jiratchutrakul@ssdevelopers.xyz Website: ssdevelopers.xyz Phone:
+              0935936551, 0992940440 Discord: S Ξ N#3334 , 👈(⌒▽⌒)👉#8066 Data
+              Protection Officer SS Developers Team 316 Banlatdao alley,
+              Sanphawut Rd., Bang Na Nuea, Bang Na, Bangkok, 10260 Email:
+              prawich@ssdevelopers.xyz, jiratchutrakul@ssdevelopers.xyz
+              Phone:0935936551, 0992940440 Discord: S Ξ N#3334 , 👈(⌒▽⌒)👉#8066
             </div>
             <div className="eula__button">
-              <h3>{language === "EN" ? "Agree" : "ตกลง"}</h3>
+              <h3>{language === "EN" ? "I accept the agreements" : "ตกลง"}</h3>
               <button onClick={() => setAgreed(!agreed)}>
                 {agreed ? (
                   <i className="bx bx-checkbox-checked"></i>

@@ -2,13 +2,13 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
-const GlanceItem = props => {
+const GlanceItem = (props) => {
   const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
 
   return (
     <>
       <motion.div
-        initial={props.animation === "none" ? { y: 0 } : { y: 300 }}
+        initial={props.animation === "none" || isPhone ? { y: 0 } : { y: 300 }}
         animate={{ y: 0 }}
         transition={
           props.secondItem ? { duration: 0.1, delay: 0.05 } : { duration: 0.1 }
@@ -16,7 +16,8 @@ const GlanceItem = props => {
         className={`bar__item ${props.size === "small" && "bsmall"} ${
           props.size === "large" && "blarge"
         } ${props.size === "full" && "bfull"}`}
-        style={{ background: props.color }}>
+        style={{ background: props.color }}
+      >
         {props.header}
         {props.subheader && (
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -27,7 +28,8 @@ const GlanceItem = props => {
           <Link
             to={`/timetable?id=${
               props.link.id
-            }&color=${props.link.color.replace("#", "")}`}>
+            }&color=${props.link.color.replace("#", "")}`}
+          >
             <button className="btn bar__item--btn">{props.link.text}</button>
           </Link>
         )}

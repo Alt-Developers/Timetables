@@ -19,7 +19,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Suspense, useEffect, useState } from "react";
 import { accountActions } from "./context/accountSlice";
 import { timetableActions } from "./context/timetableSlice";
-import { modalActions } from "./context/modalSlice";
 import { RootState } from "./context";
 
 function App() {
@@ -35,23 +34,30 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
+    if (localStorage.getItem("theme")) {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("theme") ?? ""
+      );
+    }
+
     const token = localStorage.getItem("token");
     fetch("https://static.easysunday.com/covid-19/getTodayCases.json")
-      .then(data => data.json())
-      .then(data => {
+      .then((data) => data.json())
+      .then((data) => {
         console.log(data);
         dispatch(accountActions.covid(data));
       });
 
     fetch("https://disease.sh/v3/covid-19/all")
-      .then(data => data.json())
-      .then(data => dispatch(accountActions.covidWorldwide(data)));
+      .then((data) => data.json())
+      .then((data) => dispatch(accountActions.covidWorldwide(data)));
 
     fetch(
       `https://apis.ssdevelopers.xyz/timetables/getFormat?language=${language}`
     )
-      .then(data => data.json())
-      .then(data => {
+      .then((data) => data.json())
+      .then((data) => {
         dispatch(timetableActions.initFormat(data.formattedFormat));
       });
 
@@ -75,14 +81,14 @@ function App() {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
-        .then(data => {
+        .then((data) => {
           if (data.status === 404) {
             localStorage.removeItem("token");
             navigate("/landing");
           }
           return data.json();
         })
-        .then(data => {
+        .then((data) => {
           if (data.error) {
             navigate("/landing");
           } else {
@@ -118,7 +124,8 @@ function App() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.2 }}>
+          transition={{ duration: 0.2 }}
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/landing" element={<Landing />} />

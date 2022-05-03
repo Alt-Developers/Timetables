@@ -2,12 +2,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:  "Ubuntu","Noto Sans Thai",sans-serif;
+  font-family: "Ubuntu", "Noto Sans Thai", sans-serif;
 }
 
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
+
+  @include respond(tab-land) {
+    font-size: 55%;
+  }
 }
 
 h1 {

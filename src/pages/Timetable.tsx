@@ -54,12 +54,12 @@ const Timetable = () => {
         },
       }
     )
-      .then(data => data.json())
-      .then(data => {
+      .then((data) => data.json())
+      .then((data) => {
         if (data.error) navigate("/");
 
         console.log(data);
-        console.log(data.refresher);
+        document.title = `${data.className} | SS Timetables`;
         setIdentifier(data.identifier);
         setFormat(data.timetableFormat.classCode);
         setTimetableData(data.timetableData);
@@ -117,18 +117,18 @@ const Timetable = () => {
             const counts = {};
 
             // maping dayArray to get mergedArray and positionsArray
-            dayArray.forEach(period => {
+            dayArray.forEach((period) => {
               counts[period] = (counts[period] || 0) + 1;
               if (!positionsArray.includes(period)) {
                 positionsArray.push(period);
               }
             });
 
-            positionsArray.map(position =>
+            positionsArray.map((position) =>
               mergedArray.push(`${position}${counts[position]}`)
             );
 
-            mergedArray.map(period => {
+            mergedArray.map((period) => {
               return formattedArr.push([
                 data.timetableFormat.classCode[language][period.slice(0, 3)]
                   .name,
@@ -137,12 +137,15 @@ const Timetable = () => {
             });
 
             // @ts-ignore
-            setFormattedPeriods(formattedPeriods => [
+            setFormattedPeriods((formattedPeriods) => [
               ...formattedPeriods,
               ...formattedArr,
             ]);
             // @ts-ignore
-            setMergedPeriods(mergedPeriods => [...mergedPeriods, mergedArray]);
+            setMergedPeriods((mergedPeriods) => [
+              ...mergedPeriods,
+              mergedArray,
+            ]);
           }
         }
 
@@ -187,7 +190,7 @@ const Timetable = () => {
     return () => clearInterval(intervalId);
   }, [refreshCount]);
 
-  const searchKeypressHandler = event => {
+  const searchKeypressHandler = (event) => {
     const keypress = event.target.value;
     const searchedArray = [];
     const regex = new RegExp(keypress, "i");
@@ -204,7 +207,8 @@ const Timetable = () => {
       <>
         <section
           className="timetableNav"
-          style={{ backgroundColor: timetableColor }}>
+          style={{ backgroundColor: timetableColor }}
+        >
           <Link to="/" className="timetableNav__home">
             <h3>&#8249; {language === "EN" ? "Home" : "หน้าหลัก"}</h3>
           </Link>
@@ -215,8 +219,6 @@ const Timetable = () => {
           <img
             src={`https://apis.ssdevelopers.xyz/${userInfo.profilePicture}`}
             alt="user profile picture"
-            height="50"
-            width="50"
           />
         </section>
         <section className="timetableBar">
@@ -251,7 +253,8 @@ const Timetable = () => {
     <>
       <section
         className="timetableNav"
-        style={{ backgroundColor: timetableColor }}>
+        style={{ backgroundColor: timetableColor }}
+      >
         <Link to="/" className="timetableNav__home">
           <h3>&#8249; {language === "EN" ? "Home" : "หน้าหลัก"}</h3>
         </Link>
@@ -278,7 +281,8 @@ const Timetable = () => {
           <motion.h1
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}>
+            transition={{ delay: 0.1 }}
+          >
             {clock}
           </motion.h1>
         </div>
@@ -305,13 +309,15 @@ const Timetable = () => {
               isNewton ? timeLayout.length - 1 : timeLayout.length + 1
             }, ${isTabLand ? (isNewton ? "6.5rem" : "12rem") : "1fr"})`,
             height: "85vh",
-          }}>
+          }}
+        >
           <div
             className="timetablePeriodTime"
             style={{
               borderRadius: "1.1rem 0 0 1.1rem !important",
               margin: "0 0 0 0 !important",
-            }}>
+            }}
+          >
             <h3></h3>
           </div>
           {timeLayout.map((element, index) => (
@@ -334,7 +340,8 @@ const Timetable = () => {
               } ${
                 index === timeLayout.length - 1 && "timetablePeriodTime__last"
               }`}
-              key={index}>
+              key={index}
+            >
               <h3>{element}</h3>
             </div>
           ))}
@@ -362,7 +369,8 @@ const Timetable = () => {
               gridRow: "2/7",
               display: "grid",
               placeItems: "center",
-            }}>
+            }}
+          >
             {language === "EN" ? "Lunch" : "พักกลางวัน"}
           </div>
         </motion.div>

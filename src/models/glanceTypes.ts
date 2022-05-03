@@ -1,6 +1,10 @@
 export interface glanceInfo {
   curClass?: string;
   nextClass?: string;
+  name?: {
+    TH?: string;
+    EN?: string;
+  }
   format?: {
     classCode: {
       EN: {

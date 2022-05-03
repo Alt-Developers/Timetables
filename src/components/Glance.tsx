@@ -6,11 +6,10 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { modalActions } from "../context/modalSlice";
 import { RootState } from "../context";
 import { glanceInfo, unformattedPeriod } from "../models/glanceTypes";
 
-const Glance = props => {
+const Glance = (props) => {
   const [glanceInfo, setGlanceInfo] = useState<glanceInfo>({});
   const [currentPeriod, setCurrentPeriod] = useState({
     name: "WKN",
@@ -33,6 +32,7 @@ const Glance = props => {
   const dispatch = useDispatch();
 
   const advanceTimetoTime = (advanceTime, now) => {
+    // console.log(advanceTime, now);
     return advanceTime.length === 5
       ? new Date(
           now.getFullYear(),
@@ -66,9 +66,7 @@ const Glance = props => {
   }, []);
 
   useEffect(() => {
-    if (glanceInfo.refresher?.length !== 0) {
-      setRefreshCount(refreshCount + 1);
-    }
+    if (glanceInfo.refresher?.length !== 0) setRefreshCount(refreshCount + 1);
   }, [glanceInfo.refresher]);
 
   // Glance timekeeper | refresher & next period calculations
@@ -85,9 +83,9 @@ const Glance = props => {
 
       // Till next period calculations
       if (
-        (glanceInfo.time?.nextClassTime &&
-          glanceInfo.time?.thisClassTime &&
-          now.getSeconds() === 0) ||
+        glanceInfo.time?.nextClassTime &&
+        glanceInfo.time?.thisClassTime &&
+        now.getSeconds() === 0 &&
         refreshCount === 2
       ) {
         const nextPeriodTime = advanceTimetoTime(
@@ -199,7 +197,8 @@ const Glance = props => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
-          className="bar">
+          className="bar"
+        >
           a
         </motion.section>
       </>
@@ -213,7 +212,8 @@ const Glance = props => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
-          className="bar">
+          className="bar"
+        >
           <GlanceItem
             color={"#3fd9a5"}
             header={
@@ -273,7 +273,8 @@ const Glance = props => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
-          className="bar">
+          className="bar"
+        >
           {unformattedPeriod.currentPeriod === "FTD" &&
           unformattedPeriod.nextPeriod === "FTD" ? (
             <>
@@ -321,7 +322,6 @@ const Glance = props => {
             </>
           ) : (
             <>
-              {" "}
               <GlanceItem
                 color={
                   "linear-gradient(45deg, rgba(105,172,234,1) 0%, rgba(110,223,100,1) 71%)"
@@ -350,6 +350,61 @@ const Glance = props => {
         </motion.section>
       </>
     );
+  } else if (
+    (unformattedPeriod.currentPeriod === "PHD" ||
+      unformattedPeriod.currentPeriod === "SSH") &&
+    (unformattedPeriod.nextPeriod === "PHD" ||
+      unformattedPeriod.currentPeriod === "SSH") &&
+    classInfo.primaryClass
+  ) {
+    return (
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.1 }}
+        className="bar"
+      >
+        <GlanceItem
+          color={"#3fd9a5"}
+          header={
+            <h3>
+              {language === "EN"
+                ? `It's ${glanceInfo.name?.EN}`
+                : `วันนี้${glanceInfo.name?.EN}`}
+            </h3>
+          }
+          subheader={false}
+          link={false}
+          icon={`./icons/${currentPeriod.icon}`}
+          size={"small"}
+        />
+        <GlanceItem
+          color={"#eb345b"}
+          header={
+            <h3>
+              {language === "EN" ? "Wonder which" : "ได้เวลาเตรียมตัว"}
+              <br />
+              {language === "EN"
+                ? "lessons are coming up?"
+                : "สำหรับสัปดาห์หน้าแล้ว"}
+            </h3>
+          }
+          subheader={
+            language === "EN"
+              ? "Timetables to the rescue!"
+              : "ตารางสอนอาจจะช่วยได้นะ"
+          }
+          link={{
+            id: classInfo.primaryClass._id,
+            color: userInfo?.color?.replace("#", ""),
+            text: language === "EN" ? "View in timetable" : "ดูในตารางสอน",
+          }}
+          icon={`./icons/neural.png`}
+          size={"large"}
+          secondItem
+        />
+      </motion.section>
+    );
   } else if (classInfo.primaryClass) {
     return (
       <>
@@ -358,7 +413,8 @@ const Glance = props => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
-          className="bar">
+          className="bar"
+        >
           <>
             <GlanceItem
               color={"#69ACEA"}
@@ -412,7 +468,8 @@ const Glance = props => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
-          className="bar">
+          className="bar"
+        >
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -421,7 +478,8 @@ const Glance = props => {
             style={{
               animation: "bgColor 5s infinite linear",
               width: "100%",
-            }}>
+            }}
+          >
             <h3>Welcome to Timetables!</h3>
             <p>Add your primary class to get started.</p>
             <Link to="/preferences">

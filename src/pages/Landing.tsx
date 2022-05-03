@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import Snackbar from "../components/Snackbar";
 
-const Landing = props => {
+const Landing = (props) => {
   const [isThai, setIsThai] = useState("EN");
   const isDarkMode =
     window.matchMedia &&
@@ -13,6 +13,10 @@ const Landing = props => {
     if (isThai) return eng;
     return thai;
   };
+
+  useEffect(() => {
+    document.title = "Timetables | SS Developers";
+  }, []);
 
   return (
     <section className={`landing`}>
@@ -127,7 +131,8 @@ const Landing = props => {
             <section className="bar">
               <div
                 className="bar__item bsmall"
-                style={{ background: "#69ACEA" }}>
+                style={{ background: "#69ACEA" }}
+              >
                 <h3>
                   Current Period: <br />
                   Maths
@@ -144,7 +149,8 @@ const Landing = props => {
               </div>
               <div
                 className="bar__item bsmall"
-                style={{ background: "#70F094" }}>
+                style={{ background: "#70F094" }}
+              >
                 <h3>
                   Next Period: <br />
                   Physics
