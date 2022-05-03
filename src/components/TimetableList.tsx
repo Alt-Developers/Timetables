@@ -21,6 +21,33 @@ const TimetableList = () => {
     (state: RootState) => state.timetable.classInfo
   );
 
+  const toSchoolName = (schoolId) => {
+    let schoolName;
+
+    switch (schoolId) {
+      case "ASSUMPTION":
+        language === "EN"
+          ? (schoolName = "Assumption")
+          : (schoolName = "อัสสัมชัญ");
+        break;
+      case "NEWTON":
+        language === "EN"
+          ? (schoolName = "Newton")
+          : (schoolName = "นิวตัน");
+        break;
+      case "ESSENCE":
+        language === "EN"
+          ? (schoolName = "Essence")
+          : (schoolName = "เอสเซนส์");
+        break;
+      default:
+        language === "EN" ? (schoolName = "") : (schoolName = "");
+        break;
+    }
+
+    return schoolName;
+  }
+
   useEffect(() => {
     const schoolSet: (string | undefined)[] = [];
     if (!schoolSet.includes(classInfo.primaryClass?.school))
@@ -28,12 +55,12 @@ const TimetableList = () => {
     classInfo?.starredClass?.forEach(element => {
       if (!schoolSet.includes(element.school)) schoolSet.push(element.school);
     });
-    [...new Set(schoolSet)].map(school =>
+    [...new Set(schoolSet)].map(school =>{
       // @ts-ignore
       setSortOptions(sortOptions => [
         ...sortOptions,
-        { value: school, name: school },
-      ])
+        { value: school, name: toSchoolName(school) },
+      ])}
     );
   }, []);
 
@@ -76,33 +103,13 @@ const TimetableList = () => {
             )}
             {selectedSortOption === "EVERY" &&
               classInfo.starredClass?.map((element, index) => {
-                let schoolName;
-                switch (element.school) {
-                  case "ASSUMPTION":
-                    language === "EN"
-                      ? (schoolName = "Assumption")
-                      : (schoolName = "อัสสัมชัญ");
-                    break;
-                  case "NEWTON":
-                    language === "EN"
-                      ? (schoolName = "Newton")
-                      : (schoolName = "นิวตัน");
-                    break;
-                  case "ESSENCE":
-                    language === "EN"
-                      ? (schoolName = "Essence")
-                      : (schoolName = "เอสเซนส์");
-                    break;
-                  default:
-                    language === "EN" ? (schoolName = "") : (schoolName = "");
-                    break;
-                }
+
                 return (
                   <TimetableItem
                     key={index}
                     color={element.color}
                     text={element.className}
-                    subText={schoolName}
+                    subText={toSchoolName(element.school)}
                     id={element._id}
                     delay={index / 10}
                   />
