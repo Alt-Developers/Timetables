@@ -63,7 +63,7 @@ const Glance = (props) => {
         setGlanceInfo(data);
         setIsLoading(false);
       });
-  }, []);
+  }, [refresher]);
 
   useEffect(() => {
     if (glanceInfo.refresher?.length !== 0) setRefreshCount(refreshCount + 1);
@@ -77,17 +77,21 @@ const Glance = (props) => {
       const advanceTime: string | number = +`${now.getHours()}${
         (now.getMinutes() < 10 ? "0" : "") + now.getMinutes()
       }${(now.getSeconds() < 10 ? "0" : "") + now.getSeconds()}`;
+
       // @ts-ignore
-      if (glanceInfo.refresher.includes(advanceTime.toString()))
+      if (glanceInfo.refresher.includes(advanceTime.toString())) {
+        console.log("refresher incremented");
         setRefresher(refresher + 1);
+      }
 
       // Till next period calculations
       if (
-        glanceInfo.time?.nextClassTime &&
-        glanceInfo.time?.thisClassTime &&
-        now.getSeconds() === 0 &&
+        (glanceInfo.time?.nextClassTime &&
+          glanceInfo.time?.thisClassTime &&
+          now.getSeconds() === 0) ||
         refreshCount === 2
       ) {
+        setRefreshCount(refreshCount + 1);
         const nextPeriodTime = advanceTimetoTime(
           glanceInfo.time?.nextClassTime,
           now

@@ -24,8 +24,6 @@ const Home = (props) => {
 
   useEffect(() => {
     document.title = "Home | SS Timetables";
-
-    window.scrollTo(0, 0);
   }, []);
 
   let timesFetched = 1;

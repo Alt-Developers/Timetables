@@ -28,7 +28,6 @@ function App() {
   const refetch = useSelector((state: RootState) => state.refetch.refetchCount);
   const language = useSelector((state: RootState) => state.account.language);
   const userInfo = useSelector((state: RootState) => state.account);
-  const modalState = useSelector((state: RootState) => state.modal);
   const [getUserIsLoading, setGetUserIsLoading] = useState(true);
   const [getMyClassIsLoading, setGetMyClassIsLoading] = useState(true);
   const location = useLocation();

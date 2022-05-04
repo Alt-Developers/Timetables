@@ -2,7 +2,7 @@ import TimetableDay from "../components/TimetableDay";
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -13,7 +13,6 @@ const Timetable = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const userInfo = useSelector((state: RootState) => state.account.userInfo);
   const language = useSelector((state: RootState) => state.account.language);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [timeLayout, setTimeLayout] = useState<string[]>([]);
   const [timetableData, setTimetableData] = useState<any>({});
