@@ -1,0 +1,48 @@
+.simpleSelect {
+    display: block;
+    height: 50px;
+    width: 100%;
+    padding: 0 40px 0 16px;
+    background: var(--background-color);
+    border: 1px solid transparent;
+    border-radius: 3px;
+    outline: none;
+    font-size: 14px;
+    text-align: left;
+    text-overflow: ellipsis;
+    line-height: 36px;
+    -webkit-appearance: none;
+    border-radius: 1.1rem;
+    color: var(--font-color);
+    transition: all .2s;
+    position: relative;
+
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      -webkit-appearance: none;
+    }
+
+    &:hover {
+        border: 1px solid black;
+    }
+
+    &__wrapper {
+        position: relative;
+        z-index: 1;
+        color: #000;
+        width: 20rem;
+
+        &::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: calc(50% - 9px);
+            right: 19px;
+            width: 11px;
+            height: 11px;
+            color: #fff !important;
+        }
+    }
+}

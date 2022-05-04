@@ -4,6 +4,7 @@ import { accountState } from "../models/stateTypes";
 interface loginPayload {
   color: string;
   email: string;
+  type: "developer" | "user";
   firstName: string;
   lastName: string;
   profilePicture: string;

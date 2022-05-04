@@ -1,6 +1,7 @@
 export interface accountState {
   isAuthenticated: boolean;
   userInfo: {
+    type?: "developer" | "user";
     color?: string;
     email?: string;
     firstName?: string;

@@ -22,10 +22,10 @@
     flex-direction: column;
     padding: 0;
     background-color: transparent;
-    filter: none;
     height: 40rem;
     margin-bottom: 2rem;
-    overflow: none;
+    overflow: visible;
+    box-shadow: none;
   }
 
   &__header {
@@ -48,7 +48,8 @@
 
     @include respond(phone) {
       padding-bottom: 8rem;
-      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+      box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.10);
+
     }
 
     &--btn {

@@ -16,7 +16,7 @@ const GlanceItem = (props) => {
         className={`bar__item ${props.size === "small" && "bsmall"} ${
           props.size === "large" && "blarge"
         } ${props.size === "full" && "bfull"}`}
-        style={{ background: props.color }}
+        style={{ background: props.background ? `url(${props.background})` : props.color }}
       >
         {props.header}
         {props.subheader && (

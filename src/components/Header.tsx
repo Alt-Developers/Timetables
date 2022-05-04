@@ -22,22 +22,25 @@ const Header = props => {
   );
 
   const hourFormat =
-    dateTime ===
-    useEffect(() => {
-      setInterval(() => {
-        const date = new Date();
-        const formatedDate = date.toLocaleString("en-US", {
-          hour: "numeric",
-          minute: "numeric",
-          hour12: dateTime === "12h" ? true : false,
-        });
-        date.getSeconds() === 0 && setClock(formatedDate);
-        // @ts-ignore
-      }, [1000]);
-    }, []);
+  dateTime ===
+  useEffect(() => {
+    let intervalId = setInterval(() => {
+      const date = new Date();
+      const formatedDate = date.toLocaleString("en-US", {
+        hour: "numeric",
+        minute: "numeric",
+        hour12: dateTime === "12h" ? true : false,
+      });
+      date.getSeconds() === 0 && setClock(formatedDate);
+      // @ts-ignore
+    }, [1000]);
+
+    return (() => clearInterval(intervalId));
+  }, []);
+
 
   return (
-    <div className="header" style={{ backgroundColor: userInfo.color }}>
+    <div className="header" style={{ background: userInfo.type === "developer" ? `linear-gradient(27deg, ${userInfo.color} 0%, ${userInfo.color + "60"} 100%)` : userInfo.color }}>
       {!props.text ? (
         <h1>
           {language === "EN" ? "It's currently" : "ขณะนี้เวลา"} <br />
@@ -51,11 +54,11 @@ const Header = props => {
         {language === "EN" ? (
           <h3>
             {`${userInfo.firstName} ${userInfo.lastName}'s`} <br />
-            SS Account
+            {userInfo.type === "developer" ? "SS Developer Account" : "SS Account"}
           </h3>
         ) : (
           <h3>
-            SS Account ของ
+             {userInfo.type === "developer" ? "SS Developer Account ของ" : "SS Account ของ"}
             <br />
             {`${userInfo.firstName} ${userInfo.lastName}`}
           </h3>
@@ -70,9 +73,9 @@ const Header = props => {
 
           <Link to={`${props.clickProfile === "home" ? "/" : "/preferences"}`}>
             {location.pathname === "/" ? (
-              <i className="bx bxs-cog header__icon"></i>
+              <i className={`bx bxs-cog header__icon`}  ></i>
             ) : (
-              <i className="bx bxs-home header__homeIcon"></i>
+              <i className="bx bxs-home header__homeIcon"  ></i>
             )}
           </Link>
         </div>

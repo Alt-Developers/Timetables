@@ -27,7 +27,7 @@ const Timetable = () => {
   const [refresher, setRefresher] = useState(1);
   const [refresherTime, setRefresherTime] = useState([]);
   const [refreshCount, setRefreshCount] = useState(0);
-  const isTabLand = useMediaQuery({ query: "(max-width: 56.25em)" });
+  const isTabLand = useMediaQuery({ query: "(max-width: 75em)" });
 
   const [clock, setClock] = useState(
     new Date().toLocaleString("en-US", {
@@ -306,7 +306,7 @@ const Timetable = () => {
               isNewton ? (isTabLand ? "12rem " : "2fr ") : ""
             }repeat(${
               isNewton ? timeLayout.length - 1 : timeLayout.length + 1
-            }, ${isTabLand ? (isNewton ? "6.5rem" : "12rem") : "1fr"})`,
+            }, ${isTabLand ? (isNewton ? "6.5rem" : "15rem") : "1fr"})`,
             height: "85vh",
           }}
         >
@@ -335,9 +335,9 @@ const Timetable = () => {
                     }
               }
               className={`timetablePeriodTime ${
-                index === 0 && "timetablePeriodTime__first"
+                index === 0 ? "timetablePeriodTime__first" : ""
               } ${
-                index === timeLayout.length - 1 && "timetablePeriodTime__last"
+                index === timeLayout.length - 1 ? (isNewton ? "timetablePeriodTime__last" : "") : ""
               }`}
               key={index}
             >

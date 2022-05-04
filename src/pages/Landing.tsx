@@ -35,7 +35,23 @@ const Landing = (props) => {
       </div> */}
 
       <div className="landing__header">
-        <div className="landing__text">
+        <div className="landing__phoneHeader hiddenOnPC">
+          <h3>
+            Timetables is
+            <span>
+              <br /> Complicated <br /> Many Steps
+              <br />
+              Physical
+            </span>
+            <br />
+            Simple <br /> Customizable <br /> Practical <br />
+            <span>
+              Closed-Source <br /> Dull <br /> 20th Century <br />
+            </span>
+          </h3>
+        </div>
+
+        <div className="landing__text hiddenOnPhone">
           <h1 style={isThai ? {} : { lineHeight: "7rem", marginTop: "-1rem" }}>
             <Typewriter
               words={[

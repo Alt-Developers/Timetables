@@ -14,11 +14,12 @@
     height: fit-content;
     border-radius: 1.1rem;
     border: none;
-    display: grid;
-    grid-template-columns: 2fr 2fr 2fr 1fr;
+    display: flex;
+    gap: 2rem;
     position: relative;
 
     @include respond(phone) {
+      display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: 1fr 1fr 1fr 1fr;
       filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.1));
@@ -35,16 +36,16 @@
   }
 
   &__buttonWrapper {
+    margin-left: auto !important;
+
     @include respond(phone) {
       margin: 2rem !important;
     }
   }
 
   &__button {
-    width: 10% !important;
-    top: 0rem !important;
-    right: 0rem !important;
-    left: auto !important;
+    position: static !important;
+    width: 15rem !important;
     height: 100% !important;
 
     @include respond(phone) {
@@ -58,6 +59,7 @@
     background-color: var(--gray-light-1);
     // background-color: orangered;
     padding: 2rem;
+    width: 40rem;
     border-right: 1px solid var(--gray-dark-1);
     display: flex;
     align-items: center;
@@ -189,6 +191,13 @@
         transform: scale(0.9);
       }
     }
+  }
+
+  &__active {
+    color: #000 !important;
+    background-color: white !important;
+    transform: scale(1.05);
+    box-shadow: white 0px 0px 10px;
   }
 }
 

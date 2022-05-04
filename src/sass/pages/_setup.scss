@@ -1,6 +1,6 @@
 .setup {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 30vw 1fr;
   min-height: 100vh;
 
   @include respond(phone) {

@@ -33,6 +33,7 @@ const Preferences = (props) => {
     userInfo.config?.dateTime
   );
   const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
+  const [curTheme, setCurTheme] = useState(localStorage.getItem("theme") ?? "light");
 
   useEffect(() => {
     document.title = "Preferences | SS Timetables";
@@ -114,27 +115,33 @@ const Preferences = (props) => {
                   ? "Dark theme, light theme and system theme"
                   : "ธีมมืด ธีมสว่าง และธีมระบบ"}
               </p>
-              <div className="themeSwitcher__buttons">
+              <div className={`themeSwitcher__buttons`}>
                 <button
+                className={curTheme === "light" ? "themeSwitcher__active" : ""}
+
                   onClick={() => {
                     document.documentElement.setAttribute(
                       "data-theme",
                       "light"
                     );
+                    setCurTheme("light");
                     localStorage.setItem("theme", "light");
                   }}
                 >
                   <i className="bx bx-sun"></i>
-                </button>{" "}
+                </button>
                 <button
+                className={curTheme === "dark" ? "themeSwitcher__active" : ""}
                   onClick={() => {
                     document.documentElement.setAttribute("data-theme", "dark");
                     localStorage.setItem("theme", "dark");
+                    setCurTheme("dark");
                   }}
                 >
                   <i className="bx bx-moon"></i>
                 </button>
                 <button
+                className={curTheme === "system" ? "themeSwitcher__active" : ""}
                   onClick={() => {
                     if (
                       window.matchMedia &&
@@ -144,13 +151,15 @@ const Preferences = (props) => {
                         "data-theme",
                         "dark"
                       );
-                      localStorage.setItem("theme", "dark");
+                    setCurTheme("system");
+                      localStorage.setItem("theme", "system");
                     } else {
                       document.documentElement.setAttribute(
                         "data-theme",
                         "light"
                       );
-                      localStorage.setItem("theme", "light");
+                    setCurTheme("system");
+                      localStorage.setItem("theme", "system");
                     }
                   }}
                 >
@@ -186,6 +195,13 @@ const Preferences = (props) => {
                   onChange={setSelectedLanguage}
                   value={selectedLanguage}
                 />
+                {/* <div className="simpleSelect__wrapper">
+                <select name="language" className="simpleSelect">
+                  <option value="EN">English</option>
+                  <option value="TH">ไทย</option>
+                </select>
+                </div> */}
+
               </div>
               <div className="config__item">
                 <h3>{language === "EN" ? "Time Format" : "รูปแบบเวลา"}</h3>

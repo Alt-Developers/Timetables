@@ -3,10 +3,14 @@ import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../context/modalSlice";
 import { RootState } from "../../context";
+import { useMediaQuery } from "react-responsive";
+
 import "./SimpleModal.css";
 
 const SimpleModal = (props: any) => {
   const modalState = useSelector((state: RootState) => state.modal);
+  const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
+
   const dispatch = useDispatch();
 
   return (
@@ -33,16 +37,16 @@ const SimpleModal = (props: any) => {
       >
         <div className="simpleModal__wrapper">
           <motion.div
-            className="simpleModal"
+            className={`simpleModal`}
             animate={
               modalState.isOpen
                 ? {
                     opacity: 1,
                     y: 0,
                   }
-                : { opacity: 0, y: -1000 }
+                : { opacity: 0, y: isPhone ? "60vh" : "-40vh" }
             }
-            transition={{ type: "ease", duration: ".15" }}>
+            >
             <h1 className="simpleModal__header">
               {modalState.type.code === "IMPORTANT" && (
                 <span

@@ -30,6 +30,11 @@
     opacity: 0;
     transition: all .2s;
 }
+
+.none {
+    display: none;
+}
+
 @media (prefers-color-scheme: light) {
     .blurred {
         filter: blur(1.1rem);

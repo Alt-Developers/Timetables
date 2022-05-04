@@ -152,8 +152,7 @@ const Glance = (props) => {
       }
       // @ts-ignore
     }, [1000]);
-
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
 
     // cleanup function
     return () => clearInterval(intervalId);
@@ -203,7 +202,6 @@ const Glance = (props) => {
           transition={{ duration: 0.1 }}
           className="bar"
         >
-          a
         </motion.section>
       </>
     );
@@ -362,6 +360,8 @@ const Glance = (props) => {
     classInfo.primaryClass
   ) {
     return (
+      <>
+      <h1 className="bar__header">At a glance</h1>
       <motion.section
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -407,7 +407,7 @@ const Glance = (props) => {
           size={"large"}
           secondItem
         />
-      </motion.section>
+      </motion.section></>
     );
   } else if (classInfo.primaryClass) {
     return (
