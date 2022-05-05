@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { RootState } from "../context";
 
-const Header = props => {
+const Header = (props) => {
   const userInfo = useSelector((state: RootState) => state.account.userInfo);
   const language = useSelector((state: RootState) => state.account.language);
   const dateTime = useSelector(
@@ -22,25 +22,34 @@ const Header = props => {
   );
 
   const hourFormat =
-  dateTime ===
-  useEffect(() => {
-    let intervalId = setInterval(() => {
-      const date = new Date();
-      const formatedDate = date.toLocaleString("en-US", {
-        hour: "numeric",
-        minute: "numeric",
-        hour12: dateTime === "12h" ? true : false,
-      });
-      date.getSeconds() === 0 && setClock(formatedDate);
-      // @ts-ignore
-    }, [1000]);
+    dateTime ===
+    useEffect(() => {
+      let intervalId = setInterval(() => {
+        const date = new Date();
+        const formatedDate = date.toLocaleString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: dateTime === "12h" ? true : false,
+        });
+        date.getSeconds() === 0 && setClock(formatedDate);
+        // @ts-ignore
+      }, [1000]);
 
-    return (() => clearInterval(intervalId));
-  }, []);
-
+      return () => clearInterval(intervalId);
+    }, []);
 
   return (
-    <div className="header" style={{ background: userInfo.type === "developer" ? `linear-gradient(27deg, ${userInfo.color} 0%, ${userInfo.color + "60"} 100%)` : userInfo.color }}>
+    <div
+      className="header"
+      style={{
+        background:
+          userInfo.type === "developer"
+            ? `linear-gradient(27deg, ${userInfo.color} 0%, ${
+                userInfo.color + "60"
+              } 100%)`
+            : userInfo.color,
+      }}
+    >
       {!props.text ? (
         <h1>
           {language === "EN" ? "It's currently" : "ขณะนี้เวลา"} <br />
@@ -54,11 +63,15 @@ const Header = props => {
         {language === "EN" ? (
           <h3>
             {`${userInfo.firstName} ${userInfo.lastName}'s`} <br />
-            {userInfo.type === "developer" ? "SS Developer Account" : "SS Account"}
+            {userInfo.type === "developer"
+              ? "SS Developer Account"
+              : "SS Account"}
           </h3>
         ) : (
           <h3>
-             {userInfo.type === "developer" ? "SS Developer Account ของ" : "SS Account ของ"}
+            {userInfo.type === "developer"
+              ? "SS Developer Account ของ"
+              : "SS Account ของ"}
             <br />
             {`${userInfo.firstName} ${userInfo.lastName}`}
           </h3>
@@ -71,11 +84,14 @@ const Header = props => {
             width="150"
           />
 
-          <Link to={`${props.clickProfile === "home" ? "/" : "/preferences"}`}>
+          <Link
+            title="Switch between Home and Preferences"
+            to={`${props.clickProfile === "home" ? "/" : "/preferences"}`}
+          >
             {location.pathname === "/" ? (
-              <i className={`bx bxs-cog header__icon`}  ></i>
+              <i className={`bx bxs-cog header__icon`}></i>
             ) : (
-              <i className="bx bxs-home header__homeIcon"  ></i>
+              <i className="bx bxs-home header__homeIcon"></i>
             )}
           </Link>
         </div>

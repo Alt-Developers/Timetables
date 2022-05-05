@@ -23,7 +23,8 @@ const SimpleModal = (props: any) => {
         style={{
           position: "relative",
           width: "100",
-        }}>
+        }}
+      >
         {props.children}
       </motion.div>
       <div
@@ -38,6 +39,7 @@ const SimpleModal = (props: any) => {
         <div className="simpleModal__wrapper">
           <motion.div
             className={`simpleModal`}
+            initial={{ opacity: 0, y: isPhone ? "60vh" : "-40vh" }}
             animate={
               modalState.isOpen
                 ? {
@@ -46,7 +48,7 @@ const SimpleModal = (props: any) => {
                   }
                 : { opacity: 0, y: isPhone ? "60vh" : "-40vh" }
             }
-            >
+          >
             <h1 className="simpleModal__header">
               {modalState.type.code === "IMPORTANT" && (
                 <span
@@ -56,7 +58,8 @@ const SimpleModal = (props: any) => {
                     borderRadius: "1.1rem",
                     fontSize: "2rem",
                     marginRight: "1rem",
-                  }}>
+                  }}
+                >
                   IMPORTANT
                 </span>
               )}
@@ -69,7 +72,8 @@ const SimpleModal = (props: any) => {
                   : ""
               }`}
               disabled={modalState.type.code === "IMPORTANT"}
-              onClick={() => dispatch(modalActions.closeModal())}>
+              onClick={() => dispatch(modalActions.closeModal())}
+            >
               <i className="bx bx-window-close"></i>
             </button>
             <div className="simpleModal__content">

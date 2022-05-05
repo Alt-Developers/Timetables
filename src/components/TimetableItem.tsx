@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { modalActions } from "../context/modalSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../context";
+import { useMediaQuery } from "react-responsive";
 
 interface props {
   remove?: boolean;
@@ -17,11 +18,12 @@ interface props {
   subText?: string;
 }
 
-const TimetableList: React.FC<props> = props => {
+const TimetableList: React.FC<props> = (props) => {
   const [isHovering, setIsHovering] = useState(false);
   const [isRemoved, setIsRemoved] = useState(false);
   const language = useSelector((state: RootState) => state.account.language);
   const dispatch = useDispatch();
+  const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
   let color;
 
   if (props.remove) {
@@ -42,7 +44,7 @@ const TimetableList: React.FC<props> = props => {
       body: JSON.stringify({
         classId: props.id,
       }),
-    }).then(data => {
+    }).then((data) => {
       console.log(data.json());
     });
 
@@ -56,7 +58,8 @@ const TimetableList: React.FC<props> = props => {
           props.disabled
             ? ""
             : `/timetable?id=${props.id}&color=${props.color?.replace("#", "")}`
-        }>
+        }
+      >
         <motion.div
           className={`timetable__item ${props.remove && "shake"}`}
           style={
@@ -67,8 +70,8 @@ const TimetableList: React.FC<props> = props => {
                   boxShadow: `0px 0px 20px ${color}`,
                 }
           }
-          initial={{ y: 300 }}
-          animate={{ y: 0 }}
+          initial={{ y: isPhone ? 0 : 300, x: isPhone ? -300 : 0 }}
+          animate={{ y: 0, x: 0 }}
           transition={{ delay: props.delay }}
           onMouseEnter={() => {
             setIsHovering(true);
@@ -94,7 +97,8 @@ const TimetableList: React.FC<props> = props => {
                 })
               );
             }
-          }}>
+          }}
+        >
           <h3>{props.text}</h3>
           <h4>{props.subText}</h4>
         </motion.div>
@@ -124,7 +128,8 @@ const TimetableList: React.FC<props> = props => {
           if (props.remove) {
             setIsRemoved(true);
           }
-        }}>
+        }}
+      >
         <h3>{props.text}</h3>
         <h4>{props.subText}</h4>
       </motion.div>

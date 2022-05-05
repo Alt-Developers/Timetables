@@ -31,9 +31,7 @@ const TimetableList = () => {
           : (schoolName = "อัสสัมชัญ");
         break;
       case "NEWTON":
-        language === "EN"
-          ? (schoolName = "Newton")
-          : (schoolName = "นิวตัน");
+        language === "EN" ? (schoolName = "Newton") : (schoolName = "นิวตัน");
         break;
       case "ESSENCE":
         language === "EN"
@@ -46,22 +44,22 @@ const TimetableList = () => {
     }
 
     return schoolName;
-  }
+  };
 
   useEffect(() => {
     const schoolSet: (string | undefined)[] = [];
     if (!schoolSet.includes(classInfo.primaryClass?.school))
       schoolSet.push(classInfo.primaryClass?.school);
-    classInfo?.starredClass?.forEach(element => {
+    classInfo?.starredClass?.forEach((element) => {
       if (!schoolSet.includes(element.school)) schoolSet.push(element.school);
     });
-    [...new Set(schoolSet)].map(school =>{
+    [...new Set(schoolSet)].map((school) => {
       // @ts-ignore
-      setSortOptions(sortOptions => [
+      setSortOptions((sortOptions) => [
         ...sortOptions,
         { value: school, name: toSchoolName(school) },
-      ])}
-    );
+      ]);
+    });
   }, []);
 
   return (
@@ -83,7 +81,8 @@ const TimetableList = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2, delay: 0.2 }}
-            className="bar timetable">
+            className="bar timetable"
+          >
             {classInfo.primaryClass.school === selectedSortOption && (
               <TimetableItem
                 color={userInfo.color}
@@ -103,7 +102,6 @@ const TimetableList = () => {
             )}
             {selectedSortOption === "EVERY" &&
               classInfo.starredClass?.map((element, index) => {
-
                 return (
                   <TimetableItem
                     key={index}
@@ -117,7 +115,7 @@ const TimetableList = () => {
               })}
             {classInfo.starredClass &&
               classInfo.starredClass
-                .filter(element => element.school === selectedSortOption)
+                .filter((element) => element.school === selectedSortOption)
                 .map((element, index) => {
                   let schoolName;
                   switch (element.school) {
@@ -156,7 +154,8 @@ const TimetableList = () => {
               className="timetable__item timetable__add"
               style={{
                 backgroundColor: "#FFFFFF",
-              }}>
+              }}
+            >
               <h3 style={{ color: "#969696" }}>+</h3>
             </Link>
           </motion.section>
@@ -166,13 +165,15 @@ const TimetableList = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, delay: 0.2 }}
-          className="bar timetable">
+          className="bar timetable"
+        >
           <Link
             to="/preferences"
             className="timetable__item"
             style={{
               backgroundColor: "#FFFFFF",
-            }}>
+            }}
+          >
             <h3 style={{ color: "#969696" }}>+</h3>
           </Link>
         </motion.section>

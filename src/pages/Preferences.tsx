@@ -33,7 +33,9 @@ const Preferences = (props) => {
     userInfo.config?.dateTime
   );
   const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
-  const [curTheme, setCurTheme] = useState(localStorage.getItem("theme") ?? "light");
+  const [curTheme, setCurTheme] = useState(
+    localStorage.getItem("theme") ?? "light"
+  );
 
   useEffect(() => {
     document.title = "Preferences | SS Timetables";
@@ -57,16 +59,14 @@ const Preferences = (props) => {
         dispatch(accountActions.setLanguage(selectedLanguage));
         dispatch(
           modalActions.openModal({
-            header: lang(
-              language,
-              "Saved Settings",
-              "บันทึกการตั้งค่าใหม่เรียบร้อย"
-            ),
-            text: lang(
-              language,
-              "Successfuly changed the settings.",
-              "การตั้งค่าของคุณได้ถูกบันทึก"
-            ),
+            header:
+              selectedLanguage === "EN"
+                ? "Saved Settings"
+                : "บันทึกการตั้งค่าใหม่เรียบร้อย",
+            text:
+              selectedLanguage === "EN"
+                ? "Successfuly changed the settings."
+                : "การตั้งค่าของคุณได้ถูกบันทึก",
           })
         );
       }
@@ -117,8 +117,10 @@ const Preferences = (props) => {
               </p>
               <div className={`themeSwitcher__buttons`}>
                 <button
-                className={curTheme === "light" ? "themeSwitcher__active" : ""}
-
+                  title="Switch to light theme"
+                  className={
+                    curTheme === "light" ? "themeSwitcher__active" : ""
+                  }
                   onClick={() => {
                     document.documentElement.setAttribute(
                       "data-theme",
@@ -131,7 +133,8 @@ const Preferences = (props) => {
                   <i className="bx bx-sun"></i>
                 </button>
                 <button
-                className={curTheme === "dark" ? "themeSwitcher__active" : ""}
+                  title="Switch to dark theme"
+                  className={curTheme === "dark" ? "themeSwitcher__active" : ""}
                   onClick={() => {
                     document.documentElement.setAttribute("data-theme", "dark");
                     localStorage.setItem("theme", "dark");
@@ -141,7 +144,10 @@ const Preferences = (props) => {
                   <i className="bx bx-moon"></i>
                 </button>
                 <button
-                className={curTheme === "system" ? "themeSwitcher__active" : ""}
+                  title="Switch to system theme"
+                  className={
+                    curTheme === "system" ? "themeSwitcher__active" : ""
+                  }
                   onClick={() => {
                     if (
                       window.matchMedia &&
@@ -151,14 +157,14 @@ const Preferences = (props) => {
                         "data-theme",
                         "dark"
                       );
-                    setCurTheme("system");
+                      setCurTheme("system");
                       localStorage.setItem("theme", "system");
                     } else {
                       document.documentElement.setAttribute(
                         "data-theme",
                         "light"
                       );
-                    setCurTheme("system");
+                      setCurTheme("system");
                       localStorage.setItem("theme", "system");
                     }
                   }}
@@ -201,7 +207,6 @@ const Preferences = (props) => {
                   <option value="TH">ไทย</option>
                 </select>
                 </div> */}
-
               </div>
               <div className="config__item">
                 <h3>{language === "EN" ? "Time Format" : "รูปแบบเวลา"}</h3>

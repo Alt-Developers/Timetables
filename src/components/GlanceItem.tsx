@@ -8,15 +8,23 @@ const GlanceItem = (props) => {
   return (
     <>
       <motion.div
-        initial={props.animation === "none" || isPhone ? { y: 0 } : { y: 300 }}
-        animate={{ y: 0 }}
+        initial={
+          props.animation === "none"
+            ? { y: 0 }
+            : { y: isPhone ? 0 : 300, x: isPhone ? -300 : 0 }
+        }
+        animate={{ y: 0, x: 0 }}
         transition={
           props.secondItem ? { duration: 0.1, delay: 0.05 } : { duration: 0.1 }
         }
         className={`bar__item ${props.size === "small" && "bsmall"} ${
           props.size === "large" && "blarge"
         } ${props.size === "full" && "bfull"}`}
-        style={{ background: props.background ? `url(${props.background})` : props.color }}
+        style={{
+          background: props.background
+            ? `url(${props.background})`
+            : props.color,
+        }}
       >
         {props.header}
         {props.subheader && (

@@ -28,6 +28,9 @@ const Timetable = () => {
   const [refresherTime, setRefresherTime] = useState([]);
   const [refreshCount, setRefreshCount] = useState(0);
   const isTabLand = useMediaQuery({ query: "(max-width: 75em)" });
+  const [curTheme, setCurTheme] = useState(
+    localStorage.getItem("theme") ?? "light"
+  );
 
   const [clock, setClock] = useState(
     new Date().toLocaleString("en-US", {
@@ -258,6 +261,26 @@ const Timetable = () => {
           <h3>&#8249; {language === "EN" ? "Home" : "หน้าหลัก"}</h3>
         </Link>
 
+        <button
+          className="timetableNav__themeSwitcher"
+          onClick={() => {
+            if (curTheme === "light") {
+              document.documentElement.setAttribute("data-theme", "dark");
+              setCurTheme("dark");
+              localStorage.setItem("theme", "dark");
+            } else {
+              document.documentElement.setAttribute("data-theme", "light");
+              setCurTheme("light");
+              localStorage.setItem("theme", "light");
+            }
+          }}
+        >
+          {curTheme === "light" ? (
+            <i className="bx bx-sun"></i>
+          ) : (
+            <i className="bx bx-moon"></i>
+          )}
+        </button>
         <Link to="/preferences" className="timetableNav__pref">
           <i className="bx bx-slider" />
         </Link>
@@ -337,7 +360,11 @@ const Timetable = () => {
               className={`timetablePeriodTime ${
                 index === 0 ? "timetablePeriodTime__first" : ""
               } ${
-                index === timeLayout.length - 1 ? (isNewton ? "timetablePeriodTime__last" : "") : ""
+                index === timeLayout.length - 1
+                  ? isNewton
+                    ? "timetablePeriodTime__last"
+                    : ""
+                  : ""
               }`}
               key={index}
             >

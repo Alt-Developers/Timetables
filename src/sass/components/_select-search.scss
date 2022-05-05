@@ -302,7 +302,7 @@
   }
 
   &__select {
-    background: var(--gray-light-2);
+    background: var(--gray-dark-1);
     box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
     border-radius: 1.1rem !important;
     margin-top: 1rem;
@@ -319,7 +319,7 @@
     height: 5rem;
     width: 100%;
     padding: 0 16px;
-    background: var(--gray-dark-1);
+    background: var(--gray-light-1);
     border: none;
     outline: none;
     font-size: 14px;
@@ -333,18 +333,18 @@
   }
 
   &__option.is-selected {
-    background: #818181a4;
+    background: var(--gray-light-4);
     color: var(--font-color);
   }
 
   &__option.is-highlighted,
   &__option:not(.is-selected):hover {
-    background: var(--gray-light-1);
+    background: var(--gray-light-3);
   }
 
   &__option.is-highlighted.is-selected,
   &__option.is-selected:hover {
-    background: #353535a4;
+    background: var(--gray-light-3);
     color: var(--font-color);
   }
 

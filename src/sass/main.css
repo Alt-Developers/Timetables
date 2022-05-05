@@ -451,7 +451,7 @@ main {
   .timetableSort .timetableSort__input:not([readonly]):focus {
     cursor: initial; }
   .timetableSort__select {
-    background: var(--gray-light-2);
+    background: var(--gray-dark-1);
     box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
     border-radius: 1.1rem !important;
     margin-top: 1rem;
@@ -463,7 +463,7 @@ main {
     height: 5rem;
     width: 100%;
     padding: 0 16px;
-    background: var(--gray-dark-1);
+    background: var(--gray-light-1);
     border: none;
     outline: none;
     font-size: 14px;
@@ -473,12 +473,12 @@ main {
   .timetableSort--multiple .timetableSort__option {
     height: 48px; }
   .timetableSort__option.is-selected {
-    background: #818181a4;
+    background: var(--gray-light-4);
     color: var(--font-color); }
   .timetableSort__option.is-highlighted, .timetableSort__option:not(.is-selected):hover {
-    background: var(--gray-light-1); }
+    background: var(--gray-light-3); }
   .timetableSort__option.is-highlighted.is-selected, .timetableSort__option.is-selected:hover {
-    background: #353535a4;
+    background: var(--gray-light-3);
     color: var(--font-color); }
   .timetableSort__group-header {
     font-size: 10px;
@@ -774,7 +774,7 @@ footer {
   width: 20rem;
   position: relative;
   box-sizing: border-box;
-  transition: all .2s; }
+  transition: all 0.2s; }
   @media only screen and (max-width: 56.25em) {
     .select-search {
       width: 100%; } }
@@ -783,7 +783,7 @@ footer {
 .select-search *::after,
 .select-search *::before {
   box-sizing: inherit;
-  transition: all .2s; }
+  transition: all 0.2s; }
 
 /**
  * Value wrapper
@@ -793,7 +793,7 @@ footer {
   color: #fff; }
 
 .select-search__value::after {
-  content: '';
+  content: "";
   display: inline-block;
   position: absolute;
   top: calc(50% - 9px);
@@ -916,7 +916,8 @@ footer {
   border-radius: 3px;
   overflow: hidden; }
 
-.select-search:not(.is-loading):not(.select-search--multiple) .select-search__value::after {
+.select-search:not(.is-loading):not(.select-search--multiple)
+.select-search__value::after {
   transform: rotate(45deg);
   border-right: 1px solid var(--font-color);
   border-bottom: 1px solid var(--font-color);
@@ -1062,6 +1063,45 @@ main {
     .login__footer p {
       font-weight: 800;
       font-size: 1.5rem; }
+
+.credits {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #e9e6e6; }
+  .credits__contents {
+    background-color: #e9e6e6;
+    width: 100%;
+    padding: 2rem;
+    height: 40vh;
+    border-radius: 1.1rem; }
+    .credits__contents h1 {
+      color: #000; }
+  .credits__page {
+    padding: 3rem;
+    background-color: #eeeeee;
+    margin: 3rem 0 3rem 0;
+    border-radius: 1.1rem;
+    box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.1);
+    width: 70vw; }
+  .credits__title {
+    border-bottom: 3px solid #c4c4c4;
+    color: #000;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem; }
+    .credits__title span {
+      font-size: 2rem;
+      color: #fd5252; }
+  .credits__paragraph h3 {
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #c4c4c4;
+    padding-bottom: 0.5rem; }
+  .credits__paragraph p {
+    color: #000;
+    font-size: 1.3rem;
+    margin-bottom: 3rem; }
 
 .loading {
   display: grid;
@@ -1354,6 +1394,22 @@ main {
   justify-content: flex-end;
   padding: 0 2.5rem 0 2.5rem;
   text-align: center; }
+  .timetableNav__themeSwitcher {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 3rem;
+    transition: all 0.2s;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin-right: 0.5rem; }
+    .timetableNav__themeSwitcher:hover {
+      background-color: #ffffff50; }
+    .timetableNav__themeSwitcher:active {
+      transform: scale(0.9); }
   .timetableNav__home {
     color: var(--font-color);
     font-size: 3rem;
@@ -1376,8 +1432,16 @@ main {
   .timetableNav__pref {
     color: #fff;
     font-size: 3rem;
-    padding-right: 1rem;
-    margin-top: 0.5rem; }
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin-right: 1rem; }
+    .timetableNav__pref:hover {
+      background-color: #ffffff50; }
+    .timetableNav__pref:active {
+      transform: scale(0.9); }
 
 .timetableBar {
   height: 12rem;
