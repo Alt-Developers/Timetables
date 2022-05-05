@@ -20,7 +20,7 @@ const Home = (props) => {
     (state: RootState) => state.account.userInfo.config
   );
   const [fetchedUserInfo, setFetchedUserInfo] = useState(false);
-  console.log(classInfo);
+  // console.log(classInfo);
 
   useEffect(() => {
     document.title = "Home | SS Timetables";

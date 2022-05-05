@@ -14,7 +14,7 @@ const timetableSlice = createSlice({
       state.format = action.payload;
     },
     initClassInfo(state, action) {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.classInfo = action.payload;
     },
   },

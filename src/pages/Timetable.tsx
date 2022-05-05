@@ -45,7 +45,7 @@ const Timetable = () => {
   const isNewton = timetableData?.school === ("NEWTON" || "ESSENCE");
 
   useEffect(() => {
-    console.log("Re-fetched!");
+    // console.log("Re-fetched!");
     fetch(
       `https://apis.ssdevelopers.xyz/timetables/getTimetable/${searchParams.get(
         "id"
@@ -60,7 +60,7 @@ const Timetable = () => {
       .then((data) => {
         if (data.error) navigate("/");
 
-        console.log(data);
+        // console.log(data);
         document.title = `${data.className} | SS Timetables`;
         setIdentifier(data.identifier);
         setFormat(data.timetableFormat.classCode);

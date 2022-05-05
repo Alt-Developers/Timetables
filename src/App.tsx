@@ -45,7 +45,7 @@ function App() {
     fetch("https://static.easysunday.com/covid-19/getTodayCases.json")
       .then((data) => data.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         dispatch(accountActions.covid(data));
       });
 
@@ -69,7 +69,7 @@ function App() {
         if (!data.primaryClass) {
           navigate(`/setup`);
         }
-        console.log(data);
+        // console.log(data);
         dispatch(timetableActions.initClassInfo(data));
         setGetMyClassIsLoading(false);
       });
@@ -92,7 +92,7 @@ function App() {
           if (data.error) {
             navigate("/landing");
           } else {
-            console.log(data);
+            // console.log(data);
             dispatch(accountActions.login(data));
             dispatch(accountActions.setLanguage(data.config.language));
             // dispatch(

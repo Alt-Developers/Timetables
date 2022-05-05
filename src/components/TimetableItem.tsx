@@ -45,7 +45,7 @@ const TimetableList: React.FC<props> = (props) => {
         classId: props.id,
       }),
     }).then((data) => {
-      console.log(data.json());
+      // console.log(data.json());
     });
 
     return <></>;

@@ -63,7 +63,7 @@ const accountSlice = createSlice({
         country: action.payload.country,
         lastUpdated,
       };
-      console.log(state.covid);
+      // console.log(state.covid);
     },
     covidWorldwide(state, action: PayloadAction<any>) {
       const lastUpdated = new Date(action.payload.updated).toLocaleString(
