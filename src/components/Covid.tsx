@@ -23,8 +23,8 @@ const Covid = (props) => {
         className="bar covid"
       >
         <motion.div
-          initial={isPhone ? { y: 0 } : { y: 300 }}
-          animate={{ y: 0 }}
+          initial={{ y: isPhone ? 0 : 300, x: isPhone ? -300 : 0 }}
+          animate={{ y: 0, x: 0 }}
           transition={{ duration: 0.3, delay: 0.15 }}
           className="bar__item blarge covid__item"
           style={{ backgroundColor: "#fc4a44" }}

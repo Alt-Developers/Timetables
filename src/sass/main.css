@@ -117,11 +117,14 @@ html[data-theme="dark"] {
   font-family: "Ubuntu", "Noto Sans Thai", sans-serif; }
 
 html {
-  font-size: 60%;
+  font-size: 55%;
   scroll-behavior: smooth; }
-  @media only screen and (max-width: 75em) {
+  @media only screen and (min-width: 112.5em) {
     html {
-      font-size: 55%; } }
+      font-size: 62.5%; } }
+  @media only screen and (max-width: 56.25em) {
+    html {
+      font-size: 60%; } }
 
 h1 {
   font-size: 4rem;
@@ -193,7 +196,7 @@ main {
       flex-direction: column;
       padding: 0;
       background-color: transparent;
-      height: 40rem;
+      height: fit-content;
       margin-bottom: 2rem;
       overflow: visible;
       box-shadow: none; } }

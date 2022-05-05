@@ -6,11 +6,15 @@
 }
 
 html {
-  font-size: 60%;
+  font-size: 55%;
   scroll-behavior: smooth;
 
-  @include respond(tab-land) {
-    font-size: 55%;
+  @include respond(big-desktop) {
+    font-size: 62.5%;
+  }
+
+  @include respond(phone) {
+    font-size: 60%;
   }
 }
 

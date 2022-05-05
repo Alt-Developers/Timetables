@@ -9,7 +9,7 @@
   margin-bottom: 4rem;
   border: none;
   overflow: hidden;
-  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.20);
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.2);
 
   // Remove scrollbar
   -ms-overflow-style: none;
@@ -22,7 +22,7 @@
     flex-direction: column;
     padding: 0;
     background-color: transparent;
-    height: 40rem;
+    height: fit-content;
     margin-bottom: 2rem;
     overflow: visible;
     box-shadow: none;
@@ -48,8 +48,7 @@
 
     @include respond(phone) {
       padding-bottom: 8rem;
-      box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.10);
-
+      box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.1);
     }
 
     &--btn {
