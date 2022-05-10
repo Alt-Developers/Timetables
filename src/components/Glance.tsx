@@ -164,7 +164,7 @@ const Glance = (props) => {
         currentPeriod: glanceInfo.curClass,
         nextPeriod: glanceInfo.nextClass,
       });
-      // console.log({
+      console.log({
         currentPeriod: glanceInfo.curClass,
         nextPeriod: glanceInfo.nextClass,
       });
@@ -201,8 +201,7 @@ const Glance = (props) => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.1 }}
           className="bar"
-        >
-        </motion.section>
+        ></motion.section>
       </>
     );
   }
@@ -361,53 +360,54 @@ const Glance = (props) => {
   ) {
     return (
       <>
-      <h1 className="bar__header">At a glance</h1>
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.1 }}
-        className="bar"
-      >
-        <GlanceItem
-          color={"#3fd9a5"}
-          header={
-            <h3>
-              {language === "EN"
-                ? `It's ${glanceInfo.name?.EN}`
-                : `วันนี้${glanceInfo.name?.EN}`}
-            </h3>
-          }
-          subheader={false}
-          link={false}
-          icon={`./icons/${currentPeriod.icon}`}
-          size={"small"}
-        />
-        <GlanceItem
-          color={"#eb345b"}
-          header={
-            <h3>
-              {language === "EN" ? "Wonder which" : "ได้เวลาเตรียมตัว"}
-              <br />
-              {language === "EN"
-                ? "lessons are coming up?"
-                : "สำหรับสัปดาห์หน้าแล้ว"}
-            </h3>
-          }
-          subheader={
-            language === "EN"
-              ? "Timetables to the rescue!"
-              : "ตารางสอนอาจจะช่วยได้นะ"
-          }
-          link={{
-            id: classInfo.primaryClass._id,
-            color: userInfo?.color?.replace("#", ""),
-            text: language === "EN" ? "View in timetable" : "ดูในตารางสอน",
-          }}
-          icon={`./icons/neural.png`}
-          size={"large"}
-          secondItem
-        />
-      </motion.section></>
+        <h1 className="bar__header">At a glance</h1>
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.1 }}
+          className="bar"
+        >
+          <GlanceItem
+            color={"#3fd9a5"}
+            header={
+              <h3>
+                {language === "EN"
+                  ? `It's ${glanceInfo.name?.EN}`
+                  : `วันนี้${glanceInfo.name?.EN}`}
+              </h3>
+            }
+            subheader={false}
+            link={false}
+            icon={`./icons/${currentPeriod.icon}`}
+            size={"small"}
+          />
+          <GlanceItem
+            color={"#eb345b"}
+            header={
+              <h3>
+                {language === "EN" ? "Wonder which" : "ได้เวลาเตรียมตัว"}
+                <br />
+                {language === "EN"
+                  ? "lessons are coming up?"
+                  : "สำหรับสัปดาห์หน้าแล้ว"}
+              </h3>
+            }
+            subheader={
+              language === "EN"
+                ? "Timetables to the rescue!"
+                : "ตารางสอนอาจจะช่วยได้นะ"
+            }
+            link={{
+              id: classInfo.primaryClass._id,
+              color: userInfo?.color?.replace("#", ""),
+              text: language === "EN" ? "View in timetable" : "ดูในตารางสอน",
+            }}
+            icon={`./icons/neural.png`}
+            size={"large"}
+            secondItem
+          />
+        </motion.section>
+      </>
     );
   } else if (classInfo.primaryClass) {
     return (

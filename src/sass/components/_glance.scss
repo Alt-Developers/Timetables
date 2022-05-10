@@ -61,6 +61,11 @@
       font-size: 3rem;
       color: #fff;
       z-index: 100000000;
+      width: 70%;
+
+      @include respond(phone) {
+        width: 100%;
+      }
     }
 
     p {

@@ -149,24 +149,12 @@ const Preferences = (props) => {
                     curTheme === "system" ? "themeSwitcher__active" : ""
                   }
                   onClick={() => {
-                    if (
-                      window.matchMedia &&
-                      window.matchMedia("(prefers-color-scheme: dark)").matches
-                    ) {
-                      document.documentElement.setAttribute(
-                        "data-theme",
-                        "dark"
-                      );
-                      setCurTheme("system");
-                      localStorage.setItem("theme", "system");
-                    } else {
-                      document.documentElement.setAttribute(
-                        "data-theme",
-                        "light"
-                      );
-                      setCurTheme("system");
-                      localStorage.setItem("theme", "system");
-                    }
+                    document.documentElement.setAttribute(
+                      "data-theme",
+                      "system"
+                    );
+                    localStorage.setItem("theme", "system");
+                    setCurTheme("system");
                   }}
                 >
                   <i className="bx bx-desktop"></i>

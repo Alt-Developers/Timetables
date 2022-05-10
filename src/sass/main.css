@@ -11,6 +11,30 @@
   --gray-dark-2: #acacac;
   --modal-background: #e0e0e0; }
 
+@media (prefers-color-scheme: dark) {
+  html[data-theme="system"] {
+    --background-color: #3e3e3e;
+    --font-color: #fff;
+    --gray-light-1: #505050;
+    --gray-light-2: #404040;
+    --gray-light-3: #494949;
+    --gray-light-4: #3b3b3b;
+    --gray-dark-1: #353535;
+    --gray-dark-2: #2c2c2c;
+    --modal-background: #3b3b3b; } }
+
+@media (prefers-color-scheme: light) {
+  html[data-theme="system"] {
+    --background-color: #eeeeee;
+    --font-color: #000;
+    --gray-light-1: #e9e6e6;
+    --gray-light-2: #e3e3e3;
+    --gray-light-3: #dfdfdf;
+    --gray-light-4: #ebebeb;
+    --gray-dark-1: #c4c4c4;
+    --gray-dark-2: #acacac;
+    --modal-background: #e0e0e0; } }
+
 html[data-theme="light"] {
   --background-color: #eeeeee;
   --font-color: #000;
@@ -225,7 +249,11 @@ main {
     .bar__item h3 {
       font-size: 3rem;
       color: #fff;
-      z-index: 100000000; }
+      z-index: 100000000;
+      width: 70%; }
+      @media only screen and (max-width: 56.25em) {
+        .bar__item h3 {
+          width: 100%; } }
     .bar__item p {
       font-size: 1.5rem;
       color: #fff; }
