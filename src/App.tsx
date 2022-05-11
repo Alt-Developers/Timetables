@@ -20,7 +20,7 @@ import { Suspense, useEffect, useState } from "react";
 import { accountActions } from "./context/accountSlice";
 import { timetableActions } from "./context/timetableSlice";
 import { RootState } from "./context";
-import Credits from "./pages/Credits";
+import Documentation from "./pages/Documentation";
 
 function App() {
   const Timetable = React.lazy(() => import("./pages/Timetable"));
@@ -113,7 +113,7 @@ function App() {
           <Route path="/landing" element={<Landing />} />
           <Route path="/token" element={<TokenRedirect />} />
           <Route path="/setup" element={<Setup />} />
-          <Route path="/credits" element={<Credits />} />
+          <Route path="/documentation" element={<Documentation />} />
         </Routes>
         {location.pathname !== "/landing" && <Loading />}
         <Footer />
@@ -133,7 +133,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
             <Route path="/migrate" element={<Migrate />} />
             <Route path="/setup" element={<Setup />} />
-            <Route path="/credits" element={<Credits />} />
+            <Route path="/documentation" element={<Documentation />} />
 
             <Route
               path="/preferences"

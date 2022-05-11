@@ -19,6 +19,7 @@
 
   @include respond(phone) {
     height: fit-content;
+    // min-height: 60vh;
     flex-direction: column;
     padding: 0;
     background-color: transparent;

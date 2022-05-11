@@ -24,16 +24,21 @@ const Footer = () => {
         </h3>
       )}
       <ul>
-        <a href="https://ssdevelopers.xyz">
-          <li>Portals</li>
-        </a>
         <Link to="/">
           <li>{language === "EN" ? "Home" : "หน้าหลัก"}</li>
         </Link>
-        <Link to="/credits">
+        <Link to="/documentation#credits">
           <li>{language === "EN" ? "Credits" : "อ้างอิง"}</li>
         </Link>
-        <li>SS Timetables v3</li>
+        <Link to="/documentation#privacypolicy">
+          <li>
+            {language === "EN" ? "Privacy Policy" : "นโยบายความเป็นส่วนตัว"}
+          </li>
+        </Link>
+        <a href="https://github.com/SS-Developers/Timetables/issues/new?assignees=Jiraties&labels=bug&template=bug_report.md&title=">
+          <li>Report a Problem</li>
+        </a>
+        <li style={{ fontWeight: 600 }}>SS Timetables v3</li>
       </ul>
     </footer>
   );

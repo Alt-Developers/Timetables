@@ -15,6 +15,7 @@
     border-radius: 1.1rem;
     border: none;
     display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
     position: relative;
 
@@ -43,10 +44,24 @@
     }
   }
 
+  &__developerOption {
+    padding: 1rem;
+    border-radius: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    h2 {
+      padding: 1rem;
+      font-size: 2rem;
+      color: #fff;
+    }
+  }
+
   &__button {
     position: static !important;
     width: 15rem !important;
-    height: 100% !important;
+    height: 10rem !important;
 
     @include respond(phone) {
       position: static !important;
@@ -57,6 +72,7 @@
 
   &__item {
     background-color: var(--gray-light-1);
+    border-radius: 1.1rem;
     // background-color: orangered;
     padding: 2rem;
     width: 40rem;
@@ -65,6 +81,10 @@
     align-items: center;
     height: 10rem;
     filter: none;
+
+    @include respond(tab-land) {
+      width: 33rem;
+    }
 
     @include respond(phone) {
       width: 100%;
@@ -302,6 +322,10 @@
     border-right: 1px solid var(--gray-dark-1);
     position: relative;
     color: var(--font-color);
+
+    @include respond(tab-land) {
+      width: 33rem;
+    }
 
     @include respond(phone) {
       background-color: var(--gray-light-1);

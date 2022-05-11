@@ -5,6 +5,10 @@
   align-items: center;
   background-color: var(--grey-dark-2);
 
+  @include respond(phone) {
+    height: 10vh;
+  }
+
   p {
     font-size: 1.5rem;
     color: var(--font-color);
@@ -14,6 +18,7 @@
 
   button {
     margin-left: auto;
+    height: fit-content;
     margin-right: 2rem;
     background-color: transparent;
     border: none;

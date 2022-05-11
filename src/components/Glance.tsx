@@ -29,9 +29,9 @@ const Glance = (props) => {
   );
   const language = useSelector((state: RootState) => state.account.language);
   const userInfo = useSelector((state: RootState) => state.account.userInfo);
-  const dispatch = useDispatch();
 
   const advanceTimetoTime = (advanceTime, now) => {
+    if (isNaN(advanceTime)) return;
     return advanceTime.length === 5
       ? new Date(
           now.getFullYear(),
@@ -113,28 +113,48 @@ const Glance = (props) => {
           parseInt(thisTill.till.asMinutes()) % 60
         );
         if (language === "EN") {
-          setTillNextPeriod(
-            nextTill.hoursTill === 0
-              ? `in ${nextTill.minutesTill} ${
-                  nextTill.minutesTill === 1 ? "minute" : "minutes"
-                }.`
-              : `in ${nextTill.hoursTill} ${
-                  nextTill.hoursTill === 1 ? "hour" : "hours"
-                } and ${nextTill.minutesTill} ${
-                  nextTill.minutesTill === 1 ? "minute" : "minutes"
-                }`
-          );
-          setElapsed(
-            thisTill.hoursTill === 0
-              ? `${thisTill.minutesTill} ${
-                  thisTill.minutesTill === 1 ? "minute" : "minutes"
-                } elapsed.`
-              : `${thisTill.hoursTill} ${
-                  thisTill.hoursTill === 1 ? "hour" : "hours"
-                } and ${thisTill.minutesTill} ${
-                  thisTill.minutesTill === 1 ? "minute" : "minutes"
-                } elapsed.`
-          );
+          if (nextTill.hoursTill === 0) {
+            setTillNextPeriod(
+              `in ${nextTill.minutesTill} ${
+                nextTill.minutesTill <= 1 ? "minute" : "minutes"
+              }.`
+            );
+          } else if (nextTill.hoursTill === 0 && nextTill.minutesTill === 0) {
+            setTillNextPeriod(
+              `in ${nextTill.hoursTill} ${
+                nextTill.hoursTill <= 1 ? "hour" : "hours"
+              }.`
+            );
+          } else {
+            setTillNextPeriod(
+              `in ${nextTill.hoursTill} ${
+                nextTill.hoursTill === 1 ? "hour" : "hours"
+              } and ${nextTill.minutesTill} ${
+                nextTill.minutesTill <= 1 ? "minute" : "minutes"
+              }`
+            );
+          }
+          if (thisTill.hoursTill === 0) {
+            setElapsed(
+              `${thisTill.minutesTill} ${
+                thisTill.minutesTill <= 1 ? "minute" : "minutes"
+              } elapsed.`
+            );
+          } else if (thisTill.hoursTill === 0 && thisTill.minutesTill === 0) {
+            setElapsed(
+              `in ${thisTill.hoursTill} ${
+                thisTill.hoursTill <= 1 ? "hour" : "hours"
+              }.`
+            );
+          } else {
+            setElapsed(
+              `${thisTill.hoursTill} ${
+                thisTill.hoursTill === 1 ? "hour" : "hours"
+              } and ${thisTill.minutesTill} ${
+                thisTill.minutesTill <= 1 ? "minute" : "minutes"
+              } elapsed.`
+            );
+          }
         } else {
           setTillNextPeriod(
             nextTill.hoursTill === 0

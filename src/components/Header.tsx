@@ -17,26 +17,26 @@ const Header = (props) => {
     new Date().toLocaleString("en-US", {
       hour: "numeric",
       minute: "numeric",
+      hourCycle: "h23",
       hour12: dateTime === "12h" ? true : false,
     })
   );
 
-  const hourFormat =
-    dateTime ===
-    useEffect(() => {
-      let intervalId = setInterval(() => {
-        const date = new Date();
-        const formatedDate = date.toLocaleString("en-US", {
-          hour: "numeric",
-          minute: "numeric",
-          hour12: dateTime === "12h" ? true : false,
-        });
-        date.getSeconds() === 0 && setClock(formatedDate);
-        // @ts-ignore
-      }, [1000]);
+  useEffect(() => {
+    let intervalId = setInterval(() => {
+      const date = new Date();
+      const formatedDate = date.toLocaleString("en-US", {
+        hour: "numeric",
+        minute: "numeric",
+        hourCycle: "h23",
+        hour12: dateTime === "12h" ? true : false,
+      });
+      date.getSeconds() === 0 && setClock(formatedDate);
+      // @ts-ignore
+    }, [1000]);
 
-      return () => clearInterval(intervalId);
-    }, []);
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <div

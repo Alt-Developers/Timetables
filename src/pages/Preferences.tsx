@@ -32,6 +32,7 @@ const Preferences = (props) => {
   const [selectedDateFormat, setSelectedDateFormat] = useState(
     userInfo.config?.dateTime
   );
+  const [consoleLog, setConsoleLog] = useState("on");
   const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
   const [curTheme, setCurTheme] = useState(
     localStorage.getItem("theme") ?? "light"
@@ -39,8 +40,18 @@ const Preferences = (props) => {
 
   useEffect(() => {
     document.title = "Preferences | SS Timetables";
-    window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (consoleLog === "off") {
+      // @ts-ignore
+      if (!window.console) window.console = {};
+      var methods = ["log", "debug", "warn", "info"];
+      for (var i = 0; i < methods.length; i++) {
+        console[methods[i]] = function () {};
+      }
+    }
+  }, [consoleLog]);
 
   useEffect(() => {
     fetch("https://apis.ssdevelopers.xyz/auth/editConfig", {
@@ -189,12 +200,6 @@ const Preferences = (props) => {
                   onChange={setSelectedLanguage}
                   value={selectedLanguage}
                 />
-                {/* <div className="simpleSelect__wrapper">
-                <select name="language" className="simpleSelect">
-                  <option value="EN">English</option>
-                  <option value="TH">ไทย</option>
-                </select>
-                </div> */}
               </div>
               <div className="config__item">
                 <h3>{language === "EN" ? "Time Format" : "รูปแบบเวลา"}</h3>
@@ -224,6 +229,24 @@ const Preferences = (props) => {
                   value={selectedCovid}
                 />
               </div>
+              {/* <div
+                className="config__developerOption"
+                style={{ backgroundColor: userInfo.color }}
+              >
+                <h2>Developer Options</h2>
+                <div className="config__item">
+                  <h3>console.log</h3>
+                  <SelectSearch
+                    options={[
+                      { value: "on", name: "on" },
+                      { value: "off", name: "off" },
+                    ]}
+                    // @ts-ignore
+                    onChange={setConsoleLog}
+                    value={consoleLog}
+                  />
+                </div>
+              </div> */}
               <div className="config__buttonWrapper">
                 <ColoredButton
                   text={language === "EN" ? "Save" : "บันทึก"}
@@ -235,7 +258,7 @@ const Preferences = (props) => {
           </div>
         </section>
       )}
-      <section className="removeTimetables">
+      <section className="removeTimetables" id="addRemovetimetables">
         <h1 className="bar__header">
           {language === "EN" ? "Add / Set Timetables" : "เพิ่มตารางสอน"}
         </h1>
@@ -256,9 +279,7 @@ const Preferences = (props) => {
           )}
           {classInfo.primaryClass ? (
             <AddTimetableItem
-              header={
-                language === "EN" ? "Change My Class" : "เปลี่ยนห้องของฉัน"
-              }
+              header={language === "EN" ? "Change Class" : "เปลี่ยนห้องของฉัน"}
               button={language === "EN" ? "Change" : "เปลี่ยน"}
               placeholder={
                 language === "EN" ? "Search for timetables" : "ค้นหาห้อง"

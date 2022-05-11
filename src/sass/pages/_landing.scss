@@ -58,7 +58,8 @@
     position: relative;
 
     @include respond(phone) {
-      height: 100vh;
+      height: 85vh;
+      border-radius: 0 0 1.1rem 1.1rem;
       // background-color: #;
     }
 
@@ -78,7 +79,6 @@
 
   &__phoneHeader {
     h3 {
-      margin-top: 10vh;
       // color: var(--gray-dark-2);
       font-size: 4rem;
       color: #fff;
@@ -140,11 +140,10 @@
       bottom: 2rem;
       left: 2rem;
       height: fit-content;
-      width: 100vw;
+      width: calc(100vw - 4rem);
       display: flex;
-      flex-direction: column;
       gap: 2rem;
-      align-items: start;
+      // align-items: start;
     }
 
     button {
@@ -160,11 +159,11 @@
       transition: all 0.2s;
 
       @include respond(phone) {
-        width: calc(100vw - 5rem);
         border-radius: 1.1rem;
         order: 2;
-        background-color: #ff9696;
-        color: #fff;
+        width: 100%;
+        background-color: var(--gray-light-3);
+        color: #000;
       }
 
       &:hover {
@@ -188,7 +187,7 @@
       font-size: 1.5rem;
 
       @include respond(phone) {
-        width: 50vw;
+        width: 50%;
         font-size: 1.8rem;
       }
 
@@ -206,7 +205,7 @@
         display: grid;
         place-items: center;
         height: 7rem;
-        width: calc(100vw - 5rem);
+        width: 50%;
         background: var(--gray-light-3);
         border-radius: 1.1rem;
       }
@@ -225,6 +224,10 @@
 
   &__main {
     padding: 3rem;
+
+    @include respond(phone) {
+      padding: 2rem;
+    }
   }
 
   &__boxCon {

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import Snackbar from "../components/Snackbar";
+import { useMediaQuery } from "react-responsive";
 
 const Landing = (props) => {
   const [isThai, setIsThai] = useState("EN");
@@ -98,7 +99,7 @@ const Landing = (props) => {
         </div>
       </div>
 
-      <div className="landing__main hiddenOnPhone">
+      <div className="landing__main">
         <div className="landing__boxCon">
           <div className={`landing__boxRight ${isThai ? "" : "landing__thai"}`}>
             <h3>
@@ -128,7 +129,7 @@ const Landing = (props) => {
           </div>
         </div>
 
-        <div className="glancePreview">
+        <div className="glancePreview hiddenOnPhone">
           <div className={`glancePreview__textCon`}>
             <h1>
               {lang(

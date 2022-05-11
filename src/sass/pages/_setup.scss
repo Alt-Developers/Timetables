@@ -135,9 +135,15 @@
 
   &__text {
     // padding-bottom: 2rem;
-    height: 15rem;
+    height: 50vh;
     overflow-y: scroll;
     margin-bottom: 2rem;
+  }
+
+  &__title {
+    span {
+      font-size: 2rem;
+    }
   }
 
   &__button {

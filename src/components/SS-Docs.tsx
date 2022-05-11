@@ -1,5 +1,9 @@
 const Document = (props) => {
-  return <div className="credits__page">{props.children}</div>;
+  return (
+    <section className="credits__page" id={props.id}>
+      {props.children}
+    </section>
+  );
 };
 
 const Title = (props) => {

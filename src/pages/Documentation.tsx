@@ -1,12 +1,32 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router";
 import { Paragraph, Title, Document } from "../components/SS-Docs";
 
-const Credits = (props) => {
+const Documentation = (props) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    document.title = "Documents | SS Timetables";
+  }, []);
+
+  useEffect(() => {
+    console.log(location);
+    if (location.hash === "#credits") {
+      console.log("in credits");
+      document.getElementById("credits")?.scrollIntoView();
+    }
+    if (location.hash === "#privacypolicy") {
+      console.log("in privacy");
+      document.getElementById("privacypolicy")?.scrollIntoView();
+    }
+  }, [location]);
+
   return (
     <section className="credits">
       {/* <div className="credits__contents">
         <h1>Welecome to the SS Developers Documentation Section</h1>
       </div> */}
-      <Document>
+      <Document id="credits">
         <Title text="Credits" />
         <Paragraph>
           <p>Welcome to the credits sections of the SS Developers site</p>
@@ -19,7 +39,7 @@ const Credits = (props) => {
           </p>
         </Paragraph>
       </Document>
-      <Document>
+      <Document id="privacypolicy">
         <Title text="Privacy Policy" subtext="of SS Developers" />
         <Paragraph>
           <p>
@@ -188,8 +208,11 @@ const Credits = (props) => {
           </p>
         </Paragraph>
       </Document>
+      {/* <Document id="hello">
+        <Title text="Hello" />
+      </Document> */}
     </section>
   );
 };
 
-export default Credits;
+export default Documentation;

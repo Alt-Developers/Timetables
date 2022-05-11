@@ -384,8 +384,8 @@
 
   &:not(.is-loading):not(&--multiple) &__value::after {
     transform: rotate(45deg);
-    border-right: 1px solid #000;
-    border-bottom: 1px solid #000;
+    border-right: 1px solid var(--font-color);
+    border-bottom: 1px solid var(--font-color);
     pointer-events: none;
   }
 

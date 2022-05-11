@@ -168,7 +168,7 @@ const TimetableList = () => {
           className="bar timetable"
         >
           <Link
-            to="/preferences"
+            to="/preferences#addRemovetimetables"
             className="timetable__item"
             style={{
               backgroundColor: "#FFFFFF",
