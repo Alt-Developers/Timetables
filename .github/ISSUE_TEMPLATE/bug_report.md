@@ -1,20 +1,23 @@
 ---
 name: Bug report
 about: '"The class I added doesn''t seem to be here" type of stuff.'
-title: ''
+title: ""
 labels: bug
 assignees: Jiraties
-
 ---
 
-**Describe the bug 🔎**
-Is this bug a logical or visual (CSS) one. How is this bug affecting the experience
+## **Describe the bug 🔎**
 
-**To Reproduce 🧪**
+How is this bug affecting the experience
+
+## **To Reproduce 🧪**
+
 Clear steps on how to reproduce this bug / behavior
 
-**Expected behavior 🔥**
+## **Expected behavior 🔥**
+
 What is expected to happen instead of a bug
 
-**Screenshot 🖼️ (optional)**
+## **Screenshot 🖼️ (optional)**
+
 A screenshot of the website or the console
