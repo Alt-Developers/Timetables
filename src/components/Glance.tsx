@@ -32,7 +32,6 @@ const Glance = (props) => {
   const dispatch = useDispatch();
 
   const advanceTimetoTime = (advanceTime, now) => {
-    // // console.log(advanceTime, now);
     return advanceTime.length === 5
       ? new Date(
           now.getFullYear(),
@@ -53,13 +52,13 @@ const Glance = (props) => {
   };
 
   useEffect(() => {
-    // console.log("refreshed!");
+    console.log("refreshed!");
     axios
       .get("https://apis.ssdevelopers.xyz/timetables/getGlance", {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       })
       .then(({ data }) => {
-        // console.log(data);
+        console.log(data);
         setGlanceInfo(data);
         setIsLoading(false);
       });
@@ -80,7 +79,6 @@ const Glance = (props) => {
 
       // @ts-ignore
       if (glanceInfo.refresher.includes(advanceTime.toString())) {
-        // console.log("refresher incremented");
         setRefresher(refresher + 1);
       }
 
@@ -187,10 +185,6 @@ const Glance = (props) => {
       // console.log(currentPeriod, nextPeriod);
     }
   }, [glanceInfo]);
-
-  useEffect(() => {
-    // console.log(refreshCount);
-  }, [refreshCount]);
 
   if (isLoading) {
     return (

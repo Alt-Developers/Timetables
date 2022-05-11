@@ -9,12 +9,14 @@ import { motion } from "framer-motion";
 import { accountActions } from "../context/accountSlice";
 import { useState } from "react";
 import { RootState } from "../context";
+import Loading from "../components/Loading";
 
 const Setup = (props) => {
   const language = useSelector((state: RootState) => state.account.language);
   const userInfo = useSelector((state: RootState) => state.account.userInfo);
   const [selectedPrimary, setSelectedPrimary] = useState(false);
   const [agreed, setAgreed] = useState(false);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -29,29 +31,39 @@ const Setup = (props) => {
         if (data.status === 500) return;
       })
       .then((data) => {
+        setLoading(false);
         dispatch(accountActions.login(data));
         dispatch(accountActions.setLanguage(data.config.language));
       });
   }, []);
 
-  if (selectedPrimary && agreed) {
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
-  }
-
   const liftDone = (isDone) => {
     setSelectedPrimary(isDone);
   };
 
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
-    <section className="setup">
-      <motion.div
-        className="setup__left"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ type: "ease-in" }}
-      >
+    <motion.section
+      className="setup"
+      transition={{ duration: 0.2 }}
+      initial={{ opacity: 1 }}
+      animate={
+        selectedPrimary && agreed
+          ? { opacity: 0 }
+          : { opacity: 1, borderRadius: "1.1rem" }
+      }
+      onAnimationComplete={(definition) => {
+        console.log(definition, definition === { opacity: 0 });
+        // @ts-ignore
+        if (definition.opacity === 0) {
+          navigate("/");
+        }
+      }}
+    >
+      <div className="setup__left">
         <div className="setup__textCon" style={{ background: userInfo.color }}>
           <h1>
             {language === "EN"
@@ -139,7 +151,7 @@ const Setup = (props) => {
             </p>
           </div>
         </div>
-      </motion.div>
+      </div>
       <div className="setup__right">
         {/* <div className="setup__preview">
           <div className="setup__imgCon" style={{ background: userInfo.color }}>
@@ -164,7 +176,12 @@ const Setup = (props) => {
           <h3 className="bar__header">
             {language === "EN" ? "PDPA Agreements" : "ข้อตกลง"}
           </h3>
-          <div className="eula">
+          <motion.div
+            className="eula"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}
+          >
             <div className="eula__text">
               Personal Data Protection Policy SS Developers regconizes the
               importance of the protection of your personal data. This privacy
@@ -291,10 +308,14 @@ const Setup = (props) => {
                 )}
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        <div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
           <h3 className="bar__header">
             {language === "EN" ? "What class are you in?" : "คุณอยู่ห้องอะไร"}
           </h3>
@@ -322,9 +343,9 @@ const Setup = (props) => {
               liftDone={liftDone}
             />
           )}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

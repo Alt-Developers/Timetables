@@ -134,6 +134,12 @@ html[data-theme="dark"] {
   100% {
     text-decoration: line-through; } }
 
+@keyframes slowlyExpand {
+  0% {
+    width: 0; }
+  100% {
+    width: "30vw"; } }
+
 * {
   margin: 0;
   padding: 0;

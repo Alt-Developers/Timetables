@@ -137,3 +137,12 @@
     text-decoration: line-through;
   }
 }
+
+@keyframes slowlyExpand {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: "30vw";
+  }
+}

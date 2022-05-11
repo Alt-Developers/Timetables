@@ -32,7 +32,10 @@ const SimpleModal = (props: any) => {
         style={
           modalState.isOpen
             ? { display: "grid", height: "100vh" }
-            : { display: "hidden", height: 0 }
+            : {
+                display: "hidden",
+                height: 0,
+              }
         }
         // style={{ display: "none", x: 1000 }}
       >
