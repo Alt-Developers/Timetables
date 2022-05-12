@@ -1,4 +1,6 @@
 import AddTimetableItem from "../components/AddTimetableItem";
+import Loading from "../components/Loading";
+import SetupTimetableItem from "../components/SetupTimetableItem";
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -8,7 +10,6 @@ import { motion } from "framer-motion";
 import { accountActions } from "../context/accountSlice";
 import { useState } from "react";
 import { RootState } from "../context";
-import Loading from "../components/Loading";
 import { Paragraph } from "../components/SS-Docs";
 
 const Setup = (props) => {
@@ -63,7 +64,7 @@ const Setup = (props) => {
         }
       }}
     >
-      <div className="setup__left">
+      <div className="setup__left" style={{ background: userInfo.color }}>
         <div className="setup__textCon" style={{ background: userInfo.color }}>
           <h1>
             {language === "EN"
@@ -77,7 +78,7 @@ const Setup = (props) => {
           </p>
         </div>
 
-        <div className="setup__steps">
+        <div className="setup__steps hiddenOnPhone">
           <div
             className="setup__step"
             style={
@@ -150,6 +151,16 @@ const Setup = (props) => {
                 : "ตั้งห้องหลักของคุณ"}
             </p>
           </div>
+
+          <div className="setup__step">
+            <i className="bx bx-check-shield"></i>
+            <p>
+              <span>{language === "EN" ? "Done!" : "เสร็จแล้ว!"}</span>{" "}
+              {language === "EN"
+                ? "Enjoy using timetables"
+                : "หวังว่าคุณจะชอบ Timetables"}
+            </p>
+          </div>
         </div>
       </div>
       <div className="setup__right">
@@ -175,7 +186,7 @@ const Setup = (props) => {
         <div>
           <h3 className="bar__header eula__title">
             {language === "EN" ? "Privacy Policy" : "ข้อตกลง"}{" "}
-            <span>of SS Developers</span>
+            <span className="hiddenOnPhone">of SS Developers</span>
           </h3>
           <motion.div
             className="eula"
@@ -378,6 +389,47 @@ const Setup = (props) => {
           </motion.div>
         </div>
 
+        {/* <div>
+          <h3 className="bar__header">Select Your Theme</h3>
+          <div className="setupTheme">
+            <button className="setupTheme__light setupTheme__button">
+              <div className="setupTheme__con">
+                <div className="setupTheme__topDiv">
+                  <div className="setupTheme__topDiv--text">13:21</div>
+                </div>
+                <div className="setupTheme__botDiv">
+                  <div className="setupTheme__botDiv--leftBox">a</div>
+                  <div className="setupTheme__botDiv--rightBox">a</div>
+                </div>
+              </div>
+            </button>
+
+            <button className="setupTheme__dark setupTheme__button">
+              <div className="setupTheme__con">
+                <div className="setupTheme__topDiv">
+                  <div className="setupTheme__topDiv--text">13:21</div>
+                </div>
+                <div className="setupTheme__botDiv">
+                  <div className="setupTheme__botDiv--leftBox">a</div>
+                  <div className="setupTheme__botDiv--rightBox">a</div>
+                </div>
+              </div>
+            </button>
+
+            <button className="setupTheme__system setupTheme__button">
+              <div className="setupTheme__con">
+                <div className="setupTheme__topDiv">
+                  <div className="setupTheme__topDiv--text">13:21</div>
+                </div>
+                <div className="setupTheme__botDiv">
+                  <div className="setupTheme__botDiv--leftBox">a</div>
+                  <div className="setupTheme__botDiv--rightBox">a</div>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div> */}
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -387,7 +439,7 @@ const Setup = (props) => {
             {language === "EN" ? "What class are you in?" : "คุณอยู่ห้องอะไร"}
           </h3>
           {userInfo && (
-            <AddTimetableItem
+            <SetupTimetableItem
               header={language === "EN" ? "Class" : "ห้องของฉันคือ"}
               header2={language === "EN" ? "School" : "โรงเรียนฉันคือ"}
               placeholder2={
@@ -403,12 +455,30 @@ const Setup = (props) => {
               }
               isPrimary={true}
               isNewUser={true}
-              style={{
-                width: "100%",
-                filter: "none",
-              }}
               liftDone={liftDone}
             />
+            // <AddTimetableItem
+            // header={language === "EN" ? "Class" : "ห้องของฉันคือ"}
+            // header2={language === "EN" ? "School" : "โรงเรียนฉันคือ"}
+            // placeholder2={
+            //   language === "EN" ? "Search for schools" : "ค้นหาโรงเรียน"
+            // }
+            // button={
+            //   language === "EN"
+            //     ? "Make this my class"
+            //     : "ตั้งห้องนี้เป็นห้องของฉัน"
+            // }
+            // placeholder={
+            //   language === "EN" ? "Search for timetables" : "ค้นหาห้อง"
+            // }
+            // isPrimary={true}
+            // isNewUser={true}
+            // style={{
+            //   width: "100%",
+            //   filter: "none",
+            // }}
+            // liftDone={liftDone}
+            // />
           )}
         </motion.div>
       </div>

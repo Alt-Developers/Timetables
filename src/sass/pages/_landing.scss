@@ -12,6 +12,7 @@
   // padding: 3rem;
   overflow: hidden;
   min-height: 95vh;
+  background-color: #eee;
 
   &__thai {
     line-height: 5rem;
@@ -38,7 +39,7 @@
       border: none;
       border-radius: 1.1rem;
       width: fit-content;
-      background: var(--background-color);
+      background: #eee;
       transition: all 0.2s;
 
       &:hover {
@@ -59,7 +60,7 @@
 
     @include respond(phone) {
       height: 85vh;
-      border-radius: 0 0 1.1rem 1.1rem;
+      border-radius: 0 0 3rem 3rem;
       // background-color: #;
     }
 
@@ -142,7 +143,7 @@
       height: fit-content;
       width: calc(100vw - 4rem);
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
       // align-items: start;
     }
 
@@ -156,13 +157,13 @@
       color: #000;
       font-size: 1.8rem;
       font-weight: 700;
-      transition: all 0.2s;
+      transition: all 0.4s;
 
       @include respond(phone) {
-        border-radius: 1.1rem;
+        border-radius: 2rem;
         order: 2;
         width: 100%;
-        background-color: var(--gray-light-3);
+        background-color: #dfdfdf;
         color: #000;
       }
 
@@ -206,8 +207,9 @@
         place-items: center;
         height: 7rem;
         width: 50%;
-        background: var(--gray-light-3);
-        border-radius: 1.1rem;
+        background: #dfdfdf;
+        // border-radius: 1.1rem;
+        border-radius: 2rem;
       }
 
       a {
@@ -216,7 +218,7 @@
 
         @include respond(phone) {
           margin-left: 0;
-          color: var(--font-color);
+          color: #000;
         }
       }
     }
@@ -265,8 +267,8 @@
   }
 
   &__boxRight {
-    background-color: var(--gray-light-3);
-    color: var(--font-color);
+    background-color: #dfdfdf;
+    color: #000;
     transition: all 0.2s;
 
     h3 {

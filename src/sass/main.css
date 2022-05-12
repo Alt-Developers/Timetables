@@ -1130,7 +1130,8 @@ main {
     border-bottom: 3px solid #c4c4c4;
     color: #000;
     padding-bottom: 1rem;
-    margin-bottom: 1rem; }
+    margin-bottom: 1rem;
+    font-weight: 600; }
     .credits__title span {
       font-size: 2rem;
       color: #fd5252; }
@@ -1742,10 +1743,15 @@ main {
     .setup__textCon h1 {
       color: #fff; }
   .setup__steps {
-    padding: 3rem 0 0 0;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem; }
+    gap: 2rem;
+    background-color: var(--gray-light-3);
+    border-radius: 1.1rem; }
+    @media only screen and (max-width: 56.25em) {
+      .setup__steps {
+        display: none; } }
   .setup__step {
     padding: 2rem;
     background: var(--gray-light-1);
@@ -1762,7 +1768,7 @@ main {
     .setup__step span {
       font-weight: 700; }
   .setup__right {
-    padding: 3rem;
+    padding: 3rem 3rem 10rem 3rem;
     color: var(--font-color);
     font-size: 2.5rem;
     width: 100%;
@@ -1813,7 +1819,10 @@ main {
   .eula__text {
     height: 50vh;
     overflow-y: scroll;
-    margin-bottom: 2rem; }
+    margin-bottom: 2rem;
+    background-color: var(--gray-light-2);
+    border-radius: 1.1rem;
+    padding: 2rem; }
   .eula__title span {
     font-size: 2rem; }
   .eula__button {
@@ -1836,6 +1845,107 @@ main {
       font-weight: 700;
       font-size: 3rem; }
 
+.setupTimetables {
+  width: 100%;
+  height: 23rem;
+  border-radius: 1.1rem;
+  background-color: var(--gray-light-1);
+  margin-bottom: 1rem;
+  padding: 2rem;
+  position: relative;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15); }
+  @media only screen and (max-width: 56.25em) {
+    .setupTimetables {
+      height: 20rem; } }
+  .setupTimetables__inputWrapper {
+    display: flex;
+    gap: 2rem; }
+  .setupTimetables h3 {
+    color: var(--font-color);
+    font-size: 2rem;
+    margin-bottom: 1rem; }
+  @media only screen and (max-width: 56.25em) {
+    .setupTimetables {
+      width: 100%; } }
+  .setupTimetables__submit {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    border: none;
+    background-color: #ff5252;
+    padding: 1rem;
+    width: 40%;
+    border-radius: 1.1rem;
+    height: 5rem;
+    color: white;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    text-decoration: none; }
+    .setupTimetables__submit:active {
+      transform: scale(0.85); }
+
+.setupTheme {
+  padding: 2rem;
+  border-radius: 1.1rem;
+  width: 100%;
+  background: var(--gray-light-1);
+  font-size: 1rem;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
+  display: flex;
+  gap: 2rem; }
+  .setupTheme__con {
+    width: 100%;
+    border: 1px solid var(--gray-dark-1);
+    border-radius: 1.1rem; }
+  .setupTheme__button {
+    height: 100%;
+    width: 20rem;
+    padding: 2rem;
+    border: none;
+    border-radius: 1.1rem;
+    border: 1px solid var(--gray-dark-1);
+    background-color: var(--gray-light-2);
+    display: flex;
+    flex-direction: column; }
+  .setupTheme__light {
+    --preview-background: #eee; }
+  .setupTheme__dark {
+    --preview-background: #3e3e3e; }
+  .setupTheme__topDiv {
+    height: 4rem;
+    border-radius: 1.1rem 1.1rem 0 0;
+    width: 100%;
+    background-color: #ff5252;
+    padding: 1.2rem;
+    display: flex;
+    align-items: center; }
+    .setupTheme__topDiv--text {
+      width: 30%;
+      height: 1rem;
+      background-color: #ffffff;
+      color: transparent;
+      border-radius: 1.1rem; }
+  .setupTheme__botDiv {
+    height: 6rem;
+    border-radius: 0 0 1.1rem 1.1rem;
+    width: 100%;
+    background-color: var(--preview-background);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem; }
+    .setupTheme__botDiv--leftBox {
+      background-color: #68ace9;
+      border-radius: 0.5rem;
+      color: transparent; }
+    .setupTheme__botDiv--rightBox {
+      background-color: #6ff094;
+      border-radius: 0.5rem;
+      color: transparent; }
+
 .bigDisplayCover {
   display: grid;
   place-items: center; }
@@ -1845,7 +1955,8 @@ main {
 
 .landing {
   overflow: hidden;
-  min-height: 95vh; }
+  min-height: 95vh;
+  background-color: #eee; }
   .landing__thai {
     line-height: 5rem; }
   .landing__nav {
@@ -1866,7 +1977,7 @@ main {
       border: none;
       border-radius: 1.1rem;
       width: fit-content;
-      background: var(--background-color);
+      background: #eee;
       transition: all 0.2s; }
       .landing__nav button:hover {
         box-shadow: #fff 0px 0px 20px; }
@@ -1880,7 +1991,7 @@ main {
     @media only screen and (max-width: 56.25em) {
       .landing__header {
         height: 85vh;
-        border-radius: 0 0 1.1rem 1.1rem; } }
+        border-radius: 0 0 3rem 3rem; } }
     .landing__header img {
       position: absolute;
       bottom: 2rem;
@@ -1938,7 +2049,7 @@ main {
         height: fit-content;
         width: calc(100vw - 4rem);
         display: flex;
-        gap: 2rem; } }
+        gap: 1.5rem; } }
     .landing__buttons button {
       background-color: #fff;
       border: none;
@@ -1949,13 +2060,13 @@ main {
       color: #000;
       font-size: 1.8rem;
       font-weight: 700;
-      transition: all 0.2s; }
+      transition: all 0.4s; }
       @media only screen and (max-width: 56.25em) {
         .landing__buttons button {
-          border-radius: 1.1rem;
+          border-radius: 2rem;
           order: 2;
           width: 100%;
-          background-color: var(--gray-light-3);
+          background-color: #dfdfdf;
           color: #000; } }
       .landing__buttons button:hover {
         box-shadow: #fff 0px 0px 20px;
@@ -1984,15 +2095,15 @@ main {
         place-items: center;
         height: 7rem;
         width: 50%;
-        background: var(--gray-light-3);
-        border-radius: 1.1rem; } }
+        background: #dfdfdf;
+        border-radius: 2rem; } }
     .landing__buttons__aWrapper a {
       width: fit-content;
       margin-left: 2rem; }
       @media only screen and (max-width: 56.25em) {
         .landing__buttons__aWrapper a {
           margin-left: 0;
-          color: var(--font-color); } }
+          color: #000; } }
   .landing__main {
     padding: 3rem; }
     @media only screen and (max-width: 56.25em) {
@@ -2023,8 +2134,8 @@ main {
         margin-top: 1rem;
         font-weight: 500; }
   .landing__boxRight {
-    background-color: var(--gray-light-3);
-    color: var(--font-color);
+    background-color: #dfdfdf;
+    color: #000;
     transition: all 0.2s; }
     .landing__boxRight h3 {
       font-size: 3rem !important; }

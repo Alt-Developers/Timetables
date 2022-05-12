@@ -24,6 +24,12 @@ const Home = (props) => {
 
   useEffect(() => {
     document.title = "Home | SS Timetables";
+    if (localStorage.getItem("theme")) {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("theme") ?? ""
+      );
+    }
   }, []);
 
   let timesFetched = 1;

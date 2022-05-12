@@ -17,6 +17,7 @@ const Landing = (props) => {
 
   useEffect(() => {
     document.title = "Timetables | SS Developers";
+    document.documentElement.setAttribute("data-theme", "light");
   }, []);
 
   return (
@@ -71,15 +72,7 @@ const Landing = (props) => {
           <h3>{lang("Timetables v3 is here", "Timetables v3 มาแล้ว")}</h3>
         </div>
 
-        <img
-          className=""
-          src={
-            isDarkMode
-              ? "./icons/darkLandingPreview.png"
-              : "./icons/lightLandingPreview.png"
-          }
-          alt=""
-        />
+        <img className="" src={"./icons/lightLandingPreview.png"} alt="" />
 
         <div className="landing__buttons">
           {!localStorage.getItem("token") ? (

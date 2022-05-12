@@ -34,13 +34,6 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    if (localStorage.getItem("theme")) {
-      document.documentElement.setAttribute(
-        "data-theme",
-        localStorage.getItem("theme") ?? ""
-      );
-    }
-
     const token = localStorage.getItem("token");
     fetch("https://static.easysunday.com/covid-19/getTodayCases.json")
       .then((data) => data.json())
@@ -74,7 +67,7 @@ function App() {
         setGetMyClassIsLoading(false);
       });
 
-    if (!token) navigate("/landing");
+    if (!token) navigate("/");
     if (token)
       fetch("https://apis.ssdevelopers.xyz/auth/getUser", {
         headers: {
@@ -84,13 +77,13 @@ function App() {
         .then((data) => {
           if (data.status === 404) {
             localStorage.removeItem("token");
-            navigate("/landing");
+            navigate("/");
           }
           return data.json();
         })
         .then((data) => {
           if (data.error) {
-            navigate("/landing");
+            navigate("/");
           } else {
             // console.log(data);
             dispatch(accountActions.login(data));
@@ -110,12 +103,12 @@ function App() {
     return (
       <>
         <Routes>
-          <Route path="/landing" element={<Landing />} />
+          <Route path="/" element={<Landing />} />
           <Route path="/token" element={<TokenRedirect />} />
           <Route path="/setup" element={<Setup />} />
           <Route path="/documentation" element={<Documentation />} />
         </Routes>
-        {location.pathname !== "/landing" && <Loading />}
+        {/* {location.pathname !== "/landing" && <Loading />} */}
         <Footer />
       </>
     );
