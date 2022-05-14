@@ -28,6 +28,7 @@ const Timetable = () => {
   const [refresherTime, setRefresherTime] = useState([]);
   const [refreshCount, setRefreshCount] = useState(0);
   const isTabLand = useMediaQuery({ query: "(max-width: 75em)" });
+  const [image, setImage] = useState<File>();
   const [curTheme, setCurTheme] = useState(
     localStorage.getItem("theme") ?? "light"
   );
@@ -251,6 +252,12 @@ const Timetable = () => {
     );
   }
 
+  const jiratChutrakul = {
+    develops: "frontend",
+    frameworks: ["react", "flutter"],
+    age: 13,
+  };
+
   return (
     <>
       <section
@@ -291,6 +298,57 @@ const Timetable = () => {
           width="50"
         />
       </section>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ type: "ease-in" }}
+        className="timetableAlert"
+        style={{ backgroundColor: timetableColor + "70" }}
+      >
+        <div>
+          <div className="timetableAlert__header">
+            <p>
+              Hi there {userInfo.firstName} {userInfo.lastName}!
+            </p>
+            <h1>This timetable needs an update</h1>
+          </div>
+
+          <p>
+            We've detected that your class (EP 2/3)'s timetables hasn't been
+            updated for this semester's timetable. To keep your timetables
+            updated can you kindly send us a photo of your timetable? Thanks!
+          </p>
+        </div>
+
+        <button
+          className="timetableAlert__selectImage"
+          type="button"
+          style={{
+            backgroundColor: timetableColor + "20",
+            border: `2px solid ${timetableColor}`,
+          }}
+        >
+          <input
+            onChange={(event) => {
+              setImage(event.currentTarget.files?.[0]);
+            }}
+            type="file"
+            accept="image/png, image/gif, image/jpeg, image/jpg"
+          ></input>
+          {image ? (
+            <img
+              src={URL.createObjectURL(image)}
+              alt="userProfile"
+              height="150px"
+              width="150px"
+              className="simpleModal__preview"
+              style={{ scale: 0.7 }}
+            />
+          ) : (
+            <i className="bx bx-image-add simpleModal__imga"></i>
+          )}
+        </button>
+      </motion.div>
       <section className="timetableBar">
         <div className="timetableBar__text">
           <p>{language === "EN" ? "Timetable" : "ตารางสอน"}:</p>
@@ -379,9 +437,13 @@ const Timetable = () => {
               language={language}
               format={format}
               school={timetableData?.school}
+              // highlight={{
+              //   day: identifier?.today - 1,
+              //   period: identifier?.curClass,
+              // }}
               highlight={{
-                day: identifier?.today - 1,
-                period: identifier?.curClass,
+                day: 1,
+                period: 2,
               }}
               color={timetableColor}
               searched={searchedArray}

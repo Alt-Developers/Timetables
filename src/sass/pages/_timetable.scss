@@ -75,6 +75,69 @@
   }
 }
 
+.timetableAlert {
+  padding: 3rem;
+  display: flex;
+
+  &__header {
+    color: #fff;
+
+    p {
+      font-size: 1.5rem !important;
+      margin-top: 0 !important;
+    }
+
+    h1 {
+      color: #fff;
+    }
+  }
+
+  &__selectImage {
+    border-radius: 2rem;
+    height: 10rem;
+    width: 15rem !important;
+    margin-left: auto;
+    position: relative;
+    transition: all 0.2s;
+    display: grid;
+    place-items: center;
+
+    input {
+      height: 20rem;
+      width: 20rem;
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      left: 0;
+    }
+
+    i {
+      color: #fff;
+    }
+
+    img {
+      object-fit: cover;
+      border-radius: 1.1rem;
+      height: 7rem;
+      width: 7rem;
+    }
+
+    &:active {
+      scale: 0.9;
+    }
+
+    @include respond(phone) {
+      width: 20rem;
+    }
+  }
+
+  p {
+    color: #fff;
+    font-size: 1.4rem;
+    margin-top: 2rem;
+  }
+}
+
 .timetableBar {
   height: 12rem;
   padding: 3rem;

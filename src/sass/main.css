@@ -1504,6 +1504,49 @@ main {
     .timetableNav__pref:active {
       transform: scale(0.9); }
 
+.timetableAlert {
+  padding: 3rem;
+  display: flex; }
+  .timetableAlert__header {
+    color: #fff; }
+    .timetableAlert__header p {
+      font-size: 1.5rem !important;
+      margin-top: 0 !important; }
+    .timetableAlert__header h1 {
+      color: #fff; }
+  .timetableAlert__selectImage {
+    border-radius: 2rem;
+    height: 10rem;
+    width: 15rem !important;
+    margin-left: auto;
+    position: relative;
+    transition: all 0.2s;
+    display: grid;
+    place-items: center; }
+    .timetableAlert__selectImage input {
+      height: 20rem;
+      width: 20rem;
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      left: 0; }
+    .timetableAlert__selectImage i {
+      color: #fff; }
+    .timetableAlert__selectImage img {
+      object-fit: cover;
+      border-radius: 1.1rem;
+      height: 7rem;
+      width: 7rem; }
+    .timetableAlert__selectImage:active {
+      scale: 0.9; }
+    @media only screen and (max-width: 56.25em) {
+      .timetableAlert__selectImage {
+        width: 20rem; } }
+  .timetableAlert p {
+    color: #fff;
+    font-size: 1.4rem;
+    margin-top: 2rem; }
+
 .timetableBar {
   height: 12rem;
   padding: 3rem;
