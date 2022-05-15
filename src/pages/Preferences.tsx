@@ -42,16 +42,16 @@ const Preferences = (props) => {
     document.title = "Preferences | SS Timetables";
   }, []);
 
-  useEffect(() => {
-    if (consoleLog === "off") {
-      // @ts-ignore
-      if (!window.console) window.console = {};
-      var methods = ["log", "debug", "warn", "info"];
-      for (var i = 0; i < methods.length; i++) {
-        console[methods[i]] = function () {};
-      }
-    }
-  }, [consoleLog]);
+  // useEffect(() => {
+  //   if (consoleLog === "off") {
+  //     // @ts-ignore
+  //     if (!window.console) window.console = {};
+  //     var methods = ["log", "debug", "warn", "info"];
+  //     for (var i = 0; i < methods.length; i++) {
+  //       console[methods[i]] = function () {};
+  //     }
+  //   }
+  // }, [consoleLog]);
 
   useEffect(() => {
     fetch("https://apis.ssdevelopers.xyz/auth/editConfig", {
@@ -98,138 +98,147 @@ const Preferences = (props) => {
         }
         clickProfile={"home"}
       />
-      {classInfo.primaryClass && (
-        <section className="config">
-          <h1 className="bar__header">SS Account</h1>
-          <div className="bar ssAcc__bar">
-            <div className="ssAcc__item">
-              <h3>Account Dashboard</h3>
-              <p>
-                {language === "EN"
-                  ? "Change your name, profile picture are more"
-                  : "เปลี่ยนชื่อ, ภาพโปรไฟลและอีกมากมาย"}
-              </p>
-              <a
-                href={`http://authentication.ssdevelopers.xyz/redirect/?service=timetables&token=${localStorage.getItem(
-                  "token"
-                )}`}
-              >
-                {language === "EN" ? "To Dashboard" : "ไป Dashboard"}
-              </a>
-            </div>
-            <div className="ssAcc__item themeSwitcher">
-              <h3>
-                {language === "EN" ? "Theme Switcher" : "เปลี่ยนธีมของคุณ"}
-              </h3>
-              <p>
-                {language === "EN"
-                  ? "Dark theme, light theme and system theme"
-                  : "ธีมมืด ธีมสว่าง และธีมระบบ"}
-              </p>
-              <div className={`themeSwitcher__buttons`}>
-                <button
-                  title="Switch to light theme"
-                  className={
-                    curTheme === "light" ? "themeSwitcher__active" : ""
-                  }
-                  onClick={() => {
-                    document.documentElement.setAttribute(
-                      "data-theme",
-                      "light"
-                    );
-                    setCurTheme("light");
-                    localStorage.setItem("theme", "light");
-                  }}
-                >
-                  <i className="bx bx-sun"></i>
-                </button>
-                <button
-                  title="Switch to dark theme"
-                  className={curTheme === "dark" ? "themeSwitcher__active" : ""}
-                  onClick={() => {
-                    document.documentElement.setAttribute("data-theme", "dark");
-                    localStorage.setItem("theme", "dark");
-                    setCurTheme("dark");
-                  }}
-                >
-                  <i className="bx bx-moon"></i>
-                </button>
-                <button
-                  title="Switch to system theme"
-                  className={
-                    curTheme === "system" ? "themeSwitcher__active" : ""
-                  }
-                  onClick={() => {
-                    document.documentElement.setAttribute(
-                      "data-theme",
-                      "system"
-                    );
-                    localStorage.setItem("theme", "system");
-                    setCurTheme("system");
-                  }}
-                >
-                  <i className="bx bx-desktop"></i>
-                </button>
-              </div>
-            </div>
-            <button
-              className="config__logout"
-              onClick={() => {
-                dispatch(accountActions.logout());
-              }}
-            >
-              <p> {language === "EN" ? "Logout" : "ออกจากระบบ"}</p>
-            </button>
-          </div>
-          <h1 className="bar__header">
-            {language === "EN" ? "Configurations" : "ตั้งค่า"}
-          </h1>
-          <div className="bar config__realBar" style={{ overflow: "visible" }}>
-            <div className="config__bar">
-              <div
-                className="config__item"
-                style={isPhone ? {} : { paddingLeft: "1rem" }}
-              >
-                <h3>{language === "EN" ? "Language" : "ภาษา / Language"}</h3>
-                <SelectSearch
-                  options={[
-                    { value: "EN", name: "English" },
-                    { value: "TH", name: "ไทย" },
-                  ]}
-                  // @ts-ignore
-                  onChange={setSelectedLanguage}
-                  value={selectedLanguage}
-                />
-              </div>
-              <div className="config__item">
-                <h3>{language === "EN" ? "Time Format" : "รูปแบบเวลา"}</h3>
-                <SelectSearch
-                  options={[
-                    { value: "24h", name: "24 hours" },
-                    { value: "12h", name: "12 hours" },
-                  ]}
-                  // @ts-ignore
-                  onChange={setSelectedDateFormat}
-                  value={selectedDateFormat}
-                />
-              </div>
-              <div className="config__item" style={{ borderRight: "none" }}>
-                <h3>
+      <main>
+        {classInfo.primaryClass && (
+          <>
+            <h1 className="bar__header">SS Account</h1>
+            <div className="bar ssAcc__bar">
+              <div className="ssAcc__item">
+                <h3>Account Dashboard</h3>
+                <p>
                   {language === "EN"
-                    ? "Covid Reports"
-                    : "แสดงค่าการติดเชื้อโควิด-19"}
-                </h3>
-                <SelectSearch
-                  options={[
-                    { value: "covShow", name: "Show" },
-                    { value: "covHide", name: "Hidden" },
-                  ]}
-                  // @ts-ignore
-                  onChange={setSelectedCovid}
-                  value={selectedCovid}
-                />
+                    ? "Change your name, profile picture are more"
+                    : "เปลี่ยนชื่อ, ภาพโปรไฟลและอีกมากมาย"}
+                </p>
+                <a
+                  href={`http://authentication.ssdevelopers.xyz/redirect/?service=timetables&token=${localStorage.getItem(
+                    "token"
+                  )}`}
+                >
+                  {language === "EN" ? "To Dashboard" : "ไป Dashboard"}
+                </a>
               </div>
-              {/* <div
+              <div className="ssAcc__item themeSwitcher">
+                <h3>
+                  {language === "EN" ? "Theme Switcher" : "เปลี่ยนธีมของคุณ"}
+                </h3>
+                <p>
+                  {language === "EN"
+                    ? "Dark theme, light theme and system theme"
+                    : "ธีมมืด ธีมสว่าง และธีมระบบ"}
+                </p>
+                <div className={`themeSwitcher__buttons`}>
+                  <button
+                    title="Switch to light theme"
+                    className={
+                      curTheme === "light" ? "themeSwitcher__active" : ""
+                    }
+                    onClick={() => {
+                      document.documentElement.setAttribute(
+                        "data-theme",
+                        "light"
+                      );
+                      setCurTheme("light");
+                      localStorage.setItem("theme", "light");
+                    }}
+                  >
+                    <i className="bx bx-sun"></i>
+                  </button>
+                  <button
+                    title="Switch to dark theme"
+                    className={
+                      curTheme === "dark" ? "themeSwitcher__active" : ""
+                    }
+                    onClick={() => {
+                      document.documentElement.setAttribute(
+                        "data-theme",
+                        "dark"
+                      );
+                      localStorage.setItem("theme", "dark");
+                      setCurTheme("dark");
+                    }}
+                  >
+                    <i className="bx bx-moon"></i>
+                  </button>
+                  <button
+                    title="Switch to system theme"
+                    className={
+                      curTheme === "system" ? "themeSwitcher__active" : ""
+                    }
+                    onClick={() => {
+                      document.documentElement.setAttribute(
+                        "data-theme",
+                        "system"
+                      );
+                      localStorage.setItem("theme", "system");
+                      setCurTheme("system");
+                    }}
+                  >
+                    <i className="bx bx-desktop"></i>
+                  </button>
+                </div>
+              </div>
+              <button
+                className="config__logout"
+                onClick={() => {
+                  dispatch(accountActions.logout());
+                }}
+              >
+                <p> {language === "EN" ? "Logout" : "ออกจากระบบ"}</p>
+              </button>
+            </div>
+            <h1 className="bar__header">
+              {language === "EN" ? "Configurations" : "ตั้งค่า"}
+            </h1>
+            <div
+              className="bar config__realBar"
+              style={{ overflow: "visible" }}
+            >
+              <div className="config__bar">
+                <div
+                  className="config__item"
+                  style={isPhone ? {} : { paddingLeft: "1rem" }}
+                >
+                  <h3>{language === "EN" ? "Language" : "ภาษา / Language"}</h3>
+                  <SelectSearch
+                    options={[
+                      { value: "EN", name: "English" },
+                      { value: "TH", name: "ไทย" },
+                    ]}
+                    // @ts-ignore
+                    onChange={setSelectedLanguage}
+                    value={selectedLanguage}
+                  />
+                </div>
+                <div className="config__item">
+                  <h3>{language === "EN" ? "Time Format" : "รูปแบบเวลา"}</h3>
+                  <SelectSearch
+                    options={[
+                      { value: "24h", name: "24 hours" },
+                      { value: "12h", name: "12 hours" },
+                    ]}
+                    // @ts-ignore
+                    onChange={setSelectedDateFormat}
+                    value={selectedDateFormat}
+                  />
+                </div>
+                <div className="config__item" style={{ borderRight: "none" }}>
+                  <h3>
+                    {language === "EN"
+                      ? "Covid Reports"
+                      : "แสดงค่าการติดเชื้อโควิด-19"}
+                  </h3>
+                  <SelectSearch
+                    options={[
+                      { value: "covShow", name: "Show" },
+                      { value: "covHide", name: "Hidden" },
+                    ]}
+                    // @ts-ignore
+                    onChange={setSelectedCovid}
+                    value={selectedCovid}
+                  />
+                </div>
+                {/* <div
                 className="config__developerOption"
                 style={{ backgroundColor: userInfo.color }}
               >
@@ -247,18 +256,17 @@ const Preferences = (props) => {
                   />
                 </div>
               </div> */}
-              <div className="config__buttonWrapper">
-                <ColoredButton
-                  text={language === "EN" ? "Save" : "บันทึก"}
-                  className={"config__button"}
-                  onClick={() => setSavedConfig(savedConfig + 1)}
-                />
+                <div className="config__buttonWrapper">
+                  <ColoredButton
+                    text={language === "EN" ? "Save" : "บันทึก"}
+                    className={"config__button"}
+                    onClick={() => setSavedConfig(savedConfig + 1)}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      )}
-      <section className="removeTimetables" id="addRemovetimetables">
+          </>
+        )}
         <h1 className="bar__header">
           {language === "EN" ? "Add / Set Timetables" : "เพิ่มตารางสอน"}
         </h1>
@@ -366,7 +374,7 @@ const Preferences = (props) => {
             </div>
           </>
         )}
-      </section>
+      </main>
     </>
   );
 };

@@ -12,15 +12,16 @@ import Landing from "./pages/Landing";
 import React from "react";
 import axios from "axios";
 import Setup from "./pages/Setup";
+import Documentation from "./pages/Documentation";
 
-import { Route, Routes, useLocation, useNavigate } from "react-router";
+import { Route, Routes, useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { Suspense, useEffect, useState } from "react";
 import { accountActions } from "./context/accountSlice";
 import { timetableActions } from "./context/timetableSlice";
 import { RootState } from "./context";
-import Documentation from "./pages/Documentation";
+import { EmptyTimetable } from "./components/Empty";
 
 function App() {
   const Timetable = React.lazy(() => import("./pages/Timetable"));
@@ -31,7 +32,6 @@ function App() {
   const userInfo = useSelector((state: RootState) => state.account);
   const [getUserIsLoading, setGetUserIsLoading] = useState(true);
   const [getMyClassIsLoading, setGetMyClassIsLoading] = useState(true);
-  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -99,7 +99,7 @@ function App() {
         });
   }, [dispatch, refetch, language]);
 
-  if (getUserIsLoading && getMyClassIsLoading && !userInfo.isAuthenticated) {
+  if (!localStorage.getItem("token")) {
     return (
       <>
         <Routes>
@@ -107,6 +107,19 @@ function App() {
           <Route path="/token" element={<TokenRedirect />} />
           <Route path="/setup" element={<Setup />} />
           <Route path="/documentation" element={<Documentation />} />
+        </Routes>
+        {/* {location.pathname !== "/landing" && <Loading />} */}
+        <Footer />
+      </>
+    );
+  } else if (getUserIsLoading && getMyClassIsLoading) {
+    return (
+      <>
+        <Routes>
+          <Route path="/" element={<Loading />} />
+          <Route path="/token" element={<TokenRedirect />} />
+          <Route path="/setup" element={<Setup />} />
+          <Route path="*" element={<Loading />} />
         </Routes>
         {/* {location.pathname !== "/landing" && <Loading />} */}
         <Footer />
@@ -138,7 +151,7 @@ function App() {
             <Route
               path="/timetable"
               element={
-                <Suspense fallback={<Loading />}>
+                <Suspense fallback={<EmptyTimetable />}>
                   <Timetable />
                 </Suspense>
               }

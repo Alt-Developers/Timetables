@@ -2,13 +2,20 @@ import { useState } from "react";
 import { SpinnerRoundFilled } from "spinners-react";
 import { useEffect } from "react";
 
-const Loading = props => {
+const Loading = (props) => {
   const [notLoading, setNotLoading] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
       setNotLoading(true);
     }, 5000);
+
+    if (localStorage.getItem("theme")) {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("theme") ?? ""
+      );
+    }
   }, []);
 
   return (

@@ -11,9 +11,7 @@ import { RootState } from "../context";
 
 const Timetable = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const userInfo = useSelector((state: RootState) => state.account.userInfo);
-  const language = useSelector((state: RootState) => state.account.language);
-  const navigate = useNavigate();
+  // State
   const [timeLayout, setTimeLayout] = useState<string[]>([]);
   const [timetableData, setTimetableData] = useState<any>({});
   const [format, setFormat] = useState({});
@@ -27,12 +25,15 @@ const Timetable = () => {
   const [refresher, setRefresher] = useState(1);
   const [refresherTime, setRefresherTime] = useState([]);
   const [refreshCount, setRefreshCount] = useState(0);
-  const isTabLand = useMediaQuery({ query: "(max-width: 75em)" });
   const [image, setImage] = useState<File>();
+  const [status, setStatus] = useState<"outdated" | "uptodate">();
   const [curTheme, setCurTheme] = useState(
     localStorage.getItem("theme") ?? "light"
   );
-
+  const isTabLand = useMediaQuery({ query: "(max-width: 75em)" });
+  const userInfo = useSelector((state: RootState) => state.account.userInfo);
+  const language = useSelector((state: RootState) => state.account.language);
+  const navigate = useNavigate();
   const [clock, setClock] = useState(
     new Date().toLocaleString("en-US", {
       hour: "numeric",
@@ -43,7 +44,7 @@ const Timetable = () => {
   );
 
   const timetableColor = "#" + searchParams.get("color");
-  const isNewton = timetableData?.school === ("NEWTON" || "ESSENCE");
+  const isNewton = timetableData?.school === "NEWTON";
 
   useEffect(() => {
     // console.log("Re-fetched!");
@@ -61,31 +62,36 @@ const Timetable = () => {
       .then((data) => {
         if (data.error) navigate("/");
 
-        // console.log(data);
+        console.log(data);
         document.title = `${data.className} | SS Timetables`;
         setIdentifier(data.identifier);
         setFormat(data.timetableFormat.classCode);
         setTimetableData(data.timetableData);
         setTimetableName(data.className);
         setRefresherTime(data.refresher);
+        setStatus(
+          data.isPrimaryClass && data.status === "outdated"
+            ? "outdated"
+            : "uptodate"
+        );
 
         switch (data.timetableData.school) {
           case "ASSUMPTION":
             setTimeLayout([
-              "08:00 - 08:30",
               "08:30 - 09:20",
               "09:20 - 10:10",
-              "10:10 - 11:40",
-              "11:40 - 12:40",
-              "12:40 - 13:40",
-              "13:40 - 14:20",
-              "14:20 - 15:00",
+              "10:20 - 11:10",
+              "11:10 - 12:10",
+              "12:10 - 13:00",
+              "13:00 - 13:50",
+              "14:00 - 14:50",
+              "14:50 - 15:40",
             ]);
             break;
           case "NEWTON":
             setTimeLayout([
-              "9:00 - 9:30",
-              "9:30 - 10:00",
+              "09:00 - 09:30",
+              "09:30 - 10:00",
               "10:00 - 10:20",
               "10:30 - 11:00",
               "11:00 - 11:30",
@@ -100,6 +106,17 @@ const Timetable = () => {
               "16:00 - 16:30",
               "16:30 - 17:00",
               "17:00 - 17:30",
+            ]);
+            break;
+          case "ESSENCE":
+            setTimeLayout([
+              "09:00 - 10:00",
+              "10:00 - 11:00",
+              "11:00 - 12:00",
+              "12:00 - 13:00",
+              "13:00 - 14:00",
+              "14:00 - 15:00",
+              "15:00 - 16:00",
             ]);
             break;
         }
@@ -252,12 +269,6 @@ const Timetable = () => {
     );
   }
 
-  const jiratChutrakul = {
-    develops: "frontend",
-    frameworks: ["react", "flutter"],
-    age: 13,
-  };
-
   return (
     <>
       <section
@@ -298,57 +309,64 @@ const Timetable = () => {
           width="50"
         />
       </section>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ type: "ease-in" }}
-        className="timetableAlert"
-        style={{ backgroundColor: timetableColor + "70" }}
-      >
-        <div>
-          <div className="timetableAlert__header">
+      {status === "outdated" && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ type: "ease-in" }}
+          className="timetableAlert"
+          style={{ backgroundColor: timetableColor + "70" }}
+        >
+          <div>
+            <div className="timetableAlert__header">
+              <p>
+                {language == "EN" ? "Hi there" : "ว่าไง"} {userInfo.firstName}{" "}
+                {userInfo.lastName}!
+              </p>
+              <h1>
+                {language == "EN"
+                  ? "This timetable needs an update"
+                  : "ตารางเรียนนี้ไม่ใช่ตารางเรียนล่าสุด"}
+              </h1>
+            </div>
+
             <p>
-              Hi there {userInfo.firstName} {userInfo.lastName}!
+              {language == "EN"
+                ? `We've detected that your class (${timetableName})'s timetables hasn't been updated for this semester's timetable. To keep your timetables updated can you kindly send us a photo of your timetable? Thanks!`
+                : ""}
             </p>
-            <h1>This timetable needs an update</h1>
           </div>
 
-          <p>
-            We've detected that your class (EP 2/3)'s timetables hasn't been
-            updated for this semester's timetable. To keep your timetables
-            updated can you kindly send us a photo of your timetable? Thanks!
-          </p>
-        </div>
-
-        <button
-          className="timetableAlert__selectImage"
-          type="button"
-          style={{
-            backgroundColor: timetableColor + "20",
-            border: `2px solid ${timetableColor}`,
-          }}
-        >
-          <input
-            onChange={(event) => {
-              setImage(event.currentTarget.files?.[0]);
+          <button
+            className="timetableAlert__selectImage"
+            type="button"
+            style={{
+              backgroundColor: timetableColor + "20",
+              border: `2px solid ${timetableColor}`,
             }}
-            type="file"
-            accept="image/png, image/gif, image/jpeg, image/jpg"
-          ></input>
-          {image ? (
-            <img
-              src={URL.createObjectURL(image)}
-              alt="userProfile"
-              height="150px"
-              width="150px"
-              className="simpleModal__preview"
-              style={{ scale: 0.7 }}
-            />
-          ) : (
-            <i className="bx bx-image-add simpleModal__imga"></i>
-          )}
-        </button>
-      </motion.div>
+          >
+            <input
+              onChange={(event) => {
+                setImage(event.currentTarget.files?.[0]);
+              }}
+              type="file"
+              accept="image/png, image/gif, image/jpeg, image/jpg"
+            ></input>
+            {image ? (
+              <img
+                src={URL.createObjectURL(image)}
+                alt="userProfile"
+                height="150px"
+                width="150px"
+                className="simpleModal__preview"
+                style={{ scale: 0.7 }}
+              />
+            ) : (
+              <i className="bx bx-image-add simpleModal__imga"></i>
+            )}
+          </button>
+        </motion.div>
+      )}
       <section className="timetableBar">
         <div className="timetableBar__text">
           <p>{language === "EN" ? "Timetable" : "ตารางสอน"}:</p>
@@ -398,7 +416,7 @@ const Timetable = () => {
               margin: "0 0 0 0 !important",
             }}
           >
-            <h3></h3>
+            <h3 style={{ borderRadius: "1.1rem !important" }}></h3>
           </div>
           {timeLayout.map((element, index) => (
             <div
@@ -437,13 +455,9 @@ const Timetable = () => {
               language={language}
               format={format}
               school={timetableData?.school}
-              // highlight={{
-              //   day: identifier?.today - 1,
-              //   period: identifier?.curClass,
-              // }}
               highlight={{
-                day: 1,
-                period: 2,
+                day: identifier?.today - 1,
+                period: identifier?.curClass,
               }}
               color={timetableColor}
               searched={searchedArray}
@@ -463,7 +477,7 @@ const Timetable = () => {
                     placeItems: "center",
                   }
                 : {
-                    gridColumn: isNewton ? "8 / 9" : "6 / 7",
+                    gridColumn: isNewton ? "8 / 9" : "5 / 6",
                     gridRow: "2/7",
                     display: "grid",
                     placeItems: "center",

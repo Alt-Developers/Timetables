@@ -1,8 +1,18 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const TimetableDay = (props) => {
+  const [isHovering, setIsHovering] = useState([null, null]);
   let dayName;
   let dayCode;
+
+  const mouseEnter = (day, index) => {
+    setIsHovering([day, index]);
+  };
+
+  const mouseLeave = () => {
+    setIsHovering([null, null]);
+  };
 
   const LightenDarkenColor = (col, amt) => {
     let usePound = false;
@@ -58,30 +68,37 @@ const TimetableDay = (props) => {
         props.periodsArray[props.day].map((period, index) => {
           let cumulativeSpanned = 0;
 
-          for (let i = 0; i < index; i++) {
-            if (index < 2) {
+          if (props.school === "NEWTON" || props.school === "ASSUMPTION") {
+            for (let i = 0; i < index; i++) {
               cumulativeSpanned +=
                 +props.periodsArray[props.day][index - i].slice(-1);
-            } else {
+            }
+          } else {
+            for (let i = 0; i < index; i++) {
               cumulativeSpanned +=
                 +props.periodsArray[props.day][index - i].slice(-1);
             }
           }
 
-          if (props.school === ("NEWTON" || "ESSENCE")) {
+          if (props.school === "NEWTON") {
             if (period.slice(-1) === "3") cumulativeSpanned += 1;
             if (period.slice(-1) === "2") cumulativeSpanned += 2;
             if (period.slice(-1) === "1") cumulativeSpanned += 3;
             if (cumulativeSpanned + 1 > 6) cumulativeSpanned += 1;
-          } else {
+          } else if (props.school === "ASSUMPTION") {
             if (period.slice(-1) === "1") cumulativeSpanned += 1;
-            if (cumulativeSpanned + 1 > 5) cumulativeSpanned += 1;
+            if (cumulativeSpanned + 1 > 4) cumulativeSpanned += 1;
+          } else if (props.school === "ESSENCE") {
+            if (period.slice(-1) === "1") cumulativeSpanned += 1;
+            // if (period.slice(-1) === "2") cumulativeSpanned += 2;
+            if (cumulativeSpanned + 1 > 4) cumulativeSpanned += 1;
           }
 
           return (
             <motion.div
               className={`weekday`}
               key={index + 1000}
+              onClick={() => mouseEnter(props.day, index)}
               style={
                 props.highlight.day === props.day &&
                 props.highlight.period === index
@@ -89,7 +106,7 @@ const TimetableDay = (props) => {
                       gridColumn: `${
                         cumulativeSpanned + 1
                       } / span ${period.slice(-1)}`,
-                      color: LightenDarkenColor(props.color, -10),
+                      color: LightenDarkenColor(props.color, -1),
                       textShadow: `0px 0px 10px ${props.color}70`,
                       opacity:
                         props.searched === null ||
@@ -99,7 +116,9 @@ const TimetableDay = (props) => {
                     }
                   : {
                       gridColumn: `${
-                        cumulativeSpanned + 1
+                        props.school === "ESSENCE"
+                          ? cumulativeSpanned + 1
+                          : cumulativeSpanned + 1
                       } / span ${period.slice(-1)}`,
                       opacity:
                         props.searched === null ||
@@ -109,7 +128,35 @@ const TimetableDay = (props) => {
                     }
               }
             >
-              <div>{props.format[props.language][period.slice(0, 3)].name}</div>
+              <motion.div
+                className="weekday__popup"
+                initial={{ opacity: 0, scale: 0.5 }}
+                onMouseLeave={() => mouseLeave()}
+                animate={
+                  isHovering[0] === props.day && isHovering[1] === index
+                    ? { opacity: 1, scale: 1 }
+                    : { opacity: 0, scale: 0.5 }
+                }
+                transition={{ duration: 0.05 }}
+              >
+                <div className="weekday__popup--top">
+                  <img
+                    src={`./icons/${
+                      props.format[props.language][period.slice(0, 3)].icon
+                    }.png`}
+                    alt=""
+                  />
+                </div>
+                <div className="weekday__popup--bottom">
+                  <h2>
+                    {props.format[props.language][period.slice(0, 3)].name}
+                  </h2>
+                  <p>{`Period ${index + 1} of ${dayName}`}</p>
+                </div>
+              </motion.div>
+              <div className="weekday__text">
+                {props.format[props.language][period.slice(0, 3)].name}
+              </div>
             </motion.div>
           );
         })}

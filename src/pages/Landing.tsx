@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import Snackbar from "../components/Snackbar";
 import { useMediaQuery } from "react-responsive";
+import Loading from "../components/Loading";
 
 const Landing = (props) => {
   const [isThai, setIsThai] = useState("EN");
