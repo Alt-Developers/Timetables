@@ -66,34 +66,6 @@ const TimetableDay = (props) => {
       <div className={`${dayCode} weekdays`}>{dayName}</div>
       {props.periodsArray[props.day] &&
         props.periodsArray[props.day].map((period, index) => {
-          let cumulativeSpanned = 0;
-
-          if (props.school === "NEWTON" || props.school === "ASSUMPTION") {
-            for (let i = 0; i < index; i++) {
-              cumulativeSpanned +=
-                +props.periodsArray[props.day][index - i].slice(-1);
-            }
-          } else {
-            for (let i = 0; i < index; i++) {
-              cumulativeSpanned +=
-                +props.periodsArray[props.day][index - i].slice(-1);
-            }
-          }
-
-          if (props.school === "NEWTON") {
-            if (period.slice(-1) === "3") cumulativeSpanned += 1;
-            if (period.slice(-1) === "2") cumulativeSpanned += 2;
-            if (period.slice(-1) === "1") cumulativeSpanned += 3;
-            if (cumulativeSpanned + 1 > 6) cumulativeSpanned += 1;
-          } else if (props.school === "ASSUMPTION") {
-            if (period.slice(-1) === "1") cumulativeSpanned += 1;
-            if (cumulativeSpanned + 1 > 4) cumulativeSpanned += 1;
-          } else if (props.school === "ESSENCE") {
-            if (period.slice(-1) === "1") cumulativeSpanned += 1;
-            // if (period.slice(-1) === "2") cumulativeSpanned += 2;
-            if (cumulativeSpanned + 1 > 4) cumulativeSpanned += 1;
-          }
-
           return (
             <motion.div
               className={`weekday`}
@@ -103,9 +75,7 @@ const TimetableDay = (props) => {
                 props.highlight.day === props.day &&
                 props.highlight.period === index
                   ? {
-                      gridColumn: `${
-                        cumulativeSpanned + 1
-                      } / span ${period.slice(-1)}`,
+                      gridColumn: `span ${period.slice(-1)}`,
                       color: LightenDarkenColor(props.color, -1),
                       textShadow: `0px 0px 10px ${props.color}70`,
                       opacity:
@@ -115,11 +85,7 @@ const TimetableDay = (props) => {
                           : 0,
                     }
                   : {
-                      gridColumn: `${
-                        props.school === "ESSENCE"
-                          ? cumulativeSpanned + 1
-                          : cumulativeSpanned + 1
-                      } / span ${period.slice(-1)}`,
+                      gridColumn: `span ${period.slice(-1)}`,
                       opacity:
                         props.searched === null ||
                         props.searched.includes(period.slice(0, 3))

@@ -3,10 +3,10 @@ import Glance from "../components/Glance";
 import TimetableList from "../components/TimetableList";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
-import Loading from "../components/Loading";
 import Covid from "../components/Covid";
 import { useEffect, useState } from "react";
 import { RootState } from "../context";
+import { ErrorBoundary } from "react-error-boundary";
 
 const Home = (props) => {
   const isAuthenticated = useSelector(
@@ -49,7 +49,27 @@ const Home = (props) => {
         >
           <Header />
           <main>
-            {fetchedUserInfo && <Glance />}
+            <ErrorBoundary
+              fallback={
+                <>
+                  <h1 className="bar__header">Glance</h1>
+                  <div className="bar">
+                    <div className="errorBoundaryFill">
+                      {" "}
+                      <h1>The component "Glance" failed to load</h1>
+                      <p>
+                        If you find this please report this error by{"  "}
+                        <a href="https://github.com/SS-Developers/Timetables/issues/new?assignees=Jiraties&labels=bug&template=bug_report.md&title=">
+                          clicking here
+                        </a>{" "}
+                      </p>
+                    </div>
+                  </div>
+                </>
+              }
+            >
+              {fetchedUserInfo && <Glance />}
+            </ErrorBoundary>
             {config?.showCovid === "covShow" && <Covid key="2" />}
             {classInfo.starredClass && <TimetableList key="3" />}
           </main>

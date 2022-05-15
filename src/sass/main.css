@@ -171,6 +171,25 @@ main {
   background-color: var(--background-color);
   min-height: 60vh; }
 
+.errorBoundaryFill {
+  height: 100%;
+  width: 100%;
+  border-radius: 1.1rem;
+  background-color: #a50000;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; }
+  .errorBoundaryFill p {
+    color: yellow;
+    font-size: 1.2rem; }
+    .errorBoundaryFill p a {
+      background-color: #d8d83e;
+      color: black; }
+  .errorBoundaryFill h1 {
+    color: yellow;
+    font-size: 2rem; }
+
 .u-remove-a-eff {
   text-decoration: none;
   color: white; }

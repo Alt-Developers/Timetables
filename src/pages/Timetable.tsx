@@ -34,6 +34,7 @@ const Timetable = () => {
   const userInfo = useSelector((state: RootState) => state.account.userInfo);
   const language = useSelector((state: RootState) => state.account.language);
   const navigate = useNavigate();
+
   const [clock, setClock] = useState(
     new Date().toLocaleString("en-US", {
       hour: "numeric",
@@ -403,9 +404,9 @@ const Timetable = () => {
             gridTemplateRows: "1fr 2fr 2fr 2fr 2fr 2fr",
             gridTemplateColumns: `${
               isNewton ? (isTabLand ? "12rem " : "2fr ") : ""
-            }repeat(${
-              isNewton ? timeLayout.length - 1 : timeLayout.length + 1
-            }, ${isTabLand ? (isNewton ? "6.5rem" : "15rem") : "1fr"})`,
+            }repeat(${isNewton ? timeLayout.length : timeLayout.length + 1}, ${
+              isTabLand ? (isNewton ? "6.5rem" : "15rem") : "1fr"
+            })`,
             height: "85vh",
           }}
         >
@@ -435,13 +436,7 @@ const Timetable = () => {
               }
               className={`timetablePeriodTime ${
                 index === 0 ? "timetablePeriodTime__first" : ""
-              } ${
-                index === timeLayout.length - 1
-                  ? isNewton
-                    ? "timetablePeriodTime__last"
-                    : ""
-                  : ""
-              }`}
+              } ${index === timeLayout.length - 1 ? (isNewton ? "" : "") : ""}`}
               key={index}
             >
               <h3>{element}</h3>

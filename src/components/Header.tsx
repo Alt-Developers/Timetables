@@ -17,8 +17,7 @@ const Header = (props) => {
     new Date().toLocaleString("en-US", {
       hour: "numeric",
       minute: "numeric",
-      hourCycle: "h23",
-      hour12: dateTime === "12h" ? true : false,
+      hourCycle: dateTime === "12h" ? "h12" : "h23",
     })
   );
 
