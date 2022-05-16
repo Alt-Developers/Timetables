@@ -1,8 +1,13 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import { useSelector } from "react-redux";
+import { RootState } from "../context";
 
 const TimetableDay = (props) => {
   const [isHovering, setIsHovering] = useState([null, null]);
+  const language = useSelector((state: RootState) => state.account.language);
+  const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
   let dayName;
   let dayCode;
 
@@ -13,6 +18,32 @@ const TimetableDay = (props) => {
   const mouseLeave = () => {
     setIsHovering([null, null]);
   };
+
+  switch (props.day) {
+    case 0:
+      props.language === "EN" ? (dayName = "Monday") : (dayName = "วันจันทร์");
+      dayCode = "monday";
+      break;
+    case 1:
+      props.language === "EN" ? (dayName = "Tuesday") : (dayName = "วันอังคาร");
+      dayCode = "tuesday";
+      break;
+    case 2:
+      props.language === "EN" ? (dayName = "Wednesday") : (dayName = "วันพุทธ");
+      dayCode = "wednesday";
+      break;
+    case 3:
+      props.language === "EN"
+        ? (dayName = "Thursday")
+        : (dayName = "วันพฤหัสบดี");
+      dayCode = "thursday";
+      console.log(dayCode);
+      break;
+    case 4:
+      props.language === "EN" ? (dayName = "Friday") : (dayName = "วันศุกร");
+      dayCode = "friday";
+      break;
+  }
 
   const LightenDarkenColor = (col, amt) => {
     let usePound = false;
@@ -36,30 +67,7 @@ const TimetableDay = (props) => {
     return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
   };
 
-  switch (props.day) {
-    case 0:
-      props.language === "EN" ? (dayName = "Monday") : (dayName = "วันจันทร์");
-      dayCode = "monday";
-      break;
-    case 1:
-      props.language === "EN" ? (dayName = "Tuesday") : (dayName = "วันอังคาร");
-      dayCode = "tuesday";
-      break;
-    case 2:
-      props.language === "EN" ? (dayName = "Wednesday") : (dayName = "วันพุทธ");
-      dayCode = "wednesday";
-      break;
-    case 3:
-      props.language === "EN"
-        ? (dayName = "Thursday")
-        : (dayName = "วันพฤหัสบดี");
-      dayCode = "thursday";
-      break;
-    case 4:
-      props.language === "EN" ? (dayName = "Friday") : (dayName = "วันศุกร");
-      dayCode = "friday";
-      break;
-  }
+  console.log("aaa");
 
   return (
     <>
@@ -98,6 +106,7 @@ const TimetableDay = (props) => {
                 className="weekday__popup"
                 initial={{ opacity: 0, scale: 0.5 }}
                 onMouseLeave={() => mouseLeave()}
+                onTouchMove={() => mouseLeave()}
                 animate={
                   isHovering[0] === props.day && isHovering[1] === index
                     ? { opacity: 1, scale: 1 }
@@ -107,22 +116,27 @@ const TimetableDay = (props) => {
               >
                 <div className="weekday__popup--top">
                   <img
-                    src={`./icons/${
+                    src={`https://apis.ssdevelopers.xyz/icons/${
                       props.format[props.language][period.slice(0, 3)].icon
-                    }.png`}
+                    }`}
                     alt=""
                   />
                 </div>
                 <div className="weekday__popup--bottom">
-                  <h2>
+                  <h2 style={{ userSelect: isPhone ? "none" : "text" }}>
                     {props.format[props.language][period.slice(0, 3)].name}
                   </h2>
-                  <p>{`Period ${index + 1} of ${dayName}`}</p>
+                  <p>
+                    {language === "EN"
+                      ? `Period ${index + 1} of ${dayName}`
+                      : `คาบที่ ${index + 1} ของ ${dayName}`}
+                  </p>
                 </div>
+                {/* <button>To meeting</button> */}
               </motion.div>
-              <div className="weekday__text">
+              <p className="weekday__text">
                 {props.format[props.language][period.slice(0, 3)].name}
-              </div>
+              </p>
             </motion.div>
           );
         })}

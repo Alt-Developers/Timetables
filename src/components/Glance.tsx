@@ -4,9 +4,10 @@ import GlanceItem from "./GlanceItem";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "../context";
+import { useMediaQuery } from "react-responsive";
 import { glanceInfo, unformattedPeriod } from "../models/glanceTypes";
 
 const Glance = (props) => {
@@ -29,6 +30,8 @@ const Glance = (props) => {
   );
   const language = useSelector((state: RootState) => state.account.language);
   const userInfo = useSelector((state: RootState) => state.account.userInfo);
+  const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
+  console.log(isPhone);
 
   const advanceTimetoTime = (advanceTime, now) => {
     if (isNaN(advanceTime)) return;
@@ -244,7 +247,7 @@ const Glance = (props) => {
                 : "พักผ่อนเยอะๆ นะ"
             }
             link={false}
-            icon={`./icons/openBook.png`}
+            icon={`https://apis.ssdevelopers.xyz/icons/icons/openBook.png`}
             size={"small"}
           />
 
@@ -269,7 +272,7 @@ const Glance = (props) => {
               color: userInfo?.color?.replace("#", ""),
               text: language === "EN" ? "View in timetable" : "ดูในตารางสอน",
             }}
-            icon={`./icons/neural.png`}
+            icon={`https://apis.ssdevelopers.xyz/icons/neural.png`}
             size={"large"}
             secondItem
           />
@@ -304,7 +307,7 @@ const Glance = (props) => {
                 }
                 subheader={language === "EN" ? "Well done!" : "ยินดีด้วย!"}
                 link={false}
-                icon={`./icons/desk.png`}
+                icon={`https://apis.ssdevelopers.xyz/icons/desk.png`}
                 size={"small"}
               />
 
@@ -330,7 +333,7 @@ const Glance = (props) => {
                   text:
                     language === "EN" ? "View in timetable" : "ดูในตารางสอน",
                 }}
-                icon={`./icons/desk.png`}
+                icon={`https://apis.ssdevelopers.xyz/icons/desk.png`}
                 size={"large"}
                 secondItem
               />
@@ -357,7 +360,7 @@ const Glance = (props) => {
                   text:
                     language === "EN" ? "View in timetable" : "ดูในตารางสอน",
                 }}
-                icon={`./icons/${currentPeriod.icon}.png`}
+                icon={`https://apis.ssdevelopers.xyz/icons/${currentPeriod.icon}`}
                 size={"full"}
               />
             </>
@@ -384,27 +387,29 @@ const Glance = (props) => {
           <GlanceItem
             color={"#3fd9a5"}
             header={
-              <h3>
+              <>
                 {language === "EN"
                   ? `It's ${glanceInfo.name?.EN}`
-                  : `วันนี้${glanceInfo.name?.EN}`}
-              </h3>
+                  : `วันนี้${glanceInfo.name?.TH}`}
+              </>
             }
-            subheader={false}
+            subheader={
+              language === "EN" ? glanceInfo.desc?.EN : glanceInfo.desc?.TH
+            }
             link={false}
-            icon={`./icons/${currentPeriod.icon}`}
+            icon={`https://apis.ssdevelopers.xyz/icons/${currentPeriod.icon}`}
             size={"small"}
           />
           <GlanceItem
             color={"#eb345b"}
             header={
-              <h3>
+              <>
                 {language === "EN" ? "Wonder which" : "ได้เวลาเตรียมตัว"}
                 <br />
                 {language === "EN"
                   ? "lessons are coming up?"
                   : "สำหรับสัปดาห์หน้าแล้ว"}
-              </h3>
+              </>
             }
             subheader={
               language === "EN"
@@ -416,7 +421,7 @@ const Glance = (props) => {
               color: userInfo?.color?.replace("#", ""),
               text: language === "EN" ? "View in timetable" : "ดูในตารางสอน",
             }}
-            icon={`./icons/neural.png`}
+            icon={`https://apis.ssdevelopers.xyz/icons/neural.png`}
             size={"large"}
             secondItem
           />
@@ -437,7 +442,7 @@ const Glance = (props) => {
             <GlanceItem
               color={"#69ACEA"}
               header={
-                <h3>
+                <h3 style={{ borderBottom: "1px solid #69ACEA" }}>
                   {language === "EN" ? "Current Period:" : "ตอนนี้วิชา:"}
                   <br />
                   {currentPeriod.name}
@@ -449,7 +454,7 @@ const Glance = (props) => {
                 color: userInfo?.color?.replace("#", ""),
                 text: language === "EN" ? "View in timetable" : "ดูในตารางสอน",
               }}
-              icon={`./icons/${currentPeriod.icon}.png`}
+              icon={`https://apis.ssdevelopers.xyz/icons/${currentPeriod.icon}`}
               size={"small"}
             />
 
@@ -469,7 +474,7 @@ const Glance = (props) => {
                 color: userInfo?.color?.replace("#", ""),
                 text: language === "EN" ? "View in timetable" : "ดูในตารางสอน",
               }}
-              icon={`./icons/${nextPeriod.icon}.png`}
+              icon={`https://apis.ssdevelopers.xyz/icons/${nextPeriod.icon}`}
               size={"large"}
             />
           </>
@@ -499,12 +504,12 @@ const Glance = (props) => {
             }}
           >
             <h3>Welcome to Timetables!</h3>
-            <p>Add your primary class to get started.</p>
+            <p>Add yo primary class to get started.</p>
             <Link to="/preferences">
               <button className="btn bar__item--btn">Add primary class</button>
             </Link>
             <img
-              src={`./icons/welcome.png`}
+              src={`https://apis.ssdevelopers.xyz/icons/welcome.png`}
               className="bar__icon"
               alt="Science Icon"
               height="150"

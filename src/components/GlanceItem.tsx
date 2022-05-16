@@ -26,7 +26,11 @@ const GlanceItem = (props) => {
             : props.color,
         }}
       >
-        {props.header}
+        {props.header && (
+          <h3 style={isPhone ? { backgroundColor: props.color } : {}}>
+            {props.header}
+          </h3>
+        )}
         {props.subheader && (
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             {props.subheader}

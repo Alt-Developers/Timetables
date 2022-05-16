@@ -233,6 +233,204 @@
 /////////////////////////////
 /////////////////////////////
 
+.select2 {
+  width: 15rem;
+  position: relative;
+  box-sizing: border-box;
+  transition: all 0.2s;
+  z-index: 1000;
+  margin-left: auto;
+  // width: 20rem;
+  margin-bottom: 1.5rem;
+
+  @include respond(phone) {
+    width: 30vw;
+  }
+
+  & *,
+  & *::after,
+  & *::before {
+    box-sizing: inherit;
+    transition: all 0.2s;
+  }
+
+  &__value {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+
+    &::after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: calc(50% - 9px);
+      right: 19px;
+      width: 11px;
+      height: 11px;
+      color: #fff !important;
+    }
+  }
+
+  &__input {
+    display: block;
+    height: 5rem;
+    width: 15rem;
+    padding: 0 40px 0 16px;
+    background: var(--gray-light-4);
+    border: 1px solid var(--gray-dark-1);
+    border-radius: 3px;
+    outline: none;
+    font-size: 14px;
+    text-align: left;
+    text-overflow: ellipsis;
+    line-height: 36px;
+    -webkit-appearance: none;
+    border-radius: 1.1rem;
+    color: var(--font-color);
+
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      -webkit-appearance: none;
+    }
+  }
+
+  & &__input:not([readonly]):focus {
+    cursor: initial;
+  }
+
+  &__select {
+    background: var(--gray-dark-1);
+    box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
+    border-radius: 1.1rem !important;
+    margin-top: 1rem;
+    z-index: 1000;
+  }
+
+  &__row:not(:first-child) {
+    border-top: 1px solid var(--gray-);
+  }
+
+  &__option,
+  &__not-found {
+    display: block;
+    height: 5rem;
+    width: 100%;
+    padding: 0 16px;
+    background: var(--gray-light-1);
+    border: none;
+    outline: none;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+    color: var(--font-color);
+  }
+
+  &--multiple &__option {
+    height: 48px;
+  }
+
+  &__option.is-selected {
+    background: var(--gray-light-4);
+    color: var(--font-color);
+  }
+
+  &__option.is-highlighted,
+  &__option:not(.is-selected):hover {
+    background: var(--gray-light-3);
+  }
+
+  &__option.is-highlighted.is-selected,
+  &__option.is-selected:hover {
+    background: var(--gray-light-3);
+    color: var(--font-color);
+  }
+
+  /**
+   * Group
+   */
+  &__group-header {
+    font-size: 10px;
+    text-transform: uppercase;
+    background: #eee;
+    padding: 8px 16px;
+  }
+
+  /**
+   * States
+   */
+  &.is-disabled {
+    opacity: 0.5;
+  }
+
+  &.is-loading &__value::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Cpath fill='%232F2D37' d='M25,5A20.14,20.14,0,0,1,45,22.88a2.51,2.51,0,0,0,2.49,2.26h0A2.52,2.52,0,0,0,50,22.33a25.14,25.14,0,0,0-50,0,2.52,2.52,0,0,0,2.5,2.81h0A2.51,2.51,0,0,0,5,22.88,20.14,20.14,0,0,1,25,5Z'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 25 25' to='360 25 25' dur='0.6s' repeatCount='indefinite'/%3E%3C/path%3E%3C/svg%3E");
+    background-size: 11px;
+  }
+
+  &:not(.is-disabled) &__input {
+    cursor: pointer;
+  }
+
+  /**
+   * Modifiers
+   */
+  &--multiple {
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  &:not(.is-loading):not(&--multiple) &__value::after {
+    transform: rotate(45deg);
+    border-right: 1px solid var(--font-color);
+    border-bottom: 1px solid var(--font-color);
+    pointer-events: none;
+  }
+
+  &--multiple &__input {
+    cursor: initial;
+  }
+
+  &--multiple &__input {
+    border-radius: 3px 3px 0 0;
+  }
+
+  &--multiple:not(&--search) &__input {
+    cursor: default;
+  }
+
+  &:not(&--multiple) &__input:hover {
+    border-color: var(--font-color);
+  }
+
+  &:not(&--multiple) &__select {
+    position: absolute;
+    z-index: 2;
+    top: 44px;
+    right: 0;
+    left: 0;
+    border-radius: 3px;
+    overflow: auto;
+    max-height: 360px;
+  }
+
+  &--multiple &__select {
+    position: relative;
+    overflow: auto;
+    max-height: 260px;
+    border-top: 1px solid #eee;
+    border-radius: 0 0 3px 3px;
+  }
+
+  &__not-found {
+    height: auto;
+    padding: 16px;
+    text-align: center;
+    color: var(--font-color);
+  }
+}
+
 .timetableSort {
   width: 70%;
   position: relative;

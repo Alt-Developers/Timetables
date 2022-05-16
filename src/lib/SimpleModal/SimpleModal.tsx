@@ -21,6 +21,7 @@ const SimpleModal = (props: any) => {
           modalState.isOpen ? { filter: "blur(1.1rem)" } : { filter: "none" }
         }
         style={{
+          overflow: "hidden",
           position: "relative",
           width: "100",
         }}

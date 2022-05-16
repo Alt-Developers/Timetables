@@ -185,8 +185,12 @@ const Setup = (props) => {
         </div> */}
         <div>
           <h3 className="bar__header eula__title">
-            {language === "EN" ? "Privacy Policy" : "ข้อตกลง"}{" "}
-            <span className="hiddenOnPhone">of SS Developers</span>
+            {language === "EN"
+              ? "Privacy Policy"
+              : "นโยบายคุ้มครองข้อมูลส่วนบุคคล"}{" "}
+            <span className="hiddenOnPhone">
+              {language === "EN" ? "of SS Developers" : "ของ SS Developers"}
+            </span>
           </h3>
           <motion.div
             className="eula"

@@ -22,6 +22,7 @@ import { accountActions } from "./context/accountSlice";
 import { timetableActions } from "./context/timetableSlice";
 import { RootState } from "./context";
 import { EmptyTimetable } from "./components/Empty";
+import DeveloperPanel from "./pages/DeveloperPanel";
 
 function App() {
   const Timetable = React.lazy(() => import("./pages/Timetable"));
@@ -136,10 +137,13 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/landing" element={<Landing />} />
-            <Route path="*" element={<NotFound />} />
+            {/* <Route path="*" element={<NotFound />} /> */}
             <Route path="/migrate" element={<Migrate />} />
             <Route path="/setup" element={<Setup />} />
             <Route path="/documentation" element={<Documentation />} />
+            {userInfo.userInfo.type === "developer" && (
+              <Route path="/developers/*" element={<DeveloperPanel />} />
+            )}
 
             <Route
               path="/preferences"

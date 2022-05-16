@@ -4,7 +4,7 @@ export interface glanceInfo {
   name?: {
     TH?: string;
     EN?: string;
-  }
+  };
   format?: {
     classCode: {
       EN: {
@@ -20,6 +20,10 @@ export interface glanceInfo {
         };
       };
     };
+  };
+  desc?: {
+    TH: string;
+    EN: string;
   };
   refresher?: string[];
   time?: {

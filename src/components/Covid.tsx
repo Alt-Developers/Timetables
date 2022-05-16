@@ -30,7 +30,7 @@ const Covid = (props) => {
           style={{ backgroundColor: "#fc4a44" }}
         >
           {covid.isFetched && (
-            <h3>
+            <h3 style={isPhone ? { backgroundColor: "#fc4a44" } : {}}>
               {covid.newCases} {language === "EN" ? "Cases, " : "เคส, "}
               <br className="hiddenOnPC" />
               {language === "EN"
@@ -62,7 +62,13 @@ const Covid = (props) => {
         >
           {covidWorldwide.isFetched && (
             <>
-              <h3 style={{ width: "80%" }}>
+              <h3
+                style={
+                  isPhone
+                    ? { width: "80%", backgroundColor: "#c232d9" }
+                    : { width: "80%" }
+                }
+              >
                 {language === "EN"
                   ? `${covidWorldwide.newCases} New Global Cases`
                   : `เคสใหม่รอบโลก ${covidWorldwide.newCases} เคส`}

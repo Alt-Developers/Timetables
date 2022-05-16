@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 import { RootState } from "../context";
+import TimetableClock from "../components/TimetableClock";
 
 const Timetable = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -34,15 +35,6 @@ const Timetable = () => {
   const userInfo = useSelector((state: RootState) => state.account.userInfo);
   const language = useSelector((state: RootState) => state.account.language);
   const navigate = useNavigate();
-
-  const [clock, setClock] = useState(
-    new Date().toLocaleString("en-US", {
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-      hour12: userInfo?.config?.dateTime === "12h" ? true : false,
-    })
-  );
 
   const timetableColor = "#" + searchParams.get("color");
   const isNewton = timetableData?.school === "NEWTON";
@@ -185,12 +177,6 @@ const Timetable = () => {
     // let startingDate = new Date("2022-04-04T14:29:55").getTime();
     intervalId = setInterval(() => {
       const date = new Date();
-      const formatedDate = date.toLocaleString("en-US", {
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-        hour12: userInfo?.config?.dateTime === "12h" ? true : false,
-      });
       const advanceTime: number | string =
         date.getHours() +
         (date.getMinutes() < 10 ? "0" : "") +
@@ -200,10 +186,7 @@ const Timetable = () => {
       // @ts-ignore
       if (refresherTime.includes(advanceTime.toString()))
         setRefresher(refresher + 1);
-
-      setClock(formatedDate);
-      // @ts-ignore
-    }, [1000]);
+    }, 1000);
 
     window.scrollTo(0, 0);
 
@@ -327,14 +310,14 @@ const Timetable = () => {
               <h1>
                 {language == "EN"
                   ? "This timetable needs an update"
-                  : "ตารางเรียนนี้ไม่ใช่ตารางเรียนล่าสุด"}
+                  : "ตารางเรียนนี้ต้องการ การอัปเดท"}
               </h1>
             </div>
 
             <p>
               {language == "EN"
-                ? `We've detected that your class (${timetableName})'s timetables hasn't been updated for this semester's timetable. To keep your timetables updated can you kindly send us a photo of your timetable? Thanks!`
-                : ""}
+                ? `We've detected that your class (${timetableName})'s timetables hasn't been updated for this semester's timetable. To keep your timetables updated can you kindly send us a photo of your timetableใ Thanks!`
+                : "พวกเราเห็นว่าตารางเรียนของคุณนั้นไม่ใช่รุ่นล่าสุด. เพิ่อที่จะให้ตารางเรียนของคุณนั้นเป็นรุ่นล่าสุดกรุณาแนบภาพ"}
             </p>
           </div>
 
@@ -377,13 +360,7 @@ const Timetable = () => {
         </div>
         <div className="timetableBar__text timetableBar__time">
           <p>{language === "EN" ? "Time" : "เวลาขณะนี้"}:</p>
-          <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-          >
-            {clock}
-          </motion.h1>
+          <TimetableClock />
         </div>
         <div className="timetableBar__input">
           <input

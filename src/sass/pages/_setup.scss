@@ -138,6 +138,14 @@
   background: var(--gray-light-1);
   font-size: 1rem;
   box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
+
+  h3 {
+    color: var(--font-color);
+  }
+
+  p {
+    color: var(--font-color);
+  }
   // text-align: center;
 
   &__text {

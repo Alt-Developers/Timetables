@@ -9,13 +9,13 @@ import { refetchActions } from "../context/refetchSlice";
 import { useNavigate } from "react-router";
 import { modalActions } from "../context/modalSlice";
 
-const AddTimetableItem = props => {
+const AddTimetableItem = (props) => {
   const [selectedOption, setSelectedOption] = useState(props.defaultOption);
   const [selectedSchool, setSelectedSchool] = useState("ASSUMPTION");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const submitHandler = event => {
+  const submitHandler = (event) => {
     event.preventDefault();
 
     fetch("https://apis.ssdevelopers.xyz/timetables/registerUserClass", {
@@ -29,8 +29,8 @@ const AddTimetableItem = props => {
         isPrimary: props.isPrimary,
       }),
     })
-      .then(data => data.json())
-      .then(data => {
+      .then((data) => data.json())
+      .then((data) => {
         dispatch(refetchActions.refetch(""));
         if (props.isNewUser) {
           props.liftDone(true);
@@ -48,11 +48,13 @@ const AddTimetableItem = props => {
     <form
       className="addTimetables"
       onSubmit={submitHandler}
-      style={props.style}>
+      style={props.style}
+    >
       <motion.div
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
-        className="addTimetables__inputWrapper">
+        className="addTimetables__inputWrapper"
+      >
         {props.header2 && (
           <div>
             <h3>{props.header2}</h3>
@@ -68,7 +70,6 @@ const AddTimetableItem = props => {
               // @ts-ignore
               onChange={setSelectedSchool}
               emptyMessage={() => "School Not Found"}
-              search
             />
           </div>
         )}
@@ -77,7 +78,7 @@ const AddTimetableItem = props => {
           <h3>{props.header}</h3>
           <SelectSearch
             options={[]}
-            getOptions={query => {
+            getOptions={(query) => {
               return new Promise((resolve, reject) => {
                 fetch(
                   `https://apis.ssdevelopers.xyz/timetables/getClassFromSchool?school=${selectedSchool}`,
@@ -87,8 +88,8 @@ const AddTimetableItem = props => {
                     },
                   }
                 )
-                  .then(response => response.json())
-                  .then(data => {
+                  .then((response) => response.json())
+                  .then((data) => {
                     resolve(
                       data.response.map(({ name, value }) => ({
                         value,
