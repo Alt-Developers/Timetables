@@ -12,7 +12,7 @@ Instead of needing to trace your finger on the timebar in your physical timetabl
 When you want to see which how many "Maths" period are there in this week simply just search using the the **period searchbar**.
 We beleive that Timetables should be **yours**. Thats why you can change your accent color.
 
-**[Check out timetables!](https://timetables.ssdevelopers.xyz)** 	&#8211; **[Preview Channel (Unstable)](https://timetables-jiraties.vercel.app)**
+**[Check out timetables!](https://timetables.ssdevelopers.xyz)** 	&#8211; **[Preview Channel (Unstable)](https://timetables-jiraties.vercel.app/token?to=setup&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXZpZXdAc3NkZXZlbG9wZXJzLnh5eiIsInVzZXJJZCI6IjYyODMxOGIzMDEzNTBmYTQwMzJlY2M1YSIsImlhdCI6MTY1Mjc1ODg5N30.YjA27k_s8zXiorIy8gwxkOzWHbCEj-66DhQcsbk6U4o)**
 
 ---
 ## **Contents**
