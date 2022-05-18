@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { RootState } from "../context";
 import SelectSearch from "react-select-search";
 import { useEffect, useState } from "react";
+import { modalActions } from "../context/modalSlice";
 // import { refetchActions } from "../context/refetchSlice";
 
 const TimetableList = () => {
@@ -149,15 +150,24 @@ const TimetableList = () => {
                     />
                   );
                 })}
-            <Link
-              to="/preferences"
+            <div
               className="timetable__item timetable__add"
               style={{
                 backgroundColor: "#FFFFFF",
               }}
+              onClick={() =>
+                dispatch(
+                  modalActions.openModal({
+                    header: "",
+                    text: "",
+                    centeredModal: true,
+                    type: { code: "ADDCLASS" },
+                  })
+                )
+              }
             >
               <h3 style={{ color: "#969696" }}>+</h3>
-            </Link>
+            </div>
           </motion.section>
         </div>
       ) : (

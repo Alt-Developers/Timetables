@@ -21,8 +21,8 @@
     }
   }
 
-  h3 {
-    font-size: 2.5rem;
+  a {
+    font-size: 2rem;
     font-weight: 700;
     color: #fff;
     margin-right: auto;
@@ -84,7 +84,7 @@
 
     &--top {
       background-color: var(--gray-light-2);
-      padding: 2rem;
+      padding: 1.5rem;
       color: var(--font-color);
       border-radius: 1.1rem 1.1rem 0 0;
       font-size: 1.7rem;
@@ -94,7 +94,7 @@
     }
 
     &--bottom {
-      padding: 2rem;
+      padding: 1.5rem;
       background-color: var(--gray-light-4);
       border-radius: 0 0 1.1rem 1.1rem;
       font-size: 1.3rem;
@@ -109,12 +109,12 @@
         width: 100%;
         padding: 1rem;
         border-radius: 0.5rem;
-        color: #ffffff50;
+        color: var(--font-color);
 
         &:hover {
           background-color: var(--gray-light-1);
           transition: all 0.2s;
-          color: #fff;
+          color: var(--font-color);
         }
       }
     }

@@ -375,7 +375,7 @@ main {
       height: 10vh; } }
   .snackbar p {
     font-size: 1.5rem;
-    color: var(--font-color);
+    color: #000;
     font-weight: 700;
     padding-left: 2rem; }
   .snackbar button {
@@ -384,7 +384,7 @@ main {
     margin-right: 2rem;
     background-color: transparent;
     border: none;
-    color: var(--font-color);
+    color: #000;
     font-size: 3rem;
     padding: 0; }
 
@@ -418,6 +418,10 @@ main {
     .timetable {
       height: fit-content;
       width: inherit; } }
+  .timetable__dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%; }
   .timetable__item {
     height: 100%;
     border-radius: 1.1rem;
@@ -425,6 +429,7 @@ main {
     position: relative;
     transition: all 0.4s cubic-bezier(0.85, 0, 0.15, 1);
     text-decoration: none;
+    border: none;
     width: 30rem; }
     @media only screen and (max-width: 56.25em) {
       .timetable__item {
@@ -740,12 +745,14 @@ main {
 
 .iAPI {
   display: grid;
-  grid-template-columns: 25vw 100%; }
+  grid-template-columns: 20vw 80vw;
+  width: 100%; }
   .iAPI__main {
     padding: 3rem;
     overflow-y: scroll;
-    overflow-x: hidden;
-    height: calc(100vh - 5rem); }
+    overflow-x: scroll;
+    height: calc(100vh - 5rem);
+    width: 100%; }
   .iAPI__landing {
     display: flex;
     flex-direction: column;
@@ -755,6 +762,22 @@ main {
     .iAPI__landing p {
       color: var(--font-color);
       font-size: 1.5rem; }
+  .iAPI__mostUsed {
+    margin-top: 10vh; }
+    .iAPI__mostUsed h3 {
+      font-size: 2rem;
+      color: var(--font-color); }
+    .iAPI__mostUsed div {
+      width: 40rem;
+      border-radius: 1.1rem;
+      height: 15rem;
+      padding: 2rem;
+      margin-top: 1rem;
+      border: 1px solid var(--gray-dark-1);
+      background-color: var(--gray-light-1); }
+      .iAPI__mostUsed div a {
+        color: #fff;
+        font-size: 1.5rem; }
 
 .langSelect {
   display: flex;
@@ -765,7 +788,7 @@ main {
     background-color: var(--gray-light-4);
     border: 1px solid var(--gray-dark-1);
     font-weight: 600;
-    transition: all 0.1s;
+    transition: all 0.2s;
     color: var(--font-color); }
     .langSelect button:hover {
       border: 1px solid var(--font-color); }
@@ -775,7 +798,7 @@ main {
     border-radius: 0 1.1rem 1.1rem 0; }
 
 .newHoliday {
-  width: calc(75vw - 7rem);
+  width: 100%;
   display: flex;
   flex-direction: column;
   height: fit-content;
@@ -828,6 +851,21 @@ main {
     .newHoliday__imgInput p {
       color: var(--gray-dark-1);
       font-size: 2rem; }
+  .newHoliday__simplifiedDate {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; }
+    .newHoliday__simplifiedDate div {
+      background-color: var(--gray-light-3);
+      border: none;
+      border: 1px solid var(--gray-dark-1);
+      padding: 2rem;
+      width: 100%;
+      border-radius: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--font-color);
+      transition: all 0.1s cubic-bezier(0.61, 1, 0.88, 1);
+      font-weight: 600; }
 
 .simpleSelect {
   display: block;
@@ -1000,8 +1038,8 @@ footer {
       font-size: 1.5rem !important;
       font-weight: 500 !important;
       text-align: right; }
-  .topNav h3 {
-    font-size: 2.5rem;
+  .topNav a {
+    font-size: 2rem;
     font-weight: 700;
     color: #fff;
     margin-right: auto;
@@ -1009,7 +1047,7 @@ footer {
     align-items: center;
     gap: 0.2rem; }
     @media only screen and (max-width: 56.25em) {
-      .topNav h3 {
+      .topNav a {
         font-size: 2rem; } }
   .topNav img {
     height: 4.5rem;
@@ -1048,7 +1086,7 @@ footer {
     border-radius: 1.1rem; }
     .sideNav__optionGroup--top {
       background-color: var(--gray-light-2);
-      padding: 2rem;
+      padding: 1.5rem;
       color: var(--font-color);
       border-radius: 1.1rem 1.1rem 0 0;
       font-size: 1.7rem;
@@ -1056,7 +1094,7 @@ footer {
       align-items: center;
       gap: 1rem; }
     .sideNav__optionGroup--bottom {
-      padding: 2rem;
+      padding: 1.5rem;
       background-color: var(--gray-light-4);
       border-radius: 0 0 1.1rem 1.1rem;
       font-size: 1.3rem;
@@ -1070,11 +1108,11 @@ footer {
         width: 100%;
         padding: 1rem;
         border-radius: 0.5rem;
-        color: #ffffff50; }
+        color: var(--font-color); }
         .sideNav__optionGroup--bottom a:hover {
           background-color: var(--gray-light-1);
           transition: all 0.2s;
-          color: #fff; }
+          color: var(--font-color); }
     .sideNav__optionGroup--chevron {
       margin-left: auto;
       font-size: 3rem; }
@@ -1099,6 +1137,96 @@ footer {
       bottom: 1rem !important;
       width: 95vw;
       height: fit-content; } }
+  .simpleModal__centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 1.1rem;
+    padding: 2rem;
+    background-color: var(--gray-light-2);
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-rows: 30rem 30rem;
+    grid-template-columns: 50rem;
+    filter: drop-shadow(0px 4px 22px rgba(0, 0, 0, 0.25)); }
+    @media only screen and (max-width: 56.25em) {
+      .simpleModal__centered {
+        grid-template-columns: calc(90vw - 4rem); } }
+  .simpleModal__addTimetables {
+    border-radius: 1.1rem;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 1rem;
+    position: relative; }
+    @media only screen and (max-width: 56.25em) {
+      .simpleModal__addTimetables {
+        height: 20rem; } }
+    .simpleModal__addTimetables__inputWrapper {
+      display: flex;
+      gap: 2rem; }
+    .simpleModal__addTimetables h3 {
+      color: var(--font-color);
+      font-size: 2rem !important;
+      margin-bottom: 1rem; }
+    @media only screen and (max-width: 56.25em) {
+      .simpleModal__addTimetables {
+        width: 100%; } }
+    .simpleModal__addTimetables__submit {
+      position: absolute;
+      bottom: 0rem !important;
+      left: 0rem !important;
+      border: none;
+      background-color: #ff5252;
+      padding: 1rem;
+      width: 40%;
+      border-radius: 1.1rem;
+      height: 5rem;
+      color: white;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      text-decoration: none; }
+      .simpleModal__addTimetables__submit:active {
+        transform: scale(0.85); }
+  .simpleModal__centerClose {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 3rem;
+    color: var(--font-color);
+    z-index: 100; }
+  .simpleModal__bottom {
+    margin-top: 2rem; }
+    .simpleModal__bottom h3 {
+      font-size: 2.5rem;
+      margin-left: 1rem;
+      color: var(--font-color); }
+    .simpleModal__bottom a {
+      font-size: 1rem; }
+  .simpleModal__top {
+    position: relative; }
+    .simpleModal__top p {
+      color: var(--font-color);
+      font-size: 1.2rem;
+      margin-bottom: 1rem; }
+    .simpleModal__top h3 {
+      font-size: 2.5rem;
+      margin: 0 0 1rem 1rem;
+      color: var(--font-color);
+      width: fit-content; }
+    .simpleModal__top input {
+      background-color: var(--gray-light-3);
+      border: none;
+      padding: 2rem;
+      border: 1px solid var(--gray-dark-1);
+      width: 100%;
+      border-radius: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--font-color);
+      transition: all 0.1s cubic-bezier(0.61, 1, 0.88, 1);
+      font-weight: 600; }
   .simpleModal__overlay {
     position: fixed;
     top: 0;
@@ -2080,11 +2208,15 @@ main {
       .weekday__popup--bottom p {
         font-size: 1.3rem !important;
         font-weight: 500;
-        white-space: nowrap; }
+        white-space: nowrap;
+        color: var(--font-color) !important;
+        text-shadow: none !important; }
       .weekday__popup--bottom h2 {
         font-size: 2.5rem;
         width: fit-content;
-        white-space: nowrap; }
+        white-space: nowrap;
+        color: var(--font-color) !important;
+        text-shadow: none !important; }
     .weekday__popup button {
       width: calc(100% - 4rem);
       border-radius: 1.1rem;

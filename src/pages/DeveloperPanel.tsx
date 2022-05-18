@@ -75,7 +75,9 @@ const DeveloperPanel = (props) => {
   return (
     <>
       <nav className="topNav" style={{ backgroundColor: userInfo.color }}>
-        <h3>Timetables iAPI</h3>
+        <Link to="/developers">
+          <h3>Timetables iAPI</h3>
+        </Link>
         <div className="topNav__right">
           <img
             src={`https://apis.ssdevelopers.xyz/${userInfo.profilePicture}`}
@@ -85,7 +87,7 @@ const DeveloperPanel = (props) => {
       </nav>
       <section className="iAPI">
         <nav className="sideNav">
-          <div className="sideNav__alert">
+          {/* <div className="sideNav__alert">
             <div className="sideNav__alert--top">
               <h3>Warning!</h3>
             </div>
@@ -95,38 +97,23 @@ const DeveloperPanel = (props) => {
                 adress will be recorded.
               </p>
             </div>
-          </div>
+          </div> */}
 
           <OptionGroup
             name="Holidays"
             icon="bxs-calendar"
             path="/holidays"
-            items={[
-              { name: "New Holiday", path: "newHoliday" },
-              { name: "first", path: "first" },
-              { name: "second", path: "second" },
-              { name: "third", path: "third" },
-            ]}
+            items={[{ name: "New Holiday", path: "newHoliday" }]}
             isFirst
           />
         </nav>
         <div className="iAPI__main">
-          <Link to={"/developers/a"}>To /a</Link>
           <Routes>
             <Route
               path="/holidays"
               element={
                 <>
                   <NewHoliday />
-                  <h1 id="first" style={{ height: "40rem" }}>
-                    first
-                  </h1>
-                  <h1 id="second" style={{ height: "40rem" }}>
-                    second
-                  </h1>
-                  <h1 id="third" style={{ height: "40rem" }}>
-                    third
-                  </h1>
                 </>
               }
             />
@@ -136,6 +123,7 @@ const DeveloperPanel = (props) => {
                 <section className="iAPI__landing">
                   <h1>Welcome to the Timetables iAPI</h1>
                   <p>Select the service from the sidebar</p>
+                  {/* <div className="bar"></div> */}
                 </section>
               }
             />
@@ -244,6 +232,13 @@ const NewHoliday = (props) => {
           />
           <div className="newHoliday__imgInput">
             <p>image uploading coming soon</p>
+          </div>
+        </div>
+
+        <div className="newHoliday__bottom">
+          <div className="newHoliday__simplifiedDate">
+            <p>Simplified Date</p>
+            <div className="newHoliday__simplifiedDate">aa</div>
           </div>
         </div>
       </div>

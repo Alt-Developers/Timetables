@@ -18,7 +18,6 @@ const Landing = (props) => {
 
   useEffect(() => {
     document.title = "Timetables | SS Developers";
-    document.documentElement.setAttribute("data-theme", "light");
   }, []);
 
   return (

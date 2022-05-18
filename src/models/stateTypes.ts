@@ -32,6 +32,7 @@ export interface modalState {
   isOpen: boolean;
   header: string;
   text: string;
+  centeredModal: boolean;
   type: {
     code: string;
   };

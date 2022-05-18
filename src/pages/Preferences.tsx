@@ -35,7 +35,7 @@ const Preferences = (props) => {
   const [consoleLog, setConsoleLog] = useState("on");
   const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
   const [curTheme, setCurTheme] = useState(
-    localStorage.getItem("theme") ?? "light"
+    localStorage.getItem("theme") ?? "system"
   );
 
   useEffect(() => {

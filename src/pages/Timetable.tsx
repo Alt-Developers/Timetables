@@ -34,6 +34,7 @@ const Timetable = () => {
   const isTabLand = useMediaQuery({ query: "(max-width: 75em)" });
   const userInfo = useSelector((state: RootState) => state.account.userInfo);
   const language = useSelector((state: RootState) => state.account.language);
+  const [copied, setCopied] = useState(false);
   const navigate = useNavigate();
 
   const timetableColor = "#" + searchParams.get("color");
@@ -283,6 +284,14 @@ const Timetable = () => {
             <i className="bx bx-moon"></i>
           )}
         </button>
+        <i
+          style={{ marginRight: "0" }}
+          onClick={() => {
+            navigator.clipboard.writeText(`${searchParams.get("id")}`);
+            setCopied(true);
+          }}
+          className={`bx ${copied ? "bx-check" : "bx-link"} timetableNav__pref`}
+        ></i>
         <Link to="/preferences" className="timetableNav__pref">
           <i className="bx bx-slider" />
         </Link>
@@ -427,9 +436,13 @@ const Timetable = () => {
               language={language}
               format={format}
               school={timetableData?.school}
+              // highlight={{
+              //   day: identifier?.today - 1,
+              //   period: identifier?.curClass,
+              // }}
               highlight={{
-                day: identifier?.today - 1,
-                period: identifier?.curClass,
+                day: 1,
+                period: 1,
               }}
               color={timetableColor}
               searched={searchedArray}

@@ -67,8 +67,6 @@ const TimetableDay = (props) => {
     return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
   };
 
-  console.log("aaa");
-
   return (
     <>
       <div className={`${dayCode} weekdays`}>{dayName}</div>
@@ -77,7 +75,7 @@ const TimetableDay = (props) => {
           return (
             <motion.div
               className={`weekday`}
-              key={index + 1000}
+              key={index}
               onClick={() => mouseEnter(props.day, index)}
               style={
                 props.highlight.day === props.day &&
@@ -114,7 +112,15 @@ const TimetableDay = (props) => {
                 }
                 transition={{ duration: 0.05 }}
               >
-                <div className="weekday__popup--top">
+                <div
+                  className="weekday__popup--top"
+                  style={
+                    props.highlight.day === props.day &&
+                    props.highlight.period === index
+                      ? { backgroundColor: props.color }
+                      : {}
+                  }
+                >
                   <img
                     src={`https://apis.ssdevelopers.xyz/icons/${
                       props.format[props.language][period.slice(0, 3)].icon

@@ -1,19 +1,19 @@
-import ColoredButton from "./ColoredButton";
 import SelectSearch from "react-select-search";
 
 import { motion } from "framer-motion";
 import { fuzzySearch } from "react-select-search";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { refetchActions } from "../context/refetchSlice";
 import { useNavigate } from "react-router";
 import { modalActions } from "../context/modalSlice";
+import { RootState } from "../context";
 
 const AddTimetableItem = (props) => {
+  const userInfo = useSelector((state: RootState) => state.account.userInfo);
   const [selectedOption, setSelectedOption] = useState(props.defaultOption);
   const [selectedSchool, setSelectedSchool] = useState("ASSUMPTION");
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -46,7 +46,7 @@ const AddTimetableItem = (props) => {
 
   return (
     <form
-      className="addTimetables"
+      className={props.className ? props.className : "addTimetables"}
       onSubmit={submitHandler}
       style={props.style}
     >
@@ -100,6 +100,7 @@ const AddTimetableItem = (props) => {
                   .catch(reject);
               });
             }}
+            // autoComplete={"on"}
             value={selectedOption}
             filterOptions={fuzzySearch}
             placeholder={props.placeholder}
@@ -110,11 +111,16 @@ const AddTimetableItem = (props) => {
           />
         </div>
 
-        <ColoredButton
-          onSubmit={submitHandler}
+        <button
+          className={`${
+            props.className ? props.className : "addTimetables"
+          }__submit `}
           type={"submit"}
-          text={props.button}
-        />
+          onSubmit={submitHandler}
+          style={{ backgroundColor: userInfo.color, ...props.style }}
+        >
+          {props.button}
+        </button>
       </motion.div>
     </form>
   );
