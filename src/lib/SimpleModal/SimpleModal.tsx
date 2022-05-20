@@ -60,7 +60,7 @@ const SimpleModal = (props: any) => {
             ? {
                 filter: modalState.centeredModal
                   ? "brightness(.7)"
-                  : "blur(.5rem)",
+                  : "brightness(.7)",
               }
             : { filter: "none" }
         }
@@ -151,7 +151,11 @@ const SimpleModal = (props: any) => {
               <h3>
                 {language === "EN" ? "Add class by ID" : "เพิ่มห้องด้วย ID"}
               </h3>
-              <p>{errorMes}</p>
+              <p>
+                What's the ID? - The id can be coppied from{" "}
+                <i className="bx bx-link"></i> within the timetables page
+              </p>
+              <p style={{ marginTop: "1rem" }}>{errorMes}</p>
               <input
                 id="idInput"
                 value={id}
@@ -159,6 +163,7 @@ const SimpleModal = (props: any) => {
                 type="text"
                 placeholder="ID"
               />
+
               <ColoredButton
                 type={"submit"}
                 onClick={submitHandler}

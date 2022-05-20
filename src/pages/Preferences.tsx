@@ -3,7 +3,6 @@ import Header from "../components/Header";
 import AddTimetableItem from "../components/AddTimetableItem";
 import SelectSearch from "react-select-search";
 import ColoredButton from "../components/ColoredButton";
-import lang from "../lib/language";
 
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
@@ -222,7 +221,7 @@ const Preferences = (props) => {
                     value={selectedDateFormat}
                   />
                 </div>
-                <div className="config__item" style={{ borderRight: "none" }}>
+                <div className="config__item">
                   <h3>
                     {language === "EN"
                       ? "Covid Reports"
@@ -298,7 +297,6 @@ const Preferences = (props) => {
               }
               defaultOption={classInfo.primaryClass._id}
               isPrimary={true}
-              style={{ marginBottom: "2rem" }}
             />
           ) : (
             <AddTimetableItem

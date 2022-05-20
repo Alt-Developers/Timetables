@@ -82,7 +82,7 @@ const TimetableDay = (props) => {
                 props.highlight.period === index
                   ? {
                       gridColumn: `span ${period.slice(-1)}`,
-                      color: LightenDarkenColor(props.color, -1),
+                      color: LightenDarkenColor(props.color, -10),
                       textShadow: `0px 0px 10px ${props.color}70`,
                       opacity:
                         props.searched === null ||

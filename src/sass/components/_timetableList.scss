@@ -38,6 +38,9 @@
   @include respond(phone) {
     height: fit-content;
     width: inherit;
+    background-color: var(--gray-light-1);
+    padding: 1.5rem;
+    gap: 1.5rem;
   }
 
   &__dialog {
@@ -71,6 +74,7 @@
 
     &:active {
       transform: scale(0.9);
+      scale: 0.9;
 
       @include respond(phone) {
         transform: scale(1) !important;

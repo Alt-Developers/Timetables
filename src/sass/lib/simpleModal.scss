@@ -129,9 +129,13 @@
     position: relative;
 
     p {
-      color: var(--font-color);
+      color: var(--gray-dark-2);
+      margin: 0.5rem 1rem 0.5rem 1rem;
       font-size: 1.2rem;
-      margin-bottom: 1rem;
+
+      @include theme(dark) {
+        color: #868686;
+      }
 
       // margin-left: 1rem;
       // margin-top: 1rem;
@@ -139,7 +143,7 @@
 
     h3 {
       font-size: 2.5rem;
-      margin: 0 0 1rem 1rem;
+      margin: 0 0 0 1rem;
       color: var(--font-color);
       width: fit-content;
     }
@@ -149,13 +153,13 @@
       border: none;
       padding: 2rem;
       // margin: 1rem;
-      border: 1px solid var(--gray-dark-1);
       width: 100%;
       border-radius: 1.1rem;
       margin-bottom: 0.5rem;
       color: var(--font-color);
       transition: all 0.1s cubic-bezier(0.61, 1, 0.88, 1);
       font-weight: 600;
+      // margin: 0.5rem;
     }
   }
 

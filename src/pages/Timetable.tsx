@@ -399,7 +399,7 @@ const Timetable = () => {
           <div
             className="timetablePeriodTime"
             style={{
-              borderRadius: "1.1rem 0 0 1.1rem !important",
+              borderRadius: "1.1rem",
               margin: "0 0 0 0 !important",
             }}
           >
@@ -422,7 +422,11 @@ const Timetable = () => {
               }
               className={`timetablePeriodTime ${
                 index === 0 ? "timetablePeriodTime__first" : ""
-              } ${index === timeLayout.length - 1 ? (isNewton ? "" : "") : ""}`}
+              } ${
+                index === timeLayout.length - 1
+                  ? "timetablePeriodTime__last"
+                  : ""
+              }`}
               key={index}
             >
               <h3>{element}</h3>
@@ -436,14 +440,14 @@ const Timetable = () => {
               language={language}
               format={format}
               school={timetableData?.school}
-              // highlight={{
-              //   day: identifier?.today - 1,
-              //   period: identifier?.curClass,
-              // }}
               highlight={{
-                day: 1,
-                period: 1,
+                day: identifier?.today - 1,
+                period: identifier?.curClass,
               }}
+              // highlight={{
+              //   day: 1,
+              //   period: 1,
+              // }}
               color={timetableColor}
               searched={searchedArray}
             />

@@ -13,6 +13,10 @@ footer {
     margin-left: 5rem;
     color: var(--font-color);
     transition: all 0.2s;
+
+    @include respond(phone) {
+      margin-bottom: 1rem;
+    }
   }
 
   a:hover > li {
