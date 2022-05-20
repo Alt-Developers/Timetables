@@ -6,10 +6,10 @@ labels: feature request
 assignees: Jiraties
 ---
 
-## **Describe the feature request 📃**
+**Describe the feature request**
 
 The ... can be improved by ...
 
-## **Additional context 📚**
+**Additional context**
 
 Could be a screenshot of your visionary feature or something extra.

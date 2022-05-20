@@ -6,18 +6,18 @@ labels: bug
 assignees: Jiraties
 ---
 
-## **Describe the bug 🔎**
+**Describe the bug**
 
 How is this bug affecting the experience
 
-## **To Reproduce 🧪**
+**To Reproduce**
 
 Clear steps on how to reproduce this bug / behavior
 
-## **Expected behavior 🔥**
+**Expected behavior**
 
 What is expected to happen instead of a bug
 
-## **Screenshot 🖼️ (optional)**
+**Screenshot (optional)**
 
 A screenshot of the website or the console
