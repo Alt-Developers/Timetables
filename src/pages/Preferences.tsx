@@ -31,6 +31,9 @@ const Preferences = (props) => {
   const [selectedDateFormat, setSelectedDateFormat] = useState(
     userInfo.config?.dateTime
   );
+  const [selectedPrepBehavior, setSelectedPrepBehavior] = useState(
+    userInfo.config?.tmrPref
+  );
   const [consoleLog, setConsoleLog] = useState("on");
   const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
   const [curTheme, setCurTheme] = useState(
@@ -237,24 +240,41 @@ const Preferences = (props) => {
                     value={selectedCovid}
                   />
                 </div>
-                {/* <div
-                className="config__developerOption"
-                style={{ backgroundColor: userInfo.color }}
-              >
-                <h2>Developer Options</h2>
+
                 <div className="config__item">
-                  <h3>console.log</h3>
+                  <h3>
+                    {language === "EN"
+                      ? "Preperation Options"
+                      : "พฤติกรรมฟีเจอร์การเตรียมตัว"}
+                  </h3>
                   <SelectSearch
                     options={[
-                      { value: "on", name: "on" },
-                      { value: "off", name: "off" },
+                      { value: "book", name: "Books to bring" },
+                      { value: "hide", name: "Hidden" },
                     ]}
-                    // @ts-ignore
-                    onChange={setConsoleLog}
-                    value={consoleLog}
+                    //@ts-ignore
+                    onChange={setSelectedPrepBehavior}
+                    value={selectedPrepBehavior}
                   />
                 </div>
-              </div> */}
+                {/* <div
+                  className="config__developerOption"
+                  style={{ backgroundColor: userInfo.color }}
+                >
+                  <h2>Developer Options</h2>
+                  <div className="config__item">
+                    <h3>console.log</h3>
+                    <SelectSearch
+                      options={[
+                        { value: "on", name: "on" },
+                        { value: "off", name: "off" },
+                      ]}
+                      // @ts-ignore
+                      onChange={setConsoleLog}
+                      value={consoleLog}
+                    />
+                  </div>
+                </div> */}
                 <div className="config__buttonWrapper">
                   <ColoredButton
                     text={language === "EN" ? "Save" : "บันทึก"}

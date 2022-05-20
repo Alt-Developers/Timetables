@@ -37,13 +37,16 @@ const SimpleModal = (props: any) => {
       .then((data) => {
         if (data.status < 200 || data.status > 299) {
           setErrorMes("something went wrong");
+          setId("");
         } else {
           setErrorMes(false);
+          setId("");
         }
         return data.json();
       })
       .then((data) => {
         console.log(data);
+        setId("");
         dispatch(refetchActions.refetch(""));
         if (data.modal) {
           setErrorMes(data.header);

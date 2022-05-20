@@ -12,6 +12,7 @@ interface loginPayload {
     dateTime: string;
     showCovid: string;
     language: string;
+    tmrPref: string;
   };
 }
 

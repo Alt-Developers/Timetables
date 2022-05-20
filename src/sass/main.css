@@ -270,6 +270,77 @@ main {
     @media only screen and (max-width: 56.25em) {
       .bar__header {
         margin-left: 1rem; } }
+  .bar__booksTmr {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 10fr;
+    gap: 0.5rem;
+    grid-template-areas: "lable1 lable2" "container container";
+    flex-direction: column;
+    height: 100%; }
+    @media only screen and (max-width: 56.25em) {
+      .bar__booksTmr {
+        height: 25rem; } }
+    .bar__booksTmr p {
+      margin-left: 1rem; }
+      @media only screen and (max-width: 56.25em) {
+        .bar__booksTmr p {
+          margin: 1rem 0 1rem 0 !important;
+          width: 100% !important; } }
+    .bar__booksTmr--container {
+      grid-area: container;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background-color: #7f68f2;
+      padding: 1rem;
+      border-radius: 1.1rem;
+      width: 100%;
+      height: calc(100% - 5rem); }
+      @media only screen and (max-width: 56.25em) {
+        .bar__booksTmr--container {
+          background-color: var(--gray-light-3);
+          height: 25rem; } }
+    .bar__booksTmr--left {
+      padding: 0 1rem 1rem 1rem;
+      border-right: 1px solid #755cf6;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: #fff;
+      overflow-y: scroll;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem; }
+      .bar__booksTmr--left::-webkit-scrollbar {
+        display: none; }
+      @media only screen and (max-width: 56.25em) {
+        .bar__booksTmr--left {
+          color: var(--font-color);
+          padding: 1rem;
+          gap: 1rem;
+          border-right: var(--gray-dark-2); } }
+      .bar__booksTmr--left span {
+        color: #53e08e;
+        font-weight: 700; }
+    .bar__booksTmr--right {
+      padding: 0 1rem 1rem 2rem;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: #fff;
+      display: flex;
+      gap: 0.5rem;
+      flex-direction: column;
+      overflow-y: scroll; }
+      @media only screen and (max-width: 56.25em) {
+        .bar__booksTmr--right {
+          color: var(--font-color);
+          padding: 1rem;
+          gap: 1rem; } }
+      .bar__booksTmr--right::-webkit-scrollbar {
+        display: none; }
+      .bar__booksTmr--right span {
+        color: #fd5252;
+        font-weight: 700; }
   .bar__item {
     height: 100%;
     border-radius: 1.1rem;
@@ -1725,7 +1796,7 @@ main {
   .config__item {
     background-color: var(--gray-light-1);
     padding: 2rem;
-    width: 40rem;
+    width: 30rem;
     border-right: 1px solid var(--gray-dark-1);
     display: flex;
     align-items: center;

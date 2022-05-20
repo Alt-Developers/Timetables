@@ -5,6 +5,11 @@ export interface glanceInfo {
     TH?: string;
     EN?: string;
   };
+  prepType?: "book" | "subject" | "hide";
+  prep?: {
+    toAdd: Array<Object>;
+    toRemove: Array<Object>;
+  };
   format?: {
     classCode: {
       EN: {

@@ -58,6 +58,7 @@ const Timetable = () => {
 
         console.log(data);
         document.title = `${data.className} | SS Timetables`;
+        setTimeLayout(data.timetableTimeLayout);
         setIdentifier(data.identifier);
         setFormat(data.timetableFormat.classCode);
         setTimetableData(data.timetableData);
@@ -69,51 +70,51 @@ const Timetable = () => {
             : "uptodate"
         );
 
-        switch (data.timetableData.school) {
-          case "ASSUMPTION":
-            setTimeLayout([
-              "08:30 - 09:20",
-              "09:20 - 10:10",
-              "10:20 - 11:10",
-              "11:10 - 12:10",
-              "12:10 - 13:00",
-              "13:00 - 13:50",
-              "14:00 - 14:50",
-              "14:50 - 15:40",
-            ]);
-            break;
-          case "NEWTON":
-            setTimeLayout([
-              "09:00 - 09:30",
-              "09:30 - 10:00",
-              "10:00 - 10:20",
-              "10:30 - 11:00",
-              "11:00 - 11:30",
-              "11:30 - 12:00",
-              "12:00 - 13:00",
-              "13:00 - 13:30",
-              "13:30 - 14:00",
-              "14:00 - 14:20",
-              "14:30 - 15:00",
-              "15:00 - 15:30",
-              "15:30 - 15:50",
-              "16:00 - 16:30",
-              "16:30 - 17:00",
-              "17:00 - 17:30",
-            ]);
-            break;
-          case "ESSENCE":
-            setTimeLayout([
-              "09:00 - 10:00",
-              "10:00 - 11:00",
-              "11:00 - 12:00",
-              "12:00 - 13:00",
-              "13:00 - 14:00",
-              "14:00 - 15:00",
-              "15:00 - 16:00",
-            ]);
-            break;
-        }
+        // switch (data.timetableData.school) {
+        //   case "ASSUMPTION":
+        //     setTimeLayout([
+        //       "08:30 - 09:20",
+        //       "09:20 - 10:10",
+        //       "10:20 - 11:10",
+        //       "11:10 - 12:10",
+        //       "12:10 - 13:00",
+        //       "13:00 - 13:50",
+        //       "14:00 - 14:50",
+        //       "14:50 - 15:40",
+        //     ]);
+        //     break;
+        //   case "NEWTON":
+        //     setTimeLayout([
+        //       "09:00 - 09:30",
+        //       "09:30 - 10:00",
+        //       "10:00 - 10:20",
+        //       "10:30 - 11:00",
+        //       "11:00 - 11:30",
+        //       "11:30 - 12:00",
+        //       "12:00 - 13:00",
+        //       "13:00 - 13:30",
+        //       "13:30 - 14:00",
+        //       "14:00 - 14:20",
+        //       "14:30 - 15:00",
+        //       "15:00 - 15:30",
+        //       "15:30 - 15:50",
+        //       "16:00 - 16:30",
+        //       "16:30 - 17:00",
+        //       "17:00 - 17:30",
+        //     ]);
+        //     break;
+        //   case "ESSENCE":
+        //     setTimeLayout([
+        //       "09:00 - 10:00",
+        //       "10:00 - 11:00",
+        //       "11:00 - 12:00",
+        //       "12:00 - 13:00",
+        //       "13:00 - 14:00",
+        //       "14:00 - 15:00",
+        //       "15:00 - 16:00",
+        //     ]);
+        //     break;
+        // }
 
         const timetableContent = data.timetableData.timetableContent;
         for (const day in timetableContent) {

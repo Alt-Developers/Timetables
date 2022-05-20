@@ -27,9 +27,55 @@ const GlanceItem = (props) => {
         }}
       >
         {props.header && (
-          <h3 style={isPhone ? { backgroundColor: props.color } : {}}>
+          <h3
+            style={
+              isPhone
+                ? {
+                    backgroundColor: props.color,
+                  }
+                : { width: props.prep ? "100%" : "70%" }
+            }
+          >
             {props.header}
           </h3>
+        )}
+        {props.prep && (
+          <div className="bar__booksTmr">
+            <p style={{ gridArea: "lable1" }}>Books to bring</p>
+            <p style={{ gridArea: "lable2" }}>Books to remove</p>
+            <div className="bar__booksTmr--container">
+              <div className="bar__booksTmr--left">
+                {props.prep.toAdd.map((period) => (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "1rem",
+                    }}
+                  >
+                    <span>+</span>
+                    <div>{" " + period.name}</div>
+                    <br />
+                  </div>
+                ))}
+              </div>
+              <div className="bar__booksTmr--right">
+                {props.prep.toRemove.map((period) => (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "1rem",
+                    }}
+                  >
+                    <span>-</span>
+                    <div>{" " + period.name}</div>
+                    <br />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         )}
         {props.subheader && (
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>

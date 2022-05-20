@@ -13,6 +13,8 @@ import React from "react";
 import axios from "axios";
 import Setup from "./pages/Setup";
 import Documentation from "./pages/Documentation";
+import DeveloperPanel from "./pages/DeveloperPanel";
+import ServerStatus from "./components/ServerStatus";
 
 import { Route, Routes, useNavigate } from "react-router";
 import { motion } from "framer-motion";
@@ -22,7 +24,8 @@ import { accountActions } from "./context/accountSlice";
 import { timetableActions } from "./context/timetableSlice";
 import { RootState } from "./context";
 import { EmptyTimetable } from "./components/Empty";
-import DeveloperPanel from "./pages/DeveloperPanel";
+
+type status = "maintenance" | "offline" | "online";
 
 function App() {
   const Timetable = React.lazy(() => import("./pages/Timetable"));
@@ -33,9 +36,15 @@ function App() {
   const userInfo = useSelector((state: RootState) => state.account);
   const [getUserIsLoading, setGetUserIsLoading] = useState(true);
   const [getMyClassIsLoading, setGetMyClassIsLoading] = useState(true);
+  const [serverStatus, setServerStatus] = useState<status>("online");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    axios
+      .get("https://status.apis.ssdevelopers.xyz/getStatus")
+      .then(({ data }) => {
+        setServerStatus(data.status);
+      });
     fetch("https://static.easysunday.com/covid-19/getTodayCases.json")
       .then((data) => data.json())
       .then((data) => {
@@ -86,7 +95,7 @@ function App() {
           if (data.error) {
             navigate("/");
           } else {
-            // console.log(data);
+            console.log(data);
             dispatch(accountActions.login(data));
             dispatch(accountActions.setLanguage(data.config.language));
             // dispatch(
@@ -109,20 +118,31 @@ function App() {
           <Route path="/setup" element={<Setup />} />
           <Route path="/documentation" element={<Documentation />} />
         </Routes>
-        {/* {location.pathname !== "/landing" && <Loading />} */}
         <Footer />
       </>
     );
-  } else if (getUserIsLoading && getMyClassIsLoading) {
+  } else if (
+    (getUserIsLoading && getMyClassIsLoading) ||
+    serverStatus === "maintenance" ||
+    serverStatus === "offline"
+  ) {
     return (
       <>
         <Routes>
-          <Route path="/" element={<Loading />} />
+          <Route
+            path="/"
+            element={
+              serverStatus === "maintenance" || serverStatus === "offline" ? (
+                <ServerStatus status={serverStatus} />
+              ) : (
+                <Loading />
+              )
+            }
+          />
           <Route path="/token" element={<TokenRedirect />} />
           <Route path="/setup" element={<Setup />} />
           <Route path="*" element={<Loading />} />
         </Routes>
-        {/* {location.pathname !== "/landing" && <Loading />} */}
         <Footer />
       </>
     );
@@ -137,21 +157,19 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/landing" element={<Landing />} />
-            {/* <Route path="*" element={<NotFound />} /> */}
             <Route path="/migrate" element={<Migrate />} />
             <Route path="/setup" element={<Setup />} />
             <Route path="/documentation" element={<Documentation />} />
+            <Route path="/token" element={<TokenRedirect />} />
+            <Route path="/serverStatus" element={<ServerStatus />} />
+
             {userInfo.userInfo.type === "developer" && (
               <Route path="/developers/*" element={<DeveloperPanel />} />
             )}
-
             <Route
               path="/preferences"
-              element={
-                <>{userInfo.userInfo.config ? <Preferences /> : <Loading />}</>
-              }
+              element={userInfo.userInfo.config ? <Preferences /> : <Loading />}
             />
-            <Route path="/token" element={<TokenRedirect />} />
             <Route
               path="/timetable"
               element={
@@ -160,6 +178,7 @@ function App() {
                 </Suspense>
               }
             />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
         </motion.div>

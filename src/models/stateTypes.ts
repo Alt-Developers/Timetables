@@ -11,6 +11,7 @@ export interface accountState {
       dateTime: string;
       showCovid: string;
       language: string;
+      tmrPref: string;
     };
   };
   covid: {

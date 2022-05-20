@@ -47,9 +47,9 @@ const Covid = (props) => {
             {covid.lastUpdated}
           </p>
           <img
-            src={`./icons/coronavirus.png`}
+            src={`https://apis.ssdevelopers.xyz/icons/coronavirus.png`}
             className="bar__icon"
-            alt="Science Icon"
+            alt="Covid Icon"
             height="100"
           />
         </motion.div>
@@ -82,7 +82,7 @@ const Covid = (props) => {
             </>
           )}
           <img
-            src={`./icons/earth.png`}
+            src={`https://apis.ssdevelopers.xyz/icons/earth.png`}
             className="bar__icon"
             alt="Science Icon"
             height="100"

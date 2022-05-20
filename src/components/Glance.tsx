@@ -306,27 +306,6 @@ const Glance = (props) => {
                   </h3>
                 }
                 subheader={language === "EN" ? "Well done!" : "ยินดีด้วย!"}
-                link={false}
-                icon={`https://apis.ssdevelopers.xyz/icons/desk.png`}
-                size={"small"}
-              />
-
-              <GlanceItem
-                color={"#755cf7"}
-                header={
-                  <h3>
-                    {language === "EN" ? "What books do I" : "พรุ่งนี้ต้อง"}
-                    <br />
-                    {language === "EN"
-                      ? "need to bring tomorrow?"
-                      : "เอาหนังสืออะไรไปบ้างนะ?"}
-                  </h3>
-                }
-                subheader={
-                  language === "EN"
-                    ? "Maybe this timetable could help"
-                    : "ลองดูตารางสอนก่อนมั้ย?"
-                }
                 link={{
                   id: classInfo.primaryClass._id,
                   color: userInfo?.color?.replace("#", ""),
@@ -334,6 +313,21 @@ const Glance = (props) => {
                     language === "EN" ? "View in timetable" : "ดูในตารางสอน",
                 }}
                 icon={`https://apis.ssdevelopers.xyz/icons/desk.png`}
+                size={"small"}
+              />
+
+              <GlanceItem
+                color={"#755cf7"}
+                prep={glanceInfo.prep}
+                prepType={glanceInfo.prepType}
+                header={
+                  <h3>
+                    {language === "EN"
+                      ? "Books to bring tomorrow"
+                      : "พรุ่งนี้ต้อง"}
+                  </h3>
+                }
+                // icon={`https://apis.ssdevelopers.xyz/icons/briefcase.png`}
                 size={"large"}
                 secondItem
               />
