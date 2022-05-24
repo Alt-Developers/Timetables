@@ -66,6 +66,7 @@ const Preferences = (props) => {
         language: selectedLanguage,
         showCovid: selectedCovid,
         dateTime: selectedDateFormat,
+        tmrPref: selectedPrepBehavior,
       }),
     }).then((data) => {
       if (timesEffected !== 0) {

@@ -11,7 +11,6 @@ import { RootState } from "../context";
 import TimetableClock from "../components/TimetableClock";
 
 const Timetable = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
   // State
   const [timeLayout, setTimeLayout] = useState<string[]>([]);
   const [timetableData, setTimetableData] = useState<any>({});
@@ -31,10 +30,11 @@ const Timetable = () => {
   const [curTheme, setCurTheme] = useState(
     localStorage.getItem("theme") ?? "light"
   );
-  const isTabLand = useMediaQuery({ query: "(max-width: 75em)" });
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [copied, setCopied] = useState(false);
   const userInfo = useSelector((state: RootState) => state.account.userInfo);
   const language = useSelector((state: RootState) => state.account.language);
-  const [copied, setCopied] = useState(false);
+  const isTabLand = useMediaQuery({ query: "(max-width: 75em)" });
   const navigate = useNavigate();
 
   const timetableColor = "#" + searchParams.get("color");
@@ -69,52 +69,6 @@ const Timetable = () => {
             ? "outdated"
             : "uptodate"
         );
-
-        // switch (data.timetableData.school) {
-        //   case "ASSUMPTION":
-        //     setTimeLayout([
-        //       "08:30 - 09:20",
-        //       "09:20 - 10:10",
-        //       "10:20 - 11:10",
-        //       "11:10 - 12:10",
-        //       "12:10 - 13:00",
-        //       "13:00 - 13:50",
-        //       "14:00 - 14:50",
-        //       "14:50 - 15:40",
-        //     ]);
-        //     break;
-        //   case "NEWTON":
-        //     setTimeLayout([
-        //       "09:00 - 09:30",
-        //       "09:30 - 10:00",
-        //       "10:00 - 10:20",
-        //       "10:30 - 11:00",
-        //       "11:00 - 11:30",
-        //       "11:30 - 12:00",
-        //       "12:00 - 13:00",
-        //       "13:00 - 13:30",
-        //       "13:30 - 14:00",
-        //       "14:00 - 14:20",
-        //       "14:30 - 15:00",
-        //       "15:00 - 15:30",
-        //       "15:30 - 15:50",
-        //       "16:00 - 16:30",
-        //       "16:30 - 17:00",
-        //       "17:00 - 17:30",
-        //     ]);
-        //     break;
-        //   case "ESSENCE":
-        //     setTimeLayout([
-        //       "09:00 - 10:00",
-        //       "10:00 - 11:00",
-        //       "11:00 - 12:00",
-        //       "12:00 - 13:00",
-        //       "13:00 - 14:00",
-        //       "14:00 - 15:00",
-        //       "15:00 - 16:00",
-        //     ]);
-        //     break;
-        // }
 
         const timetableContent = data.timetableData.timetableContent;
         for (const day in timetableContent) {
@@ -314,18 +268,18 @@ const Timetable = () => {
           <div>
             <div className="timetableAlert__header">
               <p>
-                {language == "EN" ? "Hi there" : "ว่าไง"} {userInfo.firstName}{" "}
+                {language === "EN" ? "Hi there" : "ว่าไง"} {userInfo.firstName}{" "}
                 {userInfo.lastName}!
               </p>
               <h1>
-                {language == "EN"
+                {language === "EN"
                   ? "This timetable needs an update"
                   : "ตารางเรียนนี้ต้องการ การอัปเดท"}
               </h1>
             </div>
 
             <p>
-              {language == "EN"
+              {language === "EN"
                 ? `We've detected that your class (${timetableName})'s timetables hasn't been updated for this semester's timetable. To keep your timetables updated can you kindly send us a photo of your timetableใ Thanks!`
                 : "พวกเราเห็นว่าตารางเรียนของคุณนั้นไม่ใช่รุ่นล่าสุด. เพิ่อที่จะให้ตารางเรียนของคุณนั้นเป็นรุ่นล่าสุดกรุณาแนบภาพ"}
             </p>
@@ -369,9 +323,26 @@ const Timetable = () => {
           </motion.h1>
         </div>
         <div className="timetableBar__text timetableBar__time">
-          <p>{language === "EN" ? "Time" : "เวลาขณะนี้"}:</p>
-          <TimetableClock />
+          <p>{language === "EN" ? "Date" : "เวลาขณะนี้"}:</p>
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            style={{ lineHeight: "4.3rem" }}
+          >
+            {new Date().toLocaleString(language === "EN" ? "en-US" : "th-TH", {
+              weekday: "short",
+              day: "numeric",
+              month: "short",
+            })}
+          </motion.h1>
         </div>
+        <div className="timetableBar__text timetableBar__time">
+          <p>{language === "EN" ? "Time" : "เวลาขณะนี้"}:</p>
+
+          <TimetableClock dateTime={userInfo.config?.dateTime} />
+        </div>
+
         <div className="timetableBar__input">
           <input
             type="text"

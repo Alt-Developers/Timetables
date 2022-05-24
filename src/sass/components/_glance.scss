@@ -71,7 +71,7 @@
       padding: 1rem;
       border-radius: 1.1rem;
       width: 100%;
-      height: calc(100% - 5rem);
+      height: 15rem;
 
       @include respond(phone) {
         background-color: var(--gray-light-3);

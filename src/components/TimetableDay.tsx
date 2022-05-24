@@ -48,7 +48,7 @@ const TimetableDay = (props) => {
   const LightenDarkenColor = (col, amt) => {
     let usePound = false;
 
-    if (col[0] == "#") {
+    if (col[0] === "#") {
       col = col.slice(1);
       usePound = true;
     }
@@ -103,14 +103,15 @@ const TimetableDay = (props) => {
               <motion.div
                 className="weekday__popup"
                 initial={{ opacity: 0, scale: 0.5 }}
-                onMouseLeave={() => mouseLeave()}
-                onTouchMove={() => mouseLeave()}
+                onMouseLeave={() => {
+                  mouseLeave();
+                }}
                 animate={
                   isHovering[0] === props.day && isHovering[1] === index
                     ? { opacity: 1, scale: 1 }
-                    : { opacity: 0, scale: 0.5 }
+                    : { opacity: 0, scale: 0 }
                 }
-                transition={{ duration: 0.05 }}
+                transition={{ duration: 0.1 }}
               >
                 <div
                   className="weekday__popup--top"
@@ -138,7 +139,11 @@ const TimetableDay = (props) => {
                       : `คาบที่ ${index + 1} ของ ${dayName}`}
                   </p>
                 </div>
-                {/* <button>To meeting</button> */}
+                <button
+                  style={{ backgroundColor: props.color + "50", color: "#fff" }}
+                >
+                  To meeting
+                </button>
               </motion.div>
               <p className="weekday__text">
                 {props.format[props.language][period.slice(0, 3)].name}

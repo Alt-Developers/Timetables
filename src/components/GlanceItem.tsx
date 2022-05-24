@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+import { useSelector } from "react-redux";
+import { RootState } from "../context";
 
 const GlanceItem = (props) => {
   const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
+  const language = useSelector((state: RootState) => state.account.language);
 
   return (
     <>
@@ -33,7 +36,10 @@ const GlanceItem = (props) => {
                 ? {
                     backgroundColor: props.color,
                   }
-                : { width: props.prep ? "100%" : "70%" }
+                : {
+                    width: props.prep ? "100%" : "70%",
+                    height: props.prep ? "4rem" : "auto",
+                  }
             }
           >
             {props.header}
@@ -41,8 +47,12 @@ const GlanceItem = (props) => {
         )}
         {props.prep && (
           <div className="bar__booksTmr">
-            <p style={{ gridArea: "lable1" }}>Books to bring</p>
-            <p style={{ gridArea: "lable2" }}>Books to remove</p>
+            <p style={{ gridArea: "lable1" }}>
+              {language === "EN" ? "Books to add" : "หนังสือที่ต้องเพิ่ม"}
+            </p>
+            <p style={{ gridArea: "lable2" }}>
+              {language === "EN" ? "Books to remove" : "หนังสือที่ต้องเอาออก"}
+            </p>
             <div className="bar__booksTmr--container">
               <div className="bar__booksTmr--left">
                 {props.prep.toAdd.map((period) => (

@@ -247,7 +247,7 @@ const Glance = (props) => {
                 : "พักผ่อนเยอะๆ นะ"
             }
             link={false}
-            icon={`https://apis.ssdevelopers.xyz/icons/icons/openBook.png`}
+            icon={`https://apis.ssdevelopers.xyz/icons/openBook.png`}
             size={"small"}
           />
 
@@ -324,7 +324,7 @@ const Glance = (props) => {
                   <h3>
                     {language === "EN"
                       ? "Books to bring tomorrow"
-                      : "พรุ่งนี้ต้อง"}
+                      : "พรุ่งนี้ต้องเอาหนังสืออะไรไปบ้างนะ?"}
                   </h3>
                 }
                 // icon={`https://apis.ssdevelopers.xyz/icons/briefcase.png`}

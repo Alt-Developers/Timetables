@@ -80,10 +80,11 @@ const SimpleModal = (props: any) => {
         className="simpleModal__overlay"
         style={
           modalState.isOpen
-            ? { display: "grid", height: "100vh" }
+            ? { display: "grid", height: "100vh", overflow: "hidden" }
             : {
                 display: "hidden",
                 height: 0,
+                overflow: "hidden",
               }
         }
 

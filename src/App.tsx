@@ -4,7 +4,6 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
 import TokenRedirect from "./components/TokenRedirect";
-import Migrate from "./pages/Migrate";
 import Preferences from "./pages/Preferences";
 import Loading from "./components/Loading";
 import SimpleModal from "./lib/SimpleModal/SimpleModal";
@@ -157,7 +156,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/landing" element={<Landing />} />
-            <Route path="/migrate" element={<Migrate />} />
             <Route path="/setup" element={<Setup />} />
             <Route path="/documentation" element={<Documentation />} />
             <Route path="/token" element={<TokenRedirect />} />
