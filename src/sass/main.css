@@ -320,6 +320,8 @@ main {
           gap: 1rem;
           border-right: var(--gray-dark-2); } }
       .bar__booksTmr--left span {
+        width: 1rem;
+        text-align: center;
         color: #53e08e;
         font-weight: 700; }
     .bar__booksTmr--right {
@@ -910,7 +912,7 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 6fr;
-    grid-template-areas: "header img" "desc img";
+    grid-template-areas: "header img" "desc img";
     gap: 1.5rem; }
     .newHoliday__middle input,
     .newHoliday__middle textarea {

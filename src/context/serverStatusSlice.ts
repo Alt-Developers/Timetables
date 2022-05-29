@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { serverStatusInterface } from "../models/stateTypes";
 
 interface statusPayload {
-  status: "maintenance" | "online" | "offline";
+  status: "maintenance" | "online" | "offline" | "override";
 }
 
 interface configPayload {

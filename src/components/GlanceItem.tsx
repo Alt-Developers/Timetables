@@ -63,7 +63,20 @@ const GlanceItem = (props) => {
                       gap: "1rem",
                     }}
                   >
-                    <span>{period.status === "toAdd" ? "+" : "-"}</span>
+                    <span>+</span>
+                    <div>{" " + period.name}</div>
+                    <br />
+                  </div>
+                ))}
+                {props.prep.alrInBag.map((period) => (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "1rem",
+                    }}
+                  >
+                    <span style={{ color: "#b5b5b5" }}>-</span>
                     <div>{" " + period.name}</div>
                     <br />
                   </div>

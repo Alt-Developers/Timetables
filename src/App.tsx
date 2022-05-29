@@ -25,8 +25,6 @@ import { RootState } from "./context";
 import { EmptyTimetable } from "./components/Empty";
 import { serverStatusAction } from "./context/serverStatusSlice";
 
-type status = "maintenance" | "offline" | "online";
-
 function App() {
   const Timetable = React.lazy(() => import("./pages/Timetable"));
   const dispatch = useDispatch();
@@ -39,19 +37,19 @@ function App() {
   );
   const [getUserIsLoading, setGetUserIsLoading] = useState(true);
   const [getMyClassIsLoading, setGetMyClassIsLoading] = useState(true);
-  const [isDevAccount, setIsDevAccount] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
       .get("https://status.apis.ssdevelopers.xyz/getStatus")
       .then(({ data }) => {
-        dispatch(serverStatusAction.setStatus({ status: data.status }));
+        if (serverStatus !== "override") {
+          dispatch(serverStatusAction.setStatus({ status: data.status }));
+        }
       });
     fetch("https://static.easysunday.com/covid-19/getTodayCases.json")
       .then((data) => data.json())
       .then((data) => {
-        // console.log(data);
         dispatch(accountActions.covid(data));
       });
 
@@ -101,12 +99,6 @@ function App() {
             console.log(data);
             dispatch(accountActions.login(data));
             dispatch(accountActions.setLanguage(data.config.language));
-            // dispatch(
-            //   accountActions.setConfig({
-            //     dateTime: data.config.dateTime,
-            //     showCovid: data.config.showCovid,
-            //   })
-            // );
             setGetUserIsLoading(false);
           }
         });

@@ -65,5 +65,5 @@ export interface timetableState {
 }
 
 export interface serverStatusInterface {
-  status: "online" | "offline" | "maintenance";
+  status: "online" | "offline" | "maintenance" | "override";
 }

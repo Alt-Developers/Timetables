@@ -30,10 +30,6 @@ const ServerStatus = (props) => {
       };
   }
 
-  const setOnline = () => {
-    dispatch(serverStatusAction.setStatus({ status: "online" }));
-  };
-
   return (
     <section className="login">
       <div className="login__rectangle" />
@@ -44,7 +40,12 @@ const ServerStatus = (props) => {
           <p>{contents.text}</p>
         </div>
         {props.status === "maintenance" && userInfo.type === "developer" ? (
-          <button onClick={setOnline} className="btn login__btn">
+          <button
+            onClick={() =>
+              dispatch(serverStatusAction.setStatus({ status: "override" }))
+            }
+            className="btn login__btn"
+          >
             Developer Override
           </button>
         ) : (
