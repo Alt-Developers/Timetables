@@ -30,9 +30,9 @@ const ServerStatus = (props) => {
       };
   }
 
-  function setOnline() {
+  const setOnline = () => {
     dispatch(serverStatusAction.setStatus({ status: "online" }));
-  }
+  };
 
   return (
     <section className="login">
