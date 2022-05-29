@@ -76,6 +76,7 @@ const TimetableDay = (props) => {
             <motion.div
               className={`weekday`}
               key={index}
+              onHoverStart={() => mouseLeave()}
               onClick={() => mouseEnter(props.day, index)}
               style={
                 props.highlight.day === props.day &&
@@ -84,6 +85,8 @@ const TimetableDay = (props) => {
                       gridColumn: `span ${period.slice(-1)}`,
                       color: LightenDarkenColor(props.color, -10),
                       textShadow: `0px 0px 10px ${props.color}70`,
+                      pointerEvents:
+                        period.slice(0, 3) === "EMP" ? "none" : "auto",
                       opacity:
                         props.searched === null ||
                         props.searched.includes(period.slice(0, 3))
@@ -92,6 +95,8 @@ const TimetableDay = (props) => {
                     }
                   : {
                       gridColumn: `span ${period.slice(-1)}`,
+                      pointerEvents:
+                        period.slice(0, 3) === "EMP" ? "none" : "auto",
                       opacity:
                         props.searched === null ||
                         props.searched.includes(period.slice(0, 3))
@@ -106,6 +111,7 @@ const TimetableDay = (props) => {
                 onMouseLeave={() => {
                   mouseLeave();
                 }}
+                onTouchMove={() => mouseLeave()}
                 animate={
                   isHovering[0] === props.day && isHovering[1] === index
                     ? { opacity: 1, scale: 1 }

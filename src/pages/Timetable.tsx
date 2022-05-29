@@ -85,6 +85,13 @@ const Timetable = () => {
             const formattedArr: any[] = [];
             const counts = {};
 
+            console.log(data.timetableFormat);
+
+            while (dayArray.length !== data.timetableTimeLayout.length - 1) {
+              dayArray.push("EMP");
+            }
+            console.log(dayArray);
+
             // maping dayArray to get mergedArray and positionsArray
             dayArray.forEach((period) => {
               counts[period] = (counts[period] || 0) + 1;
@@ -360,6 +367,7 @@ const Timetable = () => {
           className="timetableTable"
           style={{
             gridTemplateRows: "1fr 2fr 2fr 2fr 2fr 2fr",
+            // DONT TOUCH - It works 😊
             gridTemplateColumns: `${
               isNewton ? (isTabLand ? "12rem " : "2fr ") : ""
             }repeat(${isNewton ? timeLayout.length : timeLayout.length + 1}, ${
@@ -432,15 +440,25 @@ const Timetable = () => {
                 ? {
                     color: timetableColor,
                     textShadow: `0px 0px 10px ${timetableColor}`,
-                    gridColumn: isNewton ? "8 / 9" : "6 / 7",
+                    gridColumn: isNewton
+                      ? "8 / 9"
+                      : timetableData?.school === "ESSENCEP"
+                      ? "4/5"
+                      : "6 / 7",
+                    pointerEvents: "none",
                     gridRow: "2/7",
                     display: "grid",
                     placeItems: "center",
                   }
                 : {
-                    gridColumn: isNewton ? "8 / 9" : "5 / 6",
+                    gridColumn: isNewton
+                      ? "8 / 9"
+                      : timetableData?.school === "ESSENCEP"
+                      ? "4/5"
+                      : "6 / 7",
                     gridRow: "2/7",
                     display: "grid",
+                    pointerEvents: "none",
                     placeItems: "center",
                   }
             }

@@ -63,6 +63,7 @@ const AddTimetableItem = (props) => {
                 { name: "Assumption College", value: "ASSUMPTION" },
                 { name: "The Newton", value: "NEWTON" },
                 { name: "The Essence", value: "ESSENCE" },
+                { name: "The Essence Primary Section", value: "ESSENCEP" },
               ]}
               value={selectedSchool}
               filterOptions={fuzzySearch}

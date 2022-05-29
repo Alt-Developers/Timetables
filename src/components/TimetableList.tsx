@@ -31,6 +31,11 @@ const TimetableList = () => {
           ? (schoolName = "Assumption")
           : (schoolName = "อัสสัมชัญ");
         break;
+      case "ESSENCEP":
+        language === "EN"
+          ? (schoolName = "Essence Primary Section")
+          : (schoolName = "เอสเซนส์แผนกประถม");
+        break;
       case "NEWTON":
         language === "EN" ? (schoolName = "Newton") : (schoolName = "นิวตัน");
         break;
@@ -118,33 +123,12 @@ const TimetableList = () => {
               classInfo.starredClass
                 .filter((element) => element.school === selectedSortOption)
                 .map((element, index) => {
-                  let schoolName;
-                  switch (element.school) {
-                    case "ASSUMPTION":
-                      language === "EN"
-                        ? (schoolName = "Assumption")
-                        : (schoolName = "อัสสัมชัญ");
-                      break;
-                    case "NEWTON":
-                      language === "EN"
-                        ? (schoolName = "Newton")
-                        : (schoolName = "นิวตัน");
-                      break;
-                    case "ESSENCE":
-                      language === "EN"
-                        ? (schoolName = "Essence")
-                        : (schoolName = "เอสเซนส์");
-                      break;
-                    default:
-                      language === "EN" ? (schoolName = "") : (schoolName = "");
-                      break;
-                  }
                   return (
                     <TimetableItem
                       key={index}
                       color={element.color}
                       text={element.className}
-                      subText={schoolName}
+                      subText={toSchoolName(element.school)}
                       id={element._id}
                       delay={index / 10}
                     />

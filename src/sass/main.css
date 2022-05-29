@@ -2370,8 +2370,7 @@ main {
     padding: 0 1rem 0 1rem; }
     @media only screen and (max-width: 75em) {
       .timetablePeriodTime__last {
-        padding: 0 1rem 0 1rem;
-        width: 9rem; } }
+        width: 100%; } }
 
 .curPeriodHighlight {
   border-radius: 1.1rem;
