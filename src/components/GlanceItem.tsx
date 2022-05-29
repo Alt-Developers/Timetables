@@ -63,7 +63,7 @@ const GlanceItem = (props) => {
                       gap: "1rem",
                     }}
                   >
-                    <span>+</span>
+                    <span>{period.status === "toAdd" ? "+" : "-"}</span>
                     <div>{" " + period.name}</div>
                     <br />
                   </div>

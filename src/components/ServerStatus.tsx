@@ -1,9 +1,16 @@
+import { RootState } from "../context";
+import { useDispatch, useSelector } from "react-redux";
+import { serverStatusAction } from "../context/serverStatusSlice";
+
 interface contents {
   header: string;
   text: string;
 }
 
 const ServerStatus = (props) => {
+  const dispatch = useDispatch();
+
+  const userInfo = useSelector((state: RootState) => state.account.userInfo);
   let contents: contents = {
     header: "",
     text: "",
@@ -23,6 +30,10 @@ const ServerStatus = (props) => {
       };
   }
 
+  const setOnline = () => {
+    dispatch(serverStatusAction.setStatus({ status: "online" }));
+  };
+
   return (
     <section className="login">
       <div className="login__rectangle" />
@@ -32,6 +43,13 @@ const ServerStatus = (props) => {
           <h3>{contents.header}</h3>
           <p>{contents.text}</p>
         </div>
+        {props.status === "maintenance" && userInfo.type === "developer" ? (
+          <button onClick={setOnline} className="btn login__btn">
+            Developer Override
+          </button>
+        ) : (
+          <div></div>
+        )}
       </div>
     </section>
   );
