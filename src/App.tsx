@@ -23,6 +23,7 @@ import { accountActions } from "./context/accountSlice";
 import { timetableActions } from "./context/timetableSlice";
 import { RootState } from "./context";
 import { EmptyTimetable } from "./components/Empty";
+import { serverStatusAction } from "./context/serverStatusSlice";
 
 type status = "maintenance" | "offline" | "online";
 
@@ -33,16 +34,19 @@ function App() {
   const refetch = useSelector((state: RootState) => state.refetch.refetchCount);
   const language = useSelector((state: RootState) => state.account.language);
   const userInfo = useSelector((state: RootState) => state.account);
+  const serverStatus = useSelector(
+    (state: RootState) => state.serverStatus.status
+  );
   const [getUserIsLoading, setGetUserIsLoading] = useState(true);
   const [getMyClassIsLoading, setGetMyClassIsLoading] = useState(true);
-  const [serverStatus, setServerStatus] = useState<status>("online");
+  const [isDevAccount, setIsDevAccount] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
       .get("https://status.apis.ssdevelopers.xyz/getStatus")
       .then(({ data }) => {
-        setServerStatus(data.status);
+        dispatch(serverStatusAction.setStatus({ status: data.status }));
       });
     fetch("https://static.easysunday.com/covid-19/getTodayCases.json")
       .then((data) => data.json())
@@ -122,7 +126,7 @@ function App() {
     );
   } else if (
     (getUserIsLoading && getMyClassIsLoading) ||
-    serverStatus === "maintenance" ||
+    (!getUserIsLoading && serverStatus === "maintenance") ||
     serverStatus === "offline"
   ) {
     return (

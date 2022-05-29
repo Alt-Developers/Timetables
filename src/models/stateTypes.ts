@@ -63,3 +63,7 @@ export interface timetableState {
     starredClass?: any[];
   };
 }
+
+export interface serverStatusInterface {
+  status: "online" | "offline" | "maintenance";
+}

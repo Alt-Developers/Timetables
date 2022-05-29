@@ -3,6 +3,7 @@ import accountSlice from "./accountSlice";
 import refetchSlice from "./refetchSlice";
 import modalSlice from "./modalSlice";
 import timetableSlice from "./timetableSlice";
+import serverStatusSlice from "./serverStatusSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     refetch: refetchSlice.reducer,
     modal: modalSlice.reducer,
     timetable: timetableSlice.reducer,
+    serverStatus: serverStatusSlice.reducer,
   },
 });
 

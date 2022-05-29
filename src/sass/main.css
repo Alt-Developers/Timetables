@@ -910,7 +910,7 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 6fr;
-    grid-template-areas: "header img" "desc img";
+    grid-template-areas: "header img" "desc img";
     gap: 1.5rem; }
     .newHoliday__middle input,
     .newHoliday__middle textarea {
@@ -1597,7 +1597,7 @@ main {
     bottom: 2rem;
     left: 2rem;
     border: none;
-    background-color: #FF5252;
+    background-color: #ff5252;
     padding: 2rem;
     width: 90%;
     border-radius: 1.1rem;
@@ -1606,9 +1606,9 @@ main {
     font-size: 1.5rem;
     text-align: center;
     text-decoration: none;
-    transition: all .3s; }
+    transition: all 0.3s; }
     .login a:hover {
-      box-shadow: 0px 0px 20px #FF5252; }
+      box-shadow: 0px 0px 20px #ff5252; }
     .login a:active {
       transform: scale(0.85); }
   .login__logo {
@@ -1622,7 +1622,7 @@ main {
       .login__logo {
         display: none; } }
   .login__rectangle {
-    transition: all .4s;
+    transition: all 0.4s;
     height: 100%;
     width: 115%;
     position: fixed;
@@ -1631,7 +1631,7 @@ main {
     top: 0;
     transform: skew(0deg, 45deg);
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-    background-color: #FF5252; }
+    background-color: #ff5252; }
   .login__modal {
     position: relative;
     background-color: var(--gray-light-1);
@@ -1658,7 +1658,7 @@ main {
     padding: 1.5rem;
     width: 100%;
     border-radius: 1.1rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
     margin-top: 1rem;
     color: var(--font-color);
     transition: all 0.1s cubic-bezier(0.61, 1, 0.88, 1); }
@@ -1666,7 +1666,7 @@ main {
       box-shadow: 0px 0px 20px var(--font-color);
       border: var(--font-color) 3px solid; }
   .login__form label {
-    transition: all .2s;
+    transition: all 0.2s;
     color: var(--font-color); }
   .login__footer {
     z-index: 100;
@@ -1681,6 +1681,23 @@ main {
     .login__footer p {
       font-weight: 800;
       font-size: 1.5rem; }
+  .login__btn {
+    align-items: center;
+    background-color: #ff5252;
+    border: none;
+    border-radius: 1.1rem;
+    bottom: 2rem;
+    color: #fff;
+    display: flex;
+    font-size: 1.5rem;
+    height: 7rem;
+    justify-content: center;
+    left: 2rem;
+    padding: 2rem;
+    position: absolute;
+    text-decoration: none;
+    transition: all 0.3s;
+    width: 90%; }
 
 .credits {
   display: flex;
