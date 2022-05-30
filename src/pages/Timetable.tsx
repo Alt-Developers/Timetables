@@ -455,7 +455,7 @@ const Timetable = () => {
                       ? "8 / 9"
                       : timetableData?.school === "ESSENCEP"
                       ? "4/5"
-                      : "6 / 7",
+                      : "5 / 6",
                     gridRow: "2/7",
                     display: "grid",
                     pointerEvents: "none",
