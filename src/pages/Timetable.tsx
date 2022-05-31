@@ -40,6 +40,20 @@ const Timetable = () => {
   const timetableColor = "#" + searchParams.get("color");
   const isNewton = timetableData?.school === "NEWTON";
 
+  const schoolSwitch = (school) => {
+    console.log(school);
+    switch (school) {
+      case "NEWTON":
+        return "8/9";
+      case "ESSENCEP":
+        return "4/5";
+      case "ESSENCE":
+        return "5/6";
+      case "ASSUMPTION":
+        return "5/6";
+    }
+  };
+
   useEffect(() => {
     // console.log("Re-fetched!");
     fetch(
@@ -367,12 +381,14 @@ const Timetable = () => {
           className="timetableTable"
           style={{
             gridTemplateRows: "1fr 2fr 2fr 2fr 2fr 2fr",
-            // DONT TOUCH - It works 😊
+
+            // To summarize: Controls the width of each weekday peiod to fit various display types 😊
             gridTemplateColumns: `${
               isNewton ? (isTabLand ? "12rem " : "2fr ") : ""
             }repeat(${isNewton ? timeLayout.length : timeLayout.length + 1}, ${
               isTabLand ? (isNewton ? "6.5rem" : "15rem") : "1fr"
             })`,
+
             height: "85vh",
           }}
         >
@@ -440,22 +456,14 @@ const Timetable = () => {
                 ? {
                     color: timetableColor,
                     textShadow: `0px 0px 10px ${timetableColor}`,
-                    gridColumn: isNewton
-                      ? "8 / 9"
-                      : timetableData?.school === "ESSENCEP"
-                      ? "4/5"
-                      : "6 / 7",
+                    gridColumn: schoolSwitch(timetableData?.school),
                     pointerEvents: "none",
                     gridRow: "2/7",
                     display: "grid",
                     placeItems: "center",
                   }
                 : {
-                    gridColumn: isNewton
-                      ? "8 / 9"
-                      : timetableData?.school === "ESSENCEP"
-                      ? "4/5"
-                      : "5 / 6",
+                    gridColumn: schoolSwitch(timetableData?.school),
                     gridRow: "2/7",
                     display: "grid",
                     pointerEvents: "none",
