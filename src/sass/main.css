@@ -11,7 +11,6 @@
     --gray-dark-1: #353535;
     --gray-dark-2: #2c2c2c;
     --modal-background: #3b3b3b; } }
-
 @media (prefers-color-scheme: light) {
   :root {
     --background-color: #eeeeee;
@@ -35,7 +34,6 @@
     --gray-dark-1: #353535;
     --gray-dark-2: #2c2c2c;
     --modal-background: #3b3b3b; } }
-
 @media (prefers-color-scheme: light) {
   html[data-theme="system"] {
     --background-color: #eeeeee;
@@ -93,7 +91,6 @@ html[data-theme="dark"] {
     transform: translate(1px, 2px) rotate(0deg); }
   100% {
     transform: translate(1px, -2px) rotate(-1deg); } }
-
 .shake:hover {
   animation: shake 1s;
   animation-iteration-count: infinite; }
@@ -107,7 +104,6 @@ html[data-theme="dark"] {
     background-color: #69acea; }
   100% {
     background-color: #70f094; } }
-
 @keyframes bgColorWeekend {
   0% {
     background-color: #f0d970; }
@@ -117,7 +113,6 @@ html[data-theme="dark"] {
     background-color: #69acea; }
   100% {
     background-color: #f0d970; } }
-
 .shiny {
   animation: slide 1s infinite 3s;
   background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(128, 186, 232, 0) 99%, rgba(125, 185, 232, 0) 100%);
@@ -140,19 +135,16 @@ html[data-theme="dark"] {
     transform: translateX(-100%); }
   100% {
     transform: translateX(100%); } }
-
 @keyframes strike {
   0% {
     text-decoration: none; }
   100% {
     text-decoration: line-through; } }
-
 @keyframes slowlyExpand {
   0% {
     width: 0; }
   100% {
     width: "30vw"; } }
-
 * {
   margin: 0;
   padding: 0;
@@ -234,7 +226,6 @@ main {
 @media (prefers-color-scheme: light) {
   .blurred {
     filter: blur(1.1rem); } }
-
 .noHover {
   pointer-events: none; }
 
@@ -393,13 +384,11 @@ main {
   @media only screen and (max-width: 56.25em) {
     .bsmall {
       width: 100%; } }
-
 .blarge {
   width: 60%; }
   @media only screen and (max-width: 56.25em) {
     .blarge {
       width: 100%; } }
-
 .bfull {
   width: 100%; }
   @media only screen and (max-width: 56.25em) {
@@ -577,9 +566,7 @@ main {
   @media only screen and (max-width: 56.25em) {
     .select2 {
       width: 30vw; } }
-  .select2 *,
-  .select2 *::after,
-  .select2 *::before {
+  .select2 *, .select2 *::after, .select2 *::before {
     box-sizing: inherit;
     transition: all 0.2s; }
   .select2__value {
@@ -715,9 +702,7 @@ main {
   @media only screen and (max-width: 56.25em) {
     .timetableSort {
       width: 30vw; } }
-  .timetableSort *,
-  .timetableSort *::after,
-  .timetableSort *::before {
+  .timetableSort *, .timetableSort *::after, .timetableSort *::before {
     box-sizing: inherit;
     transition: all 0.2s; }
   .timetableSort__value {
@@ -912,7 +897,7 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 6fr;
-    grid-template-areas: "header img" "desc img";
+    grid-template-areas: "header img" "desc img";
     gap: 1.5rem; }
     .newHoliday__middle input,
     .newHoliday__middle textarea {
@@ -1989,7 +1974,6 @@ main {
       background-color: transparent;
       box-shadow: none;
       overflow: visible; } }
-
 .ssAcc__item {
   padding: 1rem;
   width: 40rem;
@@ -2269,7 +2253,6 @@ main {
 .t-r1c3 {
   grid-column: 3 / 4;
   grid-row: 1 / span 5; }
-
 .t-r1c3 {
   display: grid;
   place-items: center; }
@@ -2857,3 +2840,5 @@ main {
     color: #fff;
     font-size: 1.5rem;
     margin-top: 1rem; }
+
+/*# sourceMappingURL=main.css.map */

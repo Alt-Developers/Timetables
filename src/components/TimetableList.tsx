@@ -44,6 +44,11 @@ const TimetableList = () => {
           ? (schoolName = "Essence")
           : (schoolName = "เอสเซนส์");
         break;
+      case "SATHIT_PATHUMWAN":
+        language === "EN"
+          ? (schoolName = "Patumwan Demonstration School")
+          : (schoolName = "สาธิตปทุมวัน");
+        break;
       default:
         language === "EN" ? (schoolName = "") : (schoolName = "");
         break;

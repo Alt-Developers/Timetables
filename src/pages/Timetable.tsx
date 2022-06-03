@@ -51,6 +51,8 @@ const Timetable = () => {
         return "5/6";
       case "ASSUMPTION":
         return "5/6";
+      case "SATHIT_PATHUMWAN":
+        return "6/7";
     }
   };
 
