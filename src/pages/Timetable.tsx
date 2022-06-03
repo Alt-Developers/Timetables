@@ -101,12 +101,13 @@ const Timetable = () => {
             const formattedArr: any[] = [];
             const counts = {};
 
-            console.log(data.timetableFormat);
+            console.log(dayArray.length, data.timetableTimeLayout.length - 1);
 
-            while (dayArray.length !== data.timetableTimeLayout.length - 1) {
+            while (dayArray.length < data.timetableTimeLayout.length - 1) {
+              console.log(dayArray.length);
               dayArray.push("EMP");
             }
-            console.log(dayArray);
+            // console.log(dayArray);
 
             // maping dayArray to get mergedArray and positionsArray
             dayArray.forEach((period) => {
@@ -121,6 +122,7 @@ const Timetable = () => {
             );
 
             mergedArray.map((period) => {
+              console.log(period);
               return formattedArr.push([
                 data.timetableFormat.classCode[language][period.slice(0, 3)]
                   .name,
@@ -143,6 +145,8 @@ const Timetable = () => {
 
         setIsLoading(false);
       });
+
+    return () => {};
   }, [refresher]);
 
   useEffect(() => {

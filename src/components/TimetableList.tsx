@@ -22,6 +22,8 @@ const TimetableList = () => {
     (state: RootState) => state.timetable.classInfo
   );
 
+  console.log(classInfo);
+
   const toSchoolName = (schoolId) => {
     let schoolName;
 
