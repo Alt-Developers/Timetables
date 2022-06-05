@@ -118,7 +118,6 @@ function App() {
     );
   } else if (
     (getUserIsLoading && getMyClassIsLoading) ||
-    (!getUserIsLoading && serverStatus === "maintenance") ||
     serverStatus === "offline"
   ) {
     return (
@@ -150,12 +149,21 @@ function App() {
           transition={{ duration: 0.2 }}
         >
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/landing" element={<Landing />} />
-            <Route path="/setup" element={<Setup />} />
-            <Route path="/documentation" element={<Documentation />} />
-            <Route path="/token" element={<TokenRedirect />} />
-            <Route path="/serverStatus" element={<ServerStatus />} />
+            {serverStatus === "maintenance" ? (
+              <Route
+                path="*"
+                element={<ServerStatus status={serverStatus} />}
+              />
+            ) : (
+              <>
+                <Route path="/" element={<Home />} />
+                <Route path="/landing" element={<Landing />} />
+                <Route path="/setup" element={<Setup />} />
+                <Route path="/documentation" element={<Documentation />} />
+                <Route path="/token" element={<TokenRedirect />} />
+                <Route path="/serverStatus" element={<ServerStatus />} />
+              </>
+            )}
 
             {userInfo.userInfo.type === "developer" && (
               <Route path="/developers/*" element={<DeveloperPanel />} />

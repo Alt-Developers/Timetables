@@ -52,7 +52,7 @@ const Home = (props) => {
             <ErrorBoundary
               fallback={
                 <>
-                  <h1 className="bar__header">Glance</h1>
+                  <h1 className="bar__header">At a Glance</h1>
                   <div className="bar">
                     <div className="errorBoundaryFill">
                       {" "}
