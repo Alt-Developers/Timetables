@@ -3,14 +3,14 @@ import TimetableDay from "../components/TimetableDay";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 import { RootState } from "../context";
 import TimetableClock from "../components/TimetableClock";
 
-const Timetable = () => {
+const Timetable = (props) => {
   // State
   const [timeLayout, setTimeLayout] = useState<string[]>([]);
   const [timetableData, setTimetableData] = useState<any>({});
@@ -30,15 +30,21 @@ const Timetable = () => {
   const [curTheme, setCurTheme] = useState(
     localStorage.getItem("theme") ?? "light"
   );
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [token, setToken] = useState(localStorage.getItem("token") ?? "");
   const [copied, setCopied] = useState(false);
   const userInfo = useSelector((state: RootState) => state.account.userInfo);
   const language = useSelector((state: RootState) => state.account.language);
   const isTabLand = useMediaQuery({ query: "(max-width: 75em)" });
+  const [timetableColor, setTimetableColor] = useState("#fd5252");
   const navigate = useNavigate();
 
-  const timetableColor = "#" + searchParams.get("color");
+  const userData = useSelector((state: RootState) => state.account.userInfo);
+
+  const { timetableId } = useParams();
+
   const isNewton = timetableData?.school === "NEWTON";
+
+  console.log(timetableId);
 
   const schoolSwitch = (school) => {
     console.log(school);
@@ -60,95 +66,179 @@ const Timetable = () => {
 
   useEffect(() => {
     // console.log("Re-fetched!");
-    fetch(
-      `https://apis.ssdevelopers.xyz/timetables/getTimetable/${searchParams.get(
-        "id"
-      )}`,
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      }
-    )
-      .then((data) => data.json())
-      .then((data) => {
-        if (data.error) navigate("/");
 
-        console.log(data);
-        document.title = `${data.className} | SS Timetables`;
-        setTimeLayout(data.timetableTimeLayout);
-        setIdentifier(data.identifier);
-        setFormat(data.timetableFormat.classCode);
-        setTimetableData(data.timetableData);
-        setTimetableName(data.className);
-        setRefresherTime(data.refresher);
-        setStatus(
-          data.isPrimaryClass && data.status === "outdated"
-            ? "outdated"
-            : "uptodate"
-        );
+    if (!props.preview) {
+      fetch(
+        `https://apis.ssdevelopers.xyz/timetables/getTimetable/${timetableId}`,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
+        .then((data) => data.json())
+        .then((data) => {
+          if (data.error) navigate("/");
 
-        const timetableContent = data.timetableData.timetableContent;
-        for (const day in timetableContent) {
-          timetableContent[day] = timetableContent[day].filter(
-            (period: any) => period !== "FTD"
+          console.log(data);
+          document.title = `${data.className} | SS Timetables`;
+          setTimeLayout(data.timetableTimeLayout);
+          setIdentifier(data.identifier);
+          setFormat(data.timetableFormat.classCode);
+          setTimetableData(data.timetableData);
+          setTimetableName(data.className);
+          setRefresherTime(data.refresher);
+          setStatus(
+            data.isPrimaryClass && data.status === "outdated"
+              ? "outdated"
+              : "uptodate"
           );
-        }
+          data.isPrimaryClass
+            ? setTimetableColor(userData.color!)
+            : setTimetableColor(data.timetableColor);
 
-        if (mergedPeriods.length < 4) {
+          const timetableContent = data.timetableData.timetableContent;
           for (const day in timetableContent) {
-            const dayArray = timetableContent[day];
-            const positionsArray: any[] = [];
-            const mergedArray: any[] = [];
-            const formattedArr: any[] = [];
-            const counts = {};
-
-            console.log(dayArray.length, data.timetableTimeLayout.length - 1);
-
-            while (dayArray.length < data.timetableTimeLayout.length - 1) {
-              console.log(dayArray.length);
-              dayArray.push("EMP");
-            }
-            // console.log(dayArray);
-
-            // maping dayArray to get mergedArray and positionsArray
-            dayArray.forEach((period) => {
-              counts[period] = (counts[period] || 0) + 1;
-              if (!positionsArray.includes(period)) {
-                positionsArray.push(period);
-              }
-            });
-
-            positionsArray.map((position) =>
-              mergedArray.push(`${position}${counts[position]}`)
+            timetableContent[day] = timetableContent[day].filter(
+              (period: any) => period !== "FTD"
             );
-
-            mergedArray.map((period) => {
-              console.log(period);
-              return formattedArr.push([
-                data.timetableFormat.classCode[language][period.slice(0, 3)]
-                  .name,
-                period.slice(0, 3),
-              ]);
-            });
-
-            // @ts-ignore
-            setFormattedPeriods((formattedPeriods) => [
-              ...formattedPeriods,
-              ...formattedArr,
-            ]);
-            // @ts-ignore
-            setMergedPeriods((mergedPeriods) => [
-              ...mergedPeriods,
-              mergedArray,
-            ]);
           }
-        }
 
-        setIsLoading(false);
-      });
+          if (mergedPeriods.length < 4) {
+            for (const day in timetableContent) {
+              const dayArray = timetableContent[day];
+              const positionsArray: any[] = [];
+              const mergedArray: any[] = [];
+              const formattedArr: any[] = [];
+              const counts = {};
 
-    return () => {};
+              console.log(dayArray.length, data.timetableTimeLayout.length - 1);
+
+              while (dayArray.length < data.timetableTimeLayout.length - 1) {
+                console.log(dayArray.length);
+                dayArray.push("EMP");
+              }
+              // console.log(dayArray);
+
+              // maping dayArray to get mergedArray and positionsArray
+              dayArray.forEach((period) => {
+                counts[period] = (counts[period] || 0) + 1;
+                if (!positionsArray.includes(period)) {
+                  positionsArray.push(period);
+                }
+              });
+
+              positionsArray.map((position) =>
+                mergedArray.push(`${position}${counts[position]}`)
+              );
+
+              mergedArray.map((period) => {
+                console.log(period);
+                return formattedArr.push([
+                  data.timetableFormat.classCode[language][period.slice(0, 3)]
+                    .name,
+                  period.slice(0, 3),
+                ]);
+              });
+
+              // @ts-ignore
+              setFormattedPeriods((formattedPeriods) => [
+                ...formattedPeriods,
+                ...formattedArr,
+              ]);
+              // @ts-ignore
+              setMergedPeriods((mergedPeriods) => [
+                ...mergedPeriods,
+                mergedArray,
+              ]);
+            }
+          }
+
+          setIsLoading(false);
+        });
+
+      return () => {};
+    } else {
+      fetch(
+        `https://apis.ssdevelopers.xyz/timetables/previewGetTimetable/${timetableId}`
+      )
+        .then((data) => data.json())
+        .then((data) => {
+          if (data.error) navigate("/");
+
+          console.log(data);
+          document.title = `${data.className} | SS Timetables`;
+          setTimeLayout(data.timetableTimeLayout);
+          setIdentifier(data.identifier);
+          setFormat(data.timetableFormat.classCode);
+          setTimetableData(data.timetableData);
+          setTimetableName(data.className);
+          setRefresherTime(data.refresher);
+          setStatus("uptodate");
+          setTimetableColor(data.timetableColor);
+
+          const timetableContent = data.timetableData.timetableContent;
+          for (const day in timetableContent) {
+            timetableContent[day] = timetableContent[day].filter(
+              (period: any) => period !== "FTD"
+            );
+          }
+
+          if (mergedPeriods.length < 4) {
+            for (const day in timetableContent) {
+              const dayArray = timetableContent[day];
+              const positionsArray: any[] = [];
+              const mergedArray: any[] = [];
+              const formattedArr: any[] = [];
+              const counts = {};
+
+              console.log(dayArray.length, data.timetableTimeLayout.length - 1);
+
+              while (dayArray.length < data.timetableTimeLayout.length - 1) {
+                console.log(dayArray.length);
+                dayArray.push("EMP");
+              }
+              // console.log(dayArray);
+
+              // maping dayArray to get mergedArray and positionsArray
+              dayArray.forEach((period) => {
+                counts[period] = (counts[period] || 0) + 1;
+                if (!positionsArray.includes(period)) {
+                  positionsArray.push(period);
+                }
+              });
+
+              positionsArray.map((position) =>
+                mergedArray.push(`${position}${counts[position]}`)
+              );
+
+              mergedArray.map((period) => {
+                console.log(period);
+                return formattedArr.push([
+                  data.timetableFormat.classCode[language][period.slice(0, 3)]
+                    .name,
+                  period.slice(0, 3),
+                ]);
+              });
+
+              // @ts-ignore
+              setFormattedPeriods((formattedPeriods) => [
+                ...formattedPeriods,
+                ...formattedArr,
+              ]);
+              // @ts-ignore
+              setMergedPeriods((mergedPeriods) => [
+                ...mergedPeriods,
+                mergedArray,
+              ]);
+            }
+          }
+
+          setIsLoading(false);
+        });
+
+      return () => {};
+    }
   }, [refresher]);
 
   useEffect(() => {
@@ -271,7 +361,7 @@ const Timetable = () => {
         <i
           style={{ marginRight: "0" }}
           onClick={() => {
-            navigator.clipboard.writeText(`${searchParams.get("id")}`);
+            navigator.clipboard.writeText(`${timetableData.color}`);
             setCopied(true);
           }}
           className={`bx ${copied ? "bx-check" : "bx-link"} timetableNav__pref`}

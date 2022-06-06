@@ -15,7 +15,7 @@ import Documentation from "./pages/Documentation";
 import DeveloperPanel from "./pages/DeveloperPanel";
 import ServerStatus from "./components/ServerStatus";
 
-import { Route, Routes, useNavigate } from "react-router";
+import { Route, Routes, useLocation, useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { Suspense, useEffect, useState } from "react";
@@ -29,6 +29,7 @@ function App() {
   const Timetable = React.lazy(() => import("./pages/Timetable"));
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const refetch = useSelector((state: RootState) => state.refetch.refetchCount);
   const language = useSelector((state: RootState) => state.account.language);
   const userInfo = useSelector((state: RootState) => state.account);
@@ -78,7 +79,8 @@ function App() {
         setGetMyClassIsLoading(false);
       });
 
-    if (!token) navigate("/");
+    console.log(location.pathname);
+    if (!token && !location.pathname.startsWith("/timetable")) navigate("/");
     if (token)
       fetch("https://apis.ssdevelopers.xyz/auth/getUser", {
         headers: {
@@ -112,6 +114,14 @@ function App() {
           <Route path="/token" element={<TokenRedirect />} />
           <Route path="/setup" element={<Setup />} />
           <Route path="/documentation" element={<Documentation />} />
+          <Route
+            path="/timetable/:timetableId"
+            element={
+              <Suspense fallback={<EmptyTimetable />}>
+                <Timetable preview={true} />
+              </Suspense>
+            }
+          />
         </Routes>
         <Footer />
       </>
@@ -173,10 +183,10 @@ function App() {
               element={userInfo.userInfo.config ? <Preferences /> : <Loading />}
             />
             <Route
-              path="/timetable"
+              path="/timetable/:timetableId"
               element={
                 <Suspense fallback={<EmptyTimetable />}>
-                  <Timetable />
+                  <Timetable preview={false} />
                 </Suspense>
               }
             />
