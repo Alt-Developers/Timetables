@@ -372,6 +372,11 @@ const Preferences = (props) => {
                           ? (schoolName = "Essence")
                           : (schoolName = "เอสเซนส์");
                         break;
+                      case "ASSUMPTION_THON":
+                        language === "EN"
+                          ? (schoolName = "Assumption College Thonburi")
+                          : (schoolName = "อัสสัมชัญธนบุรี");
+                        break;
                       default:
                         language === "EN"
                           ? (schoolName = "")

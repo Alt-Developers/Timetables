@@ -190,6 +190,10 @@ const NewHoliday = (props) => {
                   { name: "Assumption College", value: "ASSUMPTION" },
                   { name: "The Newton", value: "NEWTON" },
                   { name: "The Essence", value: "ESSENCE" },
+                  {
+                    name: "Assumption College Thonburi",
+                    value: "ASSUMPTION_THON",
+                  },
                 ]}
               />
             )}

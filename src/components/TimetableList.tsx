@@ -51,6 +51,11 @@ const TimetableList = () => {
           ? (schoolName = "Patumwan Demonstration School")
           : (schoolName = "สาธิตปทุมวัน");
         break;
+      case "ASSUMPTION_THON":
+        language === "EN"
+          ? (schoolName = "Assumption College Thonburi")
+          : (schoolName = "อัสสัมชัญธนบุรี");
+        break;
       default:
         language === "EN" ? (schoolName = "") : (schoolName = "");
         break;

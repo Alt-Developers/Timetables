@@ -63,6 +63,10 @@ const SetupTimetableItem = (props) => {
                   name: "Patumwan Demonstration School",
                   value: "SATHIT_PATHUMWAN",
                 },
+                {
+                  name: "Assumption College Thonburi",
+                  value: "ASSUMPTION_THON",
+                },
               ]}
               value={selectedSchool}
               filterOptions={fuzzySearch}
