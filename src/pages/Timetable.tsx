@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 import { RootState } from "../context";
 import TimetableClock from "../components/TimetableClock";
+import axios from "axios";
 
 const Timetable = (props) => {
   // State
@@ -159,11 +160,11 @@ const Timetable = (props) => {
 
       return () => {};
     } else {
-      fetch(
-        `https://apis.ssdevelopers.xyz/timetables/previewGetTimetable/${timetableId}`
-      )
-        .then((data) => data.json())
-        .then((data) => {
+      axios
+        .get(
+          `https://apis.ssdevelopers.xyz/timetables/previewGetTimetable/${timetableId}`
+        )
+        .then(({ data }) => {
           if (data.error) navigate("/");
 
           console.log(data);
@@ -334,9 +335,11 @@ const Timetable = (props) => {
         className="timetableNav"
         style={{ backgroundColor: timetableColor }}
       >
-        <Link to="/" className="timetableNav__home">
-          <h3>&#8249; {language === "EN" ? "Home" : "หน้าหลัก"}</h3>
-        </Link>
+        {props.preview || (
+          <Link to="/" className="timetableNav__home">
+            <h3>&#8249; {language === "EN" ? "Home" : "หน้าหลัก"}</h3>
+          </Link>
+        )}
 
         <button
           className="timetableNav__themeSwitcher"
@@ -361,20 +364,26 @@ const Timetable = (props) => {
         <i
           style={{ marginRight: "0" }}
           onClick={() => {
-            navigator.clipboard.writeText(`${timetableData.color}`);
+            navigator.clipboard.writeText(
+              `https://timetables.ssdevelopers.xyz/timetables/${timetableData._id}`
+            );
             setCopied(true);
           }}
           className={`bx ${copied ? "bx-check" : "bx-link"} timetableNav__pref`}
         ></i>
-        <Link to="/preferences" className="timetableNav__pref">
-          <i className="bx bx-slider" />
-        </Link>
-        <img
-          src={`https://apis.ssdevelopers.xyz/${userInfo.profilePicture}`}
-          alt="user profile picture"
-          height="50"
-          width="50"
-        />
+        {props.preview || (
+          <>
+            <Link to="/preferences" className="timetableNav__pref">
+              <i className="bx bx-slider" />
+            </Link>
+            <img
+              src={`https://apis.ssdevelopers.xyz/${userInfo.profilePicture}`}
+              alt="user profile picture"
+              height="50"
+              width="50"
+            />
+          </>
+        )}
       </section>
       {status === "outdated" && (
         <motion.div
@@ -399,7 +408,7 @@ const Timetable = (props) => {
 
             <p>
               {language === "EN"
-                ? `We've detected that your class (${timetableName})'s timetables hasn't been updated for this semester's timetable. To keep your timetables updated can you kindly send us a photo of your timetableใ Thanks!`
+                ? `We've detected that your class (${timetableName})'s timetables hasn't been updated for this semester's timetable. To keep your timetables updated can you kindly send us a photo of your timetable Thanks!`
                 : "พวกเราเห็นว่าตารางเรียนของคุณนั้นไม่ใช่รุ่นล่าสุด. เพิ่อที่จะให้ตารางเรียนของคุณนั้นเป็นรุ่นล่าสุดกรุณาแนบภาพ"}
             </p>
           </div>

@@ -40,6 +40,7 @@ function App() {
   const [getMyClassIsLoading, setGetMyClassIsLoading] = useState(true);
 
   useEffect(() => {
+    // document.title = "Loading | SS Developers";
     const token = localStorage.getItem("token");
     axios
       .get("https://status.apis.ssdevelopers.xyz/getStatus")
@@ -48,21 +49,22 @@ function App() {
           dispatch(serverStatusAction.setStatus({ status: data.status }));
         }
       });
-    fetch("https://static.easysunday.com/covid-19/getTodayCases.json")
-      .then((data) => data.json())
-      .then((data) => {
+    // Fetch for Thailand's covid-19 cases
+    axios
+      .get("https://static.easysunday.com/covid-19/getTodayCases.json")
+      .then(({ data }) => {
         dispatch(accountActions.covid(data));
       });
+    // Fetch for world-wide covid-19 cases
+    axios
+      .get("https://disease.sh/v3/covid-19/all")
+      .then(({ data }) => dispatch(accountActions.covidWorldwide(data)));
 
-    fetch("https://disease.sh/v3/covid-19/all")
-      .then((data) => data.json())
-      .then((data) => dispatch(accountActions.covidWorldwide(data)));
-
-    fetch(
-      `https://apis.ssdevelopers.xyz/timetables/getFormat?language=${language}`
-    )
-      .then((data) => data.json())
-      .then((data) => {
+    axios
+      .get(
+        `https://apis.ssdevelopers.xyz/timetables/getFormat?language=${language}`
+      )
+      .then(({ data }) => {
         dispatch(timetableActions.initFormat(data.formattedFormat));
       });
 

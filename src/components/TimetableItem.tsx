@@ -75,13 +75,7 @@ const TimetableList: React.FC<props> = (props) => {
 
   if (!props.remove) {
     return (
-      <Link
-        to={
-          props.disabled
-            ? ""
-            : `/timetable?id=${props.id}&color=${props.color?.replace("#", "")}`
-        }
-      >
+      <Link to={props.disabled ? "" : `/timetable/${props.id}`}>
         <motion.div
           className={`timetable__item ${props.remove && "shake"}`}
           style={

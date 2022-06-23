@@ -15,13 +15,18 @@ const SimpleModal = (props: any) => {
   const modalState = useSelector((state: RootState) => state.modal);
   const isPhone = useMediaQuery({ query: "(max-width: 56.25em)" });
   const language = useSelector((state: RootState) => state.account.language);
-  const [id, setId] = useState<string>("");
+  const [link, setLink] = useState<string>("");
   const [errorMes, setErrorMes] = useState<boolean | string>(false);
 
   const dispatch = useDispatch();
 
   const submitHandler = (event) => {
     event.preventDefault();
+
+    if (!link) return;
+
+    const classId = link.split("/").reverse()[0];
+    console.log(classId);
 
     fetch("https://apis.ssdevelopers.xyz/timetables/registerUserClass", {
       headers: {
@@ -30,23 +35,22 @@ const SimpleModal = (props: any) => {
       },
       method: "POST",
       body: JSON.stringify({
-        classId: id,
+        classId: classId,
         isPrimary: false,
       }),
     })
       .then((data) => {
         if (data.status < 200 || data.status > 299) {
           setErrorMes("something went wrong");
-          setId("");
+          setLink("");
         } else {
           setErrorMes(false);
-          setId("");
+          setLink("");
         }
         return data.json();
       })
       .then((data) => {
-        console.log(data);
-        setId("");
+        setLink("");
         dispatch(refetchActions.refetch(""));
         if (data.modal) {
           setErrorMes(data.header);
@@ -153,19 +157,21 @@ const SimpleModal = (props: any) => {
               style={{ borderBottom: "1px solid var(--gray-dark-1)" }}
             >
               <h3>
-                {language === "EN" ? "Add class by ID" : "เพิ่มห้องด้วย ID"}
+                {language === "EN"
+                  ? "Add class with Link"
+                  : "เพิ่มห้องด้วย Link"}
               </h3>
               <p>
-                What's the ID? - The id can be coppied from{" "}
+                What's the Link? - The link can be coppied from{" "}
                 <i className="bx bx-link"></i> within the timetables page
               </p>
               <p style={{ marginTop: "1rem" }}>{errorMes}</p>
               <input
                 id="idInput"
-                value={id}
-                onChange={(event) => setId(event.target.value)}
+                value={link}
+                onChange={(event) => setLink(event.target.value)}
                 type="text"
-                placeholder="ID"
+                placeholder="Link"
               />
 
               <ColoredButton
