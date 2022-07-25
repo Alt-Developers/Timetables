@@ -1,329 +1,37 @@
-.bigDisplayCover {
-  display: grid;
-  place-items: center;
-
-  &__cover {
-    height: 1080px;
-    width: 1920px;
-  }
-}
-
 .landing {
-  // padding: 3rem;
-  overflow: hidden;
-  min-height: 95vh;
-  background-color: #eee;
-
-  &__thai {
-    line-height: 5rem;
-  }
-
-  &__nav {
-    width: 100%;
-    height: 6rem;
-    background-color: #fd5252;
-    padding: 2rem;
-    display: flex;
-    align-items: center;
-    color: #fff;
-    font-size: 1.5rem;
-
-    span {
-      font-size: 1.2rem;
-      font-weight: 500;
-    }
-
-    button {
-      margin-left: auto;
-      padding: 1rem;
-      border: none;
-      border-radius: 1.1rem;
-      width: fit-content;
-      background: #eee;
-      transition: all 0.2s;
-
-      &:hover {
-        box-shadow: #fff 0px 0px 20px;
-      }
-
-      &:active {
-        transform: scale(0.9);
-      }
-    }
-  }
-
   &__header {
-    padding: 3rem;
-    height: 85vh;
-    background-color: #fd5252;
+    background-color: #eeeeee;
+    padding: 6rem 7vw;
+    color: #000;
     position: relative;
 
-    @include respond(phone) {
-      height: 85vh;
-      border-radius: 0 0 3rem 3rem;
-      // background-color: #;
-    }
-
-    img {
-      position: absolute;
-      bottom: 2rem;
-      right: 0;
-      height: 80vh;
-      width: 60vw;
-      object-fit: contain;
-
-      @include respond(phone) {
-        display: none;
-      }
-    }
-  }
-
-  &__phoneHeader {
-    h3 {
-      // color: var(--gray-dark-2);
-      font-size: 4rem;
-      color: #fff;
-      font-weight: 800;
-
-      span {
-        color: #ff8585;
-        font-weight: 500;
-        text-decoration: line-through;
-
-        // text-decoration: none !important;
-      }
-    }
-  }
-
-  &__text {
-    position: absolute;
-    top: 4rem;
-    left: 4rem;
-    color: #fff;
-    width: 40rem;
-    transition: all 0.2s;
-
-    @include respond(phone) {
-      top: 0rem;
-      left: 0rem;
-      padding: 3rem;
-      background-color: #fd5252;
-      transition: all 0.2s;
-      width: 100%;
-      // height: 40vh;
-      border-radius: 0 0 2rem 2rem;
-    }
-
-    h1 {
-      font-size: 5.5rem;
-      color: #fff;
-
-      @include respond(phone) {
-        font-size: 4rem;
-      }
-    }
-
-    h3 {
-      font-size: 2rem;
-      font-weight: 500;
-      margin-top: 1rem;
-    }
-  }
-
-  &__buttons {
-    position: absolute;
-    bottom: 4rem;
-    left: 4rem;
-    display: flex;
-    align-items: center;
-
-    @include respond(phone) {
-      bottom: 2rem;
-      left: 2rem;
-      height: fit-content;
-      width: calc(100vw - 4rem);
+    &--text {
       display: flex;
-      gap: 1.5rem;
-      // align-items: start;
-    }
-
-    button {
-      background-color: #fff;
-      border: none;
-      padding: 2.5rem;
-      border-radius: 20rem;
-      box-shadow: none;
-      width: 15rem;
-      color: #000;
-      font-size: 1.8rem;
-      font-weight: 700;
-      transition: all 0.4s;
-
-      @include respond(phone) {
-        border-radius: 2rem;
-        order: 2;
-        width: 100%;
-        background-color: #dfdfdf;
-        color: #000;
-      }
-
-      &:hover {
-        // scale: 1.1;
-        box-shadow: #fff 0px 0px 20px;
-        transform: scale(1.1);
-
-        @include respond(phone) {
-          box-shadow: none;
-        }
-      }
-
-      &:active {
-        transform: scale(0.9);
-      }
-    }
-
-    a {
-      font-weight: 700;
-      color: #fff;
-      font-size: 1.5rem;
-
-      @include respond(phone) {
-        width: 50%;
-        font-size: 1.8rem;
-      }
-
-      &:hover {
-        text-decoration: underline;
-
-        @include respond(phone) {
-          text-decoration: none;
-        }
-      }
-    }
-
-    &__aWrapper {
-      @include respond(phone) {
-        display: grid;
-        place-items: center;
-        height: 7rem;
-        width: 50%;
-        background: #dfdfdf;
-        // border-radius: 1.1rem;
-        border-radius: 2rem;
-      }
-
-      a {
-        width: fit-content;
-        margin-left: 2rem;
-
-        @include respond(phone) {
-          margin-left: 0;
-          color: #000;
-        }
-      }
-    }
-  }
-
-  &__main {
-    padding: 3rem;
-
-    @include respond(phone) {
-      padding: 2rem;
-    }
-  }
-
-  &__boxCon {
-    border-radius: 1.1rem;
-    height: 35rem;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    width: 100%;
-    gap: 3rem;
-
-    @include respond(phone) {
-      display: flex;
+      gap: 2rem;
       flex-direction: column;
-      height: fit-content;
-    }
 
-    div {
-      border-radius: 2rem;
-      padding: 3rem;
-
-      h3 {
-        font-size: 4rem;
-
-        @include respond(phone) {
-          font-size: 3rem;
-        }
+      h1 {
+        font-size: 6rem;
+        line-height: 106.5%;
       }
 
       p {
-        font-size: 1.8rem;
-        margin-top: 1rem;
-        font-weight: 500;
+        font-size: 1.7rem;
+        line-height: 106.5%;
       }
-    }
-  }
 
-  &__boxRight {
-    background-color: #dfdfdf;
-    color: #000;
-    transition: all 0.2s;
+      a {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        color: #fd5252;
+        font-size: 1.7rem;
+        text-decoration: none;
 
-    h3 {
-      font-size: 3rem !important;
-    }
-
-    span {
-      transition: all 0.2s;
-      font-size: 5rem;
-      color: #fd5252;
-
-      @include respond(phone) {
-        font-size: 4rem;
+        i {
+          font-size: 2rem;
+        }
       }
-    }
-  }
-
-  &__boxLeft {
-    background-color: #fd5252;
-    color: #fff;
-  }
-
-  &__extraHeader {
-    font-size: 4rem;
-    margin: 3rem;
-  }
-}
-
-.glancePreview {
-  height: 70vh;
-  background: #ff6a6a90;
-  margin: 3rem -3rem 2rem -3rem;
-  padding: 5rem;
-  position: relative;
-
-  &__bar {
-    position: absolute;
-    right: -30%;
-    top: 50%;
-    transform: translateY(-30%);
-
-    section {
-      width: 90vw;
-    }
-  }
-
-  &__textCon {
-    h1 {
-      color: #fff;
-    }
-
-    p {
-      color: #fff;
-      font-size: 1.5rem;
-      margin-top: 1rem;
     }
   }
 }

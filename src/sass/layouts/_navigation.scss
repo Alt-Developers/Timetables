@@ -1,0 +1,41 @@
+.navigation {
+  height: 10vh;
+  background-color: #f6f6f6;
+  padding: 2rem 7vw;
+  display: flex;
+  justify-content: space-between;
+
+  &__logo {
+    display: flex;
+    color: #000000;
+    align-items: center;
+    font-size: 2rem;
+    gap: 0.5rem;
+    font-weight: 600;
+
+    img {
+      height: 4rem;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    a {
+      color: #000000;
+    }
+
+    &--getStarted {
+      padding: 2rem;
+      display: grid;
+      place-content: center;
+      color: #fff !important;
+      font-size: 1.3rem;
+      text-decoration: none;
+      background-color: #fd5252;
+      border-radius: 50rem;
+    }
+  }
+}

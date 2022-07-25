@@ -1,64 +1,30 @@
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Ubuntu", "Noto Sans Thai", sans-serif;
+  box-sizing: inherit;
 }
 
 html {
-  font-size: 55%;
+  font-size: 62.5%;
   scroll-behavior: smooth;
-
-  @include respond(big-desktop) {
-    font-size: 62.5%;
-  }
-
-  @include respond(phone) {
-    font-size: 60%;
-  }
-}
-
-h1 {
-  font-size: 4rem;
-  color: var(--font-color);
 }
 
 body {
+  box-sizing: border-box;
   background-color: var(--background-color);
   min-height: 100vh;
-}
+  font-family: "Poppins", "IBM Plex Sans Thai", sans-serif;
+  color: var(--font-color);
 
-a {
-  text-decoration: none;
-}
-
-main {
-  background-color: var(--background-color);
-  min-height: 60vh;
-}
-
-.errorBoundaryFill {
-  height: 100%;
-  width: 100%;
-  border-radius: 1.1rem;
-  background-color: #a50000;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
-  p {
-    color: yellow;
-    font-size: 1.2rem;
-
-    a {
-      background-color: rgb(216, 216, 62);
-      color: black;
-    }
+  @include respond(tab-port) {
+    padding: 0;
   }
+}
 
-  h1 {
-    color: yellow;
-    font-size: 2rem;
+.main {
+  &__landing {
+    background-color: #f2f2f2;
   }
 }
