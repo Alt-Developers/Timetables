@@ -25,17 +25,32 @@
 
     a {
       color: #000000;
+      font-size: 1.3rem;
+      text-decoration: none;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: #d3d3d350;
+        // color: #fd5252;
+      }
     }
 
     &--getStarted {
-      padding: 2rem;
+      padding: 2rem !important;
       display: grid;
       place-content: center;
       color: #fff !important;
-      font-size: 1.3rem;
+      font-size: 1.3rem !important;
       text-decoration: none;
       background-color: #fd5252;
-      border-radius: 50rem;
+      border-radius: 50rem !important;
+
+      &:hover {
+        background-color: #fa6767 !important;
+        // color: #fd5252;
+      }
     }
   }
 }

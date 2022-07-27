@@ -1,13 +1,26 @@
-import { Route, Routes } from "react-router-dom";
-import Landing from "./pages/Landing";
 import "./sass/main.css";
+import Landing from "./pages/Landing";
+
+import { Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import Home from "./pages/Home";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-      </Routes>
+      {isLoggedIn ? (
+        <Routes>
+          {" "}
+          <Route path="/" element={<Home />} />
+          <Route path="/landing" element={<Landing />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route path="/" element={<Landing />} />
+        </Routes>
+      )}
     </>
   );
 }

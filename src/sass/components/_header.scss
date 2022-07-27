@@ -1,0 +1,40 @@
+.header {
+  background-color: var(--light-1);
+  height: 25vh;
+  display: flex;
+  align-items: center;
+  padding: 5rem;
+  justify-content: space-between;
+  transition: all 0.2s;
+
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 120%;
+  }
+
+  &__options {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+
+    i {
+      font-size: 3rem;
+      color: var(--font);
+      transition: all 0.2s;
+      padding: 1rem;
+      border-radius: 50%;
+
+      &:hover {
+        transform: rotate(30deg);
+        background-color: #ffffff50;
+      }
+    }
+
+    img {
+      height: 5rem;
+      width: 5rem;
+      border-radius: 50%;
+    }
+  }
+}

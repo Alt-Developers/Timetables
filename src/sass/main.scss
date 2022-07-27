@@ -12,10 +12,13 @@
 @import "base/typography";
 @import "base/utilities";
 
-// @import "components/componentName";
+@import "components/header";
+@import "components/timeline";
+@import "components/preferences";
 
 @import "layouts/navigation";
 
 // @import "lib/simpleModal";
 
 @import "pages/landing";
+@import "pages/home";

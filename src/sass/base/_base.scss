@@ -13,10 +13,10 @@ html {
 
 body {
   box-sizing: border-box;
-  background-color: var(--background-color);
+  background-color: var(--background);
   min-height: 100vh;
   font-family: "Poppins", "IBM Plex Sans Thai", sans-serif;
-  color: var(--font-color);
+  color: var(--font);
 
   @include respond(tab-port) {
     padding: 0;
@@ -26,5 +26,9 @@ body {
 .main {
   &__landing {
     background-color: #f2f2f2;
+  }
+
+  &__home {
+    padding: 5rem;
   }
 }
