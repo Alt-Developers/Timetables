@@ -1,0 +1,79 @@
+.activity {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 25vh 25vh 25vh;
+  gap: 2rem;
+
+  &__header {
+    margin-bottom: 2rem;
+  }
+
+  &__block {
+    box-shadow: 0 0 4rem #00000005;
+    background-color: var(--light-2);
+    border-radius: 1.1rem;
+    padding: 2.5rem;
+    transition: all 0.2s;
+
+    &:hover {
+      transform: translateY(-1rem);
+      box-shadow: 0 0 4rem #00000010;
+    }
+  }
+
+  &__timeline {
+    grid-row: span 2;
+    grid-column: span 2;
+
+    h1 {
+      font-size: 4rem;
+      line-height: 106.5%;
+      margin-top: 3rem;
+      margin-left: 1rem;
+    }
+  }
+
+  &__boardHighlight {
+    grid-column: span 2;
+
+    h3 {
+      width: 100%;
+      overflow-y: scroll;
+    }
+
+    &--title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    img {
+      height: 4rem;
+      width: 4rem;
+      border-radius: 50%;
+    }
+  }
+
+  &__class {
+    h3 {
+      font-weight: 700;
+      line-height: 106.5%;
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      color: var(--light-text);
+    }
+  }
+
+  &__add {
+    i {
+      font-size: 5rem;
+    }
+
+    p {
+      color: var(--light-text);
+    }
+  }
+}

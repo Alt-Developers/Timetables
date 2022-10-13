@@ -1,0 +1,68 @@
+.timetable {
+  &__nav {
+    height: 7rem;
+    padding: 3rem;
+    background-color: var(--light-1);
+    display: flex;
+    align-items: center;
+
+    a {
+      font-size: 1.7rem;
+      color: #fd5252;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      i {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  &__topText {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+
+    h1 {
+      font-size: 4.5rem;
+      line-height: 100%;
+    }
+
+    p {
+      font-size: 2rem;
+    }
+  }
+
+  &__chips {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  &__activeChip {
+    background-color: #fd5252 !important;
+    color: #fff !important;
+  }
+
+  &__chip {
+    transition: all 0.2s;
+    padding: 2rem;
+    background-color: var(--light-1);
+    border-radius: 10rem;
+    cursor: pointer;
+    box-shadow: 0 0 4.5rem rgba(0, 0, 0, 0.05);
+    font-size: 1.3rem;
+
+    &:hover {
+      background-color: #fd5252;
+      color: #fff;
+    }
+  }
+}

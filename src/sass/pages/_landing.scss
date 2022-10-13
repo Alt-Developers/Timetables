@@ -27,8 +27,18 @@
         color: #fd5252;
         font-size: 1.7rem;
         text-decoration: none;
+        transition: all 0.2s;
+
+        &:hover {
+          transform: translateX(1.2rem);
+        }
+
+        &:hover > i {
+          transform: translateX(-0.5rem);
+        }
 
         i {
+          transition: all 0.2s;
           font-size: 2rem;
         }
       }

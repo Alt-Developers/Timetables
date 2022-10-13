@@ -10,7 +10,10 @@ const Landing = () => {
         </div>
         <div className="navigation__links">
           <Link to="/explore">Explore</Link>
-          <a className="navigation__links--getStarted" href="">
+          <a
+            className="navigation__links--getStarted"
+            href="https://authentication.altdevelopers.dev/signup/timetables"
+          >
             Get Started
           </a>
         </div>
@@ -25,7 +28,7 @@ const Landing = () => {
             Redesigned, Rewritten and Re-imagined <br /> Timetables v4 is now
             better than ever.
           </p>
-          <a href="">
+          <a href="https://authentication.altdevelopers.dev/login/timetables">
             <i className="bx bx-right-arrow-alt"></i>login to timetables
           </a>
         </div>

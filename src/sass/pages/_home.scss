@@ -1,2 +1,6 @@
 .home {
+  &__content {
+    padding: 4rem;
+    background-color: var(--background);
+  }
 }

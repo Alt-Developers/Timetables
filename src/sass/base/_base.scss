@@ -31,4 +31,9 @@ body {
   &__home {
     padding: 5rem;
   }
+
+  &__timetable {
+    padding: 3rem 5rem 3rem 5rem;
+    background-color: var(--background);
+  }
 }

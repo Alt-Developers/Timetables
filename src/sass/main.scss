@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Poppins:wght@200;300;400;500;600;700&display=swap");
 // Boxicons
 @import url("https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap%22");
 
 @import "abstracts/functions";
 @import "abstracts/mixins";
@@ -13,8 +14,8 @@
 @import "base/utilities";
 
 @import "components/header";
-@import "components/timeline";
 @import "components/preferences";
+@import "components/activity";
 
 @import "layouts/navigation";
 
@@ -22,3 +23,4 @@
 
 @import "pages/landing";
 @import "pages/home";
+@import "pages/timetable";
