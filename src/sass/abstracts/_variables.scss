@@ -1,3 +1,16 @@
+:root {
+  --background: #eeeeee;
+  --font: #000000;
+  --light-1: #f5f5f5;
+  --light-2: #f1f1f1;
+  --light-shadow: 0 0 4rem rgba(0, 0, 0, 0.05);
+  --dark-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
+  --dark-1: #e4e4e4;
+  --light-text: #222222;
+
+  --translucent: #e4e4e450;
+}
+
 html[data-theme="dark"] {
   --background: #222222;
   --font: #ffffff;
@@ -23,18 +36,18 @@ html[data-theme="light"] {
 }
 
 // @media (prefers-color-scheme: light) {
-//   :root {
-//     --background: #eeeeee;
-//     --font: #000000;
-//     --light-1: #f5f5f5;
-//     --light-2: #f1f1f1;
-//     --light-shadow: 0 0 4rem rgba(0, 0, 0, 0.05);
-//     --dark-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
-//     --dark-1: #e4e4e4;
-//     --light-text: #222222;
+// :root {
+//   --background: #eeeeee;
+//   --font: #000000;
+//   --light-1: #f5f5f5;
+//   --light-2: #f1f1f1;
+//   --light-shadow: 0 0 4rem rgba(0, 0, 0, 0.05);
+//   --dark-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
+//   --dark-1: #e4e4e4;
+//   --light-text: #222222;
 
-//     --translucent: #e4e4e450;
-//   }
+//   --translucent: #e4e4e450;
+// }
 // }
 
 // @media (prefers-color-scheme: dark) {

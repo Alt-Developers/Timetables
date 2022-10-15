@@ -1,7 +1,7 @@
 .activity {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 25vh 25vh 25vh;
+  grid-auto-rows: 25vh;
   gap: 2rem;
 
   &__header {
@@ -14,16 +14,74 @@
     border-radius: 1.1rem;
     padding: 2.5rem;
     transition: all 0.2s;
+    text-decoration: none;
+    color: #000;
 
     &:hover {
       transform: translateY(-1rem);
       box-shadow: 0 0 4rem #00000010;
+    }
+
+    &:active {
+      transform: translateY(0rem);
+      box-shadow: 0 0 4rem #00000005;
     }
   }
 
   &__timeline {
     grid-row: span 2;
     grid-column: span 2;
+    position: relative;
+
+    &--vl {
+      border-left: 7px solid var(--dark-1);
+      height: 100%;
+      position: absolute;
+      right: 18rem;
+      top: 0;
+    }
+
+    &--progressVl {
+      border-left: 7px solid #fd5252;
+      height: 51%;
+      position: absolute;
+      right: 18rem;
+      top: 0;
+      z-index: 2;
+    }
+
+    &--dot {
+      height: 2rem;
+      width: 2rem;
+      background-color: #fd5252;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: -1.35rem;
+    }
+
+    &--dotContentRight {
+      position: absolute;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      left: 5rem;
+      font-size: 1.7rem;
+      font-weight: 600;
+    }
+
+    &--dotContentLeft {
+      position: absolute;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      right: 5rem;
+      width: 15rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--light-text);
+    }
 
     h1 {
       font-size: 4rem;

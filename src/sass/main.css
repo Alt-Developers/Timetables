@@ -1,6 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Poppins:wght@200;300;400;500;600;700&display=swap");
 @import url("https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css");
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap%22");
+:root {
+  --background: #eeeeee;
+  --font: #000000;
+  --light-1: #f5f5f5;
+  --light-2: #f1f1f1;
+  --light-shadow: 0 0 4rem rgba(0, 0, 0, 0.05);
+  --dark-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
+  --dark-1: #e4e4e4;
+  --light-text: #222222;
+  --translucent: #e4e4e450; }
+
 html[data-theme="dark"] {
   --background: #222222;
   --font: #ffffff;
@@ -199,7 +210,7 @@ p {
 .activity {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 25vh 25vh 25vh;
+  grid-auto-rows: 25vh;
   gap: 2rem; }
   .activity__header {
     margin-bottom: 2rem; }
@@ -208,13 +219,59 @@ p {
     background-color: var(--light-2);
     border-radius: 1.1rem;
     padding: 2.5rem;
-    transition: all 0.2s; }
+    transition: all 0.2s;
+    text-decoration: none;
+    color: #000; }
     .activity__block:hover {
       transform: translateY(-1rem);
       box-shadow: 0 0 4rem #00000010; }
+    .activity__block:active {
+      transform: translateY(0rem);
+      box-shadow: 0 0 4rem #00000005; }
   .activity__timeline {
     grid-row: span 2;
-    grid-column: span 2; }
+    grid-column: span 2;
+    position: relative; }
+    .activity__timeline--vl {
+      border-left: 7px solid var(--dark-1);
+      height: 100%;
+      position: absolute;
+      right: 18rem;
+      top: 0; }
+    .activity__timeline--progressVl {
+      border-left: 7px solid #fd5252;
+      height: 51%;
+      position: absolute;
+      right: 18rem;
+      top: 0;
+      z-index: 2; }
+    .activity__timeline--dot {
+      height: 2rem;
+      width: 2rem;
+      background-color: #fd5252;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: -1.35rem; }
+    .activity__timeline--dotContentRight {
+      position: absolute;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      left: 5rem;
+      font-size: 1.7rem;
+      font-weight: 600; }
+    .activity__timeline--dotContentLeft {
+      position: absolute;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      right: 5rem;
+      width: 15rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--light-text); }
     .activity__timeline h1 {
       font-size: 4rem;
       line-height: 106.5%;

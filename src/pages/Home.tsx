@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const colorSequence = [
@@ -64,6 +65,23 @@ const Home = () => {
       },
     ],
   });
+  // const timelinePhaseClasses = {
+  //   passed: {
+  //     backgroundColor: "#fd5252",
+  //     height: "2rem",
+  //     width: "2rem",
+  //   },
+  //   current: {
+  //     backgroundColor: "#fd5252",
+  //     height: "4rem",
+  //     width: "4rem",
+  //   },
+  //   soon: {
+  //     backgroundColor: "var(--dark-1)",
+  //     height: "2rem",
+  //     width: "2rem",
+  //   },
+  // };
 
   return (
     <section className="home">
@@ -78,6 +96,56 @@ const Home = () => {
               Assumption <br />
               College.
             </h1>
+
+            <div
+              className="activity__timeline--progressVl"
+              style={{ height: "50%" }}
+            ></div>
+
+            <div className="activity__timeline--vl">
+              <div
+                className="activity__timeline--dot"
+                style={{
+                  backgroundColor: "#fd5252",
+                  height: "2rem",
+                  width: "2rem",
+                  top: "25%",
+                }}
+              >
+                <div className="activity__timeline--dotContentRight">
+                  English
+                </div>
+                <div className="activity__timeline--dotContentLeft">
+                  9:00 AM
+                </div>
+              </div>
+              <div
+                className="activity__timeline--dot"
+                style={{
+                  backgroundColor: "#fd5252",
+                  height: "3rem",
+                  width: "3rem",
+                  left: "-2rem",
+                  top: "50%",
+                }}
+              >
+                <div className="activity__timeline--dotContentRight">
+                  Mathematics
+                </div>
+                <div className="activity__timeline--dotContentLeft">
+                  15 Minutes Elapsed
+                </div>
+              </div>
+              <div
+                className="activity__timeline--dot"
+                style={{
+                  backgroundColor: "var(--dark-1)",
+                  height: "2rem",
+                  width: "2rem",
+                  top: "75%",
+                }}
+              ></div>
+            </div>
           </div>
           <div className="activity__boardHighlight activity__block">
             <div className="activity__boardHighlight--title">
@@ -88,14 +156,16 @@ const Home = () => {
               <p>Hutao from Year 11A</p>
             </div>
             <h3>
-              Welcome to the brand new Timetables. A Fresh new start
-              oasidjoaisdjsoidjsoadjsodjs
+              Welcome to the brand new Timetables. <br />A Fresh new start
             </h3>
           </div>
 
           {activity.classes.map((item, index) => {
             return (
-              <div className="activity__block activity__class">
+              <Link
+                to={`/timetable/${item.id}`}
+                className="activity__block activity__class"
+              >
                 <h3>
                   <span style={{ color: colorSequence[index] }}>
                     {item.className} <br />
@@ -103,7 +173,7 @@ const Home = () => {
                   {item.school}
                 </h3>
                 <p>{item.activity}</p>
-              </div>
+              </Link>
             );
           })}
 
