@@ -54,7 +54,7 @@
     align-items: center;
 
     &:hover > i {
-      color: #fd5252;
+      color: var(--accent);
     }
 
     span {
@@ -89,7 +89,7 @@
     transition: all 0.2s;
 
     &:hover {
-      color: #fd5252;
+      color: var(--accent);
     }
   }
 }

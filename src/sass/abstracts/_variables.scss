@@ -1,3 +1,6 @@
+// Newton Color: #0e3178
+// Assumption: #da032a
+
 :root {
   --background: #eeeeee;
   --font: #000000;
@@ -7,6 +10,7 @@
   --dark-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
   --dark-1: #e4e4e4;
   --light-text: #222222;
+  --accent: #fd5252;
 
   --translucent: #e4e4e450;
 }
@@ -21,6 +25,7 @@ html[data-theme="dark"] {
   --dark-1: #474747;
   --light-text: #bdbdbd;
   --translucent: #47474750;
+  --accent: #fd5252;
 }
 
 html[data-theme="light"] {
@@ -33,6 +38,7 @@ html[data-theme="light"] {
   --dark-1: #e4e4e4;
   --light-text: #696969;
   --translucent: #e4e4e450;
+  --accent: #fd5252;
 }
 
 // @media (prefers-color-scheme: light) {

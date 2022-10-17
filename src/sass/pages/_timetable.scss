@@ -47,7 +47,7 @@
   }
 
   &__activeChip {
-    background-color: #fd5252 !important;
+    background-color: var(--accent) !important;
     color: #fff !important;
   }
 
@@ -61,7 +61,7 @@
     font-size: 1.3rem;
 
     &:hover {
-      background-color: #fd5252;
+      background-color: var(--accent);
       color: #fff;
     }
   }

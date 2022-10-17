@@ -4,7 +4,14 @@
   grid-auto-rows: 25vh;
   gap: 2rem;
 
+  @include respond(big-desktop) {
+    padding: 0 10vw 0 10vw;
+  }
+
   &__header {
+    @include respond(big-desktop) {
+      padding: 0 10vw 0 10vw;
+    }
     margin-bottom: 2rem;
   }
 
@@ -15,7 +22,7 @@
     padding: 2.5rem;
     transition: all 0.2s;
     text-decoration: none;
-    color: #000;
+    color: var(--font);
 
     &:hover {
       transform: translateY(-1rem);
@@ -33,6 +40,35 @@
     grid-column: span 2;
     position: relative;
 
+    h1 {
+      font-size: 4rem;
+      line-height: 106.5%;
+      margin-top: 3rem;
+    }
+
+    &--mutual {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 5rem;
+      font-size: 1.3rem;
+      color: var(--font) !important;
+      font-weight: 600;
+    }
+
+    &--mutualAvatars {
+      display: flex;
+      margin-left: 1rem;
+
+      img {
+        height: 4rem;
+        width: 4rem;
+        border-radius: 50%;
+        margin-left: -1rem;
+        border: 2px solid var(--light-2);
+      }
+    }
+
     &--vl {
       border-left: 7px solid var(--dark-1);
       height: 100%;
@@ -42,37 +78,44 @@
     }
 
     &--progressVl {
-      border-left: 7px solid #fd5252;
+      border-left: 7px solid var(--accent);
       height: 51%;
       position: absolute;
       right: 18rem;
       top: 0;
       z-index: 2;
+      transition: all 0.2s;
     }
 
     &--dot {
       height: 2rem;
       width: 2rem;
-      background-color: #fd5252;
+      background-color: var(--accent);
       border-radius: 50%;
       position: absolute;
       top: 50%;
       left: -1.35rem;
+      transition: all 0.2s;
+    }
+
+    &--smallContent {
+      height: 2rem !important;
     }
 
     &--dotContentRight {
       position: absolute;
-      height: 4rem;
+      height: 3rem;
       display: flex;
       align-items: center;
       left: 5rem;
       font-size: 1.7rem;
       font-weight: 600;
+      line-height: 100%;
     }
 
     &--dotContentLeft {
       position: absolute;
-      height: 4rem;
+      height: 3rem;
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -80,14 +123,8 @@
       width: 15rem;
       font-size: 1.3rem;
       font-weight: 600;
+      line-height: 100%;
       color: var(--light-text);
-    }
-
-    h1 {
-      font-size: 4rem;
-      line-height: 106.5%;
-      margin-top: 3rem;
-      margin-left: 1rem;
     }
   }
 
@@ -97,6 +134,13 @@
     h3 {
       width: 100%;
       overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
     }
 
     &--title {
