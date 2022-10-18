@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { activity } from "../models/types";
@@ -46,7 +46,16 @@ const Home = () => {
       },
     ],
   });
-  const [timelineProgress, setTimelineProgress] = useState(35);
+  const [timelineProgress, setTimelineProgress] = useState(60);
+
+  // narrowPercentage(900, )
+  // const narrowPercentage = (previous: number, next: number) => {
+  //   previous
+  // };
+
+  // setInterval(() => {
+  //   setTimelineProgress(timelineProgress + 1);
+  // }, 1000);
 
   return (
     <section className="home">
@@ -55,28 +64,29 @@ const Home = () => {
         <h3 className="activity__header">Activity Board</h3>
         <div className="activity">
           <div className="activity__timeline activity__block">
-            <h1>
-              <span className="accent">M.3/6</span>
-              <br />
-              Assumption <br />
-              College.
-            </h1>
-            <div className="activity__timeline--mutual">
-              <div className="activity__timeline--mutualAvatars">
-                <img
-                  src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-                  alt=""
-                />
-                <img
-                  src="https://media.istockphoto.com/photos/wild-grass-in-the-mountains-at-sunset-picture-id1322277517?k=20&m=1322277517&s=612x612&w=0&h=ZdxT3aGDGLsOAn3mILBS6FD7ARonKRHe_EKKa-V-Hws="
-                  alt=""
-                />
-                <img
-                  src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
-                  alt=""
-                />
+            <div className="activity__timeline--left">
+              <h1>
+                <span className="accent">M.3/6</span>
+                <br />
+                Assumption College
+              </h1>
+              <div className="activity__timeline--mutual">
+                <div className="activity__timeline--mutualAvatars">
+                  <img
+                    src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+                    alt=""
+                  />
+                  <img
+                    src="https://media.istockphoto.com/photos/wild-grass-in-the-mountains-at-sunset-picture-id1322277517?k=20&m=1322277517&s=612x612&w=0&h=ZdxT3aGDGLsOAn3mILBS6FD7ARonKRHe_EKKa-V-Hws="
+                    alt=""
+                  />
+                  <img
+                    src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
+                    alt=""
+                  />
+                </div>
+                And 5 more classmates
               </div>
-              And 5 more classmates
             </div>
 
             <motion.div

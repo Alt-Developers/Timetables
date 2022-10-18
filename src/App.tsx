@@ -1,12 +1,25 @@
 import "./sass/main.css";
+
+import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 
 import { Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Home from "./pages/Home";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const toasterStyle = {
+    minWidth: "20rem",
+    fontFamily: "Poppins",
+    fontSize: "1.5rem",
+    fontWeight: "700",
+    boxShadow: "0 0 3rem #00000005",
+    padding: "2rem",
+    gap: "2rem",
+    backgroundColor: "var(--light-2)",
+  };
 
   useEffect(() => {
     if (localStorage.getItem("darkMode")) {
@@ -33,6 +46,7 @@ function App() {
           <Route path="/" element={<Landing />} />
         </Routes>
       )}
+      {/* <Toaster toastOptions={{ style: toasterStyle }} position={"top-center"} /> */}
     </>
   );
 }
