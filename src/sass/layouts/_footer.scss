@@ -1,0 +1,13 @@
+.footer {
+  width: 100%;
+  background-color: var(--light-2);
+  display: flex;
+  padding: 2rem;
+  font-size: 1.4rem;
+  justify-content: space-between;
+  font-weight: 500;
+
+  &__rightAligned {
+    font-weight: 600;
+  }
+}

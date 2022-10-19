@@ -1,0 +1,25 @@
+.notFound {
+  display: grid;
+  place-items: center;
+  height: calc(100vh - 6rem);
+
+  &__content {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    i {
+      font-size: 7rem;
+      color: var(--accent);
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      color: var(--accent);
+    }
+  }
+}

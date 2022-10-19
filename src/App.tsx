@@ -6,6 +6,9 @@ import Landing from "./pages/Landing";
 import { Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
+import Footer from "./components/Footer";
+import NotFound from "./pages/NotFound";
+import Timetable from "./pages/Timetable";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -35,19 +38,25 @@ function App() {
   });
 
   return (
-    <>
-      {isLoggedIn ? (
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/landing" element={<Landing />} />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route path="/" element={<Landing />} />
-        </Routes>
-      )}
-      {/* <Toaster toastOptions={{ style: toasterStyle }} position={"top-center"} /> */}
-    </>
+    <section className="app">
+      <div style={{ minHeight: "calc(100vh - 6rem)" }}>
+        {isLoggedIn ? (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/landing" element={<Landing />} />
+            <Route path="/timetable/:timetableId" element={<Timetable />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        )}
+        {/* <Toaster toastOptions={{ style: toasterStyle }} position={"top-center"} /> */}
+      </div>
+      <Footer />
+    </section>
   );
 }
 

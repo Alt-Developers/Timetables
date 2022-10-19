@@ -1,6 +1,12 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Landing = () => {
+  useEffect(() => {
+    document.title = "Timetables by Alternate.";
+    document.documentElement.style.setProperty("--accent", "#fd5252");
+  });
+
   return (
     <main className="main__landing">
       <nav className="navigation">

@@ -23,17 +23,6 @@ body {
   }
 }
 
-.main {
-  &__landing {
-    background-color: #f2f2f2;
-  }
-
-  &__home {
-    padding: 5rem;
-  }
-
-  &__timetable {
-    padding: 3rem 5rem 3rem 5rem;
-    background-color: var(--background);
-  }
+.app {
+  min-height: 100vh;
 }

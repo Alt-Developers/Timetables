@@ -46,11 +46,12 @@
       left: 3rem;
       background: linear-gradient(
         90deg,
-        rgba(241, 241, 241, 1) 0%,
-        rgba(241, 241, 241, 0) 100%
+        rgba(241, 241, 241, 0.8) 0%,
+        rgba(241, 241, 241, 0.8) 80%,
+        rgba(241, 241, 241, 0.4990371148459384) 100%
       );
       z-index: 3;
-      width: 60%;
+      width: 40%;
 
       h1 {
         font-size: 4rem;
@@ -187,6 +188,7 @@
   &__add {
     i {
       font-size: 5rem;
+      margin-bottom: 1.5rem;
     }
 
     p {
