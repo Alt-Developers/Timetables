@@ -5,13 +5,14 @@
   gap: 2rem;
 
   @include respond(big-desktop) {
-    padding: 0 10vw 0 10vw;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 20vh;
   }
 
   &__header {
-    @include respond(big-desktop) {
-      padding: 0 10vw 0 10vw;
-    }
+    // @include respond(big-desktop) {
+    //   padding: 0 10vw 0 10vw;
+    // }
     margin-bottom: 2rem;
   }
 

@@ -12,13 +12,6 @@ const Home = () => {
     <section className="home">
       <Header />
       <div className="home__content">
-        <button
-          onClick={() =>
-            document.documentElement.style.setProperty("--accent", "#0e3178")
-          }
-        >
-          Change Accent Color
-        </button>
         <h3 className="activity__header">Activity Board</h3>
         <Activity />
       </div>

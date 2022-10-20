@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [clock, setClock] = useState(
@@ -31,10 +32,16 @@ const Header = () => {
         It's Currently <br />
         <span className="accent">{clock}</span>
       </h1>
-      <div className="header__options">
-        <div onClick={() => {}}>
-          <i className="bx bx-cog"></i>
+      <div className="header__right">
+        <div className="header__options">
+          <Link to="/preferences/account">
+            <i className="bx bx-cog"></i>
+          </Link>
+          <Link to="/create">
+            <i className="bx bx-message-square-add"></i>
+          </Link>
         </div>
+
         <img
           src="https://pbs.twimg.com/profile_images/1509787105425526787/WdSeMffL_400x400.jpg"
           alt=""

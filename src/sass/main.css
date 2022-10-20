@@ -104,27 +104,35 @@ p {
   padding: 5rem;
   justify-content: space-between;
   transition: all 0.2s; }
+  @media only screen and (min-width: 112.5em) {
+    .header {
+      height: 20vh; } }
   .header h1 {
     font-size: 4rem;
     font-weight: 700;
     line-height: 120%; }
-  .header__options {
+  .header__right {
     display: flex;
     gap: 2rem;
     align-items: center; }
-    .header__options i {
+    .header__right i {
       font-size: 3rem;
       color: var(--font);
       transition: all 0.2s;
       padding: 1rem;
       border-radius: 50%; }
-      .header__options i:hover {
-        transform: rotate(30deg);
-        background-color: #ffffff50; }
-    .header__options img {
+      .header__right i:hover {
+        color: var(--accent); }
+    .header__right img {
       height: 5rem;
       width: 5rem;
       border-radius: 50%; }
+  .header__options {
+    display: flex; }
+
+.bx-cog:hover {
+  transform: rotate(30deg);
+  color: var(--accent); }
 
 .preferences__left {
   background-color: var(--light-2);
@@ -213,12 +221,10 @@ p {
   gap: 2rem; }
   @media only screen and (min-width: 112.5em) {
     .activity {
-      padding: 0 10vw 0 10vw; } }
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 20vh; } }
   .activity__header {
     margin-bottom: 2rem; }
-    @media only screen and (min-width: 112.5em) {
-      .activity__header {
-        padding: 0 10vw 0 10vw; } }
   .activity__block {
     box-shadow: 0 0 4rem #00000005;
     background-color: var(--light-2);
@@ -520,3 +526,56 @@ p {
   .timetable__chip:hover {
     background-color: var(--accent);
     color: #fff; }
+
+.preferences {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 1.5fr 2fr; }
+  .preferences__menuContainer {
+    background-color: var(--light-1);
+    height: 100vh;
+    display: flex; }
+  .preferences__menu {
+    width: 20vw;
+    margin-left: auto;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem; }
+    .preferences__menu a {
+      padding: 1.5rem;
+      font-size: 1.5rem;
+      color: var(--font);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.1s; }
+      .preferences__menu a:hover {
+        color: var(--accent); }
+  .preferences__contentContainer {
+    background-color: var(--light-2);
+    height: 100vh;
+    display: flex; }
+  .preferences__content {
+    width: 30vw;
+    margin-right: auto;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    position: relative; }
+    .preferences__content h1 {
+      line-height: 120%;
+      margin-bottom: 3rem; }
+  .preferences__exit {
+    position: absolute;
+    right: 0;
+    top: 2rem;
+    font-size: 4rem;
+    color: var(--accent);
+    transition: all 0.2s; }
+    .preferences__exit:hover {
+      transform: scale(1.1);
+      text-shadow: 0 0 3rem var(--accent); }
+    .preferences__exit:active {
+      transform: scale(0.9); }

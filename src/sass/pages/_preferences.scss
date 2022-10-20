@@ -1,0 +1,73 @@
+.preferences {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 1.5fr 2fr;
+
+  &__menuContainer {
+    background-color: var(--light-1);
+    height: 100vh;
+    display: flex;
+  }
+
+  &__menu {
+    width: 20vw;
+    margin-left: auto;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+
+    a {
+      padding: 1.5rem;
+      font-size: 1.5rem;
+      color: var(--font);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.1s;
+
+      &:hover {
+        color: var(--accent);
+      }
+    }
+  }
+
+  &__contentContainer {
+    background-color: var(--light-2);
+    height: 100vh;
+    display: flex;
+  }
+
+  &__content {
+    width: 30vw;
+    margin-right: auto;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    position: relative;
+
+    h1 {
+      line-height: 120%;
+      margin-bottom: 3rem;
+    }
+  }
+
+  &__exit {
+    position: absolute;
+    right: 0;
+    top: 2rem;
+    font-size: 4rem;
+    color: var(--accent);
+    transition: all 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+      text-shadow: 0 0 3rem var(--accent);
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+}

@@ -7,13 +7,17 @@
   justify-content: space-between;
   transition: all 0.2s;
 
+  @include respond(big-desktop) {
+    height: 20vh;
+  }
+
   h1 {
     font-size: 4rem;
     font-weight: 700;
     line-height: 120%;
   }
 
-  &__options {
+  &__right {
     display: flex;
     gap: 2rem;
     align-items: center;
@@ -26,8 +30,8 @@
       border-radius: 50%;
 
       &:hover {
-        transform: rotate(30deg);
-        background-color: #ffffff50;
+        // background-color: var(--accent);
+        color: var(--accent);
       }
     }
 
@@ -36,5 +40,17 @@
       width: 5rem;
       border-radius: 50%;
     }
+  }
+
+  &__options {
+    display: flex;
+    // gap: 1rem;
+  }
+}
+
+.bx-cog {
+  &:hover {
+    transform: rotate(30deg);
+    color: var(--accent);
   }
 }

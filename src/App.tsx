@@ -9,6 +9,7 @@ import { Toaster } from "react-hot-toast";
 import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
 import Timetable from "./pages/Timetable";
+import Preferences from "./pages/Preferences";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -45,6 +46,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/landing" element={<Landing />} />
             <Route path="/timetable/:timetableId" element={<Timetable />} />
+            <Route path="/preferences/:contentPane" element={<Preferences />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         ) : (
@@ -53,7 +55,10 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         )}
-        {/* <Toaster toastOptions={{ style: toasterStyle }} position={"top-center"} /> */}
+        {/* <Toaster
+          toastOptions={{ style: toasterStyle }}
+          position={"top-center"}
+        /> */}
       </div>
       <Footer />
     </section>
