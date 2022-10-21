@@ -557,7 +557,7 @@ p {
     height: 100vh;
     display: flex; }
   .preferences__content {
-    width: 30vw;
+    width: 35vw;
     margin-right: auto;
     padding: 3rem;
     display: flex;
@@ -579,3 +579,55 @@ p {
       text-shadow: 0 0 3rem var(--accent); }
     .preferences__exit:active {
       transform: scale(0.9); }
+  .preferences__itemList {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; }
+    .preferences__itemList hr {
+      border-top: 1px solid var(--dark-1); }
+  .preferences__displayItem {
+    position: relative; }
+    .preferences__displayItem h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem; }
+    .preferences__displayItem p {
+      font-size: 1.5rem; }
+    .preferences__displayItem a {
+      padding: 1.5rem;
+      background-color: var(--accent);
+      border-radius: 1.1rem;
+      color: #fff; }
+  .preferences__item {
+    padding: 2rem 0;
+    position: relative; }
+    .preferences__item--text {
+      display: flex;
+      align-items: center;
+      gap: 1rem; }
+      .preferences__item--text p {
+        font-size: 1.7rem;
+        font-weight: 600; }
+      .preferences__item--text span {
+        font-size: 1.7rem !important;
+        color: var(--light-text);
+        font-weight: 500; }
+  .preferences__edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.7rem;
+    line-height: 120%; }
+  .preferences__profile {
+    display: flex;
+    gap: 2rem; }
+    .preferences__profile img {
+      height: 15rem;
+      width: 15rem;
+      border-radius: 50%; }
+  .preferences__profileRight {
+    overflow-y: scroll; }
+    .preferences__profileRight h3 {
+      font-size: 2rem; }
+      .preferences__profileRight h3 span {
+        color: var(--accent);
+        font-size: 2rem; }

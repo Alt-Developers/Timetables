@@ -47,7 +47,9 @@ const Preferences = () => {
             <i className="bx bx-x"></i>
           </Link>
           <h1>{matchingPane!.full}</h1>
-          {matchingPane?.element}
+          <section className="preferences__itemList">
+            {matchingPane?.element}
+          </section>
         </div>
       </div>
     </section>
