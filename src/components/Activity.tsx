@@ -1,7 +1,7 @@
 import Modal from "react-modal";
 
 import { useState } from "react";
-import { activity } from "../models/types";
+import { activity } from "../models/TimetableTypes";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -28,7 +28,7 @@ const modalStyles = {
 
 const Activity = () => {
   const [activity, setActivity] = useState<activity>({
-    classes: [
+    timetables: [
       {
         id: "d93jn8e3dwkw9mdiw",
         className: "Year 11A",
@@ -66,9 +66,10 @@ const Activity = () => {
         activity: "Sayu just posted something",
       },
     ],
+    highlightedPost: {},
   });
   const [addTimetableModal, setAddTimetableModal] = useState<boolean>(false);
-  const [timelineProgress, setTimelineProgress] = useState(60);
+  const [timelineProgress, setTimelineProgress] = useState(50);
 
   return (
     <>
@@ -179,7 +180,7 @@ const Activity = () => {
                 animate={{ opacity: 1, y: "0rem" }}
                 transition={{ delay: 0.8, duration: 0.4 }}
               >
-                15 Minutes Elapsed
+                30 Minutes Elapsed
               </motion.div>
             </motion.div>
             <div
@@ -195,13 +196,13 @@ const Activity = () => {
                 Science
               </div>
               <div className="activity__timeline--dotContentLeft activity__timeline--smallContent">
-                10:00 AM
+                11:00 AM
               </div>
             </div>
           </div>
         </div>
         <div className="activity__boardHighlight activity__block">
-          <div className="activity__boardHighlight--title">
+          {/* <div className="activity__boardHighlight--title">
             <img
               src="https://pbs.twimg.com/profile_images/1509787105425526787/WdSeMffL_400x400.jpg"
               alt=""
@@ -210,10 +211,20 @@ const Activity = () => {
           </div>
           <h3>
             Welcome to the brand new Timetables. <br />A Fresh new start
+          </h3> */}
+
+          <div className="activity__boardHighlight--title">
+            <img src="https://i.ibb.co/tsc83Cr/Frame-3.png" alt="" />
+            <p>Alternate Assistance</p>
+          </div>
+          <h3>
+            Welcome to your <span className="accent">Acitivity Board!</span>{" "}
+            <br />
+            Posts from your timetable will appear here
           </h3>
         </div>
 
-        {activity.classes.map((item, index) => {
+        {activity.timetables.map((item, index) => {
           return (
             <Link
               to={`/timetable/${item.id}`}

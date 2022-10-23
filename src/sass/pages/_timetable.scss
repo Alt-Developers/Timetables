@@ -5,14 +5,16 @@
     background-color: var(--light-1);
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
     a {
-      font-size: 1.7rem;
+      font-size: 2rem;
       color: #fd5252;
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      font-weight: 600;
+      // gap: 0.5rem;
 
       i {
         font-size: 2rem;
@@ -20,49 +22,107 @@
     }
   }
 
+  &__options {
+    display: flex;
+    gap: 1rem;
+
+    a {
+      color: var(--font);
+
+      &:hover {
+        // background-color: var(--accent);
+        color: var(--accent);
+      }
+
+      i {
+        font-size: 2.7rem;
+        transition: all 0.2s;
+      }
+    }
+  }
+
   &__top {
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    padding: 3rem 4rem;
+    align-items: center;
   }
 
-  &__topText {
-    display: flex;
-    align-items: flex-end;
-    gap: 1rem;
+  &__title {
+    font-size: 4rem;
 
-    h1 {
-      font-size: 4.5rem;
-      line-height: 100%;
-    }
-
-    p {
+    span {
       font-size: 2rem;
+      font-weight: 500;
     }
-  }
-
-  &__chips {
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  &__activeChip {
-    background-color: var(--accent) !important;
-    color: #fff !important;
   }
 
   &__chip {
     transition: all 0.2s;
-    padding: 2rem;
+    padding: 0 2rem 0 2rem;
     background-color: var(--light-1);
     border-radius: 10rem;
     cursor: pointer;
     box-shadow: 0 0 4.5rem rgba(0, 0, 0, 0.05);
     font-size: 1.3rem;
+    height: 5rem;
+    display: grid;
+    place-items: center;
 
     &:hover {
       background-color: var(--accent);
       color: #fff;
     }
+  }
+
+  &__activeChip {
+    background-color: var(--accent);
+    color: #fff;
+  }
+
+  &__chips {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__table {
+    display: grid;
+    grid-template-columns: 15rem 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
+    grid-template-rows: 1fr;
+    grid-auto-rows: 2fr;
+    padding: 0 4rem;
+    gap: 1rem;
+    height: 80vh;
+  }
+}
+
+.block {
+  background-color: var(--light-2);
+  border-radius: 1.1rem;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05);
+  font-size: 1.5rem;
+}
+
+.activeBlock {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+.weekdays {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.timeLayout {
+  display: grid;
+  grid-template-rows: 5rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  gap: 2rem;
+
+  div {
+    font-weight: 600;
   }
 }

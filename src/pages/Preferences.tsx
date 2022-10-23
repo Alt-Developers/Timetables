@@ -1,10 +1,14 @@
+import DeveloperPane from "../components/PreferencePanes/DeveloperPane";
+import AppearancePane from "../components/PreferencePanes/AppearancePane";
+import AccountPane from "../components/PreferencePanes/AccountPane";
+
 import { Link, useParams } from "react-router-dom";
-import AccountPane from "../components/AccountPane";
-import DeveloperPane from "../components/DeveloperPane";
+import { contentPane } from "../models/TimetableTypes";
+import { useEffect } from "react";
 
 const Preferences = () => {
-  const { contentPane } = useParams();
-  const allowedContentPanes = [
+  const { preferencePane } = useParams();
+  const allowedPreferencePanes: contentPane[] = [
     {
       param: "account",
       full: (
@@ -15,25 +19,43 @@ const Preferences = () => {
       ),
       element: <AccountPane />,
     },
-    { param: "appearance", full: "Appearance" },
-    { param: "developer", full: "Developer Pane", element: <DeveloperPane /> },
+    {
+      param: "appearance",
+      full: (
+        <h1>
+          Appearance<span className="accent">.</span>
+        </h1>
+      ),
+      element: <AppearancePane />,
+    },
+    {
+      param: "developer",
+      full: (
+        <h1>
+          Developer Pane<span className="accent">.</span>
+        </h1>
+      ),
+      element: <DeveloperPane />,
+    },
   ];
 
-  console.log(contentPane);
+  useEffect(() => {
+    document.title = "Preferences | Alt Timetables";
+  }, []);
 
-  const matchingPane = allowedContentPanes.find(
-    pane => pane.param === contentPane
+  const matchingPane = allowedPreferencePanes.find(
+    pane => pane.param === preferencePane
   );
 
   return (
     <section className="preferences">
       <div className="preferences__menuContainer">
         <div className="preferences__menu">
-          {allowedContentPanes.map(pane => (
+          {allowedPreferencePanes.map(pane => (
             <Link
               to={`/preferences/${pane.param}`}
               style={
-                contentPane === pane.param ? { color: "var(--accent)" } : {}
+                preferencePane === pane.param ? { color: "var(--accent)" } : {}
               }
             >
               {pane.param.charAt(0).toUpperCase() + pane.param.slice(1)}
@@ -46,7 +68,7 @@ const Preferences = () => {
           <Link to="/" className="preferences__exit">
             <i className="bx bx-x"></i>
           </Link>
-          <h1>{matchingPane!.full}</h1>
+          {matchingPane!.full}
           <section className="preferences__itemList">
             {matchingPane?.element}
           </section>

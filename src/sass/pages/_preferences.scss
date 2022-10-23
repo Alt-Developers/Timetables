@@ -11,7 +11,7 @@
   }
 
   &__menu {
-    width: 20vw;
+    width: 30rem;
     margin-left: auto;
     padding: 3rem;
     display: flex;
@@ -46,6 +46,14 @@
     flex-direction: column;
     margin-top: 2rem;
     position: relative;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 
     h1 {
       line-height: 120%;
@@ -55,7 +63,7 @@
 
   &__exit {
     position: absolute;
-    right: 0;
+    right: 2rem;
     top: 2rem;
     font-size: 4rem;
     color: var(--accent);
@@ -83,6 +91,7 @@
 
   &__displayItem {
     position: relative;
+    height: fit-content;
 
     h3 {
       font-size: 1.5rem;
@@ -94,11 +103,20 @@
     }
 
     a {
-      padding: 1.5rem;
+      padding: 1.5rem !important;
+      display: grid;
+      place-content: center;
+      color: #fff !important;
+      font-size: 1.3rem !important;
+      text-decoration: none;
       background-color: var(--accent);
-      border-radius: 1.1rem;
-      color: #fff;
-      // margin-top: 2rem;
+      border-radius: 50rem !important;
+      width: fit-content;
+
+      &:hover {
+        background-color: #fa6767 !important;
+        // color: #fd5252;
+      }
     }
   }
 
@@ -111,7 +129,7 @@
       align-items: center;
       gap: 1rem;
 
-      p {
+      h3 {
         font-size: 1.7rem;
         font-weight: 600;
       }
@@ -135,16 +153,38 @@
     display: flex;
     gap: 2rem;
 
+    a {
+      position: relative;
+
+      p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        color: #fff;
+        z-index: 10;
+        text-align: center;
+      }
+
+      &:hover > p {
+        display: block;
+      }
+
+      &:hover > img {
+        filter: brightness(0.6);
+      }
+    }
+
     img {
       height: 15rem;
       width: 15rem;
       border-radius: 50%;
+      transition: all 0.1s;
     }
   }
 
   &__profileRight {
-    overflow-y: scroll;
-
     h3 {
       font-size: 2rem;
 

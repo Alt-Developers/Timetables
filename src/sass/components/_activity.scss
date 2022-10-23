@@ -6,7 +6,7 @@
 
   @include respond(big-desktop) {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 20vh;
+    grid-auto-rows: 20vh;
   }
 
   &__header {
@@ -53,6 +53,15 @@
       );
       z-index: 3;
       width: 40%;
+
+      @include darkMode() {
+        background: linear-gradient(
+          90deg,
+          rgba(40, 40, 40, 0.8) 0%,
+          rgba(40, 40, 40, 0.8) 80%,
+          rgba(40, 40, 40, 0.4990371148459384) 100%
+        );
+      }
 
       h1 {
         font-size: 4rem;
@@ -147,17 +156,16 @@
 
   &__boardHighlight {
     grid-column: span 2;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 
     h3 {
       width: 100%;
-      overflow-y: scroll;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-
-      -ms-overflow-style: none; /* IE and Edge */
-      scrollbar-width: none; /* Firefox */
     }
 
     &--title {

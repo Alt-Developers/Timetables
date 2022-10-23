@@ -46,7 +46,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/landing" element={<Landing />} />
             <Route path="/timetable/:timetableId" element={<Timetable />} />
-            <Route path="/preferences/:contentPane" element={<Preferences />} />
+            <Route
+              path="/preferences/:preferencePane"
+              element={<Preferences />}
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         ) : (

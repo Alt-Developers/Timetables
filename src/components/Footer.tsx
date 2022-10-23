@@ -12,7 +12,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer__leftAligned">
         GNU General Public License v2.0 ©{year} - Prawich Thawansakdivudhi and
-        Jirat Chutrakul
+        Jirat Chutrakul (Alternate)
       </div>
       <div className="footer__rightAligned">
         Timetables <span className="accent">v4</span>
