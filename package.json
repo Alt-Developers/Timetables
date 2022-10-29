@@ -10,8 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.9.3",
-    "@emotion/styled": "^11.9.3",
     "@reduxjs/toolkit": "^1.8.3",
     "framer-motion": "^6.5.1",
     "node-sass": "^7.0.1",

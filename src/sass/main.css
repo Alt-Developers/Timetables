@@ -6,6 +6,7 @@
   --font: #000000;
   --light-1: #f5f5f5;
   --light-2: #f1f1f1;
+  --light-3: #dedede:
   --light-2-translucent: #f1f1f160;
   --light-shadow: 0 0 4rem rgba(0, 0, 0, 0.05);
   --dark-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
@@ -32,6 +33,7 @@ html[data-theme="light"] {
   --font: #000000;
   --light-1: #f5f5f5;
   --light-2: #f1f1f1;
+  --light-3: #dedede:
   --light-2-translucent: #f1f1f160;
   --light-shadow: 0 0 4rem rgba(0, 0, 0, 0.05);
   --dark-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
@@ -511,7 +513,7 @@ p {
   justify-content: space-between; }
   .timetable__nav a {
     font-size: 2rem;
-    color: #fd5252;
+    color: var(--accent);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -523,12 +525,15 @@ p {
   display: flex;
   gap: 1rem; }
   .timetable__options a {
-    color: var(--font); }
+    color: var(--font);
+    transition: all 0.1s; }
     .timetable__options a:hover {
       color: var(--accent); }
     .timetable__options a i {
       font-size: 2.7rem;
-      transition: all 0.2s; }
+      transition: all 0.1s; }
+    .timetable__options a:active {
+      transform: scale(0.8); }
 
 .timetable__top {
   display: flex;
@@ -572,7 +577,104 @@ p {
   grid-auto-rows: 2fr;
   padding: 0 4rem;
   gap: 1rem;
-  height: 80vh; }
+  height: 80vh;
+  z-index: 2; }
+
+.timetable__paneAnchor {
+  position: relative; }
+
+.timetable__board {
+  padding: 0 4rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  gap: 2rem; }
+
+.timetable__boardLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; }
+
+.timetable__boardRight {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; }
+
+.timetable__newPost {
+  background-color: var(--light-2);
+  box-shadow: 0 0 4.5rem rgba(0, 0, 0, 0.05);
+  border-radius: 1.1rem;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: fit-content; }
+  .timetable__newPost div {
+    display: flex;
+    align-items: center;
+    gap: 1rem; }
+    .timetable__newPost div p {
+      font-size: 2rem;
+      font-weight: 600; }
+    .timetable__newPost div img {
+      border-radius: 50%;
+      height: 5rem;
+      width: 5rem; }
+  .timetable__newPost input {
+    border-radius: 1.1rem;
+    background-color: var(--light-3);
+    border: none;
+    padding: 2rem;
+    font-family: "Poppins";
+    font-size: 2.5rem;
+    font-weight: 500; }
+    .timetable__newPost input::placeholder {
+      font-weight: 500; }
+  .timetable__newPost button {
+    padding: 1.5rem;
+    border-radius: 10rem;
+    background-color: var(--accent);
+    color: #fff;
+    border: none;
+    width: 10rem;
+    font-size: 1.5rem;
+    margin-left: auto;
+    transition: all 0.2s;
+    box-shadow: 0 0 2rem #00000005;
+    font-family: "Poppins"; }
+    .timetable__newPost button:hover {
+      box-shadow: 0 0 2rem var(--accent);
+      transform: translateY(-0.5rem); }
+    .timetable__newPost button:active {
+      box-shadow: 0 0 1rem var(--accent);
+      transform: translateY(0); }
+
+.timetable__post {
+  box-shadow: 0 0 4rem #00000005;
+  background-color: var(--light-2);
+  border-radius: 1.1rem;
+  padding: 2.5rem;
+  transition: all 0.2s;
+  text-decoration: none;
+  color: var(--font);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: fit-content; }
+  .timetable__post h3 {
+    width: 100%; }
+  .timetable__post--title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem; }
+  .timetable__post img {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%; }
 
 .block {
   background-color: var(--light-2);
@@ -580,7 +682,14 @@ p {
   display: grid;
   place-items: center;
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05);
-  font-size: 1.5rem; }
+  font-size: 1.5rem;
+  transition: all 0.1s; }
+  .block:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 0 4rem #00000010; }
+  .block:active {
+    transform: translateY(0rem);
+    box-shadow: 0 0 4rem #00000005; }
 
 .activeBlock {
   background-color: var(--accent);
@@ -598,6 +707,10 @@ p {
   gap: 2rem; }
   .timeLayout div {
     font-weight: 600; }
+
+.unHoverable:hover {
+  transform: translateY(0rem) !important;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05) !important; }
 
 .preferences {
   display: grid;
